@@ -1,0 +1,49 @@
+.bestSellerContainer {
+  width: 70%;
+  margin-left: 20%;
+  margin-right: 20%;
+  height: 800px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+ 
+}
+img {
+  width: 100%;
+
+}
+
+.bestsellerh1 {
+  text-align: center;
+  font-family: "Londrina Shadow", cursive;
+  font-size: 90px;
+}
+
+.bestSeller-left {
+  width: 30%;
+  height: 200px;
+  margin: 30px;
+
+}
+.bestSeller-right {
+  width: 40%;
+  height: 200px; 
+
+}
+
+.bestSeller-left img {
+  width: 300px;
+  padding: 20px 50px 50px 20px;  
+  height: 250px;
+  border: 1px solid black;  
+  box-shadow: 10px 15px;
+  margin-top: 30px;
+}
+.bestSeller-right img {
+  width: 600px;
+  padding: 30px 60px 60px 30px;  
+  height: 275px;
+  border: 1px solid black;
+  box-shadow: 10px 15px;
+  margin-top: 30px;
+}
