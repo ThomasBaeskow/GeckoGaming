@@ -8,7 +8,11 @@
     height: 60px;    
     display: flex;
     margin: 0 auto;
+
+    background-color: #FFFDEC;
+
     background-color: antiquewhite;
+
     font-family: 'JetBrains Mono', monospace;
     font-weight: bold;
     justify-content: space-around; 
@@ -20,8 +24,23 @@
     list-style: none;
     display: inline-block;
     align-items: center;
+
+    cursor: pointer;
     
 }
+
+li:hover{
+    color: white;
+    background-color: black;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+
+    
+}
+
 
 .landingSearch input[type=search]{
     width: 50%;
@@ -41,4 +60,8 @@
     margin: 20px;
     display: flex;
     justify-content: space-around;
+
+    cursor: pointer;
+
+
 }
