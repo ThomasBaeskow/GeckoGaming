@@ -36,11 +36,7 @@
     height: 60px;    
     display: flex;
     margin: 0 auto;
-
-    background-color: #FFFDEC;
-
-    background-color: antiquewhite;
-
+    background-color: #9DF3C4;
     font-family: 'JetBrains Mono', monospace;
     font-weight: bold;
     justify-content: space-around; 
@@ -59,7 +55,7 @@
 
 li:hover{
     color: white;
-    background-color: black;
+    background-color: #1FAB89;
     padding: 5px;
     border-radius: 5px;
 
@@ -67,7 +63,7 @@ li:hover{
 
 
     
-}
+
 
 
 .landingSearch input[type=search]{
@@ -78,6 +74,9 @@ li:hover{
     border: 2px solid black;
     font-family: 'JetBrains Mono', monospace;
     font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    outline: none;
    
 
 }

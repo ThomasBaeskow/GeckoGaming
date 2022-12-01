@@ -9,6 +9,7 @@
   border: 0.2px solid black;
   width: 60%;
   margin-bottom: 3em;
+  margin-top: 4em;
 }
 .categoryList-left {
   display: flex;
@@ -39,7 +40,7 @@
   border: 2px solid black;
   margin-top: 40px;
   box-shadow: 10px 10px;
-  margin-right: 3em;
+  margin-right: 1em;
 }
 
 .pink {
@@ -81,23 +82,13 @@
   align-items: center;
 }
 
-.btn-container {
+/* .btn-container {
   display: flex;
   justify-content: center;
-  margin-top: 2em;
-}
+} */
 
-.catH1{
-    margin-left: 100px;
-    font-family: "Londrina Shadow", cursive;
-    font-size: 92px; 
-
+.right:hover, .left:hover, button:hover{
+  transform: scale(1.1);
+  transition: 0.5s;
+  cursor: pointer;
 }
-.categoryList{
-
-}
-.categoryContainer{
-    height: 600px;
-    width: 80%;
-}
-

@@ -1,43 +1,26 @@
-import React from 'react'
-import "./footer.css"
-import { faTwitter,faFacebook, faInstagram} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import "./footer.css";
+import {
+  faTwitter,
+  faFacebook,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   return (
-    <div className="footer">         
-      <div className="fLists">
-        <ul className="fList">
-          <li className="fListItem">Countries</li>
-          <li className="fListItem">Regions</li>
-          <li className="fListItem">Cities</li>
-          <li className="fListItem">Districts</li>
-        </ul>
-        <ul className="fList">
-          <li className="fListItem">Countries</li>
-          <li className="fListItem">Regions</li>
-          <li className="fListItem">Cities</li>
-          <li className="fListItem">Districts</li>
-        </ul>
-        <ul className="fList">
-          <li className="fListItem">Countries</li>
-          <li className="fListItem">Regions</li>
-          <li className="fListItem">Cities</li>
-          <li className="fListItem">Districts</li>
-        </ul>
-        <div className='fIcons'>
-        <FontAwesomeIcon icon={faTwitter}/>
-         <FontAwesomeIcon icon={faFacebook}/>
-         <FontAwesomeIcon icon={faInstagram}/>
+    <div className="footer">
+      <p className="footer-text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi impedit asperiores consequuntur minus ipsum! Eaque debitis delectus laudantium quis, magni quidem ea ad dignissimos incidunt voluptas, quos nostrum sed sequi.
+      </p>
+        <div className="vertical-line"></div>
+        <div className="fIcons">
+          <FontAwesomeIcon icon={faTwitter} className='twitter' />
+          <FontAwesomeIcon icon={faFacebook} className='facebook' />
+          <FontAwesomeIcon icon={faInstagram} className='instagram' />
         </div>
-        </div>
-        
+    </div>
+  );
+};
 
-        </div>
-       
-      
-        
-  )
-}
-
-export default Footer
+export default Footer;
