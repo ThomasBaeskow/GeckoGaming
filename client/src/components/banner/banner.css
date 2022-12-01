@@ -1,13 +1,43 @@
+
+body{
+  background:#FFFDEC ;
+}
+
+.bannerBackground {
+  background-image: url("../../images/Rectangle\ 3.png");
+  width: 100%;
+  height: 400px;
+
 .bannerBackground {
   background-image: url("../../images/Rectangle\ 3.png");
   width: 100%;
   height: 300px;
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border: 3px solid;
+}
+
+.bannerContainer {
+  width: 70%;
+  height: 280px;
+  margin: 0 auto;
+  background-color: #FFFDEC;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  border: 2px solid black;
+  padding: 1em;
+}
+
+.bannerText{
+  text-align: center;
+
 }
 
 .bannerContainer {
@@ -19,6 +49,7 @@
   display: flex;
   justify-content: space-between;
   border: 2px solid black;
+
 }
 span {
   font-family: "Londrina Shadow", cursive;
@@ -30,6 +61,22 @@ span {
   flex-direction: column;
 }
 .banner-right {
+
+  width: 20%;
+  padding: 20px 20px 50px 10px; 
+  border: 2px solid;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px;
+
+}
+
+.banner-right img {
+  width: 100%;
+  height: 100%;
+  border: 3px solid black;
   width: 50%;
 }
 
@@ -41,18 +88,37 @@ span {
   height: 200px;
   padding: 10px;
   box-shadow: 5px 5px;
+
 }
 
 button {
   text-align: center;
   margin: 0 auto;
   width: 200px;
+
+  height: 40px;
+
   height: 30px;
+
   border: 2px solid black;
   border-radius: 8px;
   font-family: "JetBrains Mono", monospace;
   box-shadow: 5px 5px;
+
+  font-size: 20px;
+  cursor: pointer;
+  background: #f5f2fd;
 }
+
+button:hover{
+  background-color: #b59bfb;
+  color: white;
+  box-shadow: 5px 5px;
+}
+
+
+}
+
 h1 {
   font-family: "Roboto Mono", monospace;
 }
