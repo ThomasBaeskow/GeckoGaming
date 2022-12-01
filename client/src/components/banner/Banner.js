@@ -1,6 +1,7 @@
 import React from 'react'
 import "./banner.css"
-import images from "../../images/pic-landing.jpg"
+import images from "../../images/pic-landing.jpg";
+import {Link} from "react-router-dom";
 
 
 const Banner = () => {
@@ -13,7 +14,7 @@ const Banner = () => {
 
 
             <hr />
-            <button>Shop now <span className='spanArrow'>   ➡️ </span></button>
+            <button><Link to="/products">Shop now</Link> <span className='spanArrow'>   ➡️ </span></button>
             </div>
 
         <div className='banner-right'>

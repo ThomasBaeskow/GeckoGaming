@@ -1,39 +1,40 @@
-import React from "react";
+import React,{useState} from "react";
 import "./navbar.css";
-import {
-  faSearch,
+import {  
   faUser,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
+
 
 const Navbar = () => {
- 
+  const[user,setUser] = useState([false,"Anupama"]);
+  const[cartQuantity,setCartQuantity] =useState(1);
+
+
   return (
     <div className="landingNavbar">
       <div className="landingUl">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Product</li>
-          <li>Log in </li>
+          <li><Link to="/">Home</Link> </li>
+          <li><Link to="/about">About Us</Link> </li>
+          <li><Link to="/products">Products</Link> </li>
+          {
+            user[0] ? (<><li>--Welcome{user[1]}--<Link to="/">Log out </Link> </li></>) : (<><li><Link to="/login">Log in </Link></li></>)
+
+
+          }
+          
         </ul>
       </div>
-      <div className="landingSearch">
-    {/*     "&#xF002; search"/>
-        <FontAwesomeIcon icon={faSearch} /> */}
-      
+      <div className="landingSearch">   
 
-      <input type="search" placeholder=" 🔍 Search ..."/>
-   
-     
-
-
-
+        <input type="search" placeholder=" 🔍 Search ..." />
       </div>
       <div className="landingCart">
         <FontAwesomeIcon icon={faUser} />
-        <FontAwesomeIcon icon={faShoppingCart} />
+        <FontAwesomeIcon icon={faShoppingCart} /> {cartQuantity > 0 ? (<h6>{cartQuantity}</h6>) : ""}
       </div>
     </div>
   );
