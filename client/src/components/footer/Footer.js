@@ -15,9 +15,9 @@ const Footer = () => {
       </p>
         <div className="vertical-line"></div>
         <div className="fIcons">
-          <FontAwesomeIcon icon={faTwitter} />
-          <FontAwesomeIcon icon={faFacebook} />
-          <FontAwesomeIcon icon={faInstagram} />
+          <FontAwesomeIcon icon={faTwitter} className='twitter' />
+          <FontAwesomeIcon icon={faFacebook} className='facebook' />
+          <FontAwesomeIcon icon={faInstagram} className='instagram' />
         </div>
     </div>
   );

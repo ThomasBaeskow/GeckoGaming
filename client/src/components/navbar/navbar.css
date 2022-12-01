@@ -8,15 +8,7 @@
     height: 60px;    
     display: flex;
     margin: 0 auto;
-<<<<<<< HEAD
     background-color: #9DF3C4;
-=======
-
-    background-color: #FFFDEC;
-
-    background-color: antiquewhite;
-
->>>>>>> 9228c5095137183737234b06a47743f47e4c280b
     font-family: 'JetBrains Mono', monospace;
     font-weight: bold;
     justify-content: space-around; 
@@ -35,7 +27,7 @@
 
 li:hover{
     color: white;
-    background-color: black;
+    background-color: #1FAB89;
     padding: 5px;
     border-radius: 5px;
 
@@ -43,7 +35,7 @@ li:hover{
 
 
     
-}
+
 
 
 .landingSearch input[type=search]{
@@ -54,6 +46,9 @@ li:hover{
     border: 2px solid black;
     font-family: 'JetBrains Mono', monospace;
     font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    outline: none;
    
 }
 .landingSearch {
