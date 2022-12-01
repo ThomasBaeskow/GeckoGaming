@@ -6,11 +6,11 @@ import mongoose from "mongoose"
 const productSchema = mongoose.Schema({
     productType: {
         type: String,
-        default: "videogames"
+        default: "accessories"
     },
     brand: {
         type: String,
-        default: "ps5"
+        default: "xbox-x/s-controller"
     },
     isBestSeller: {
         type: Boolean,
