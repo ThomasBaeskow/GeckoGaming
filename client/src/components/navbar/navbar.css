@@ -8,7 +8,15 @@
     height: 60px;    
     display: flex;
     margin: 0 auto;
+<<<<<<< HEAD
     background-color: #9DF3C4;
+=======
+
+    background-color: #FFFDEC;
+
+    background-color: antiquewhite;
+
+>>>>>>> 9228c5095137183737234b06a47743f47e4c280b
     font-family: 'JetBrains Mono', monospace;
     font-weight: bold;
     justify-content: space-around; 
@@ -20,6 +28,7 @@
     list-style: none;
     display: inline-block;
     align-items: center;
+
     cursor: pointer;
     
 }
@@ -31,6 +40,11 @@ li:hover{
     border-radius: 5px;
 
 }
+
+
+    
+}
+
 
 .landingSearch input[type=search]{
     width: 50%;
@@ -50,5 +64,8 @@ li:hover{
     margin: 20px;
     display: flex;
     justify-content: space-around;
+
     cursor: pointer;
+
+
 }

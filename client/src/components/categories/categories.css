@@ -1,3 +1,4 @@
+
 .catH1 {
   margin-left: 4em;
   font-family: "Londrina Shadow", cursive;
@@ -84,6 +85,7 @@
 /* .btn-container {
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
 } */
 
 .right:hover, .left:hover, button:hover{
@@ -91,3 +93,22 @@
   transition: 0.5s;
   cursor: pointer;
 }
+=======
+  margin-top: 2em;
+}
+
+.catH1{
+    margin-left: 100px;
+    font-family: "Londrina Shadow", cursive;
+    font-size: 92px; 
+
+}
+.categoryList{
+
+}
+.categoryContainer{
+    height: 600px;
+    width: 80%;
+}
+
+>>>>>>> 9228c5095137183737234b06a47743f47e4c280b
