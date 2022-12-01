@@ -1,13 +1,87 @@
-.catH1{
-    margin-left: 100px;
-    font-family: "Londrina Shadow", cursive;
-    font-size: 92px; 
-
+.catH1 {
+  margin-left: 4em;
+  font-family: "Londrina Shadow", cursive;
+  font-size: 92px;
 }
-.categoryList{
-
+.hr-categories {
+  margin: 0 auto;
+  border: 0.2px solid black;
+  width: 60%;
+  margin-bottom: 3em;
 }
-.categoryContainer{
-    height: 600px;
-    width: 80%;
+.categoryList-left {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100vw;
+}
+
+.categoryList-right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.left {
+  width: 300px;
+  height: 250px;
+  border: 2px solid black;
+  margin-top: 30px;
+  background: #f5f2fd;
+  box-shadow: 10px 10px;
+  margin-right: 1em;
+  margin-top: 1em;
+}
+.right {
+  width: 600px;
+  height: 275px;
+  border: 2px solid black;
+  margin-top: 40px;
+  box-shadow: 10px 10px;
+  margin-right: 3em;
+}
+
+.pink {
+  background-color: rgb(244, 192, 209);
+  font-weight: bold;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Marck Script", cursive;
+}
+
+.orange {
+  background-color: rgb(251, 212, 173);
+  font-family: jetBrains mono;
+  font-weight: bold;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.green {
+  background-color: rgb(204, 255, 204);
+  font-family: roboto mono;
+  font-weight: bold;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.purple {
+  font-family: "Comic Neue", cursive;
+  font-weight: bold;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
 }
