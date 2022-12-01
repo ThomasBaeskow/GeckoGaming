@@ -7,19 +7,19 @@ function Categories() {
       <hr className="hr-categories" />
       <h1 className="catH1">Categories:</h1>
       <div className="categoryList-left">
-        <div className="left pink">brands</div>
-        <div className="right orange">Electronics</div>
+        <div className="left pink">Brands</div>
+        <div className="right orange">Accesories</div>
       </div>
       <div className="categoryList-right">
        
-        <div className="right green">Merchandising</div>
-        <div className="left purple">Kids</div>
+        <div className="right green">Computer</div>
+        <div className="left purple">Videogames</div>
       </div>
 
-    <div className="btn-container">
+    {/* <div className="btn-container">
     <button>More... ➡️</button>
-    </div>
-      
+    </div> */}
+      <hr className="hr-categories" />
     </div>
   );
 }

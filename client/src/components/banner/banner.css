@@ -1,10 +1,10 @@
-body{
-  background:#FFFDEC ;
+body {
+  background: #e1fbec;
 }
 
 .bannerBackground {
-  background-image: url("../../images/Rectangle\ 3.png");
-  width: 100%;
+  background-image: url("https://media.discordapp.net/attachments/981512296532672543/1047872523385196674/ezgif.com-gif-maker.gif");
+  width: 100vw;
   height: 400px;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,9 +17,9 @@ body{
 
 .bannerContainer {
   width: 70%;
-  height: 280px;
+  height: 300px;
   margin: 0 auto;
-  background-color: #FFFDEC;
+  background-color: #d7fbe886;
   padding: 10px;
   display: flex;
   justify-content: space-around;
@@ -27,7 +27,7 @@ body{
   padding: 1em;
 }
 
-.bannerText{
+.bannerText {
   text-align: center;
 }
 span {
@@ -41,20 +41,25 @@ span {
 }
 .banner-right {
   width: 20%;
-  padding: 20px 20px 50px 10px; 
+  padding: 20px 20px 50px 10px;
   border: 2px solid;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 5px 5px;
-
 }
 
 .banner-right img {
   width: 100%;
   height: 100%;
   border: 3px solid black;
+}
+
+.banner-right:hover {
+  transition: 0.5s;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 button {
@@ -71,10 +76,10 @@ button {
   background: #f5f2fd;
 }
 
-button:hover{
-  background-color: #b59bfb;
+button:hover {
+  background-color: #62D2A2;
   color: white;
-  box-shadow: 5px 5px;
+  box-shadow: 5px 5px black;
 }
 
 h1 {
