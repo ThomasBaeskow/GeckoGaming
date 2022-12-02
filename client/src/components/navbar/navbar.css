@@ -1,17 +1,17 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.landingNavbar{
-    width:100%;
-    height: 60px;    
-    display: flex;
-    margin: 0 auto;
-    background-color: #9DF3C4;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: bold;
-    justify-content: space-around; 
+.landingNavbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  margin: 0 auto;
+  background-color: #9df3c4;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: bold;
+  justify-content: space-around;
 }
 .landingUl li {
   margin: 20px;
@@ -31,30 +31,49 @@ li:hover {
   border-radius: 5px;
 }
 
-
-    
-
-
-
-.landingSearch input[type=search]{
-    width: 50%;
-    height: 42px;
-    margin: 10px;
-    border-radius: 20px;
-    border: 2px solid black;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 10px;
-    outline: none;
-   
+.landingSearch input[type="search"] {
+  width: 50%;
+  height: 42px;
+  margin: 10px;
+  border-radius: 20px;
+  border: 2px solid black;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
+  outline: none;
 }
 .landingSearch {
-    width: 30%;
+  width: 30%;
 }
-.landingCart{
-    width: 200px;
-    margin: 20px;
+.landingCart {
+  width: 150px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.user:hover,
+.cart:hover {
+  color: white;
+  background-color: #1fab89;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.mobile-navigation {
+  display: none;
+}
+
+/* responsiveness navbar for mobile - hamburger menu */
+
+@media screen and (max-width: 990px) {
+  .navigation {
+    display: none;
+  }
+  .mobile-navigation {
     display: flex;
     align-items: center;
   }
