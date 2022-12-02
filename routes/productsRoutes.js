@@ -1,6 +1,5 @@
 import express from "express"
-import { getAllProducts, getProduct } from "../controllers/productController.js"
-
+import {getAllProductsWithCategory, getProductWithCategory } from "../controllers/productsController.js"
 
 
 const router = express.Router()
@@ -8,12 +7,12 @@ const router = express.Router()
 
 router
 .route("/")
-.get(getAllProducts)
+.get(getAllProductsWithCategory)
 // .post(createProduct)
 
 router
 .route("/:id")
-.get(getProduct)
+.get(getProductWithCategory)
 // .patch()
 // .delete()
 

@@ -4,6 +4,7 @@ import path from "path"
 import dotenv from "dotenv"
 import cors from "cors"
 import morgan from "morgan"
+import productsRouter from "./routes/productsRoutes.js"
 import productRouter from "./routes/productRoutes.js"
 
 
@@ -50,8 +51,8 @@ app.use((req, res, next) => {
 });
 
 
-app.use('/api/v1/products', productRouter);
-// app.use('/api/v1/users');
+app.use('/api/v1/products', productsRouter);
+app.use('/api/v1/product', productRouter);
 // app.use("/api/v1/reviews");
 // app.use("/api/v1/orders");
 
