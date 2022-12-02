@@ -1,7 +1,8 @@
 import React from "react";
+import MobileNavigation from "./MobileNavigation";
+import Navigation from "./Navigation";
 import "./navbar.css";
 import {
-  faSearch,
   faUser,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
@@ -12,12 +13,8 @@ const Navbar = () => {
   return (
     <div className="landingNavbar">
       <div className="landingUl">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Product</li>
-          <li>Log in </li>
-        </ul>
+        <Navigation />
+        <MobileNavigation/>
       </div>
       <div className="landingSearch">
     {/*     "&#xF002; search"/>
@@ -32,8 +29,8 @@ const Navbar = () => {
 
       </div>
       <div className="landingCart">
-        <FontAwesomeIcon icon={faUser} />
-        <FontAwesomeIcon icon={faShoppingCart} />
+        <FontAwesomeIcon icon={faUser} className='user' />
+        <FontAwesomeIcon icon={faShoppingCart} className='cart' />
       </div>
     </div>
   );
