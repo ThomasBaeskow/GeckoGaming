@@ -15,6 +15,10 @@ dotenv.config({path: "./.env"})
 
 const __dirname = path.resolve()
 
+
+// const __dirname = path.resolve()
+
+
 const DB = process.env.DATABASE
 
 // connection to hosted ATLAS database again. This time not listening to our port.
@@ -29,6 +33,9 @@ mongoose.connect(DB, {
 .catch((err) => {
   console.log(`${err} dit not connect...`);
 })
+
+
+
 
 // PS5 GAMES
 // const options = {
@@ -309,6 +316,51 @@ mongoose.connect(DB, {
 //       'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
 //     }
 //   };
+// const options = {
+//     method: 'GET',
+//     url: 'https://amazon24.p.rapidapi.com/api/product',
+//     params: {
+
+//       categoryID: '20972781011',
+//       keyword: 'Video Games',
+//       country: 'US',
+//       page: '1',
+//       refinementID: 'n:468642,n:20972781011,n:20972797011'
+
+//       categoryID: '20972798011',
+//       keyword: 'Xbox Core Wireless Controller',
+//       country: 'US',
+//       page: '1',
+//       refinementID: 'n:468642,n:20972798011,n:20972799011'
+
+//     },
+//     headers: {
+//       'X-RapidAPI-Key': '512c41bee6msh34a47e7b9ce1480p1fe0a4jsnaaffa48cc661',
+//       'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
+//     }
+//   };
+
+  
+// const products = async () => {
+//     try {
+//         const products = await axios.request(options) {
+//             console.log(response.data);
+//     }
+//   } catch((error) {
+//     console.error(error);
+// }};
+
+  
+// const products = async (options) => {
+//     try {
+//         const result = await axios.request(options)
+//     }catch (err) {
+//         console.error(err);
+//     }
+// }
+
+
+
 
 // WITH RAPID API
 // TEST for category document
@@ -386,6 +438,11 @@ mongoose.connect(DB, {
 //     // catch and print the error
 //     console.log(error);
 // })
+
+
+console.log(options);
+
+console.log(products);
 
 
 // READ JSON FILE

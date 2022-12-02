@@ -1,30 +1,34 @@
 
 import './App.css';
-import Banner from './components/banner/Banner';
-import BestSeller from './components/bestSeller/BestSeller';
-import Categories from './components/categories/Categories';
-import Footer from './components/footer/Footer';
-import Login from './components/login/Login';
-import{BrowserRouter,Route,Router}from "react-router-dom";
-import Navbar from './components/navbar/Navbar';
+import{BrowserRouter,Route,Routes}from "react-router-dom";
+
+import Home from './components/home/Home';
 import AboutUs from "./components/aboutUs/AboutUs"
-import { Signup } from './components/signup/Signup';
+import Products from './components/products/Products';
+import  Signup  from './components/signup/Signup';
+import Login from './components/login/Login';
+import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
+
+
+
+
 
 function App() {
   return (
     <div className="App">
-    <Navbar/> 
-   
-    <Banner/>
-     <BestSeller/>
- <Categories/>
-    <Footer/>   
-    {/* <Signup/>   
-    <Login/>  
-   <Router>
-  <Route path="/"element={<Navbar/>}/>
+ <BrowserRouter>
+ <Navbar/>
+     <Routes>
+  <Route path="/"element={<Home/>}/>
   <Route path="/about" element={<AboutUs/>}/>
-  </Router> */} 
+  <Route path="/products" element={<Products/>}/>
+  <Route path="/login" element={<Login/>}/>
+  <Route path="/signup" element={<Signup/>}/>
+
+  </Routes> 
+  <Footer/>
+  </BrowserRouter> 
     </div>
   );
 }

@@ -1,19 +1,43 @@
-.fLists{
-    width: 100%;
-    margin-top: 30px;
-    display:flex;
-    justify-content: space-around;
-    background-color: antiquewhite;
+.footer {
+  width: 100%;
+  height: 250px;
+  background-color: #9DF3C4;
+  display: flex;
+  justify-content: center;
+  border: 2px solid;
+  align-items: center;
+
 }
 
-.fList li{
-    list-style: none;
-    font-family: "Roboto Mono", monospace;
+.footer-text {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: roboto mono;
+  margin: 20px;
 }
-.fIcons{
-    width:300px;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-    margin-left: 70%;
+
+.fList li {
+  list-style: none;
+  font-family: "Roboto Mono", monospace;
+}
+.fIcons {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.facebook:hover, .instagram:hover, .twitter:hover{
+  color: #17755e;
+  transition: 0.5s;
+  transform: scale(1.5);
+
+}
+
+.vertical-line {
+  border-left: 1px solid black;
+  height: 100px;
+  margin-top: 50px;
 }
