@@ -1,6 +1,4 @@
-import React, {useState} from "react";
-import MobileNavigation from "./MobileNavigation";
-import Navigation from "./Navigation";
+import React,{useState} from "react";
 import "./navbar.css";
 import {  
   faUser,
@@ -18,16 +16,25 @@ const Navbar = () => {
   return (
     <div className="landingNavbar">
       <div className="landingUl">
-        <Navigation />
-        <MobileNavigation/>
+        <ul>
+          <li><Link to="/">Home</Link> </li>
+          <li><Link to="/about">About Us</Link> </li>
+          <li><Link to="/products">Products</Link> </li>
+          {
+            user[0] ? (<><li>--Welcome{user[1]}--<Link to="/">Log out </Link> </li></>) : (<><li><Link to="/login">Log in </Link></li></>)
+
+
+          }
+          
+        </ul>
       </div>
       <div className="landingSearch">   
 
         <input type="search" placeholder=" 🔍 Search ..." />
       </div>
       <div className="landingCart">
-        <FontAwesomeIcon icon={faUser} className='user' />
-        <FontAwesomeIcon icon={faShoppingCart} className='cart' />
+        <FontAwesomeIcon icon={faUser} />
+        <FontAwesomeIcon icon={faShoppingCart} /> {cartQuantity > 0 ? (<h6>{cartQuantity}</h6>) : ""}
       </div>
     </div>
   );
