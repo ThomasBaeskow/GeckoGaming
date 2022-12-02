@@ -2,7 +2,6 @@ import "./login.css"
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle,faFacebook } from "@fortawesome/free-brands-svg-icons";
-import {Link} from "react-router-dom";
 
 const Login = () => {
   return (
@@ -14,12 +13,12 @@ const Login = () => {
                 <input type="text" placeholder="username"/><br />
                 <label htmlFor="password">Password:</label>
                 <input type="password" placeholder="password"/><br />
-                <button type="submit">Log in</button><br />
+                <button type="submit">Log in</button>
             </form>
         </div>
-        <p>Not registered? <Link to="/signup">Sign up</Link></p><br />
-        <button>Login with Facebook <FontAwesomeIcon icon={faFacebook}/></button><br />
-        <button>Login with Google <FontAwesomeIcon icon={faGoogle}/></button><br />
+        <p>Not registered? sign up</p>
+        <button>Login with Facebook <FontAwesomeIcon icon={faFacebook}/></button>
+        <button>Login with Google <FontAwesomeIcon icon={faGoogle}/></button>
     </div>
   )
 }

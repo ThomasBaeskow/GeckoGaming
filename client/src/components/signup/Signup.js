@@ -2,7 +2,7 @@ import "./signup.css"
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle,faFacebook } from "@fortawesome/free-brands-svg-icons";
- const Signup = () => {
+export const Signup = () => {
   return (
     <div>
         <h1>User Registration</h1>
@@ -23,4 +23,3 @@ import { faGoogle,faFacebook } from "@fortawesome/free-brands-svg-icons";
     </div>
   )
 }
-export default Signup;
