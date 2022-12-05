@@ -8,29 +8,32 @@
   height: 60px;
   display: flex;
   margin: 0 auto;
-  background-color: #9df3c4;
   font-family: "JetBrains Mono", monospace;
   font-weight: bold;
   justify-content: space-around;
+  border: 2px solid;
+  background: #9df3c4;
 }
-.landingUl li{
-    margin:20px;
-    margin-right: 50px;
- /*    width: 100px; */
-    list-style: none;
-    display: inline-block;
-    align-items: center;
-
-    cursor: pointer;
-    
+.landingUl li {
+  margin: 20px;
+  margin-right: 50px;
+  list-style: none;
+  display: inline-block;
+  align-items: center;
+  cursor: pointer;
 }
 
-li:hover{
-    color: white;
-    background-color: #1FAB89;
-    padding: 5px;
-    border-radius: 5px;
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
 
+li:hover {
+  color: white;
+  background-color: #1fab89;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .landingSearch input[type="search"] {
