@@ -1,25 +1,36 @@
+body {
+  background: #e1fbec;
+}
+
 .bannerBackground {
-  background-image: url("../../images/Rectangle\ 3.png");
-  width: 100%;
-  height: 300px;
+  background-image: url("https://media.discordapp.net/attachments/981512296532672543/1047872523385196674/ezgif.com-gif-maker.gif");
+  width: 100vw;
+  height: 400px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 3px solid;
 }
 
 .bannerContainer {
-  width: 80%;
-  height: 250px;
+  width: 70%;
+  height: 300px;
   margin: 0 auto;
-  background-color: palegoldenrod;
+  background-color: #d7fbe886;
   padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   border: 2px solid black;
+  padding: 1em;
 }
+
+.bannerText {
+  text-align: center;
+}
+
 span {
   font-family: "Londrina Shadow", cursive;
 }
@@ -29,30 +40,43 @@ span {
   display: flex;
   flex-direction: column;
 }
-.banner-right {
-  width: 50%;
-}
 
 .banner-right img {
-  width: 50%;
-  border: 1px solid black;
+  width: 100%;
+  border: 2px solid black;
   background-color: white;
   margin-left: 25%;
   height: 200px;
-  padding: 10px;
+  padding: 20px 20px 40px 20px;
   box-shadow: 5px 5px;
+}
+
+.banner-right:hover {
+  transition: 0.5s;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 button {
   text-align: center;
   margin: 0 auto;
   width: 200px;
-  height: 30px;
+  height: 40px;
   border: 2px solid black;
   border-radius: 8px;
   font-family: "JetBrains Mono", monospace;
   box-shadow: 5px 5px;
+  font-size: 20px;
+  cursor: pointer;
+  background: #f5f2fd;
 }
+
+button:hover {
+  background-color: #62d2a2;
+  color: white;
+  box-shadow: 5px 5px black;
+}
+
 h1 {
   font-family: "Roboto Mono", monospace;
 }

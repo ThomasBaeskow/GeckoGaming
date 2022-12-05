@@ -46,3 +46,7 @@ input[type="checkbox"] {
   padding: 20px;    
   
 }
+.cardContainer img{
+  width: 200px;
+  height: 200px;
+}

@@ -5,7 +5,7 @@ import pic from "../../images/product-Img/product-img3..jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faHeart } from "@fortawesome/free-regular-svg-icons";
 function MyAccount() {
-  const [user, setUser] = useState([false, "Anupama"]);
+  const [user, setUser] = useState([false]);
   const [product, setProduct] = useState([
     { productName: "bag", productQty: 8, productPrice: 20 },
     { productName: "bag", productQty: 9, productPrice: 20 },
