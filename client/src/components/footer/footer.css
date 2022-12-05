@@ -1,19 +1,19 @@
 .footer {
   width: 100%;
   height: 250px;
-  background-color: #9DF3C4;
+  background-color: #9df3c4;
   display: flex;
   justify-content: center;
   border: 2px solid;
   align-items: center;
-
 }
 
 .footer-text {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 500;
   font-family: roboto mono;
-  margin: 20px;
+  margin: 10px;
+  padding: 10px;
 }
 
 .fList li {
@@ -23,17 +23,22 @@
 .fIcons {
   width: 300px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-size: 30px;
   align-items: center;
   cursor: pointer;
 }
 
-.facebook:hover, .instagram:hover, .twitter:hover{
+.facebook, .instagram, .twitter {
+  margin: 15px;
+}
+
+.facebook:hover,
+.instagram:hover,
+.twitter:hover {
   color: #17755e;
   transition: 0.5s;
   transform: scale(1.5);
-
 }
 
 .vertical-line {
@@ -41,10 +46,10 @@
   height: 100px;
   margin-top: 50px;
 }
-.fIcons{
-    width:300px;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-    margin-left: 70%;
+.fIcons {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-left: 70%;
 }
