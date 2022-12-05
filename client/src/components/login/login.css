@@ -1,0 +1,9 @@
+.loginContainer{
+    width: 80%;;
+    margin: 0 auto;
+    height: 600px;
+}
+.loginContainer h1{
+    text-align: center;
+    margin-top: 20px;
+}

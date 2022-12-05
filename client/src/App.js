@@ -1,30 +1,31 @@
-
-import './App.css';
-import Banner from './components/banner/Banner';
-import BestSeller from './components/bestSeller/BestSeller';
-import Categories from './components/categories/Categories';
-import Footer from './components/footer/Footer';
-import Login from './components/login/Login';
-import{BrowserRouter,Route,Router}from "react-router-dom";
-import Navbar from './components/navbar/Navbar';
-import AboutUs from "./components/aboutUs/AboutUs"
-import { Signup } from './components/signup/Signup';
+import "./App.css";
+import Footer from "./components/footer/Footer";
+import Login from "./components/login/Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
+import Cart from "./components/cart/Cart";
+import MyAccount from "./components/myAccount/MyAccount";
+import AboutUs from "./components/aboutUs/AboutUs";
+import Products from "./components/products/Products";
+import Signup from "./components/signup/Signup";
+import Home from "./components/home/Home";
 
 function App() {
   return (
     <div className="App">
-    <Navbar/> 
-   
-    <Banner/>
-     <BestSeller/>
- <Categories/>
-    <Footer/>   
-    {/* <Signup/>   
-    <Login/>  
-   <Router>
-  <Route path="/"element={<Navbar/>}/>
-  <Route path="/about" element={<AboutUs/>}/>
-  </Router> */} 
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/myAccount" element={<MyAccount />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

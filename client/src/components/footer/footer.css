@@ -41,3 +41,10 @@
   height: 100px;
   margin-top: 50px;
 }
+.fIcons{
+    width:300px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-left: 70%;
+}

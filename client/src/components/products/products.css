@@ -1,0 +1,52 @@
+.productContainer {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+}
+
+.selectionCriteria {
+  width: 30%;
+  padding: 10px;
+  border-right: 1px solid;
+}
+
+h4 {
+  margin-bottom: 30px;
+}
+.selectionCheckbox {
+  width: 300px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-left: 20px;
+  line-height: 1.4rem;
+}
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.selectionCategory {
+  width: 300px;
+  padding: 10px;
+  line-height: 2.5rem;
+}
+
+.productDisplay {
+  width: 60%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; 
+  gap: 10px;
+}
+.cardContainer{
+  width: 30%;
+  height: 250px;
+  border:1px solid; 
+  padding: 20px;    
+  
+}
+.cardContainer img{
+  width: 200px;
+  height: 200px;
+}
