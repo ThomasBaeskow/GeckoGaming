@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  
     faHeart
   } from "@fortawesome/free-solid-svg-icons";
+  import card from "../../images/product-Img/product-img-1.jpg"
 
 const Products = () => {
   const [category, setCategory] = useState([
@@ -13,13 +14,13 @@ const Products = () => {
     "kids",
     "music",
   ]);
-const[product,setProduct] = useState([{productName:"bag", productPrice:20},{productName:"shoe", productPrice:10},{productName:"cloth", productPrice:30}])
+const[product,setProduct] = useState([{productName:"bag", productPrice:20},{productName:"shoe", productPrice:10},{productName:"cloth", productPrice:30},{productName:"cloth", productPrice:30}])
 
   return (
-    <div>
-      <h3>Our Collections</h3>
+    <div className="productContainer">
+  
       <div className="selectionCriteria">
-        <div>
+        <div className="selectionCheckbox">
           <h4>Category → </h4>
           {category.map((item) => {
             return (
@@ -33,7 +34,7 @@ const[product,setProduct] = useState([{productName:"bag", productPrice:20},{prod
             );
           })}
         </div>
-          <div>
+          <div className="selectionCategory">
             <select>               
                 <option >Colors</option>
                 <option >Selection 1</option>
@@ -57,18 +58,20 @@ const[product,setProduct] = useState([{productName:"bag", productPrice:20},{prod
           {
             product.map((prod)=>{
                 return (
-                    <div>
+                    <div className="cardContainer">
                         <FontAwesomeIcon icon={faHeart}/>
-                        <img src="" alt=""/>
+                        <img src={card} alt=""/>
                         <p>{prod.productName}</p>
                         <p>{prod.productPrice}</p>
-                    </div>
+                    </div> 
+                    
 
                 )
             })
           }
 
       </div>
+
     </div>
   );
 };

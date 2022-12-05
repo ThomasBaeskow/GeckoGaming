@@ -1,0 +1,13 @@
+.registerContainer{
+    width:80%;
+    margin: 0 auto;
+
+}
+.registerContainer h1{
+    text-align: center;
+    margin-top: 30px;
+}
+.userForm{
+    width:40%;
+    margin: 0 auto;
+}

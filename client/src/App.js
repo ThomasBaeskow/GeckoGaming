@@ -9,6 +9,8 @@ import  Signup  from './components/signup/Signup';
 import Login from './components/login/Login';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
+import Cart from './components/cart/Cart';
+import MyAccount from './components/myAccount/MyAccount';
 
 
 
@@ -25,7 +27,8 @@ function App() {
   <Route path="/products" element={<Products/>}/>
   <Route path="/login" element={<Login/>}/>
   <Route path="/signup" element={<Signup/>}/>
-
+  <Route path="/cart" element={<Cart/>}/>
+  <Route path="/myAccount" element={<MyAccount/>}/>
   </Routes> 
   <Footer/>
   </BrowserRouter> 

@@ -1,0 +1,28 @@
+.contactContainer{
+    width:60%;
+    height: 400px;
+    margin: 0 auto;
+    border: 1px solid;
+    padding: 10px;
+}
+
+.contactCard{
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-around;
+}
+.contactForm{
+    border-right: 1px solid;
+    padding-right: 30px;
+}
+.contactAbout{    
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 30px;
+}
+.contactAbout h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
