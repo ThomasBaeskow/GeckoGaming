@@ -16,14 +16,14 @@ function Product() {
     <div>
         <div className="productData">
         <div className="singleProductImages">
-        <img src={location.image} width="200" height="200" alt=""/>
+        <img src={location.image} width="200" height="200" alt="" className="img-review" />
         </div>
         <div className="singleProductDetails">
          
         <h3>productName: {location.state.productName}</h3>
         <h4>product Price:{location.state.productPrice}</h4>
         <h5>Color </h5>
-        <button>Add to cart</button>
+        <button className="review-btn">Add to cart</button>
         <p>Description :{location.state.description}</p>
 
         <p>Product Details:{location.state.productDetails} <FontAwesomeIcon icon={faPlus}/></p>
@@ -41,11 +41,11 @@ function Product() {
 
     <div className="productReviewContainer">
         <div className="reviewLeft">
-    <h4>Reviews</h4>
+    <h4>✨Reviews✨</h4>
     <p>Ratings (651 review)</p>
         </div>
     <div className="reviewRight">
-        <button>Write a review</button><br />
+        <button className="review-btn">Write a review</button><br />
         Maria  <ReactStars
               count={5}
               value={rating}
