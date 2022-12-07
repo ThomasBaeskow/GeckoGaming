@@ -56,11 +56,11 @@ const Login = () => {
           🎮Not registered? <Link to="/signup">Sign up</Link>🎮
         </p>
         <button className="social-media-btn facebook-btn">
-          Login with Facebook{" "}
+          Login with Facebook
           <FontAwesomeIcon icon={faFacebook} className="face" />
         </button>
         <button className="social-media-btn google-btn">
-          Login with Google{" "}
+          Login with Google
           <FontAwesomeIcon icon={faGoogle} className="googleicon" />
         </button>
         <br />
