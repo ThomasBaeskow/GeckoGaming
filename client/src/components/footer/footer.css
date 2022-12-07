@@ -33,14 +33,6 @@
   margin: 15px;
 }
 
-.facebook:hover,
-.instagram:hover,
-.twitter:hover {
-  color: #17755e;
-  transition: 0.5s;
-  transform: scale(1.5);
-}
-
 .vertical-line {
   border-left: 1px solid black;
   height: 100px;
@@ -52,4 +44,40 @@
   justify-content: space-between;
   margin-top: 30px;
   margin-left: 70%;
+}
+
+.instagram{
+  font-size: 2rem ;
+  color: black;
+  margin: 10px;
+  border-radius: 20%;
+}
+.instagram:hover{
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: white;
+  border-radius: 20%;
+  transform: scale(1.5);
+}
+.facebook{
+  font-size: 2rem ;
+  color: black;
+  margin: 10px;
+  border-radius: 20%;
+}
+.facebook:hover{
+  background:white;
+  color: #4267B2;
+  border-radius: 20%;
+  transform: scale(1.5);
+}
+.twitter{
+  font-size: 2rem ;
+  color: black;
+  margin: 10px;
+  border-radius: 20%;
+}
+.twitter:hover{
+  color: #1DA1F2;
+  border-radius: 20%;
+  transform: scale(1.5);
 }
