@@ -6,6 +6,7 @@ import cors from "cors"
 import morgan from "morgan"
 import productsRouter from "./routes/productsRoutes.js"
 import productRouter from "./routes/productRoutes.js"
+import userRouter from "./routes/userRoutes.js"
 
 
 dotenv.config({path:"./.env"})
@@ -53,6 +54,7 @@ app.use((req, res, next) => {
 
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/product', productRouter);
+app.use('/api/v1/user', userRouter);
 // app.use("/api/v1/reviews");
 // app.use("/api/v1/orders");
 

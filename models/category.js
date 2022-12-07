@@ -55,7 +55,7 @@ categorySchema.virtual("productDetails", {
 categorySchema.pre(/^find/, function(next) {
     this.populate({ // populate(fieldName) // we fill the field guide with the actual data instead of just showing the id of the users. we replace the id with the users data.
       path: "product_id", // field we want to update
-      select: "-__v" // which fields we want to exclude
+      select: "-__v -category" // which fields we want to exclude
     })
     next()
   })
