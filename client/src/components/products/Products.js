@@ -26,18 +26,20 @@ const Products = () => {
   
       <div className="selectionCriteria">
         <div className="selectionCheckbox">
+          <div className="categories">
           <h4>Category → </h4>
           {category.map((item) => {
             return (
               <>
                 <label>
-                  <input type="checkbox" />
+                  <input type="checkbox" className="checkbox" />
                   {item}
                 </label>
                 <br />
               </>
             );
           })}
+          </div>
         </div>
           <div className="selectionCategory">
             <select>               
@@ -64,7 +66,7 @@ const Products = () => {
             product.map((prod)=>{
                 return (
                     <div className="cardContainer">
-                        <FontAwesomeIcon icon={faHeart}/>
+                        <FontAwesomeIcon icon={faHeart} className='heart' />
                        <NavLink to={`/products/${prod.product_id}`}  state={prod} ><img src={card} alt=""/></NavLink>
                         <p>{prod.productName}</p>
                         <p>{prod.productPrice}</p>

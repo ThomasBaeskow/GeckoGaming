@@ -1,32 +1,43 @@
-.productData{
-    width: 90%;
-    margin: 0 auto;
-    height: 500px;
-    border-bottom: 1px solid;
-    display:flex;
-    justify-content: space-around;
-    padding: 30px;
+.productData {
+  width: 90%;
+  margin: 0 auto;
+  height: 600px;
+  border-bottom: 1px solid;
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+  margin-top: 25px;
+  font-family: 'JetBrains mono';
 }
-.singleProductImages{
-    width: 50%;
+.singleProductImages {
+  width: 50%;
 }
-.singleProductDetails{
-    width: 50%;
-    line-height: 2rem;
+.singleProductDetails {
+  width: 50%;
+  line-height: 2rem;
 }
-.productReviewContainer{
-    width: 90%;
-    margin: 0 auto;
-    height: 400px;
-    border-bottom: 1px solid;
-    display:flex;
-    justify-content: space-around;
-    padding: 30px;
+.productReviewContainer {
+  width: 90%;
+  margin: 0 auto;
+  height: 400px;
+  border-bottom: 1px solid;
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+  margin-top: 25px;
 }
-.reviewLeft{
-    width: 40%;
+.reviewLeft {
+  width: 50%;
+  font-family: 'JetBrains mono';
 }
-.reviewRight{
-    width: 50%;
-    line-height: 2rem;
+.reviewRight {
+  width: 50%;
+  line-height: 2rem;
+  font-family: 'JetBrains mono';
+  margin-top: 20px;
+}
+
+.review-btn{
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
