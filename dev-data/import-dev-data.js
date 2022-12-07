@@ -432,7 +432,7 @@ mongoose.connect(DB, {
 //     .then(response => {
     
 //         // print the JSON response from Rainforest API
-//         console.log(response.data);
+//         console.log(JSON.stringify(response.data.data, 0, 2));
     
 //       }).catch(error => {
 //     // catch and print the error
@@ -440,9 +440,9 @@ mongoose.connect(DB, {
 // })
 
 
-console.log(options);
+// console.log(options);
 
-console.log(products);
+// console.log(products);
 
 
 // READ JSON FILE

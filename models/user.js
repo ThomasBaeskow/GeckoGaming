@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 import validator from "validator"
-// import bcrypt from "bcryptjs"
+import bcrypt from "bcrypt"
 // import crypto from "crypto"
 
 const userSchema = mongoose.Schema({
@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
     },
     role: {
       type: String,
-      enum: ["user", "guide", "lead-guide", "admin"],
+      enum: ["user", "admin"],
       default: "user"
     },
     password: {
@@ -56,17 +56,17 @@ const userSchema = mongoose.Schema({
 
 // ENCRYPTION OF THE PASSWORDS: this function applies before the document gets saved to the DB --> we need to install extra package "bcryptjs"
 // thats the way to store users passwords in a secure way to our DB
-// userSchema.pre("save", async function(next) {
-//   if(!this.isModified("password")) { // "isModified" is a mongoose method. You need to pass the field of the model which gets updated. (password) --> if the password didnt get modified the execution goes on to the next middleware.
-//     return next()
+userSchema.pre("save", async function(next) {
+  if(!this.isModified("password")) { // "isModified" is a mongoose method. You need to pass the field of the model which gets updated. (password) --> if the password didnt get modified the execution goes on to the next middleware.
+    return next()
 
-//   } else {
-//     this.password = await bcrypt.hash(this.password, 12) // here we encrypt (hash) the current documents password with a cost of 12. its like adding additional string to the password.
-//     // console.log(this.password);
-//     this.confirmPassword = undefined // the confirmPassword field wont be saved to the DB
-//     next()
-//   }
-// })
+  } else {
+    this.password = await bcrypt.hash(this.password, 12) // here we encrypt (hash) the current documents password with a cost of 12. its like adding additional string to the password.
+    // console.log(this.password);
+    this.confirmPassword = undefined // the confirmPassword field wont be saved to the DB
+    next()
+  }
+})
 
 // // Update passwordChangedAt property for the user when he changed the password
 // userSchema.pre("save", function(next) {
@@ -76,20 +76,20 @@ const userSchema = mongoose.Schema({
 //   next()
 // })
 
-// // query middleware for not showing inactive (deleted) users
-// userSchema.pre(/^find/, function(next) { // using regular expression which looks for words in query event which start with "find"
-//   // this points to current query
-//   this.find({active: {$ne: false}}) // before the find query is executed, we change our query to just finding documents with the field "active: true" ($ne: false) --> because in earlier documents we didnt set the field active yet.
-//   next()
-// })
+// query middleware for not showing inactive (deleted) users
+userSchema.pre(/^find/, function(next) { // using regular expression which looks for words in query event which start with "find"
+  // this points to current query
+  this.find({active: {$ne: false}}) // before the find query is executed, we change our query to just finding documents with the field "active: true" ($ne: false) --> because in earlier documents we didnt set the field active yet.
+  next()
+})
 
 
 // // INSTANCE METHOD: 
 // // available on all Documents of a certain Collection.
 // // checks if password is correct
-// userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
-//   return  await bcrypt.compare(candidatePassword, userPassword) // this.password is not available in the output due to select: false in the model. bcrypt.compare() returns true if passwords are the same or false if not.
-// }
+userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
+  return  await bcrypt.compare(candidatePassword, userPassword) // this.password is not available in the output due to select: false in the model. bcrypt.compare() returns true if passwords are the same or false if not.
+}
 
 // // checks if password was changed after creating token (login) JWTtimestamp
 // userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
