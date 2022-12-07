@@ -17,6 +17,13 @@ import {Link} from "react-router-dom";
   const handleSubmit = (e) =>{
     e.preventDefault();
     console.log(registerUser);
+     /*   await axios
+  .post("http://localhost:3000/user/registerAccount", userDetails)
+  .then((res) => {
+    setFailMessage(res.data.status);
+    setUserInfo(res.data);
+    
+  }); */
   }
 
 

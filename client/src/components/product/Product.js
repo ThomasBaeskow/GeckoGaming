@@ -1,15 +1,17 @@
 import "./product.css"
 import { useLocation } from "react-router-dom"
-
-import React,{useState} from 'react'
+import React,{ useState} from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {  
     faPlus,faMinus
-  } from "@fortawesome/free-solid-svg-icons";
+  } from "@fortawesome/free-solid-svg-icons";  
 import ReactStars from "react-stars";
+
+
 function Product() {
     const location = useLocation();
-    const[rating,setRating] = useState(4.7)
+    const[rating,setRating] = useState(4.7);
+   
   return (
     <div>
         <div className="productData">
@@ -17,13 +19,14 @@ function Product() {
         <img src={location.image} width="200" height="200" alt=""/>
         </div>
         <div className="singleProductDetails">
-        <h3>productName</h3>
-        <h4>product Price</h4>
+         
+        <h3>productName: {location.state.productName}</h3>
+        <h4>product Price:{location.state.productPrice}</h4>
         <h5>Color </h5>
         <button>Add to cart</button>
-        <p>Description :  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.</p>
+        <p>Description :{location.state.description}</p>
 
-        <p>Product Details <FontAwesomeIcon icon={faPlus}/></p>
+        <p>Product Details:{location.state.productDetails} <FontAwesomeIcon icon={faPlus}/></p>
         <p>Delivery <FontAwesomeIcon icon={faMinus}/></p>
         <ReactStars
               count={5}

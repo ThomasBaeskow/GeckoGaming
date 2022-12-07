@@ -10,10 +10,12 @@ import Products from "./components/products/Products";
 import Signup from "./components/signup/Signup";
 import Home from "./components/home/Home";
 import Product from "./components/product/Product";
+import Container from "./context/Container";
 
 function App() {
   return (
     <div className="App">
+      <Container>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -28,6 +30,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+      </Container>
     </div>
   );
 }
