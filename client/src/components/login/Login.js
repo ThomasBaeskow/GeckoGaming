@@ -7,6 +7,7 @@ import axios from "axios";
 import {MyContext} from "../../context/Context" 
 import Products from "../products/Products";
 
+
 const Login = () => {
   const [loginData, setLoginData] = useState();
   const{userData,setUserData} = useContext(MyContext);
@@ -25,12 +26,22 @@ const Login = () => {
     console.log("i am from frontend:",loginData);
     try{      
       await axios
-      .post("http://127.0.0.1:3000/api/v1/user/login", loginData)
+      .post("http://127.0.0.1:3000/api/v1/user/login", loginData,{mode:'cors'},
+      {
+        withCredentials:true,
+        credentials:"include"
+      },{headers: {
+                Cookie: "cookie1=value;"
+    }}) 
       .then((res) => {  
-        const userInfo=res.data.data.user;      
-          setUserData(userInfo);
-          console.log("i am from backend",userInfo.name);
-          console.log("i am userData", userData.name)  
+       
+      const user_auth_token = res.headers;
+      console.log("i am cookie.header",user_auth_token)
+        console.log("i am backend",res.data)
+       // const userInfo=res.data.data.user;      
+          setUserData(res.data);
+         // console.log("i am from backend",userInfo.name);
+          console.log("i am userData", userData)  
        
          navigate("/products")  
       });

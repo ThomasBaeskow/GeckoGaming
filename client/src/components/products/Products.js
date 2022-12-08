@@ -13,8 +13,7 @@ const Products = () => {
     "brands",
     "electronics",
     "merchandising",
-    "kids",
-    "music",
+    "kids",   
   ]);
 
 
