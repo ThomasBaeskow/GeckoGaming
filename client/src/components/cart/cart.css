@@ -1,66 +1,70 @@
-.cartContainer{
-    width:80%;
-    margin: 0 auto;
-    margin-top: 20px;
-    display: flex;
-    gap:50px;
+.cartContainer {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  gap: 50px;
+  font-family: monospace;
 }
-.yourCart h1{
-    margin-left: 200px;
-    margin-top: 30px;
+.yourCart h1 {
+  margin-left: 200px;
+  margin-top: 30px;
 }
-.cartLeft img{
-    width: 150px;
-    height:150px;
-    border:1px solid;
-    
+.cartLeft img {
+  width: 150px;
+  height: 150px;
+  border: 1px solid;
 }
-.cartLeft{
-    width: 60%;
-    margin-top: 50px;
-    margin-left: 0;    
-    display: flex;
-    flex-direction: column;
+.cartLeft {
+  width: 60%;
+  margin-top: 50px;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
 }
-.cartLeft-items{  
-   display: flex;
-   gap:30px;
-   align-items: center;    
-   margin-left: 50px;
-   padding: 10px;
-   border-bottom:1px solid;
-   position: relative;
+.cartLeft-items {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-left: 50px;
+  padding: 10px;
+  border-bottom: 1px solid;
+  position: relative;
 }
-.deleteBtn{
-    position: absolute;
-    top:10%;
-    right: 10%;
+.deleteBtn {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  cursor: pointer;
+  font-size: 20px;
 }
-.cartRight{
-    width: 20%;
-    line-height: 3rem;
-    border:1px solid;
-    padding: 10px;
-    height: 500px;
-    position: fixed;
-    right:10%;
-    top:25%;
-    text-align: center;
+.cartRight {
+  width: 20%;
+  line-height: 3rem;
+  border: 2px solid;
+  padding: 10px;
+  height: 450px;
+  position: fixed;
+  right: 10%;
+  top: 25%;
+  text-align: center;
+  background-color: aquamarine;
+  box-shadow: 5px 5px;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
-.cartQuantityContainer .cartBtn{
-    width: 30px;
-    height: 20px;
-    border: 1px solid;
-    box-shadow: none;
-    margin-right: 10px;
-  
+.cartQuantityContainer .cartBtn {
+  width: 50px;
+  height: 30px;
+  border: 2px solid;
+  box-shadow: none;
+  margin-right: 10px;
 }
-.cartQuantityContainer{
-    display: flex;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 40px;   
+.cartQuantityContainer {
+  display: flex;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
 
-   
-}

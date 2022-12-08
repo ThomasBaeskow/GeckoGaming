@@ -37,7 +37,7 @@ useEffect(() => {
           }
 
       <div className="myAccountContainer">
-        <h1>MyAccount</h1>
+        <h1>My Account</h1>
         <div className="accountDetail">
           <p className="userName"> Hi,{userData.name}</p>
 
@@ -54,12 +54,12 @@ useEffect(() => {
         <button className="btn" onClick={()=>{setUserData("");navigate("/")}}>Log out</button>
       </div>
       <div>
-       <h2> Wish List</h2>
+       <h2>My Wish List</h2>
         <div className="wishlistContainer">
           {product.map((item) => {
             return (
               <div className="wishlistImg">
-                <FontAwesomeIcon className="wishListIcon" icon={faHeart} />
+                <FontAwesomeIcon className="heart-wish" icon={faHeart} />
                 <img src={pic} alt="" />
                 <div className="wishlistItems">
                   <p>{item.productName}</p>
