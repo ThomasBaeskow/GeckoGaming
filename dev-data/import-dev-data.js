@@ -1,12 +1,13 @@
 import mongoose from "mongoose"
 import dotenv from "dotenv"
-import ProductOld from "../models/productModelOld.js"
 import axios from "axios"
 import Product from "../models/product.js"
-import Category from "../models/category.js"
+import Category from "../models/productDetail.js"
 import User from "../models/user.js"
 import fs from "fs"
 import path from "path"
+import {catchAsync} from "../utils/catchAsync.js"
+import ProductDetail from "../models/productDetail.js"
 
 
 
@@ -350,109 +351,45 @@ mongoose.connect(DB, {
 //     console.error(error);
 // }};
 
-  
-// const products = async (options) => {
-//     try {
-//         const result = await axios.request(options)
-//     }catch (err) {
-//         console.error(err);
-//     }
-// }
 
 
+const allProducts = await Product.find({})
 
+const product_id = allProducts.map(item => {
+    return item.product_detail_url.split("/")[4]
+})
 
-// WITH RAPID API
-// TEST for category document
-// const options = {
-//     method: 'GET',
-//     url: 'https://amazon24.p.rapidapi.com/api/product',
-//     params: {categoryID: '20972781011', country: 'US', page: '1'},
-//     headers: {
-//       'X-RapidAPI-Key': '4120ebe64bmsh944823cd010dc54p1eacf4jsn2f4049de1037',
-//       'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
-//     }
-//   };
+// console.log(product_id);
 
-// const options = {
-//     method: 'GET',
-//     url: 'https://amazon24.p.rapidapi.com/api/product/B0BCNKKZ91',
-//     params: {country: 'US'},
-//     headers: {
-//       'X-RapidAPI-Key': '4120ebe64bmsh944823cd010dc54p1eacf4jsn2f4049de1037',
-//       'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
-//     }
-//   };
-const test = async(req, res) => {
-    const data = await GeckoGaming.products.find({product_detail_url})
-    res.status(200).json({
-        data
-    })
-}
+// FETCHING PRODUCTDETAIL DATA FROM API!!!!!!!!!!
+product_id.map(async (item) => {
 
-// const data = ProductOld.find()
-
-console.log(test);
-// console.log(data);
-// const products = await axios.request(options).then(function (response) {
-//     //   console.log(response.data);
-//     return response.data
-//   }).catch(function (error) {
-//       console.error(error);
-//   });
-
-// console.log(options);
-// console.log(products);
-
-// WITH RAINFOREST API
-// const options = {
-//         method: 'GET',
-//         url: 'https://api.rainforestapi.com/request',
-//         params: {category_id: '6427831011', api_key:"23AF2E11AFFE4ECB9ED30C11888840AD", type: "category", amazon_domain: "amazon.com"},
-//         headers: {
-//           'api_key': '23AF2E11AFFE4ECB9ED30C11888840AD',
-//           'Host': 'api.rainforestapi.com'
-//         }
-//       };
+    try {
+        const options = {
+            method: 'GET',
+            url: `https://amazon24.p.rapidapi.com/api/product/${item}`,
+            params: {country: 'US'},
+            headers: {
+              'X-RapidAPI-Key': '4120ebe64bmsh944823cd010dc54p1eacf4jsn2f4049de1037',
+              'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
+            }
+          };
     
-//     const products = await axios.request(options).then(function (response) {
-//         //   console.log(response.data);
-//         // return response.data
-//         return response.data
-//       }).catch(function (error) {
-//           console.error(error);
-//       });
-    
-//     console.log(options);
-//     console.log(products);
+          const products = await axios.request(options).then(function (response) {
+            //   console.log(response.data);
+            return response.data
+          }).catch(function (error) {
+              console.error(error);
+          });
 
+          await ProductDetail.create(products)
 
+    }catch (error) {
+        console.log(error);
+    }
 
-
-// set up the request parameters
-// const params = {
-//     api_key: "23AF2E11AFFE4ECB9ED30C11888840AD",
-//       domain: "amazon.com",
-//       category_id: "6427831011",
-//       type: "category"
-//     }
-    
-//     // make the http GET request to Rainforest API
-//     axios.get('https://api.rainforestapi.com/request', { params })
-//     .then(response => {
-    
-//         // print the JSON response from Rainforest API
-//         console.log(JSON.stringify(response.data.data, 0, 2));
-    
-//       }).catch(error => {
-//     // catch and print the error
-//     console.log(error);
-// })
-
-
-// console.log(options);
-
-// console.log(products);
+    process.exit()
+})
 
 
 // READ JSON FILE
@@ -466,8 +403,9 @@ const users = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/users.json`, "ut
 // Before we import the data, we need to comment out our pre save middleware in our User model.
 const importData = async () => {
     try {
+        await ProductDetail.create(products)
         // await Product.create(products) // accepts the array of objects "tours", which is our json data "tors-simple.json". And creates for every object an object in our db collection
-        await User.create(users, {validateBeforeSave: false}) // we do the same for users. here we need to set validation to false because when we are importing all the user Data according to our model, we need to provide "confirmPassword" field. Now we turn off the validation for importing our user data.
+        // await User.create(users, {validateBeforeSave: false}) // we do the same for users. here we need to set validation to false because when we are importing all the user Data according to our model, we need to provide "confirmPassword" field. Now we turn off the validation for importing our user data.
         // await Review.create(reviews) // and we reviews
         console.log("Data successfully loaded");
     } catch (error) {
