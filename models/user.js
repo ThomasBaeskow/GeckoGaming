@@ -44,7 +44,7 @@ const userSchema = mongoose.Schema({
         }
       },
     // security
-    // passwordChangedAt: Date,
+    passwordChangedAt: Date,
     // passwordResetToken: String,
     // passwordResetExpires: Date,
     active: {
@@ -69,12 +69,12 @@ userSchema.pre("save", async function(next) {
 })
 
 // // Update passwordChangedAt property for the user when he changed the password
-// userSchema.pre("save", function(next) {
-//   if (!this.isModified("password") || this.isNew) return next() // means if the field "password" didnt get modified or its a new document --> middleware jumps to next middleware
+userSchema.pre("save", function(next) {
+  if (!this.isModified("password") || this.isNew) return next() // means if the field "password" didnt get modified or its a new document --> middleware jumps to next middleware
 
-//   this.passwordChangedAt = Date.now() - 1000 // if it got updated, change the passwordChangeAt property to current time. we do "-1" because sometimes saving to the DB is a bit slower than creating the JWT. That the changedPasswordTimestamp is sometimes st a bit after the JWT has been created. User wouldnt be able to login, because JWT would already be expired.
-//   next()
-// })
+  this.passwordChangedAt = Date.now() - 1000 // if it got updated, change the passwordChangeAt property to current time. we do "-1" because sometimes saving to the DB is a bit slower than creating the JWT. That the changedPasswordTimestamp is sometimes st a bit after the JWT has been created. User wouldnt be able to login, because JWT would already be expired.
+  next()
+})
 
 // query middleware for not showing inactive (deleted) users
 userSchema.pre(/^find/, function(next) { // using regular expression which looks for words in query event which start with "find"
@@ -92,17 +92,17 @@ userSchema.methods.correctPassword = async function(candidatePassword, userPassw
 }
 
 // // checks if password was changed after creating token (login) JWTtimestamp
-// userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
-//   if(this.passwordChangedAt) {
-//     const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10)
+userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+  if(this.passwordChangedAt) {
+    const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10)
 
-//     // console.log(changedTimestamp, JWTTimestamp);
-//     return JWTTimestamp < changedTimestamp // 100 < 200 (JWTTimestamp = time when the token was created; changedTimestamp = time when the password was changed)
-//   }
+    // console.log(changedTimestamp, JWTTimestamp);
+    return JWTTimestamp < changedTimestamp // 100 < 200 (JWTTimestamp = time when the token was created; changedTimestamp = time when the password was changed)
+  }
 
-//   // false means password not changed
-//   return false
-// }
+  // false means password not changed
+  return false
+}
 
 // // Reset the JWT Token
 // // import crypto (build in module of node.js)
