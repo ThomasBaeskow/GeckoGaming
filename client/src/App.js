@@ -12,6 +12,7 @@ import Home from "./components/home/Home";
 import Product from "./components/product/Product";
 import Container from "./context/Container";
 
+
 function App() {
   return (
     <div className="App">
@@ -27,6 +28,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/myAccount" element={<MyAccount />} />
+         
         </Routes>
         <Footer />
       </BrowserRouter>

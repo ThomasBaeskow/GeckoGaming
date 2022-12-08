@@ -1,5 +1,6 @@
 import React,{useState}from "react";
 
+
 import { MyContext } from "./Context";
 
 export default function Container({children}){
@@ -58,14 +59,15 @@ export default function Container({children}){
         description:" iphone --dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.",
         productDetails:" iphone ----Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
       },]);
-
-      const[cartList,setCartList] = useState([])
-
+    
+      const[cartList,setCartList] = useState([]);
+      const[userData,setUserData] = useState({});
+    
 
     return (
         <MyContext.Provider
           value={{
-            product,setProduct,cartList,setCartList
+            product,setProduct,cartList,setCartList,userData,setUserData
           }}
         >
           {children}

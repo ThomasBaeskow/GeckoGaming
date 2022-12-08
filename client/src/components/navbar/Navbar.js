@@ -17,7 +17,9 @@ const Navbar = () => {
         <input type="search" placeholder=" 🔍 Search ..." />
       </div>
       <div className="landingCart">
-       <NavLink to="/myAccount"> <FontAwesomeIcon icon={faUser} className="user" /></NavLink>
+        
+     {/*   <NavLink to="/myAccount"> <FontAwesomeIcon icon={faUser} className="user" /></NavLink> */}
+     <NavLink to="/myAccount"> <FontAwesomeIcon icon={faUser} className="user" /></NavLink>
         <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
       </div>
     </div>
