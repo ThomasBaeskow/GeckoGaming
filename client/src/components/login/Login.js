@@ -1,27 +1,45 @@
 import "./login.css";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
+import axios from "axios";
+import {MyContext} from "../../context/Context" 
+import Products from "../products/Products";
 
 const Login = () => {
   const [loginData, setLoginData] = useState();
+  const{userData,setUserData} = useContext(MyContext);
+  const [msg, setMsg] = useState();
+  const navigate = useNavigate()
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setLoginData((values) => ({ ...loginData, [name]: value }));
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(loginData);
-    /*   await axios
-  .post("http://localhost:4000/user/registerAccount", userDetails)
-  .then((res) => {
-    setFailMessage(res.data.status);
-    setUserInfo(res.data);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();  
+    console.log("i am from frontend:",loginData);
+    try{      
+      await axios
+      .post("http://127.0.0.1:3000/api/v1/user/login", loginData)
+      .then((res) => {  
+        const userInfo=res.data.data.user;      
+          setUserData(userInfo);
+          console.log("i am from backend",userInfo.name);
+          console.log("i am userData", userData.name)  
+       
+         navigate("/products")  
+      });
+    }catch(e){
+      setMsg(e.message)
+      
+    }
     
-  }); */
+          
   };
 
   return (
@@ -33,8 +51,8 @@ const Login = () => {
             <label htmlFor="username">Email/username:</label>
             <input
               type="text"
-              placeholder="username"
-              name="username"
+              placeholder="email"
+              name="email"
               onChange={handleChange}
             />
             <br />
@@ -48,8 +66,17 @@ const Login = () => {
             <br />
             <br /> <button type="submit">Log in</button>
             <br />
-          </form>
+
+         
+                      <div>
+                          <h5>{
+                        msg ? msg: ""
+                      } </h5>
+                      </div>
+                      </form>          
+
         </div>
+       
       </div>
       <div>
         <p className="signup-text">
