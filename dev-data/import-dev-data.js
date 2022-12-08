@@ -383,7 +383,17 @@ mongoose.connect(DB, {
 //       'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
 //     }
 //   };
+const test = async(req, res) => {
+    const data = await GeckoGaming.products.find({product_detail_url})
+    res.status(200).json({
+        data
+    })
+}
 
+// const data = ProductOld.find()
+
+console.log(test);
+// console.log(data);
 // const products = await axios.request(options).then(function (response) {
 //     //   console.log(response.data);
 //     return response.data
@@ -450,7 +460,7 @@ mongoose.connect(DB, {
 const users = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/users.json`, "utf-8")) // reading user
 // const reviews = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/reviews.json`, "utf-8")) // reading reviews
 
-console.log(users);
+// console.log(users);
 
 // IMPORT DATA INTO DB
 // Before we import the data, we need to comment out our pre save middleware in our User model.
@@ -485,6 +495,8 @@ if (process.argv[2] === "--import") {
 } else if (process.argv[2] === "--delete") {
     deleteData()
 }
+
+
 
 // console.log(process.argv);
 
