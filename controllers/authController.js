@@ -2,6 +2,7 @@ import User from "../models/user.js"
 import { catchAsync } from "../utils/catchAsync.js"
 import jwt from "jsonwebtoken"
 import AppError from "../utils/appError.js"
+import {promisify} from "util"
 
 
 
@@ -26,6 +27,8 @@ const createSendToken = (user, statusCode, req, res) => {
         // secure: req.secure || req.headers("x-forwarded-proto") === "https" // cookie will only send on encrypted connection (https). That line is necessary for heroku.
     })
     // console.log(cookieOptions);
+
+    // console.log(res.cookie.jwt);
 
     user.password = undefined // we dont want to see the password on the client site
     user.__v = undefined
@@ -83,11 +86,54 @@ export const login = catchAsync(async (req, res, next) => {
 
 // We create a workaround for deleting the cookie (which is not possible because of httpOnly: true). When users logout, we create a logout route on clicking on lockout button that will send back a new cookie with the exact same name, but without the token. this will overwrite the current cookie in the browser with one that has the same name, but no token. When that cookie is send along with next request, we cannot identify the user anymore and deny access. Cookie gets very short expiration time. its like deleting.
 export const logout = (req, res) => {
-    res.cookie('jwt', "loggedout", {  // the new created cookie with the same name as the current cookie stored in the browser
-        expires: new Date(Date.now() + 10 * 1000),
+    res.cookie("jwt", "loggedout", {  // the new created cookie with the same name as the current cookie stored in the browser
+        expires: new Date(Date.now() + 10 * 1000), // 10 seconds from now
         httpOnly: true
-    }) 
+    })
+
     res.status(200).json({
         status: "success"
     })
 }
+
+// PROTECT ROUTES FOR LOGGED IN USERS:
+export const protect = catchAsync(async(req, res, next) => {
+    // 1) Getting the token and check if its exists
+    let token;
+    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) { // if header exists and the String starts with "Bearer". Common practice to use authorization: "Bearer token......." for header in postman. You get access to it with "req.headers.authorization"
+        token = req.headers.authorization.split(" ")[1] // saves the tokenString into token variable
+
+        console.log(token, "first");
+
+    } else if (req.cookies.jwt) {
+        token = req.cookies.jwt
+
+        console.log(req.cookies, "second");
+    }
+
+    console.log(token, "third");
+
+    if (!token) {
+        return next(new AppError("You are not logged in! Please login to get access.", 401))
+    }
+
+    // 2) Validate the token - VERIFICATION
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET) // jwt.verify(tokenString, secret, callback) the callback runs as soon as the verification has completed. its an async function.
+    console.log(decoded); // we can see that the id in our DB is the same with the id of the user, who logged in with his JWT. In JWT is the _id saved in the payload.
+
+    // 3) Check if user still exists
+    const currentUser = await User.findById(decoded.id) // it checks if the id, which was send with the token, is still existing in our DB.
+    if (!currentUser) {
+        return next(new AppError("The user belonging to this token does no longer exist.", 401))
+    }
+
+    // 4) Check if user changed password after the token was created
+    if (currentUser.changedPasswordAfter(decoded.iat)) { // if its true, so the password was changed after login in (creation of the token). The Error gets send to the client.
+        return next(new AppError("User recently changed the password! Please log in again.", 401))
+    }
+
+    // GRANT ACCESS TO PROTECTED ROUTE - next goes to next handler
+    req.user = currentUser
+    // res.locals.user = currentUser; // We save the current User data inside our local variables in pug as "user"
+    next()
+})

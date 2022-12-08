@@ -1,6 +1,6 @@
 import express from "express";
 import { getAllUsers, createUser, deleteUser, updateUser, getUser } from "../controllers/userController.js";
-import { signup, login, logout } from "../controllers/authController.js";
+import { signup, login, logout, protect } from "../controllers/authController.js";
 
 
 
@@ -51,17 +51,19 @@ router
 // .delete(deleteCurrentUser)
 
 
+
 // just admins can create user, see all users, update/delete/get user they want. (protect and restrictTo("admin"))
 // router.use(restrictTo("admin"))
 
+// these routes are for admins!
 router
 .route("/")
-.get(getAllUsers)
+.get(protect, getAllUsers)
 .post(createUser)
 
 router
 .route("/:id")
-.get(getUser)
+.get(protect, getUser)
 .patch(updateUser)
 .delete(deleteUser)
 
