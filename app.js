@@ -9,7 +9,7 @@ import productRouter from "./routes/productRoutes.js"
 import userRouter from "./routes/userRoutes.js"
 import cookieParser from "cookie-parser"
 import {globalErrorHandler} from "./controllers/errorControllers.js"
-
+import AppError from "./utils/appError.js"
 
 dotenv.config({path:"./.env"})
 
