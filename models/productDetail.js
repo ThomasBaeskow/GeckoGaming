@@ -1,21 +1,29 @@
 import mongoose from "mongoose"
 
 
-const productOldSchema = mongoose.Schema({
-    productType: {
-        type: String,
-        default: "accessories"
+const productDetailSchema = mongoose.Schema({
+    product_id: String,
+    variantImages: {
+        type: Object
     },
-    brand: {
-        type: String,
-        default: "xbox-x/s-controller"
+    product_details: {
+        type: Object
     },
+    feature_bullets: {
+        type: Object
+    },
+    product_information_html: {
+        type: [String]
+    },
+    price_information: {
+        type: Object
+    },
+    available_quantity: Number,
     isBestSeller: {
         type: Boolean,
     },
     product_title: {
         type: String,
-        // required: [true, "a product must have a product_title"],
         trim: true
     },
     product_main_image_url: String,
@@ -29,14 +37,14 @@ const productOldSchema = mongoose.Schema({
         default: Date.now(),
         select: false // we can exclude fields in the model Schema like this
     },
-    // {
-    //     toJSON: {virtuals: true},
-    //     toObject: {virtuals: true}
-    // }
-})
-
+},
+{
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true}
+}
+)
 
 // creating a Model out of it: Model variables always wih capital Letter.
-const ProductOld = mongoose.model("ProductOld",productOldSchema)
+const ProductDetail = mongoose.model("ProductDetail",productDetailSchema)
 
-export default ProductOld
+export default ProductDetail

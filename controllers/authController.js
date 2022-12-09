@@ -76,10 +76,12 @@ export const login = catchAsync(async (req, res, next) => {
     // console.log(user);
     // "test1234" === '$2a$12$im0/kJn2OSC4raVqxJb5k.RYJhQmkiome6pL9A4PQcg4wqIAHSuvm' --> we need to compare the encrypted password in DB with users typed in password. To solve this we need to encrypt the users password too in our User model with bcrypt package
 
+    console.log(user, "first");
     if(!user || !(await user.correctPassword(password, user.password))) { // if theres no user with the given email or the password is not the same --> execute the error and stop the process. // return true if they are same, false if not (password, user.password)
         return next(new AppError("Incorrect email or password!", 401))
     }
 
+    console.log(user, "second");
     // 3) If everything ok, send token to client
     createSendToken(user, 200, req, res)
 })

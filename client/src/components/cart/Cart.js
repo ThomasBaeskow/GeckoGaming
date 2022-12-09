@@ -97,7 +97,7 @@ function Cart() {
             return (
               <>
                 <div key={index} className="cartLeft-items">
-                  <img src={cartImg} alt="" />
+                  <img src={cartImg} alt="" className="cart-img" />
 
                   <div className="">
                     <p>
