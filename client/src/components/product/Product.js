@@ -55,6 +55,7 @@ function Product() {
         <h5>Color </h5>       
         <button className="review-btn" onClick={()=>addToCart(location.state.product_id)} >Add to cart</button>
         {/* can we add a wishlist button here?? do we need another button */}
+        <button className="addToWishlist">Add to Wishlist</button>
         <p>Description :{location.state.description}</p>
 
         <p>Product Details:{location.state.productDetails} <FontAwesomeIcon icon={faPlus}/></p>
