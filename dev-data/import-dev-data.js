@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import axios from "axios"
+import { CancelToken } from "axios"
 import Product from "../models/product.js"
 import Category from "../models/productDetail.js"
 import User from "../models/user.js"
@@ -360,43 +361,68 @@ const product_id = allProducts.map(item => {
 })
 
 // console.log(product_id);
+const array = []
 
 // FETCHING PRODUCTDETAIL DATA FROM API!!!!!!!!!!
-product_id.map(async (item) => {
+const finalProducts = product_id.map( (item, index) => {
+    // try {
+        // setTimeout(function() {
+            console.log(index);
+            const options = {
+                method: 'GET',
+                url: `https://amazon24.p.rapidapi.com/api/product/${item}`,
+                params: {country: 'US'},
+                // cancelToken: new CancelToken(c => (cancel.exec = c)),
+                timeout: 10000,
+                headers: {
+                  'X-RapidAPI-Key': '4120ebe64bmsh944823cd010dc54p1eacf4jsn2f4049de1037',
+                  'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
+                }
+              };
+        
+              axios.request(options).then(function (response) {
+                array.push(response.data)
+                fs.writeFile(`${__dirname}/dev-data/productDetails.json`, JSON.stringify(array), function (error) {
+                    if (error) {
+                        console.log(error);
+                    }
+                })
+              }).catch(function (error) {
+                  console.error(error);
+              });
+            //   await ProductDetail.create(products)
+    // }catch (error) {
+    //     console.log(error);
+    // }
 
-    try {
-        const options = {
-            method: 'GET',
-            url: `https://amazon24.p.rapidapi.com/api/product/${item}`,
-            params: {country: 'US'},
-            headers: {
-              'X-RapidAPI-Key': '4120ebe64bmsh944823cd010dc54p1eacf4jsn2f4049de1037',
-              'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
-            }
-          };
-    
-          const products = await axios.request(options).then(function (response) {
-            //   console.log(response.data);
-            return response.data
-          }).catch(function (error) {
-              console.error(error);
-          });
-
-          await ProductDetail.create(products)
-
-    }catch (error) {
-        console.log(error);
-    }
-
-    process.exit()
+    // process.exit()
+// }, 10000)
 })
+
+// .then(response => {
+//     fs.writeFile(`${__dirname}/dev-data/productDetails.json`, JSON.stringify(array), function (error) {
+//             if (error) {
+//                 console.log(error);
+//             }
+//         })
+// }).catch(err => {
+//     console.log(err);
+// })
 
 
 // READ JSON FILE
 // const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours.json`, "utf-8")) // reading tours
 const users = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/users.json`, "utf-8")) // reading user
 // const reviews = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/reviews.json`, "utf-8")) // reading reviews
+// const productDetails = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/productDetails.json`, "utf-8"))
 
+// const test = productDetails.map(item => {
+//     return {
+//         product_id: item.product_id,
+//         variantImages: item.variantImages
+//     }
+// })
+// console.log(test);
 // console.log(users);
 
 // IMPORT DATA INTO DB
