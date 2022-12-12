@@ -4,7 +4,7 @@ import path from "path"
 import dotenv from "dotenv"
 import cors from "cors"
 import morgan from "morgan"
-import productsRouter from "./routes/productsRoutes.js"
+import productDetailRouter from "./routes/productDetailRoutes.js"
 import productRouter from "./routes/productRoutes.js"
 import userRouter from "./routes/userRoutes.js"
 import cookieParser from "cookie-parser"
@@ -50,13 +50,13 @@ app.use(cookieParser())
 // request time for every request added to the request object as a key.
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
-    console.log(req.cookies);
+    // console.log(req.cookies);
     next();
 });
 
 
-app.use('/api/v1/products', productsRouter);
-app.use('/api/v1/product', productRouter);
+app.use('/api/v1/product', productDetailRouter);
+app.use('/api/v1/products', productRouter);
 app.use('/api/v1/user', userRouter);
 // app.use("/api/v1/reviews");
 // app.use("/api/v1/orders");

@@ -2,20 +2,21 @@ import ProductDetail from "../models/productDetail.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
 
-export const getAllProductsWithCategory = catchAsync(async (req, res, next) => {
+export const getAllProductsDetail = catchAsync(async (req, res, next) => {
 
     const allProducts = await ProductDetail.find()
   
     // SEND RESPONSE
     res.status(200).json({
       status: 'success',
+      result: allProducts.length,
       data: {
         allProducts
       }
     });
   });
   
-export const getProductWithCategory = catchAsync(async (req, res, next) => {
+export const getProductDetail = catchAsync(async (req, res, next) => {
     const product = await ProductDetail.findById(req.params.id);
   
     res.status(200).json({

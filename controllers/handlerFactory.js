@@ -87,6 +87,7 @@ export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
     // SEND RESPONSE
     res.status(200).json({
       status: 'success',
+      result: doc.length,
     //   results: doc.length, // just do this if you read an array with multiple objects inside.
       data: {
         data: doc

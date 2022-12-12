@@ -360,44 +360,50 @@ const product_id = allProducts.map(item => {
     return item.product_detail_url.split("/")[4]
 })
 
-// console.log(product_id);
-const array = []
+fs.writeFile(`${__dirname}/dev-data/productIds.js`, JSON.stringify(product_id), function (error) {
+    if (error) {
+        console.log(error);
+    }
+})
+
+console.log(product_id);
+
 
 // FETCHING PRODUCTDETAIL DATA FROM API!!!!!!!!!!
-const finalProducts = product_id.map( (item, index) => {
-    // try {
-        // setTimeout(function() {
-            console.log(index);
-            const options = {
-                method: 'GET',
-                url: `https://amazon24.p.rapidapi.com/api/product/${item}`,
-                params: {country: 'US'},
-                // cancelToken: new CancelToken(c => (cancel.exec = c)),
-                timeout: 10000,
-                headers: {
-                  'X-RapidAPI-Key': '4120ebe64bmsh944823cd010dc54p1eacf4jsn2f4049de1037',
-                  'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
-                }
-              };
+// const finalProducts = product_id.map( (item, index) => {
+//     // try {
+//         // setTimeout(function() {
+//             console.log(index);
+//             const options = {
+//                 method: 'GET',
+//                 url: `https://amazon24.p.rapidapi.com/api/product/${item}`,
+//                 params: {country: 'US'},
+//                 headers: {
+//                   'X-RapidAPI-Key': 'f63126a413mshbcded1ba161c87ap19a235jsncd7cbb5af611',
+//                   'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
+//                 }
+//               };
         
-              axios.request(options).then(function (response) {
-                array.push(response.data)
-                fs.writeFile(`${__dirname}/dev-data/productDetails.json`, JSON.stringify(array), function (error) {
-                    if (error) {
-                        console.log(error);
-                    }
-                })
-              }).catch(function (error) {
-                  console.error(error);
-              });
-            //   await ProductDetail.create(products)
-    // }catch (error) {
-    //     console.log(error);
-    // }
+//               axios.request(options).then(function (response) {
+//                 array.push(response.data)
+//                 fs.writeFile(`${__dirname}/dev-data/productDetails.json`, JSON.stringify(array), function (error) {
+//                     if (error) {
+//                         console.log(error);
+//                     }
+//                 })
+//               }).catch(function (error) {
+//                   console.error(error);
+//               });
+//             //   await ProductDetail.create(products)
+//     // }catch (error) {
+//     //     console.log(error);
+//     // }
 
-    // process.exit()
-// }, 10000)
-})
+//     // process.exit()
+// // }, 10000)
+// })
+
+
 
 // .then(response => {
 //     fs.writeFile(`${__dirname}/dev-data/productDetails.json`, JSON.stringify(array), function (error) {
