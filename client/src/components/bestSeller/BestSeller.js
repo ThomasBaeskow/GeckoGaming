@@ -8,28 +8,26 @@ import gamingPc from "../../images/img-4-gamingpc.jpg";
 const BestSeller = () => {
   return (
     <div>
-      <div className="bestSellerContainer">
-        <div className="bestSeller-left">
-          <div className="img-3 ">
-            <img src={console2} alt="" className="bsImg"/>
+      <div className="bestSellerContainer container">
+        <div className="bestSeller-left row-xl-12">
+          <div className="img-3 col-sm-6">
+            <img src={console2} alt="" className="bsImg" />
           </div>
-          <div className="img-4 ">
-            <img src={gamingPc} alt="" className="bsImg"/>
+          <div className="img-4">
+            <img src={gamingPc} alt="" className="bsImg" />
           </div>
         </div>
-        
-        <div className="bestSeller-right">
-            <h1 className="bestsellerh1">Best Sellers</h1>
-            <div className="img-1 ">
-            <img src={chair} alt="" className="bsImg"/>
-            </div>
-            <div className="img-2">
-            <img src={console} alt=""  className="bsImg"/>
-            </div>
+
+        <div className="bestSeller-right row-xl-12">
+          <h1 className="bestsellerh1 col-sm-6">Best Sellers</h1>
+          <div className="img-1">
+            <img src={chair} alt="" className="bsImg" />
+          </div>
+          <div className="img-2">
+            <img src={console} alt="" className="bsImg" />
+          </div>
         </div>
-       </div>
-       
-         
+      </div>
     </div>
   );
 };
