@@ -9,25 +9,17 @@ import { NavLink } from "react-router-dom";
 import {MyContext} from "../../context/Context"
 
 const Products = () => {
-  const [category, setCategory] = useState([
-    "brands",
-    "electronics",
-    "merchandising",
-    "kids",   
-  ]);
-
-
-
- const{product,setProduct} = useContext(MyContext)
+// getting product and category data using context
+ const{product,setProduct,categoryList,setCategoryList} = useContext(MyContext)
 
   return (
-    <div className="productContainer">
-  
+    <div className="productContainer">  
       <div className="selectionCriteria">
         <div className="selectionCheckbox">
           <div className="categories">
           <h4>Category → </h4>
-          {category.map((item) => {
+    {/* display list of categories */}      
+          {categoryList.map((item) => {
             return (
               <>
                 <label>
@@ -60,10 +52,11 @@ const Products = () => {
 
       </div>
       <div className="productDisplay">
-
+            {/* display list of products */}  
           {
             product.map((prod)=>{
                 return (
+                  /* displaying the individual product card */
                     <div className="cardContainer">
                         <FontAwesomeIcon icon={faHeart} className='heart' />
                        <NavLink to={`/products/${prod.product_id}`}  state={prod} ><img src={card} alt=""/></NavLink>

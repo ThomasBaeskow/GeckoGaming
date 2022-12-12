@@ -1,45 +1,34 @@
 import "./myAccount.css";
-import React, { useState,useEffect} from "react";
-import {useNavigate } from "react-router-dom"
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import image from "../../images/profile-pic.jpg";
 import pic from "../../images/product-Img/product-img3..jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faHeart } from "@fortawesome/free-regular-svg-icons";
-import {MyContext} from "../../context/Context"
-import { useContext } from "react";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { MyContext } from "../../context/Context";
 
 
 function MyAccount() {
-  const [user, setUser] = useState([false]);
-  const{userData,setUserData} = useContext(MyContext)
 
-const navigate = useNavigate();
+  const { userData, setUserData,wishList,setWishList } = useContext(MyContext);
 
-useEffect(() => {
- navigate("/myAccount")
-}, [])
+  const navigate = useNavigate();
 
-  const [product, setProduct] = useState([
-    { productName: "bag", productQty: 8, productPrice: 20 },
-    { productName: "bag", productQty: 9, productPrice: 20 },
-    { productName: "shoe", productQty: 8, productPrice: 10 },
-    { productName: "cloth", productQty: 6, productPrice: 30 },
-    { productName: "cloth", productQty: 5, productPrice: 30 },
-  ]);
+  useEffect(() => {
+    navigate("/myAccount");
+  }, []);
 
 
- 
+
   return (
     <div>
-{
-            !userData && (navigate("/login"))
+      {!userData ? navigate("/login") : 
 
-          }
-
-      <div className="myAccountContainer">
+      <><div className="myAccountContainer">
         <h1>My Account</h1>
         <div className="accountDetail">
-          <p className="userName"> Hi,{userData.name}</p>
+          <p className="userName"> Hi,{userData.user.name}</p>
 
           <div className="myAccountImg">
             <FontAwesomeIcon className="editIcon" icon={faEdit} />
@@ -51,29 +40,39 @@ useEffect(() => {
           <p>My orders</p>
           <p>View all → </p>
         </div>
-        <button className="btn" onClick={()=>{setUserData("");navigate("/")}}>Log out</button>
+        <button
+          className="btn"
+          onClick={() => {
+            setUserData("");
+            navigate("/");
+          }}
+        >
+          Log out
+        </button>
       </div>
       <div>
-       <h2>My Wish List</h2>
+        <h2>My Wish List</h2>
         <div className="wishlistContainer">
-          {product.map((item) => {
+          {wishList.map((item) => {
             return (
               <div className="wishlistImg">
-                <FontAwesomeIcon className="heart-wish" icon={faHeart} />
+                <FontAwesomeIcon className="heart-wish" icon={faHeart} /> 
+                {/* do we need to show heart in wishlist items? or just a delete icon here to remove */}
+                <FontAwesomeIcon className="addTo-Cart" icon={faCartPlus}  />
                 <img src={pic} alt="" />
                 <div className="wishlistItems">
                   <p>{item.productName}</p>
                   <p>{item.productPrice}</p>
+                 
                 </div>
               </div>
             );
           })}
         </div>
       </div>
-
-
-
+      </>}
     </div>
+
   );
 }
 

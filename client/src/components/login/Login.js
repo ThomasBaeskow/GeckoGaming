@@ -1,56 +1,51 @@
 import "./login.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { Link,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {MyContext} from "../../context/Context" 
-import Products from "../products/Products";
-
+import { MyContext } from "../../context/Context";
 
 const Login = () => {
   const [loginData, setLoginData] = useState();
-  const{userData,setUserData} = useContext(MyContext);
+  const { userData, setUserData } = useContext(MyContext); //using context to store user data
   const [msg, setMsg] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  // function to get values from input fields.
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setLoginData((values) => ({ ...loginData, [name]: value }));
   };
 
-
+  //function to send data to backend for login and get userdata after login success using axios
   const handleSubmit = async (e) => {
-    e.preventDefault();  
-    console.log("i am from frontend:",loginData);
-    try{      
-      await axios
-      .post("http://127.0.0.1:3000/api/v1/user/login", loginData,{mode:'cors'},
-      {
-        withCredentials:true,
-        credentials:"include"
-      },{headers: {
-                Cookie: "cookie1=value;"
-    }}) 
-      .then((res) => {  
-       
-      const user_auth_token = res.headers;
-      console.log("i am cookie.header",user_auth_token)
-        console.log("i am backend",res.data)
-       // const userInfo=res.data.data.user;      
-          setUserData(res.data);
-         // console.log("i am from backend",userInfo.name);
-          console.log("i am userData", userData)  
-       
-         navigate("/products")  
-      });
-    }catch(e){
-      setMsg(e.message)
-      
+    e.preventDefault();
+    console.log("i am from frontend:", loginData);
+    try {
+      const res = await axios.post(
+        "http://127.0.0.1:3000/api/v1/user/login",
+        loginData,
+        { mode: "cors" },
+        {
+          withCredentials: true,
+          credentials: "include",
+        },
+        {
+          headers: {
+            Cookie: "cookie1=value;",
+          },
+        }
+      );
+
+      setUserData(await res.data.data);
+      console.log("i am userData", userData.user.name);
+
+      navigate("/products");
+    } catch (e) {
+      setMsg(e.message);
     }
-    
-          
   };
 
   return (
@@ -77,17 +72,12 @@ const Login = () => {
             <br />
             <br /> <button type="submit">Log in</button>
             <br />
-
-         
-                      <div>
-                          <h5>{
-                        msg ? msg: ""
-                      } </h5>
-                      </div>
-                      </form>          
-
+          </form>
+          <br /> <br />
+          <div>
+            <h5>{msg ? msg : ""} </h5>
+          </div>
         </div>
-       
       </div>
       <div>
         <p className="signup-text">

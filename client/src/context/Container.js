@@ -4,8 +4,15 @@ import React,{useState}from "react";
 import { MyContext } from "./Context";
 
 export default function Container({children}){
+  const[userData,setUserData] = useState();
+  const[categoryList,setCategoryList] = useState([
+    "brands",
+    "electronics",
+    "merchandising",
+    "kids",   
+  ])
     const[product,setProduct] = useState([  {
-        productName: "bag",
+        productName: "mobile",
         cartQty: 0,
         productPrice: 20,
         product_id: 1,
@@ -16,7 +23,7 @@ export default function Container({children}){
         productDetails:" bag ---- dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
       },
       {
-        productName: "videogame",
+        productName: "bag",
         cartQty: 0,
         productPrice: 20,
         product_id: 2,
@@ -38,7 +45,7 @@ export default function Container({children}){
         productDetails:" shoe ----Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
       },
       {
-        productName: "xbox",
+        productName: "cloth",
         cartQty: 0,
         productPrice: 30,
         product_id: 4,
@@ -59,15 +66,60 @@ export default function Container({children}){
         description:" iphone --dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.",
         productDetails:" iphone ----Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
       },]);
-    
-      const[cartList,setCartList] = useState([]);
-      const[userData,setUserData] = useState({});
+     
+      const[cartList,setCartList] = useState([
+      /* 
+        {
+          productName: "mobile",
+          cartQty: 0,
+          productPrice: 20,
+          product_id: 1,
+          availableQty: 2,
+        },
+        {
+          productName: "bag",
+          cartQty: 0,
+          productPrice: 20,
+          product_id: 2,
+          availableQty: 12,
+        },
+        {
+          productName: "shoe",
+          cartQty: 0,
+          productPrice: 10,
+          product_id: 3,
+          availableQty: 5,
+        },
+        {
+          productName: "cloth",
+          cartQty: 0,
+          productPrice: 30,
+          product_id: 4,
+          availableQty: 8,
+        },
+         {
+          productName: "iphone",
+          cartQty: 0,
+          productPrice: 30,
+          product_id: 5,
+          availableQty: 5,
+        }, */ 
+      ]);
+     
+      const[wishList,setWishList] = useState([
+        { productName: "bag", productQty: 8, productPrice: 20 },
+        { productName: "bag", productQty: 9, productPrice: 20 },
+        { productName: "shoe", productQty: 8, productPrice: 10 },
+        { productName: "cloth", productQty: 6, productPrice: 30 },
+        { productName: "cloth", productQty: 5, productPrice: 30 },
+      ]);
+      const[orderList,setOrderList] = useState();
     
 
     return (
         <MyContext.Provider
           value={{
-            product,setProduct,cartList,setCartList,userData,setUserData
+            product,setProduct,cartList,setCartList,userData,setUserData,wishList,setWishList,orderList,setOrderList,categoryList,setCategoryList
           }}
         >
           {children}
