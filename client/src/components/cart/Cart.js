@@ -1,60 +1,29 @@
 import "./cart.css";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import cartImg from "../../images/product-Img/product-img2.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
+import {MyContext} from "../../context/Context"
 
 function Cart() {
-  const [product, setProduct] = useState([
-    {
-      productName: "bag",
-      cartQty: 0,
-      productPrice: 20,
-      product_id: 1,
-      availableQty: 2,
-    },
-    {
-      productName: "bag",
-      cartQty: 0,
-      productPrice: 20,
-      product_id: 2,
-      availableQty: 25,
-    },
-    {
-      productName: "shoe",
-      cartQty: 0,
-      productPrice: 10,
-      product_id: 3,
-      availableQty: 5,
-    },
-    {
-      productName: "cloth",
-      cartQty: 0,
-      productPrice: 30,
-      product_id: 4,
-      availableQty: 8,
-    },
-    {
-      productName: "cloth",
-      cartQty: 0,
-      productPrice: 30,
-      product_id: 5,
-      availableQty: 5,
-    },
-  ]);
+  const{cartList,setCartList} = useContext(MyContext)
 
+ 
+
+// function to decrease the quantity of the items in the cart
   const decrease = (product_id) => {
-    setProduct((product) =>
+    setCartList((product) =>
       product.map((item) =>
         product_id === item.product_id
-          ? { ...item, cartQty: item.cartQty -(item.cartQty > 1 ? 1: 0)  }
+          ? { ...item, cartQty: item.cartQty -(item.cartQty > 0 ? 1: 0)  }
           : item
       )
     );
   };
 
+// function to increase the quantity of the items in the cart  
   const increase = (product_id) => {
-    setProduct((product) =>
+    setCartList((product) =>
       product.map((item) =>
         product_id === item.product_id
           ? { ...item, cartQty: item.cartQty + (item.cartQty < item.availableQty ? 1: 0) }
@@ -63,15 +32,21 @@ function Cart() {
     );
   };
 
+// function to total quantity of the items in the cart
+
   const totalQtyCart = () => {
-    const totalQty = product.reduce(
+    const totalQty = cartList.reduce(
       (accumulator, currentValue) => accumulator + currentValue.cartQty,
       0
     );
     return totalQty;
   };
+
+
+
+ // function to cost of items in the cart  
   const totalCostCart = () => {
-    const totalCost = product.reduce(
+    const totalCost = cartList.reduce(
       (accumulator, currentValue) =>
         accumulator + currentValue.cartQty * currentValue.productPrice,
       0
@@ -79,8 +54,10 @@ function Cart() {
     return totalCost;
   };
 
+
+//remove item from the cart  
  const removeItem =(product_id)=>{
-  setProduct(product.filter(item=>item.product_id !== product_id))
+  setCartList(cartList.filter(item=>item.product_id !== product_id))
 } 
 
 
@@ -93,7 +70,7 @@ function Cart() {
 
       <div className="cartContainer">
         <div className="cartLeft">
-          {product.map((item, index) => {
+          {cartList.map((item, index) => {
             return (
               <>
                 <div key={index} className="cartLeft-items">
@@ -101,7 +78,7 @@ function Cart() {
 
                   <div className="">
                     <p>
-                      {item.productName} {item.product_id}
+                      {item.productName}<h6>Available quantity: {item.availableQty}</h6>
                     </p>
                     <div className="cartQuantityContainer">
                       <button

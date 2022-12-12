@@ -1,19 +1,48 @@
 import "./product.css"
-import { useLocation } from "react-router-dom"
-import React,{ useState} from 'react'
+import { useLocation,useNavigate } from "react-router-dom"
+import React,{ useContext, useState} from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {  
     faPlus,faMinus
   } from "@fortawesome/free-solid-svg-icons";  
 import ReactStars from "react-stars";
+import {MyContext} from "../../context/Context"
+
 
 
 function Product() {
     const location = useLocation();
     const[rating,setRating] = useState(4.7);
-   
+    const{product,setCartList,cartList} = useContext(MyContext)
+  const navigate = useNavigate()
+
+    const addToCart = (prod_id) => {
+      const result = cartList.find(({ product_id }) => product_id === prod_id)
+      const prod_result = product.find(({ product_id }) => product_id === prod_id)
+      if(!result){        
+        let cartNewItem = 
+        {
+          productName: prod_result.productName,
+          cartQty: 1,
+          productPrice: prod_result.productPrice,
+          product_id: prod_result.product_id,
+          availableQty: prod_result.availableQty,
+        }
+        setCartList([...cartList, cartNewItem])
+      }
+      else{
+        if(result.cartQty<prod_result.availableQty){
+        result.cartQty++
+          }
+        else{
+        alert(`out of stock cannot add more in the list ${result.cartQty} qty available${prod_result.availableQty}`)
+      }}
+      navigate("/products")
+    }
+
+       
   return (
-    <div>
+   <div>
         <div className="productData">
         <div className="singleProductImages">
         <img src={location.image} width="200" height="200" alt="" className="img-review" />
@@ -22,8 +51,10 @@ function Product() {
          
         <h3>productName: {location.state.productName}</h3>
         <h4>product Price:{location.state.productPrice}</h4>
-        <h5>Color </h5>
-        <button className="review-btn">Add to cart</button>
+        <h6>Available Qty :{location.state.availableQty}</h6>
+        <h5>Color </h5>       
+        <button className="review-btn" onClick={()=>addToCart(location.state.product_id)} >Add to cart</button>
+        {/* can we add a wishlist button here?? do we need another button */}
         <p>Description :{location.state.description}</p>
 
         <p>Product Details:{location.state.productDetails} <FontAwesomeIcon icon={faPlus}/></p>
