@@ -1,10 +1,10 @@
-import Category from "../models/category.js";
+import ProductDetail from "../models/productDetail.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
 
 export const getAllProductsWithCategory = catchAsync(async (req, res, next) => {
 
-    const allProducts = await Category.find()
+    const allProducts = await ProductDetail.find()
   
     // SEND RESPONSE
     res.status(200).json({
@@ -16,7 +16,7 @@ export const getAllProductsWithCategory = catchAsync(async (req, res, next) => {
   });
   
 export const getProductWithCategory = catchAsync(async (req, res, next) => {
-    const product = await Category.findById(req.params.id);
+    const product = await ProductDetail.findById(req.params.id);
   
     res.status(200).json({
       status: 'success',
