@@ -8,6 +8,8 @@ import {
 import { NavLink } from "react-router-dom";
 import {MyContext} from "../../context/Context"
 
+
+
 const Products = () => {
 // getting product and category data using context
  const{product,setProduct,categoryList,setCategoryList} = useContext(MyContext)
@@ -58,7 +60,6 @@ const Products = () => {
                 return (
                   /* displaying the individual product card */
                     <div className="cardContainer">
-                        <FontAwesomeIcon icon={faHeart} className='heart' />
                        <NavLink to={`/products/${prod.product_id}`}  state={prod} ><img src={card} alt=""/></NavLink>
                         <p>{prod.productName}</p>
                         <p>{prod.productPrice}</p>
@@ -74,5 +75,6 @@ const Products = () => {
     </div>
   );
 };
+
 
 export default Products;
