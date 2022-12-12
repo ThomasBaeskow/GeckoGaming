@@ -15,13 +15,13 @@ const{userData,setUserData} = useContext(MyContext)
          <NavLink to="/"><li>Home</li></NavLink>
           <NavLink to="/about"><li>About Us</li></NavLink>          
           <NavLink to="/products"><li>Product</li></NavLink>
-          {
+            {
             userData 
-            ? (<><NavLink to="/"><li  onClick={()=>{setUserData("")}}>Log out </li></NavLink> </> )
+            ?  (<><NavLink to="/"><li  onClick={()=>{setUserData("")}}>Log out </li></NavLink> </> ) 
              :(<NavLink to="/login"><li>Log In </li></NavLink>)
 
-          }
-          
+          }  
+        
         </ul>
       </div>
       </div>
