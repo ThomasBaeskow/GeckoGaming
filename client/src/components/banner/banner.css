@@ -91,3 +91,29 @@ hr {
 .spanArrow {
   margin-left: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .banner-left {
+    width: 50em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .banner-right {
+    display: none;
+  }
+
+  .bannerText {
+    margin-top: 10px;
+  }
+  button {
+    width: 180px;
+    height: 40px;
+    font-size: 18px;
+  }
+  button:hover {
+    background-color: #62d2a2;
+    color: white;
+    box-shadow: 5px 5px black;
+  }
+}

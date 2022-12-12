@@ -81,3 +81,21 @@
   border-radius: 20%;
   transform: scale(1.5);
 }
+
+/* media query */
+
+@media screen and (max-width: 768px) {
+  .footer {
+    height: 270px;
+  }
+  .fIcons {
+    margin-left: 20%;
+    margin-top: 150px;
+  }
+  .vertical-line {
+    display: none;
+  }
+  .footer-text {
+    font-size: 8px;
+  }
+}

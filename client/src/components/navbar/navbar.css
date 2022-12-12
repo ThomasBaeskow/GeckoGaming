@@ -68,21 +68,26 @@ li:hover {
   border-radius: 5px;
 }
 
-
 .mobile-navigation {
   display: none;
 }
 
 /* responsiveness navbar for mobile - hamburger menu */
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 890px) {
+  .hamburger{
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 10px;
+  }
   .navigation {
     display: none;
   }
   .mobile-navigation {
     display: flex;
     justify-content: space-around;
-
     cursor: pointer;
   }
   nav ul {
@@ -90,14 +95,21 @@ li:hover {
     flex-direction: column;
     justify-content: center;
     position: absolute;
-    height: 400px;
+    height: 600px;
     top: 60px;
     left: 0;
-    width: 50%;
+    width: 80%;
     background-color: #9df3c4;
     border-bottom: 3px solid black;
     border-right: 3px solid black;
     border-top: 3px solid black;
+    z-index: 420;
+  }
+  li:hover {
+    color: white;
+    background-color: #1fab89;
+    padding: 5px;
+    border-radius: 5px;
   }
   .landingSearch {
     display: none;
