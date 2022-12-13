@@ -13,9 +13,12 @@ import {MyContext} from "../../context/Context"
 function Product() {
     const location = useLocation();
     const[rating,setRating] = useState(4.7);
-    const{product,setCartList,cartList} = useContext(MyContext)
-  const navigate = useNavigate()
+    const{product,setCartList,cartList,setWishList,wishList} = useContext(MyContext)
+    const navigate = useNavigate();
 
+
+
+  //adding items to cart
     const addToCart = (prod_id) => {
       const result = cartList.find(({ product_id }) => product_id === prod_id)
       const prod_result = product.find(({ product_id }) => product_id === prod_id)
@@ -40,6 +43,26 @@ function Product() {
       navigate("/products")
     }
 
+    //adding items to wishlist
+    const addToWishList =(prod_id)=>{
+      const findWishedItem = wishList.find(({ product_id }) => product_id === prod_id);
+      const prod_result = product.find(({ product_id }) => product_id === prod_id)
+      if(findWishedItem){
+        alert("already in wishlist")
+        navigate("/products")
+      }else{
+        let wishListNewItem = 
+        {
+          productName: prod_result.productName,          
+          productPrice: prod_result.productPrice,
+          product_id: prod_result.product_id,
+         
+        }
+        setWishList([...wishList, wishListNewItem])
+        navigate("/products")
+      }
+      
+    }
        
   return (
    <div>
@@ -55,7 +78,7 @@ function Product() {
         <h5>Color </h5>       
         <button className="review-btn" onClick={()=>addToCart(location.state.product_id)} >Add to cart</button>
         {/* can we add a wishlist button here?? do we need another button */}
-        <button className="addToWishlist">Add to Wishlist</button>
+        <button className="addToWishlist" onClick={()=>addToWishList(location.state.product_id)}>Add to Wishlist</button>
         <p>Description :{location.state.description}</p>
 
         <p>Product Details:{location.state.productDetails} <FontAwesomeIcon icon={faPlus}/></p>
