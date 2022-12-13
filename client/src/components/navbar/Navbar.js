@@ -10,7 +10,7 @@ import { MyContext } from "../../context/Context";
 const Navbar = () => {
 const {cartList} = useContext(MyContext);
 
-
+// function to calculate the total of the items in cart
   const totalQtyCart = () => {
     const totalQty = cartList.reduce(
       (accumulator, currentValue) => accumulator + currentValue.cartQty,
@@ -19,7 +19,9 @@ const {cartList} = useContext(MyContext);
     return totalQty;
   };
  
-
+const searchProducts = ()=>{
+  return alert("products search")
+}
 
   return (
     <div className="landingNavbar">
@@ -28,7 +30,7 @@ const {cartList} = useContext(MyContext);
         <MobileNavigation />
       </div>
       <div className="landingSearch">
-        <input type="search" placeholder=" 🔍 Search ..." />
+        <input type="search" placeholder="🔍 Search ..." onClick={searchProducts} />
       </div>
       <div className="landingCart">    
      

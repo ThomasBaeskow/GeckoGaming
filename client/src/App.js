@@ -11,6 +11,7 @@ import Signup from "./components/signup/Signup";
 import Home from "./components/home/Home";
 import Product from "./components/product/Product";
 import Container from "./context/Container";
+import PageNotFound from "./components/pageNotFound/PageNotFound";
 
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/myAccount" element={<MyAccount />} />
+          <Route path="/pageNotFound" element={<PageNotFound />} />
          
         </Routes>
         <Footer />
