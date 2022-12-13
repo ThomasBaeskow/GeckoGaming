@@ -82,7 +82,7 @@ h2 {
   margin-bottom: 50px;
 }
 
-.heart-wish {
+/* .heart-wish {
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -93,11 +93,21 @@ h2 {
 
 .heart-wish:hover {
   color: palevioletred;
-}
+} */
 .addTo-Cart{
+  margin-top: 10px;
   width: 30px;
   height: 30px; 
   cursor: pointer;
   position: absolute;
- margin-right: 0;
+ margin-left: 10px;
+}
+
+.delete {
+  margin-top: 10px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 200px;
 }

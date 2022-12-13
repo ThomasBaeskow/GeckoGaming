@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import image from "../../images/profile-pic.jpg";
 import pic from "../../images/product-Img/product-img3..jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faEdit} from "@fortawesome/free-regular-svg-icons";
+import { faCartPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { MyContext } from "../../context/Context";
 
 
@@ -56,8 +56,11 @@ function MyAccount() {
           {wishList.map((item) => {
             return (
               <div className="wishlistImg">
-                <FontAwesomeIcon className="heart-wish" icon={faHeart} /> 
+                {/* <FontAwesomeIcon className="heart-wish" icon={faHeart} />  */}
+                <FontAwesomeIcon className="delete" icon={faTrash} />
+                
                 {/* do we need to show heart in wishlist items? or just a delete icon here to remove */}
+               
                 <FontAwesomeIcon className="addTo-Cart" icon={faCartPlus}  />
                 <img src={pic} alt="" />
                 <div className="wishlistItems">
