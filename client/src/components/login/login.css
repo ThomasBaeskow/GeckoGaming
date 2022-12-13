@@ -1,7 +1,7 @@
 .loginContainer {
   width: 50%;
   margin: 0 auto;
-  height: 550px;
+  height: 70%;
   font-family: "JetBrains mono";
   background-color: #ccffcc;
   text-align: center;
@@ -54,4 +54,11 @@
 
 .face, .googleicon{
     margin-left: 5px;
+}
+@media screen and (max-width: 768px) {
+  .loginContainer {
+    width: 100%;
+    height: 100%;
+  }
+
 }
