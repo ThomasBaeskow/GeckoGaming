@@ -58,7 +58,7 @@ function MyAccount() {
             return (
               <div className="wishlistImg">
                 {/* <FontAwesomeIcon className="heart-wish" icon={faHeart} />  */}
-                <FontAwesomeIcon className="delete" icon={faTrash} />
+                <FontAwesomeIcon className="delete" icon={faTrash}/>
                 
                 {/* do we need to show heart in wishlist items? or just a delete icon here to remove */}
                

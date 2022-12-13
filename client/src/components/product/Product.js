@@ -40,7 +40,7 @@ function Product() {
         else{
         alert(`out of stock cannot add more in the list ${result.cartQty} qty available${prod_result.availableQty}`)
       }}
-      navigate("/products")
+   /*    navigate("/products") */
     }
 
     //adding items to wishlist
@@ -59,7 +59,7 @@ function Product() {
          
         }
         setWishList([...wishList, wishListNewItem])
-        navigate("/products")
+      /*   navigate("/products") */
       }
       
     }

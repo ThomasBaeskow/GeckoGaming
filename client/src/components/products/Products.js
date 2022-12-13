@@ -1,5 +1,5 @@
 import "./products.css";
-import React, { useState,useContext } from "react";
+import React, { useEffect,useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  
     faHeart
@@ -7,12 +7,25 @@ import {
   import card from "../../images/product-Img/product-img-1.jpg"
 import { NavLink } from "react-router-dom";
 import {MyContext} from "../../context/Context"
+import axios from "axios";
 
 
 
 const Products = () => {
 // getting product and category data using context
  const{product,setProduct,categoryList,setCategoryList} = useContext(MyContext)
+
+useEffect(() => {
+fetchAllProducts();
+}, []); 
+
+
+const fetchAllProducts = async()=>{
+  const getProducts = await axios.get("http://127.0.0.1:3000/api/v1/products/")
+  console.log(getProducts)
+}
+
+
 
   return (
     <div className="productContainer">  
@@ -61,7 +74,7 @@ const Products = () => {
                 return (
                   /* displaying the individual product card */
                     <div className="cardContainer">
-                       <NavLink to={`/products/${prod.product_id}`}  state={prod} ><img src={card} alt=""/></NavLink>
+                       <NavLink to={`/products/${prod.product_id}`}  state={prod} ><img src="https://m.media-amazon.com/images/I/91ClDMOrAwL._AC_UY218_.jpg" alt=""/></NavLink>
                         <p>{prod.productName}</p>
                         <p>{prod.productPrice}</p>
 
