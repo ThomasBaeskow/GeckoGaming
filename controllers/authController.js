@@ -3,6 +3,8 @@ import { catchAsync } from "../utils/catchAsync.js"
 import jwt from "jsonwebtoken"
 import AppError from "../utils/appError.js"
 import {promisify} from "util"
+import {Email} from "../utils/email.js"
+import crypto from "crypto"
 
 
 
@@ -45,15 +47,12 @@ const createSendToken = (user, statusCode, req, res) => {
 
 // SIGN UP
 export const signup = catchAsync(async (req, res, next) => {
-    // const newUser = await User.create(req.body)
-    // due to security reasons we need to replace above code with following code: We only allow the data we actually need to be saved in the new user in our DB. Even when a user tries to manually add a "role: admin". It wont be stored in the user
+
     const newUser = await User.create(req.body)
-    // const url = `${req.protocol}://${req.get("host")}/me`
+    const url = `${req.protocol}://${req.get("host")}/me`
+    console.log(url);
 
-    // console.log(url);
-
-    // await new Email(newUser, url)
-    // .sendWelcome() //  pass in our Email class, which builds objects with email data, according to the newUsers data and the url we pass in.
+    await new Email(newUser, url).sendWelcome() //  pass in our Email class, which builds objects with email data, according to the newUsers data and the url we pass in.
 
     // JWT - Login Users with secure JWT
     // for authentication we install the package "jsonwebtoken"
@@ -138,4 +137,80 @@ export const protect = catchAsync(async(req, res, next) => {
     req.user = currentUser
     // res.locals.user = currentUser; // We save the current User data inside our local variables in pug as "user"
     next()
+})
+
+// This function just gives permission for users with role "admin" or "lead-guide" to access the next middleware "deleteTour".
+export const restrictTo = (...roles) => {
+    return (req, res, next) => { // this middleware function has access to the roles, which are given in as parameter in the routes due to the closure.
+        // roles ["admin", "user"]. role = "user"
+        if (!roles.includes(req.user.role)) {
+            return next(new AppError("You do not have permission to perform that action", 403))
+        }
+        next()
+    }
+}
+
+export const forgotPassword = catchAsync(async(req, res, next) => {
+
+    // 1) Get user based on POSTed email
+    const user = await User.findOne({email: req.body.email})
+    if (!user) {
+        return next(new AppError("There is no user with this email address.", 404))
+    }
+
+    // 2) Generate the random reset token
+    const resetToken = user.createPasswordResetToken()
+    await user.save({validateBeforeSave: false}) // this deactivate all the validators which we specified in our user schema. We add this property to our current user. And we save the encrypted string to our DB
+
+    // 3) Send it to users email
+    try {
+        const resetURL = `${req.protocol}://${req.get("host")}/api/v1/users/resetPassword/${resetToken}` // we are sending the plain resetToken and not the encrypted one!
+        // await new Email(user, resetURL).sendPasswordReset() // this is creating the email and sending it to the user.
+    
+        const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didnt forget your password, please ignore this email!`
+
+        // await sendEmail({
+        //     email: user.email,
+        //     subject: "Your password reset token is (valid for 10 min)",
+        //     message
+        // })
+
+        res.status(200).json({
+            status: "success",
+            message: "Token sent to email!"
+        })
+    } catch(err) {
+        user.passwordResetToken = undefined
+        user.passwordResetExpires = undefined
+        await user.save({validateBeforeSave: false})
+
+        return next(new AppError("There was an error sending the email. Try again later!", 500))
+    }
+})
+
+// RESET PASSWORD - In Postman we need to copy our generated Token into URL which we got via Email after hitting forgotPassword route.
+export const resetPassword = catchAsync(async(req, res, next) => {
+
+    // 1) get user based on the token
+    const hashedToken = crypto.createHash("sha256").update(req.params.token).digest("hex") // its req.params.token because we defined the route in userRoutes.js like that. We need to encrypt the token again because we want to search in our User Model (DB) for the document with same value. We stored in DB the encrypted token.
+
+    const user = await User.findOne({passwordResetToken: hashedToken, passwordResetExpires: {$gt: Date.now()}}) // we check if the expiring Date of the token is still greater then the current time. (still valid)
+
+    // 2) If token has not expired, and there is a user, set the new password
+    if (!user) {
+        return next(new AppError("Token is invalid or has expired!", 400))
+    }
+
+    // here we are updating the current user objects properties like password,confirmPassword, passwordResetToken, passwordResetExpires and save it
+    user.password = req.body.password
+    user.confirmPassword = req.body.confirmPassword
+    user.passwordResetToken = undefined
+    user.passwordResetExpires = undefined
+    await user.save() // we are not turning off the validation here because we want to confirm, that the password is correct etc.
+
+    // 3) Update passwordChangedAt property for the user
+    // we do this in our user model as a pre save middleware!
+
+    // 4) Log the user in, send JWT
+    createSendToken(user, 200, req, res)
 })
