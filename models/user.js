@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import validator from "validator"
 import bcrypt from "bcrypt"
-// import crypto from "crypto"
+import crypto from "crypto"
 
 const userSchema = mongoose.Schema({
     name: {
@@ -45,8 +45,8 @@ const userSchema = mongoose.Schema({
       },
     // security
     passwordChangedAt: Date,
-    // passwordResetToken: String,
-    // passwordResetExpires: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
     active: {
       type: Boolean,
       default: true,
@@ -106,19 +106,20 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
 
 // // Reset the JWT Token
 // // import crypto (build in module of node.js)
-// userSchema.methods.createPasswordResetToken = function() {
-//   const resetToken = crypto.randomBytes(32).toString("hex") // this is creating a new "secret" (32 character string) Like we already stored in our config.env file.
+userSchema.methods.createPasswordResetToken = function() {
+  const resetToken = crypto.randomBytes(32).toString("hex") // this is creating a new "secret" (32 character string) Like we already stored in our config.env file.
 
 //   // we need to encrypt our reseted token for security reasons
 //   // sha256 is an algorithm
 //   // update our 32 character String encrypted.
-//   this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex") // we are updating our field in model with the encrypted String
+  this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex") // we are updating our field in model with the encrypted String
 
-//   // console.log({resetToken}, this.passwordResetToken);
-//   this.passwordResetExpires = Date.now() + 60 * 60 * 1000 // for 60 minutes, for seconds, for milli-seconds --> new reset token expires after 10 minutes!
+  console.log({resetToken}, this.passwordResetToken);
+  
+  this.passwordResetExpires = Date.now() + 60 * 60 * 1000 // for 60 minutes, for seconds, for milli-seconds --> new reset token expires after 10 minutes!
 
-//   return resetToken // we return the 32 character string (secret) to send it in the next step to the user
-// }
+  return resetToken // we return the 32 character string (secret) to send it in the next step to the user
+}
 
 
 // creating a Model out of it: Model variables always wih capital Letter.
