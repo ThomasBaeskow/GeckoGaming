@@ -86,8 +86,11 @@ function MyAccount() {
               
             return (
               <div className="wishlistImg">
+
+
                 <FontAwesomeIcon className="delete" icon={faTrash} onClick= {()=>removeItem(item.product_id)} />
                 <FontAwesomeIcon className="addTo-Cart" icon={faCartPlus} onClick={()=>addToCart(item.product_id)} />
+
                 <NavLink to={`/products/${item.product_id}`}  state={item} ><img src={pic} alt=""/></NavLink>
                 {/* <img src={pic} alt="" /> */}
                 <div className="wishlistItems">
