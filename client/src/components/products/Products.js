@@ -20,7 +20,8 @@ const Products = () => {
         <div className="selectionCheckbox">
           <div className="categories">
           <h4>Category → </h4>
-    {/* display list of categories */}      
+    {/* display list of categories */}
+          
           {categoryList.map((item) => {
             return (
               <>
@@ -63,6 +64,7 @@ const Products = () => {
                        <NavLink to={`/products/${prod.product_id}`}  state={prod} ><img src={card} alt=""/></NavLink>
                         <p>{prod.productName}</p>
                         <p>{prod.productPrice}</p>
+
                     </div> 
                     
 

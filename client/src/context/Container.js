@@ -6,10 +6,12 @@ import { MyContext } from "./Context";
 export default function Container({children}){
   const[userData,setUserData] = useState();
   const[categoryList,setCategoryList] = useState([
+    
     "brands",
     "electronics",
-    "merchandising",
-    "kids",   
+    "merchandising",    
+    "kids"
+   // consoles, videogames, pc, accessories.   
   ])
     const[product,setProduct] = useState([  {
         productName: "mobile",
@@ -65,7 +67,64 @@ export default function Container({children}){
         productBrand:"",
         description:" iphone --dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.",
         productDetails:" iphone ----Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
-      },]);
+      },
+    //more dummy data
+    {
+      productName: "videoGames",
+      cartQty: 0,
+      productPrice: 20,
+      product_id: 6,
+      availableQty: 2,
+      productCategory:"",
+      productBrand:"",
+      description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.",
+      productDetails:" bag ---- dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
+    },
+    /* {
+      productName: "accessories",
+      cartQty: 0,
+      productPrice: 20,
+      product_id: 7,
+      availableQty: 25,
+      productCategory:"",
+      productBrand:"",
+      description:" VideoGame --dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.",
+      productDetails:" videoGame ----Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
+    },
+    {
+      productName: "nintendo",
+      cartQty: 0,
+      productPrice: 10,
+      product_id: 8,
+      availableQty: 5,
+      productCategory:"",
+      productBrand:"",
+      description:" shoe --dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.",
+      productDetails:" shoe ----Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
+    },
+    {
+      productName: "ps-5",
+      cartQty: 0,
+      productPrice: 30,
+      product_id: 9,
+      availableQty: 8,
+      productCategory:"",
+      productBrand:"",
+      description:" xbox --dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.",
+      productDetails:" xbox ----Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
+    },
+    {
+      productName: "ps-4",
+      cartQty: 0,
+      productPrice: 30,
+      product_id: 10,
+      availableQty: 5,
+      productCategory:"",
+      productBrand:"",
+      description:" iphone --dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore.",
+      productDetails:" iphone ----Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
+    } */
+    ]);
      
       const[cartList,setCartList] = useState([
       /* 
@@ -107,12 +166,28 @@ export default function Container({children}){
       ]);
      
       const[wishList,setWishList] = useState([
-        { productName: "bag", productQty: 8, productPrice: 20 },
-        { productName: "bag", productQty: 9, productPrice: 20 },
-        { productName: "shoe", productQty: 8, productPrice: 10 },
-        { productName: "cloth", productQty: 6, productPrice: 30 },
-        { productName: "cloth", productQty: 5, productPrice: 30 },
-      ]);
+         
+         
+          {
+            productName: "bag",           
+            productPrice: 20,
+            product_id: 2,
+           
+          },
+          {
+            productName: "shoe",           
+            productPrice: 10,
+            product_id: 3,
+           
+          },
+          {
+            productName: "cloth",           
+            productPrice: 30,
+            product_id: 4,
+           
+          },
+            
+        ]);
       const[orderList,setOrderList] = useState();
     
 
