@@ -1,5 +1,5 @@
 .productData {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   height: 600px;
   border-bottom: 1px solid;
@@ -40,4 +40,30 @@
 .review-btn{
   margin-bottom: 20px;
   margin-top: 20px;
+  margin-right: 10px;
+}
+
+/* media query mobile */
+
+@media screen and (max-width: 768px) {
+  .productData {
+    flex-direction: column;
+    height: 100%;
+  }
+  .singleProductImages {
+    width: 100%;
+  }
+  .singleProductDetails {
+    width: 100%;
+  }
+  .productReviewContainer {
+    flex-direction: column;
+    height: 100%;
+  }
+  .reviewLeft {
+    width: 100%;
+  }
+  .reviewRight {
+    width: 100%;
+  }
 }
