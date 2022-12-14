@@ -8,6 +8,8 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 
+
+
 const AboutUs = () => {
   return (
     <div>
