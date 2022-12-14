@@ -5,7 +5,8 @@ import { MyContext } from "./Context";
 
 export default function Container({ children }) {
   const [userData, setUserData] = useState({});
- 
+  const [productDB, setProductDB] = useState();
+  const [productDetailDB, setProductDetailDB] = useState();
   const [product, setProduct] = useState([
     /*  {
         productName: "mobile",
@@ -75,8 +76,7 @@ export default function Container({ children }) {
       productDetails:" bag ---- dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
     }, */
   ]);
-
-
+  const [categoryList, setCategoryList] = useState([]);
 
   const [cartList, setCartList] = useState([
     /* 
@@ -136,33 +136,29 @@ export default function Container({ children }) {
   ]);
   const [orderList, setOrderList] = useState();
 
-
- //finding category by product type 
- const [categoryList, setCategoryList] = useState([]); 
-
-
-  //fetching the products list from products database
+  //fetching for all products list from products database
   useEffect(() => {
-    fetchAllProducts(); 
-    fetchCategory();   
-  }, []); 
+    fetchAllProducts();
+    fetchAllProductDetail();
+  }, []);
 
   const fetchAllProducts = async () => {
     const getProducts = await axios.get(
-      "http://127.0.0.1:3000/api/v1/products/"
+      "http://127.0.0.1:5000/api/v1/products/"
     );
     setProduct(getProducts.data.data.allProducts);
-   
   };
 
-  const fetchCategory = ()=>{
- const getCat= product.map(item => item.productType)
-  .filter((value, index, self) => self.indexOf(value) === index)     
-setCategoryList(getCat)
- }
+  //fetching for all product details  from productDetails database
 
+  const fetchAllProductDetail = async () => {
+    const getProductDetails = await axios.get(
+      "http://127.0.0.1:5000/api/v1/product/"
+    );
+    setProductDetailDB(getProductDetails);
+    console.log("iam from context", getProductDetails.data.data.allProducts);
+  };
 
- 
   return (
     <MyContext.Provider
       value={{
@@ -184,3 +180,12 @@ setCategoryList(getCat)
     </MyContext.Provider>
   );
 }
+
+//working copy
+/* const fetchAllProducts = async () => {
+  const getProducts = await axios.get(
+    "http://127.0.0.1:5000/api/v1/products/"
+  );
+  setProduct(getProducts.data.data.allProducts);
+ 
+}; */
