@@ -49,7 +49,7 @@ const createSendToken = (user, statusCode, req, res) => {
 export const signup = catchAsync(async (req, res, next) => {
 
     const newUser = await User.create(req.body)
-    const url = `${req.protocol}://${req.get("host")}/me`
+    const url = `${req.protocol}://${req.get("host")}/me` // maybe need to fix this to just "/me"
     console.log(url);
 
     await new Email(newUser, url).sendWelcome() //  pass in our Email class, which builds objects with email data, according to the newUsers data and the url we pass in.
@@ -165,9 +165,9 @@ export const forgotPassword = catchAsync(async(req, res, next) => {
     // 3) Send it to users email
     try {
         const resetURL = `${req.protocol}://${req.get("host")}/api/v1/users/resetPassword/${resetToken}` // we are sending the plain resetToken and not the encrypted one!
-        // await new Email(user, resetURL).sendPasswordReset() // this is creating the email and sending it to the user.
+        await new Email(user, resetURL).sendPasswordReset() // this is creating the email and sending it to the user.
     
-        const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didnt forget your password, please ignore this email!`
+        // const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didnt forget your password, please ignore this email!`
 
         // await sendEmail({
         //     email: user.email,
