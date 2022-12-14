@@ -7,7 +7,7 @@
   justify-content: space-around;
   padding: 30px;
   margin-top: 25px;
-  font-family: 'JetBrains mono';
+  font-family: "JetBrains mono";
 }
 .singleProductImages {
   width: 50%;
@@ -28,16 +28,16 @@
 }
 .reviewLeft {
   width: 50%;
-  font-family: 'JetBrains mono';
+  font-family: "JetBrains mono";
 }
 .reviewRight {
   width: 50%;
   line-height: 2rem;
-  font-family: 'JetBrains mono';
+  font-family: "JetBrains mono";
   margin-top: 20px;
 }
 
-.review-btn{
+.review-btn {
   margin-bottom: 20px;
   margin-top: 20px;
 }

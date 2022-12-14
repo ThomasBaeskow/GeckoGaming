@@ -23,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("i am from frontend:", loginData);
-    try {
+    try{
       const res = await axios.post(
         "http://127.0.0.1:3000/api/v1/user/login",
         loginData,
@@ -37,16 +37,16 @@ const Login = () => {
             Cookie: "cookie1=value;",
           },
         }
-      );
+      )
+        .then((res)=>setUserData(res.data.data));  
+        navigate("/products");
+      console.log("i am userData", userData.user.name)
 
-      setUserData(await res.data.data);
-      console.log("i am userData", userData.user.name);
-
-      navigate("/products");
-    } catch (e) {
+    }catch(e){
+      
       setMsg(e.message);
     }
-  };
+  }
 
   return (
     <>

@@ -17,8 +17,9 @@ import PageNotFound from "./components/pageNotFound/PageNotFound";
 
 function App() {
   return (
+    
     <div className="App">
-      <Container>
+    <Container>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -30,13 +31,14 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/myAccount" element={<MyAccount />} />
-          <Route path="/pageNotFound" element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
          
         </Routes>
         <Footer />
       </BrowserRouter>
       </Container>
     </div>
+   
   );
 }
 
