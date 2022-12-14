@@ -57,7 +57,8 @@ const Products = () => {
       <div className="productDisplay">
         {/* display list of products */}
         {product.map((prod) => {        
-         
+         let x= prod.product_detail_url.split("/");
+         let y = (x.length-1)
           if (prod.isBestSeller) {
             return (
               /* displaying the individual product card */

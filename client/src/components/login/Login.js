@@ -25,7 +25,7 @@ const Login = () => {
     console.log("i am from frontend:", loginData);
     try{
       const res = await axios.post(
-        "http://127.0.0.1:3000/api/v1/user/login",
+        "http://127.0.0.1:5000/api/v1/user/login",
         loginData,
         { mode: "cors" },
         {
