@@ -1,6 +1,6 @@
 import express from "express";
-import { getAllUsers, createUser, deleteUser, updateUser, getUser, getMe } from "../controllers/userController.js";
-import { signup, login, logout, protect, restrictTo, forgotPassword, resetPassword } from "../controllers/authController.js";
+import { getAllUsers, createUser, deleteUser, updateUser, getUser, getMe, uploadUserPhoto, resizeUserPhoto, updateCurrentUserData, deleteCurrentUser } from "../controllers/userController.js";
+import { signup, login, logout, protect, restrictTo, forgotPassword, resetPassword, updatePassword } from "../controllers/authController.js";
 
 
 
@@ -34,21 +34,21 @@ router
 router.use(protect)
 
 // // update current user password
-// router
-// .route("/updateMyPassword")
-// .patch(updatePassword)
+router
+.route("/updateMyPassword")
+.patch(updatePassword)
 // // /me route
 router
 .route("/me")
 .get(getMe, getUser)
 // // update current user data
-// router
-// .route("/updateMe")
-// .patch(uploadUserPhoto, resizeUserPhoto, updateCurrentUserData) 
+router
+.route("/updateMe")
+.patch(uploadUserPhoto, resizeUserPhoto, updateCurrentUserData) 
 // // delete current user (set active to false)
-// router
-// .route("/deleteMe")
-// .delete(deleteCurrentUser)
+router
+.route("/deleteMe")
+.delete(deleteCurrentUser)
 
 
 // just admins can create user, see all users, update/delete/get user they want. (protect and restrictTo("admin"))

@@ -74,7 +74,7 @@ const sendErrorProd = (err, req, res) => {
     // RENDERED WEBSITE
     if (err.isOperational) { // if route starts with "/api" and its operational error, we render a new pug template "error.pug" where we save in local variables the title and msg (err.message)
         return res.status(err.statusCode).render("error", {
-            title: "Something ent wrong!",
+            title: "Something went wrong!",
             msg: err.message
         })
     }

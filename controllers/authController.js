@@ -214,3 +214,22 @@ export const resetPassword = catchAsync(async(req, res, next) => {
     // 4) Log the user in, send JWT
     createSendToken(user, 200, req, res)
 })
+
+// We need to ask the user to write their credentials, before updating the password. If your logged in and a stranger person is changeing you password and logs you out without being prompted for the current password before, you loose your account.
+export const updatePassword = catchAsync(async(req, res, next) => {
+    // 1) Get user from collection
+    const user = await User.findById(req.user.id).select("+password")
+    // console.log(req.user);
+    // 2) Check if POSTed password is correct
+    if(!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+        return next(new AppError("Your current password is wrong!", 401))
+    }
+    // 3) If so, update password
+    user.password = req.body.password
+    user.confirmPassword = req.body.confirmPassword
+    await user.save() // we are not turning off the validations of the model because we want it for passwords and emails. User.findByIdAndUpdate will not work!
+
+    // 4) Log user in, send JWT
+    createSendToken(user, 200, req, res)
+
+})
