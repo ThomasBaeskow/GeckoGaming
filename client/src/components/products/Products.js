@@ -67,8 +67,8 @@ const Products = () => {
                   <img src={prod.product_main_image_url} alt="" />
                 </NavLink>
 
-                <p>{prod.product_title}</p>
-                <p>{prod.app_sale_price}</p>
+                <p className="product-title">{prod.product_title}</p>
+                <p className="product-price">{prod.app_sale_price}</p>
               </div>
             );
           }
