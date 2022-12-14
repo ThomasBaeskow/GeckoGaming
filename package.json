@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ThomasBaeskow/final-project#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "axios": "^1.2.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",

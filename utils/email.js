@@ -3,14 +3,14 @@ import dotenv from "dotenv"
 import path from "path"
 import {htmlToText} from "html-to-text"
 import pug from "pug"
+import sgMail from "@sendgrid/mail"
 
 
 const __dirname = path.resolve()
 
-dotenv.config({ path: '../.env' })
+dotenv.config({ path: './.env' })
 
 
-// new Email(user, url).sendWelcome()
 // we create an Email class with which we can produce email Objects with belows data (property value pairs).
 export class Email {
     constructor(user, url) {
