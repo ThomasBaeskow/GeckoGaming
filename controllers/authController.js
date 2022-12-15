@@ -75,12 +75,12 @@ export const login = catchAsync(async (req, res, next) => {
     // console.log(user);
     // "test1234" === '$2a$12$im0/kJn2OSC4raVqxJb5k.RYJhQmkiome6pL9A4PQcg4wqIAHSuvm' --> we need to compare the encrypted password in DB with users typed in password. To solve this we need to encrypt the users password too in our User model with bcrypt package
 
-    console.log(user, "first");
+    // console.log(user, "first");
     if(!user || !(await user.correctPassword(password, user.password))) { // if theres no user with the given email or the password is not the same --> execute the error and stop the process. // return true if they are same, false if not (password, user.password)
         return next(new AppError("Incorrect email or password!", 401))
     }
 
-    console.log(user, "second");
+    // console.log(user, "second");
     // 3) If everything ok, send token to client
     createSendToken(user, 200, req, res)
 })
@@ -104,15 +104,15 @@ export const protect = catchAsync(async(req, res, next) => {
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) { // if header exists and the String starts with "Bearer". Common practice to use authorization: "Bearer token......." for header in postman. You get access to it with "req.headers.authorization"
         token = req.headers.authorization.split(" ")[1] // saves the tokenString into token variable
 
-        console.log(token, "first");
+        // console.log(token, "first");
 
     } else if (req.cookies.jwt) {
         token = req.cookies.jwt
 
-        console.log(req.cookies, "second");
+        // console.log(req.cookies, "second");
     }
 
-    console.log(token, "third");
+    // console.log(token, "third");
 
     if (!token) {
         return next(new AppError("You are not logged in! Please login to get access.", 401))
@@ -120,7 +120,7 @@ export const protect = catchAsync(async(req, res, next) => {
 
     // 2) Validate the token - VERIFICATION
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET) // jwt.verify(tokenString, secret, callback) the callback runs as soon as the verification has completed. its an async function.
-    console.log(decoded); // we can see that the id in our DB is the same with the id of the user, who logged in with his JWT. In JWT is the _id saved in the payload.
+    // console.log(decoded); // we can see that the id in our DB is the same with the id of the user, who logged in with his JWT. In JWT is the _id saved in the payload.
 
     // 3) Check if user still exists
     const currentUser = await User.findById(decoded.id) // it checks if the id, which was send with the token, is still existing in our DB.
@@ -135,6 +135,7 @@ export const protect = catchAsync(async(req, res, next) => {
 
     // GRANT ACCESS TO PROTECTED ROUTE - next goes to next handler
     req.user = currentUser
+    console.log(req.user);
     // res.locals.user = currentUser; // We save the current User data inside our local variables in pug as "user"
     next()
 })
