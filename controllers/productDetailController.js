@@ -70,10 +70,11 @@ export const getProductDetail = catchAsync(async (req, res, next) => {
 //     });
 //   });
 
-export const addToWishList= catchAsync(async (req, res,) => {
+export const addToWishList = catchAsync(async (req, res,) => {
   const {_id} = req.user;
-  console.log(req.user);
+  console.log(_id);
   const {productId} = req.body;
+  console.log(productId);
   try {
     const user= await User.findById(_id);
     const alreadyAdded= user.wishlist.find((id) =>id.toString() === productId);
