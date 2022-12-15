@@ -3,6 +3,7 @@ import { getAllProducts, getProduct } from "../controllers/productController.js"
 
 
 
+
 const router = express.Router()
 
 
