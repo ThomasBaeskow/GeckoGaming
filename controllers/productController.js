@@ -3,6 +3,7 @@ import { catchAsync } from "../utils/catchAsync.js";
 
 
 
+
 export const getAllProducts = catchAsync(async (req, res, next) => {
 
     const allProducts = await Product.find()
@@ -27,3 +28,4 @@ export const getProduct = catchAsync(async (req, res, next) => {
       }
     });
   });
+

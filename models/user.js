@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+// import ProductDetail from "./productDetail.js"
 import validator from "validator"
 import bcrypt from "bcrypt"
 import crypto from "crypto"
@@ -26,6 +27,7 @@ const userSchema = mongoose.Schema({
       enum: ["user", "admin"],
       default: "user"
     },
+    wishlist:[{type: mongoose.Schema.ObjectId, ref: "ProductDetail"}],
     password: {
         type: String,
         required: [true, "A user must have a password"],
