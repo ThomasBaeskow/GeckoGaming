@@ -14,7 +14,7 @@ function Cart() {
   const decrease = (product_id) => {
     setCartList((product) =>
       product.map((item) =>
-        product_id === item.product_id
+        product_id === item.id
           ? { ...item, cartQty: item.cartQty -(item.cartQty > 0 ? 1: 0)  }
           : item
       )
@@ -25,7 +25,7 @@ function Cart() {
   const increase = (product_id) => {
     setCartList((product) =>
       product.map((item) =>
-        product_id === item.product_id
+        product_id === item.id
           ? { ...item, cartQty: item.cartQty + (item.cartQty < item.availableQty ? 1: 0) }
           : item
       )
@@ -57,7 +57,7 @@ function Cart() {
 
 //remove item from the cart  
  const removeItem =(product_id)=>{
-  setCartList(cartList.filter(item=>item.product_id !== product_id))
+  setCartList(cartList.filter(item=>item.id !== product_id))
 } 
 
 
@@ -74,16 +74,16 @@ function Cart() {
             return (
               <>
                 <div key={index} className="cartLeft-items">
-                  <img src={cartImg} alt="" className="cart-img" />
+                  <img src={item.productImage} alt="" className="cart-img" />
 
                   <div className="">
                     <p>
-                      {item.productName}<h6>Available quantity: {item.availableQty}</h6>
+                      {item.productName}<h6>Available quantity:{/*  {item.availableQty} */}</h6>
                     </p>
                     <div className="cartQuantityContainer">
                       <button
                         className="decrease cartBtn"
-                        onClick={() => decrease(item.product_id)}
+                        onClick={() => decrease(item.id)}
                       >
                         -
                       </button>
@@ -92,7 +92,7 @@ function Cart() {
                       </button>
                       <button
                         className="increase cartBtn"
-                        onClick={() => increase(item.product_id)}
+                        onClick={() => increase(item.id)}
                       >
                         +
                       </button>
@@ -100,7 +100,7 @@ function Cart() {
                     <p>{item.productPrice}</p>
                     {/*       <p>{item.product.sellingPrice * item.product.cartQty}</p> */}
                   </div>
-                  <FontAwesomeIcon className="deleteBtn" icon={faXmarkCircle} onClick= {()=>removeItem(item.product_id)} />
+                  <FontAwesomeIcon className="deleteBtn" icon={faXmarkCircle} onClick= {()=>removeItem(item.id)} />
                 </div>
               </>
             );

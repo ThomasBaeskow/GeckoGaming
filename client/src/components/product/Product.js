@@ -16,27 +16,31 @@ function Product() {
 
   //adding items to cart
   const addToCart = (prod_id) => {
-    const result = cartList.find(({ product_id }) => product_id === prod_id);
+    const result = cartList.find(({ id }) => prod_id === id);
     const prod_result = product.find(
-      ({ product_id }) => product_id === prod_id
+      ({ id }) => id === prod_id
     );
     if (!result) {
       let cartNewItem = {
-        productName: prod_result.productName,
+        productName: prod_result.product_title.slice(0,20),
         cartQty: 1,
-        productPrice: prod_result.productPrice,
-        product_id: prod_result.product_id,
-        availableQty: prod_result.availableQty,
+        productPrice: prod_result.app_sale_price,
+        productImage:prod_result.product_main_image_url,
+        id: prod_result.id,
+        availableQty:3
+   /*      product_id:prod_id.result.product_detail_url.slice(-10) */
+      /*   availableQty: prod_result.availableQty, */
       };
       setCartList([...cartList, cartNewItem]);
     } else {
-      if (result.cartQty < prod_result.availableQty) {
+      result.cartQty++;
+      /* if (result.cartQty < prod_result.availableQty) {
         result.cartQty++;
       } else {
         alert(
           `out of stock cannot add more in the list ${result.cartQty} qty available${prod_result.availableQty}`
-        );
-      }
+        ); 
+      }*/
     }
     /*    navigate("/products") */
   };
@@ -54,8 +58,8 @@ function Product() {
       navigate("/products");
     } else {
       let wishListNewItem = {
-        productName: prod_result.productName,
-        productPrice: prod_result.productPrice,
+        productName: prod_result.product_title,
+        productPrice: prod_result.app_sale_price,
         product_id: prod_result.product_id,
       };
       setWishList([...wishList, wishListNewItem]);
@@ -67,22 +71,22 @@ function Product() {
     <div>
       <div className="productData">
         <div className="singleProductImages">
-          <img
-            src={location.image}
-            width="200"
-            height="200"
+           <img
+            src={location.state.product_main_image_url}
+            width="400"
+            height="400"
             alt=""
             className="img-review"
           />
         </div>
         <div className="singleProductDetails">
-          <h3>Product Name: {location.state.productName}</h3>
-          <h4>Product Price: ${location.state.productPrice}</h4>
-          <h6>Available Qty :{location.state.availableQty}</h6>
-          <h5>Color: </h5>
+          <h3>Product Name: {location.state.product_title.slice(0,20)}</h3>
+          <h4>Product Price: ${location.state.app_sale_price}</h4>
+          {/* <h6>Available Qty :{location.state.availableQty}</h6> */}
+       
           <button
             className="review-btn"
-            onClick={() => addToCart(location.state.product_id)}
+            onClick={() => addToCart(location.state.id)}
           >
             Add to cart
           </button>
@@ -93,7 +97,7 @@ function Product() {
           >
             Add to Wishlist
           </button>
-          <p>Description :{location.state.description}</p>
+          <p>Description :{location.state.product_title}</p>
 
           <p>
             Product Details:{location.state.productDetails}{" "}
