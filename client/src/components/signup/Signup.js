@@ -18,7 +18,7 @@ const Signup = () => {
     e.preventDefault();
     console.log(registerUser);
     await axios
-      .post("http://127.0.0.1:5000/api/v1/user/signup", registerUser)
+      .post("/api/v1/user/signup", registerUser)
       .then((res) => {
         console.log(res);
       });
