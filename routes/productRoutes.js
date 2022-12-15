@@ -24,6 +24,10 @@ router.use(protect)
 router
 .route("/wishlist")
 .put(addToWishList)
+// .get(getWishList)
+
+router
+.route("/wishlist/:id")
 .get(getWishList)
 
 

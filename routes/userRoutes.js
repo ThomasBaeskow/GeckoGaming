@@ -1,6 +1,7 @@
 import express from "express";
 import { getAllUsers, createUser, deleteUser, updateUser, getUser, getMe, uploadUserPhoto, resizeUserPhoto, updateCurrentUserData, deleteCurrentUser } from "../controllers/userController.js";
 import { signup, login, logout, protect, restrictTo, forgotPassword, resetPassword, updatePassword } from "../controllers/authController.js";
+import { addToWishList, getWishList } from "../controllers/productController.js";
 
 
 
@@ -49,6 +50,17 @@ router
 router
 .route("/deleteMe")
 .delete(deleteCurrentUser)
+
+
+// IN USERS OR PRODUCTS ROUTE????
+router
+.route("/wishlist")
+.put(getMe, addToWishList)
+// .get(getWishList)
+
+router
+.route("/seeWishlist")
+.get(getMe, getWishList)
 
 
 // just admins can create user, see all users, update/delete/get user they want. (protect and restrictTo("admin"))
