@@ -58,10 +58,15 @@ const Products = () => {
                   <img src={prod.product_main_image_url} alt="" />
                 </NavLink>
 
+
                 <p>{prod.product_title.slice(0, 20)}</p>
                  {/*   <p>{prod.product_detail_url.slice(-10)}</p>  */}
                  {/* doing the above we will get the product id */}
                 <p>{prod.app_sale_price}</p>
+
+                <p className="product-title">{prod.product_title}</p>
+                <p className="product-price">{prod.app_sale_price}</p>
+
               </div>
             );
           

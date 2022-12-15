@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+// import ProductDetail from "./productDetail.js"
 import validator from "validator"
 import bcrypt from "bcrypt"
 import crypto from "crypto"
@@ -26,6 +27,7 @@ const userSchema = mongoose.Schema({
       enum: ["user", "admin"],
       default: "user"
     },
+    wishlist:[{type: mongoose.Schema.ObjectId, ref: "Product"}],
     password: {
         type: String,
         required: [true, "A user must have a password"],
@@ -52,7 +54,12 @@ const userSchema = mongoose.Schema({
       default: true,
       select: false
     }
-})
+},
+{
+  toJSON: {virtuals: true},
+  toObject: {virtuals: true}
+}
+)
 
 // ENCRYPTION OF THE PASSWORDS: this function applies before the document gets saved to the DB --> we need to install extra package "bcryptjs"
 // thats the way to store users passwords in a secure way to our DB
@@ -82,6 +89,15 @@ userSchema.pre(/^find/, function(next) { // using regular expression which looks
   this.find({active: {$ne: false}}) // before the find query is executed, we change our query to just finding documents with the field "active: true" ($ne: false) --> because in earlier documents we didnt set the field active yet.
   next()
 })
+
+// middleware for manipulating query before find() executes.
+// userSchema.pre(/^find/, function(next) {
+//   this.populate({ // populate(fieldName) // we fill the field guide with the actual data instead of just showing the id of the users. we replace the id with the users data.
+//     path: "wishlist", // field we want to update
+//     select: "-__v" // which fields we want to exclude
+//   })
+//   next()
+// })
 
 
 // // INSTANCE METHOD: 

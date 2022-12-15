@@ -1,6 +1,6 @@
 import { catchAsync } from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
-// import APIFeatures from "../utils/apiFeatures.js";
+import APIFeatures from "../utils/apiFeatures.js";
 
 
 export const factoryDeleteOne = Model => catchAsync(async (req, res, next) => {
@@ -74,15 +74,19 @@ export const factoryGetOne = (Model, popOptions) => catchAsync(async (req, res, 
 
 export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
     // we need this here to allow nested GET reviews on tour! (hack)
-    // let filter = {} // we create a filter object which we pass in our find method, if we have a route with tourI in params. (create Review on tour/get reviews on tour)
+    let filter = {} // we create a filter object which we pass in our find method, if we have a route with tourI in params. (create Review on tour/get reviews on tour)
     // if (req.params.userId) filter = {user: req.params.userId}
 
-    // console.log(req.query);
-    // EXECUTE QUERY: here we can just delete one of the methods if we dont want to apply them.
-    // const features = Model.find()
+    console.log(req.query);
+
+    const features = new APIFeatures(Model.find(filter), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate()
 
     // const doc = await features.query.explain() // .explain() shows more infos about the query
-    const doc = await Model.find()
+    const doc = await features.query
 
     // SEND RESPONSE
     res.status(200).json({

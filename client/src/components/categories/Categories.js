@@ -3,9 +3,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/Context";
 
 function Categories() {
-  const { categoryList,product } = useContext(MyContext);
+
+
  
   
+
+  const { categoryList, product, setCategoryList, setProduct } = useContext(
+    MyContext
+  );
+  setCategoryList(
+    product
+      .map((item) => item.productType)
+      .filter((value, index, self) => self.indexOf(value) === index)
+  );
+
 
   return (
     <div className="categoryContainer">
@@ -20,7 +31,6 @@ function Categories() {
         <div className="left purple">{categoryList[3]}</div>
       </div>
 
-   
       <hr className="hr-categories" />
     </div>
   );
