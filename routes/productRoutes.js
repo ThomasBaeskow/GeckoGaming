@@ -1,5 +1,6 @@
 import express from "express"
-import { getAllProducts, getProduct } from "../controllers/productController.js"
+import { getAllProducts, getProduct, addToWishList } from "../controllers/productController.js"
+import {protect} from "../controllers/authController.js"
 
 
 
@@ -18,6 +19,9 @@ router
 // .patch()
 // .delete()
 
+router
+.route("/wishlist")
+.put(protect, addToWishList)
 
 
 export default router

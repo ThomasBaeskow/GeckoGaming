@@ -19,6 +19,6 @@ router
 
 router
 .route("/wishlist")
-.put(protect,addToWishList)
+.put(protect, addToWishList)
 
 export default router
