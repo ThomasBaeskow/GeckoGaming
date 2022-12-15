@@ -4,7 +4,7 @@ import axios from "axios";
 import { MyContext } from "./Context";
 
 export default function Container({ children }) {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState();
   const [productDB, setProductDB] = useState();
   const [productDetailDB, setProductDetailDB] = useState();
   const [product, setProduct] = useState([
@@ -149,7 +149,7 @@ export default function Container({ children }) {
 
   const fetchAllProducts = async () => {
     const getProducts = await axios.get(
-      "http://127.0.0.1:5000/api/v1/products/"
+      "/api/v1/products/"
     )/* .then(result=>{    
       if(result.cod!==200){
        alert(result.message)
@@ -166,7 +166,7 @@ export default function Container({ children }) {
 
   /*  const fetchAllProductDetail = async () => {
     const getProductDetails = await axios.get(
-      "http://127.0.0.1:5000/api/v1/product/"
+      "/api/v1/product/"
     );
     setProductDetailDB(getProductDetails);
     console.log("iam from context", getProductDetails.data.data.allProducts);
@@ -197,7 +197,7 @@ export default function Container({ children }) {
 //working copy
 /* const fetchAllProducts = async () => {
   const getProducts = await axios.get(
-    "http://127.0.0.1:5000/api/v1/products/"
+    "/api/v1/products/"
   );
   setProduct(getProducts.data.data.allProducts);
  

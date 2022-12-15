@@ -25,18 +25,9 @@ const Login = () => {
     console.log("i am from frontend:", loginData);
     try{
       const res = await axios.post(
-        "http://127.0.0.1:5000/api/v1/user/login",
-        loginData,
-        { mode: "cors" },
-        {
-          withCredentials: true,
-          credentials: "include",
-        },
-        {
-          headers: {
-            Cookie: "cookie1=value;",
-          },
-        }
+        "/api/v1/user/login",
+        loginData,      
+       
       )
         .then((res)=>setUserData(res.data.data));  
         navigate("/products");
