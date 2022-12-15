@@ -1,13 +1,12 @@
 import "./categories.css";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../context/Context";
 
 function Categories() {
-  const { categoryList,product,setCategoryList,setProduct } = useContext(MyContext);
-  setCategoryList(
-    product.map((item) => item.productType).filter((value, index, self) => self.indexOf(value) === index));
+  const { categoryList,product } = useContext(MyContext);
+ 
   
-  
+
   return (
     <div className="categoryContainer">
       <hr className="hr-categories" />

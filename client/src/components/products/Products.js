@@ -11,14 +11,6 @@ const Products = () => {
   const { product, setProduct, categoryList, setCategoryList } =
     useContext(MyContext);
 
-  /* const fetchAllProducts = async()=>{
-  const getProducts = await axios.get("http://127.0.0.1:3000/api/v1/products/");
-  console.log("i am getProducts",getProducts)
-  setProduct(await getProducts.data.data.allProducts)
-  console.log("i am product",product)
- 
-} */
-
   return (
     <div className="productContainer">
       <div className="selectionCriteria">
@@ -56,22 +48,23 @@ const Products = () => {
       </div>
       <div className="productDisplay">
         {/* display list of products */}
-        {product.map((prod) => {        
-         let x= prod.product_detail_url.split("/");
-         let y = (x.length-1)
-          if (prod.isBestSeller) {
+        {/* button to show previous and next items */}
+        {product.slice(11, 20).map((prod) => {
+         
             return (
               /* displaying the individual product card */
               <div className="cardContainer">
-                <NavLink to={`/products/${prod.product_id}`} state={prod}>
+                <NavLink to={`/products/${prod.id}`} state={prod}>
                   <img src={prod.product_main_image_url} alt="" />
                 </NavLink>
 
-                <p>{prod.product_title}</p>
+                <p>{prod.product_title.slice(0, 20)}</p>
+                 {/*   <p>{prod.product_detail_url.slice(-10)}</p>  */}
+                 {/* doing the above we will get the product id */}
                 <p>{prod.app_sale_price}</p>
               </div>
             );
-          }
+          
         })}
       </div>
     </div>
