@@ -4,6 +4,9 @@
   box-sizing: border-box;
 }
 .landingNavbar {
+  margin-top: 0;
+  position: fixed;
+  top: 0;
   width: 100%;
   height: 60px;
   display: flex;
