@@ -1,7 +1,7 @@
 .footer {
   width: 100%;
   height: 15%;
-  position:fixed;
+  position: fixed;
   bottom: 0;
   background-color: #9df3c4;
   display: flex;
@@ -31,7 +31,9 @@
   cursor: pointer;
 }
 
-.facebook, .instagram, .twitter {
+.facebook,
+.instagram,
+.twitter {
   margin: 15px;
 }
 
@@ -48,38 +50,45 @@
   margin-left: 70%;
 }
 
-.instagram{
-  font-size: 2rem ;
+.instagram {
+  font-size: 2rem;
   color: black;
   margin: 10px;
   border-radius: 20%;
 }
-.instagram:hover{
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+.instagram:hover {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
   color: white;
   border-radius: 20%;
   transform: scale(1.5);
 }
-.facebook{
-  font-size: 2rem ;
+.facebook {
+  font-size: 2rem;
   color: black;
   margin: 10px;
   border-radius: 20%;
 }
-.facebook:hover{
-  background:white;
-  color: #4267B2;
+.facebook:hover {
+  background: white;
+  color: #4267b2;
   border-radius: 20%;
   transform: scale(1.5);
 }
-.twitter{
-  font-size: 2rem ;
+.twitter {
+  font-size: 2rem;
   color: black;
   margin: 10px;
   border-radius: 20%;
 }
-.twitter:hover{
-  color: #1DA1F2;
+.twitter:hover {
+  color: #1da1f2;
   border-radius: 20%;
   transform: scale(1.5);
 }
@@ -100,5 +109,24 @@
   }
   .footer-text {
     font-size: 0.65rem;
+  }
+}
+
+/* media query ipad */
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    width: 100%;
+    height: 15%;
+  }
+  .fIcons {
+    margin-left: 10%;
+    /* margin-top: 150px; */
+  }
+  .vertical-line {
+    display: none;
+  }
+  .footer-text {
+    font-size: 0.7rem;
   }
 }
