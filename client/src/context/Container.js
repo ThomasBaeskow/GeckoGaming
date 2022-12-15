@@ -76,7 +76,12 @@ export default function Container({ children }) {
       productDetails:" bag ---- dolor sit amet consectetur adipisicing elit. Magnam vitae veniam doloremque eos nisi assumenda ipsam vero porro corporis tempore."
     }, */
   ]);
-  const [categoryList, setCategoryList] = useState([]);
+  const [categoryList, setCategoryList] = useState([
+    "VideoGames",
+    "Pc",
+    "Consoles",
+    "Accessories",
+  ]);
 
   const [cartList, setCartList] = useState([
     /* 
@@ -139,25 +144,33 @@ export default function Container({ children }) {
   //fetching for all products list from products database
   useEffect(() => {
     fetchAllProducts();
-    fetchAllProductDetail();
+    /* fetchAllProductDetail(); */
   }, []);
 
   const fetchAllProducts = async () => {
     const getProducts = await axios.get(
       "http://127.0.0.1:5000/api/v1/products/"
-    );
+    )/* .then(result=>{    
+      if(result.cod!==200){
+       alert(result.message)
+      }else{ */
+              
+
     setProduct(getProducts.data.data.allProducts);
-  };
+    }
+  
+
+ 
 
   //fetching for all product details  from productDetails database
 
-  const fetchAllProductDetail = async () => {
+  /*  const fetchAllProductDetail = async () => {
     const getProductDetails = await axios.get(
       "http://127.0.0.1:5000/api/v1/product/"
     );
     setProductDetailDB(getProductDetails);
     console.log("iam from context", getProductDetails.data.data.allProducts);
-  };
+  }; */
 
   return (
     <MyContext.Provider
