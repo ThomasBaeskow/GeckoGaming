@@ -25,6 +25,7 @@ body {
   justify-content: space-around;
   border: 2px solid black;
   padding: 1em;
+  margin-top: 50px;
 }
 
 .bannerText {
@@ -41,14 +42,17 @@ span {
   flex-direction: column;
 }
 
-.banner-right img {
-  width: 100%;
+.banner-right{
+  padding: 50px 20px 10px 20px;
+  box-shadow: 5px 5px;
   border: 2px solid black;
   background-color: white;
-  margin-left: 25%;
-  height: 200px;
-  padding: 20px 20px 40px 20px;
-  box-shadow: 5px 5px;
+}
+
+.banner-right img {
+  width: 90%;
+  border: 3px solid black;
+  height: 160px;
 }
 
 .banner-right:hover {
