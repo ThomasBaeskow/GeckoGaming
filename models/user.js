@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
       enum: ["user", "admin"],
       default: "user"
     },
-    wishlist:[{type: mongoose.Schema.ObjectId, ref: "Product"}],
+    wishlist:[{type: mongoose.Schema.Types.ObjectId, ref: "Product"}],
     password: {
         type: String,
         required: [true, "A user must have a password"],
@@ -91,13 +91,13 @@ userSchema.pre(/^find/, function(next) { // using regular expression which looks
 })
 
 // middleware for manipulating query before find() executes.
-// userSchema.pre(/^find/, function(next) {
-//   this.populate({ // populate(fieldName) // we fill the field guide with the actual data instead of just showing the id of the users. we replace the id with the users data.
-//     path: "wishlist", // field we want to update
-//     select: "-__v" // which fields we want to exclude
-//   })
-//   next()
-// })
+userSchema.pre(/^find/, function(next) {
+  this.populate({ // populate(fieldName) // we fill the field guide with the actual data instead of just showing the id of the users. we replace the id with the users data.
+    path: "wishlist", // field we want to update
+    select: "-__v -product_detail_url -original_price" // which fields we want to exclude
+  })
+  next()
+})
 
 
 // // INSTANCE METHOD: 
@@ -130,7 +130,7 @@ userSchema.methods.createPasswordResetToken = function() {
 //   // update our 32 character String encrypted.
   this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex") // we are updating our field in model with the encrypted String
 
-  console.log({resetToken}, this.passwordResetToken);
+  // console.log({resetToken}, this.passwordResetToken);
   
   this.passwordResetExpires = Date.now() + 60 * 60 * 1000 // for 60 minutes, for seconds, for milli-seconds --> new reset token expires after 10 minutes!
 
