@@ -4,7 +4,7 @@ import { MyContext } from "../../context/Context";
 
 function Categories() {
 
-  const { categoryList,product } = useContext(MyContext);
+
  
   
 
