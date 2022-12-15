@@ -94,7 +94,7 @@ userSchema.pre(/^find/, function(next) { // using regular expression which looks
 userSchema.pre(/^find/, function(next) {
   this.populate({ // populate(fieldName) // we fill the field guide with the actual data instead of just showing the id of the users. we replace the id with the users data.
     path: "wishlist", // field we want to update
-    select: "-__v -product_detail_url -original_price" // which fields we want to exclude
+    select: "-__v -product_detail_url -original_price -isBestSeller -evaluate_rate -brand -productType" // which fields we want to exclude
   })
   next()
 })

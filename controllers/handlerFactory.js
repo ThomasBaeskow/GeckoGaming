@@ -54,7 +54,7 @@ export const factoryGetOne = (Model, popOptions) => catchAsync(async (req, res, 
   // const tour = tours.filter((item) => item.id === id); // filters the object with the fitting id property from the array and returns it.
 
     //   const doc = await Model.findById(req.params.id).populate("reviews")
-    let query = Model.findById(req.params.id) 
+    let query = Model.findById(req.params.id).select("-role")
     // if (popOptions) query = query.populate(popOptions)
     const doc = await query
   
@@ -79,7 +79,7 @@ export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
 
     console.log(req.query);
 
-    const features = new APIFeatures(Model.find(filter), req.query)
+    const features = new APIFeatures(Model.find(filter).select("-wishlist"), req.query)
     .filter()
     .sort()
     .limitFields()

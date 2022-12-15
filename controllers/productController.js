@@ -80,17 +80,32 @@ export const getProduct = catchAsync(async (req, res, next) => {
 
 
   export const getWishList = catchAsync(async(req, res, next) => {
-    let {_id} = req.user
-    
-    // id = ObjectId.fromString(id)
 
-    console.log(_id);
     try {
-      const user = await User.findById(_id, {wishlist:1})
+      let query = User.findById(req.params.id)
+    // if (popOptions) query = query.populate(popOptions)
+      const doc = await query
+  
+      if (!doc) { // if tour is false. means tour value "null" is not a truthy value. --> false
+        return next(new AppError("No document found with that ID", 404)) // we need return, because we want to end the circle and not res.status(responding) the tour with false ID to the client. (user)
+      }
 
+    // we read this object with the fitting id to the client.
       res.status(200).json({
-        user
-      })
+      status: 'success',
+      data: {
+        data: doc.wishlist
+      },
+  });
+
+
+
+
+      // const user = await User.findById(_id, {wishlist:1})
+
+      // res.status(200).json({
+      //   user
+      // })
   
     }catch(error){
       return next(new AppError("There was an error getting your wishlist. Try again later!", 500));
