@@ -11,6 +11,14 @@
   background-color: #ccffcc;
 }
 
+.accountDetail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
 .icon-contact {
   width: 40px;
   height: 40px;
@@ -47,7 +55,7 @@ p {
   justify-content: space-around;
 }
 .contactForm {
-   border-right: 3px solid; 
+  border-right: 3px solid;
   padding-right: 30px;
   font-family: "JetBrains Mono";
 }
@@ -101,10 +109,10 @@ p {
     flex-direction: column;
     justify-content: space-around;
   }
-  .contactForm{
+  .contactForm {
     border-right: none;
   }
-  .contactAddress{
+  .contactAddress {
     font-size: 1rem;
     margin: 15px;
   }
@@ -133,7 +141,6 @@ p {
   }
 }
 
-
 /* media query tablet ipad */
 
 @media screen and (max-width: 1024px) {
@@ -141,7 +148,7 @@ p {
     width: 65%;
     height: 80%;
     margin: 0 auto;
-    border: 1px solid; 
+    border: 1px solid;
     padding: 10px;
     font-family: "JetBrains Mono";
     box-shadow: 10px 10px;
@@ -156,7 +163,7 @@ p {
     flex-direction: column;
     justify-content: space-around;
   }
-  .contactAddress{
+  .contactAddress {
     font-size: 1rem;
     margin: 15px;
   }
@@ -169,7 +176,7 @@ p {
     height: 500px;
     margin-top: 20px;
     font-family: "JetBrains Mono";
-    border: 3px solid; 
+    border: 3px solid;
     background-color: #46e9c0;
     padding: 100px;
   }

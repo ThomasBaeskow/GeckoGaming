@@ -1,6 +1,8 @@
 .registerContainer{
     width:80%;
     margin: 0 auto;
+    font-family: 'JetBrains mono';
+    margin-top: 100px;
 
 }
 .registerContainer h1{
@@ -11,3 +13,71 @@
     width:40%;
     margin: 0 auto;
 }
+
+.signedUp-text{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+/* media query ipad */
+
+@media screen and (max-width: 1024px) {
+    .registerContainer{
+        width: 95%;
+        height: 100%;
+        margin: 0 auto;
+        border: 1px solid;
+        padding: 10px;
+        font-family: 'JetBrains mono';
+        box-shadow: 10px 10px;
+        margin-bottom: 10%;
+        margin-top: 5%;
+        background-color: #ccffcc;
+        margin-top: 90px;
+    }
+    .registerContainer h1{
+        text-align: center;
+        margin-top: 30px;
+    }
+    .userForm{
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+/* media query mobile */
+
+@media screen and (max-width: 768px) {
+    .registerContainer{
+        width: 75%;
+        height: 100%;
+        margin: 0 auto;
+        border: 1px solid;
+        padding: 10px;
+        font-family: 'JetBrains mono';
+        box-shadow: 10px 10px;
+        margin-bottom: 10%;
+        margin-top: 5%;
+        background-color: #ccffcc;
+        margin-top: 90px;
+    }
+    .registerContainer h1{
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 35px;
+    }
+    .userForm{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .social-media-btn{
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+    .social-media-btn:hover{
+        translate: scale(1.1);
+    }
+}   

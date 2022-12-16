@@ -1,19 +1,17 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-
-
 .productContainer {
   width: 100%;
   height: 100vw;
   display: flex;
-   flex-wrap: wrap;
- 
+  flex-wrap: wrap;
+
   justify-content: space-around;
-  gap: 10px; 
+  gap: 10px;
   font-family: "JetBrains mono";
 }
 
@@ -22,7 +20,7 @@
   height: 100vw;
   padding: 90px;
   margin-bottom: 20px;
-/*   position: absolute;
+  /*   position: absolute;
   top: 0;
   left: 0; */
 }
@@ -77,37 +75,36 @@ option {
 
 .productDisplay {
   width: 60%;
-  padding: 10px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   gap: 30px;
-  
+  margin-top: 8em;
 }
-.cardHolder{
-  width: 90%;
-  height: auto;  
-  display:flex;
+.cardHolder {
+  width: 100%;
+  height: auto;
+  display: flex;
   flex-wrap: wrap;
-  margin:10px;
-  border: 3px solid;
+  justify-content: space-around;
+  margin-top: 2em;
 }
- .cardContainer {
+.cardContainer {
   width: 30%;
-  height: 250px;  
+  height: 35em;
   border: 3px solid;
   padding: 12px;
   background: whitesmoke;
   box-shadow: 5px 5px;
   margin-bottom: 10px;
-} 
+}
 .cardContainer:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 .cardContainer img {
-  width: 90%;
-  height: 200px;
+  width: 60%;
+  height: auto;
   border: 3px solid;
 }
 
@@ -142,6 +139,7 @@ option {
   margin: 0;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 .pagination li {
   list-style: none;
@@ -152,33 +150,38 @@ option {
 @media screen and (max-width: 768px) {
   .productContainer {
     width: 100%;
-    height: 100vw;
+    height: 100%;
     display: flex;
-    gap: 10px;
-    font-family: "JetBrains mono";
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-
+  .product-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .product-price {
+    font-size: 21px;
+  }
   .selectionCriteria {
-    width: 100vw;
-    height: 200vw;
+    width: 100%;
+    height: 100%;
+    padding: 0;
     margin-bottom: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
   }
-
   .categories {
     border: 3px solid;
+    padding: 25px;
+    width: 350px;
     box-shadow: 5px 5px;
     border-radius: 10px;
     background-color: #9df3c4;
-    margin-bottom: 20px;
-    margin-right: 25%;
-    width: min-content;
-  }
-
-  h4 {
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8em;
   }
   .selectionCheckbox {
     width: 300px;
@@ -187,67 +190,170 @@ option {
     margin-left: 20px;
     line-height: 1.4rem;
   }
+  .selectionCategory {
+    width: 350px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-left: 25px;
+    line-height: 1.4rem;
+  }
   input[type="checkbox"] {
     margin-right: 5px;
   }
-
   select {
-    width: 100%;
-    height: auto;
+    width: 300px;
     padding: 10px;
+    margin: 0 auto;
+    margin-left: 20px;
     line-height: 1.4rem;
     border: 2px solid;
     border-radius: 5px;
     box-shadow: 5px 5px;
     background-color: #9df3c4;
-    margin-top: 15px;
+    margin-top: 8px;
     font-family: "JetBrains mono";
-    font-size: 14px;
+    font-size: 20px;
   }
-
   option {
     font-family: "JetBrains mono";
     font-size: 20px;
   }
-
   .productDisplay {
-    width: 70em;
-    padding: 10px;
+    width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 30px;
-    margin-left: 0%;
-    margin-top: 80%;
+    margin-top: 8em;
   }
   .cardContainer {
-    width: 45%;
-    height: 350px;
+    width: 90%;
+    height: 35em;
     border: 3px solid;
     padding: 12px;
     background: whitesmoke;
     box-shadow: 5px 5px;
+    margin-bottom: 10px;
   }
   .cardContainer:hover {
     cursor: pointer;
   }
   .cardContainer img {
-    width: 70%;
     height: auto;
     border: 3px solid;
   }
-
-  .cardContainer h4 {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
   }
+}
 
+/* media query ipad */
+
+@media screen and (max-width: 1024px) {
+  .productContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .product-title {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
   }
-
   .product-price {
-    font-size: 12px;
+    font-size: 21px;
+  }
+  .selectionCriteria {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  .categories {
+    border: 3px solid;
+    padding: 25px;
+    width: 350px;
+    box-shadow: 5px 5px;
+    border-radius: 10px;
+    background-color: #9df3c4;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8em;
+  }
+  .selectionCheckbox {
+    width: 300px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-left: 20px;
+    line-height: 1.4rem;
+  }
+  .selectionCategory {
+    width: 350px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-left: 25px;
+    line-height: 1.4rem;
+  }
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  select {
+    width: 300px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-left: 20px;
+    line-height: 1.4rem;
+    border: 2px solid;
+    border-radius: 5px;
+    box-shadow: 5px 5px;
+    background-color: #9df3c4;
+    margin-top: 8px;
+    font-family: "JetBrains mono";
+    font-size: 20px;
+  }
+  option {
+    font-family: "JetBrains mono";
+    font-size: 20px;
+  }
+  .productDisplay {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;  
+    margin-top: 8em;
+  }
+  .cardContainer {
+    width: 90%;
+    height: 35em;
+    border: 3px solid;
+    padding: 12px;
+    background: whitesmoke;
+    box-shadow: 5px 5px;
+    margin-bottom: 10px;
+  }
+  .cardContainer:hover {
+    cursor: pointer;
+  }
+  .cardContainer img {
+    width: 300px;
+    height: 350px;
+    border: 3px solid;
+  }
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
   }
 }
