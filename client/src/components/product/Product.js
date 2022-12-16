@@ -15,11 +15,12 @@ function Product() {
   const navigate = useNavigate();
 
   //adding items to cart
-  const addToCart = (prod_id) => {
+  const addToCart = (prod_id) => {   
     const result = cartList.find(({ id }) => prod_id === id);
     const prod_result = product.find(
       ({ id }) => id === prod_id
     );
+    
     if (!result) {
       let cartNewItem = {
         productName: prod_result.product_title.slice(0,20),
@@ -47,22 +48,22 @@ function Product() {
 
   //adding items to wishlist
   const addToWishList = (prod_id) => {
-    const findWishedItem = wishList.find(
-      ({ product_id }) => product_id === prod_id
+
+    const wished = wishList.includes(prod_id)
+    
+/*     const findWishedItem = wishList.find(
+      (id) => id === prod_id
     );
     const prod_result = product.find(
       ({ product_id }) => product_id === prod_id
-    );
-    if (findWishedItem) {
-      alert("already in wishlist");
+    ); */
+    if (wished) {
+      alert("already was in wishlist and we are going to remove in next line");
+      setWishList(wishList.filter(id=>id !== prod_id))
       navigate("/products");
     } else {
-      let wishListNewItem = {
-        productName: prod_result.product_title,
-        productPrice: prod_result.app_sale_price,
-        product_id: prod_result.product_id,
-      };
-      setWishList([...wishList, wishListNewItem]);
+
+      setWishList([...wishList, prod_id]);
       /*   navigate("/products") */
     }
   };
@@ -82,6 +83,8 @@ function Product() {
         <div className="singleProductDetails">
           <h3>Product Name: {location.state.product_title.slice(0,20)}</h3>
           <h4>Product Price: ${location.state.app_sale_price}</h4>
+        
+          
           {/* <h6>Available Qty :{location.state.availableQty}</h6> */}
        
           <button
@@ -93,7 +96,7 @@ function Product() {
           {/* can we add a wishlist button here?? do we need another button */}
           <button
             className="addToWishlist"
-            onClick={() => addToWishList(location.state.product_id)}
+            onClick={() => addToWishList(location.state_id)}
           >
             Add to Wishlist
           </button>

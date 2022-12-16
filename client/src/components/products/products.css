@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   gap: 10px;
   font-family: "JetBrains mono";
 }
@@ -75,7 +75,7 @@ option {
   align-items: center;
   justify-content: center;
   gap: 30px;
-  margin-left: 30%;
+ margin-left: 30%;
 }
 .cardContainer {
   width: 25%;
@@ -118,6 +118,8 @@ option {
 .product-price {
   font-size: 0.9vw;
 }
+
+
 
 /* media query mobile */
 
