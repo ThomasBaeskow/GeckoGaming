@@ -30,8 +30,9 @@ function ProductPagination({ itemsPerPage }) {
     };
   
     return (
-      <><div>
+      <><div >
       <ReactPaginate
+          className='pagination'
           breakLabel="..."
           nextLabel="next >"
           onPageChange={handlePageClick}
