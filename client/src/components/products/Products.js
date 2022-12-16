@@ -5,6 +5,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import card from "../../images/product-Img/product-img-1.jpg";
 import { NavLink } from "react-router-dom";
 import { MyContext } from "../../context/Context";
+import ProductCard from "../productCard/ProductCard";
+import ProductPagination from "../productCard/ProductPagination";
 
 const Products = () => {
   // getting product and category data using context
@@ -47,33 +49,24 @@ const Products = () => {
         </div>
       </div>
       <div className="productDisplay">
-        {/* display list of products */}
-        {/* button to show previous and next items */}
-        {product.slice(11, 20).map((prod) => {
-         
-            return (
-              /* displaying the individual product card */
-              <div className="cardContainer">
-                <NavLink to={`/products/${prod.id}`} state={prod}>
-                  <img src={prod.product_main_image_url} alt="" />
-                </NavLink>
-
-
-                <p>{prod.product_title.slice(0, 20)}</p>
-                 {/*   <p>{prod.product_detail_url.slice(-10)}</p>  */}
-                 {/* doing the above we will get the product id */}
-                <p>{prod.app_sale_price}</p>
-
-                <p className="product-title">{prod.product_title}</p>
-                <p className="product-price">{prod.app_sale_price}</p>
-
-              </div>
-            );
-          
-        })}
+      <ProductPagination itemsPerPage={9}/>
       </div>
     </div>
   );
 };
 
 export default Products;
+
+
+ /*  <div className="productDisplay">
+        {/* display list of products */
+        /* button to show previous and next items */
+         /* {product.slice(11, 20).map((prod) => { 
+         
+            return ( */
+              /* displaying the individual product card */
+          /*    <ProductCard prod={prod}/>  */
+       /*      ); */ 
+          
+        /* })} */
+ /*      </div>   */

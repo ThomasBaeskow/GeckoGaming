@@ -123,7 +123,9 @@ export default function Container({ children }) {
   ]);
 
   const [wishList, setWishList] = useState([
-    {
+
+  
+    /* {
       productName: "bag",
       productPrice: 20,
       product_id: 2,
@@ -137,7 +139,7 @@ export default function Container({ children }) {
       productName: "cloth",
       productPrice: 30,
       product_id: 4,
-    },
+    } */,
   ]);
   const [orderList, setOrderList] = useState();
 
