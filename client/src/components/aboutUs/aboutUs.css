@@ -101,6 +101,9 @@ p {
     flex-direction: column;
     justify-content: space-around;
   }
+  .contactForm{
+    border-right: none;
+  }
   .contactAddress{
     font-size: 1rem;
     margin: 15px;
