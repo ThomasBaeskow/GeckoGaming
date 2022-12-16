@@ -60,19 +60,19 @@ const Signup = () => {
             name="confirmPassword"
             onChange={handleChange}
           />
-          <br /> <button type="submit">Sign up</button>
+          <br /> <button type="submit" className="social-media-btn">Sign up</button>
           <br />
         </form>
       </div>
       <br />
-      <p>
-        Already signed up? <Link to="/login">Login</Link>
+      <p className="signedUp-text">
+       💗 Already signed up? <Link to="/login">Login</Link> 💗
       </p>
       <br />
-      <button>
+      <button className="social-media-btn facebook-btn">
         Sign up with Facebook <FontAwesomeIcon icon={faFacebook} />
       </button>
-      <button>
+      <button className="social-media-btn google-btn">
         Sign up with Google <FontAwesomeIcon icon={faGoogle} />
       </button>
     </div>

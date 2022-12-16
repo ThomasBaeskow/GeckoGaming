@@ -55,7 +55,7 @@ function MyAccount() {
       {!userData ? navigate("/login") : 
 
       <><div className="myAccountContainer">
-        <h1>My Account</h1>
+        <h1 className="myaccount-title">My Account</h1>
         <div className="accountDetail">
           <p className="userName"> Hi,{userData.user.name}</p>
 
