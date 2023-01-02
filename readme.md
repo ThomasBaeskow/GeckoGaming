@@ -35,11 +35,12 @@ Gecko Gaming is an e-commerce website that sells video games and gaming accessor
 
 ### Screenshots
 
-![Home Page](./E-commerce%20website.png)
+![Home Page](https://freeimage.host/i/Hu6Lllj)
 
-![Product Details](./Products%20page.png)
+![Product Details](https://freeimage.host/i/Hu6L7Ve)
 
-![Cart](./Cart.png)
+![Cart](https://freeimage.host/i/Hu6LYiu)
+
 
 ## Created by
 
