@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.history {
+  margin: 100px;
+  width: 100%;
+  font-family: monospace;
+}
+.purchased {
+  font-family: monospace;
+  font-size: 50px;
+}
+.orderplaced li {
+  margin: 20px;
+  margin-left: 150px;
+  text-decoration: underline;
+  font-size: 25px;
+  list-style: none;
+  display: inline-block;
+  align-items: center;
+  cursor: pointer;
+}
+hr{
+    width: 100%;
+    border: 1px solid ;
+}
+
+/* responsivnes */
+
+@media screen and (max-width: 700px) {
+  .history {
+    margin: 20px;
+    font-size: 15px;
+  }
+  .orderplaced li {
+    display: inline-block;
+    word-spacing: 5px;
+    font-size: 15px;
+  }
+}
