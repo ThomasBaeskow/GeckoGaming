@@ -75,9 +75,9 @@ export const factoryGetOne = (Model, popOptions) => catchAsync(async (req, res, 
 export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
     // we need this here to allow nested GET reviews on tour! (hack)
     let filter = {} // we create a filter object which we pass in our find method, if we have a route with tourI in params. (create Review on tour/get reviews on tour)
-    // if (req.params.userId) filter = {user: req.params.userId}
+    if (req.params.userId) filter = {user: req.params.userId}
 
-    console.log(req.query);
+    // console.log(req.query);
 
     const features = new APIFeatures(Model.find(filter).select("-wishlist"), req.query)
     .filter()

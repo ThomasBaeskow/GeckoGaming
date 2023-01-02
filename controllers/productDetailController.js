@@ -1,21 +1,24 @@
 import ProductDetail from "../models/productDetail.js";
 import { catchAsync } from "../utils/catchAsync.js";
 import User from "../models/user.js";
+import { factoryGetAll } from "./handlerFactory.js";
 
 
-export const getAllProductsDetail = catchAsync(async (req, res, next) => {
+export const getAllProductsDetail = factoryGetAll(ProductDetail)
 
-    const allProducts = await ProductDetail.find()
+// export const getAllProductsDetail = catchAsync(async (req, res, next) => {
+
+//     const allProducts = await ProductDetail.find()
   
-    // SEND RESPONSE
-    res.status(200).json({
-      status: 'success',
-      result: allProducts.length,
-      data: {
-        allProducts
-      }
-    });
-  });
+//     // SEND RESPONSE
+//     res.status(200).json({
+//       status: 'success',
+//       result: allProducts.length,
+//       data: {
+//         allProducts
+//       }
+//     });
+//   });
   
 export const getProductDetail = catchAsync(async (req, res, next) => {
     const product = await ProductDetail.findById(req.params.id);
