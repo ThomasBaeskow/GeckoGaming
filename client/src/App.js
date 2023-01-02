@@ -12,7 +12,7 @@ import Home from "./components/home/Home";
 import Product from "./components/product/Product";
 import Container from "./context/Container";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
-
+import ViewAll from "./components/viewAll/ViewAll";
 
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/myAccount" element={<MyAccount />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/viewAll" element={<ViewAll />} />
          
         </Routes>
         <Footer />

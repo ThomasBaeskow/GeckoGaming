@@ -67,7 +67,13 @@ function MyAccount() {
         </div>
         <div className="orderDetail">
           <p>My orders</p>
-          <p>View all → </p>
+          <button
+          className="viewAll"
+          onClick={() => {
+            navigate("/viewAll");
+          }}
+        ><p>View all → </p>
+        </button>
         </div>
         <button
           className="btn"

@@ -114,3 +114,11 @@ h2 {
   position: absolute;
   margin-left: 200px;
 }
+.viewAll {
+  margin-bottom: 10px;
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 850px;
+}
