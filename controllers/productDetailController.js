@@ -4,21 +4,21 @@ import User from "../models/user.js";
 import { factoryGetAll } from "./handlerFactory.js";
 
 
-export const getAllProductsDetail = factoryGetAll(ProductDetail)
+// export const getAllProductsDetail = factoryGetAll(ProductDetail)
 
-// export const getAllProductsDetail = catchAsync(async (req, res, next) => {
+export const getAllProductsDetail = catchAsync(async (req, res, next) => {
 
-//     const allProducts = await ProductDetail.find()
+    const allProducts = await ProductDetail.find().select("-product_information_html -original_price -product_detail_url -__v")
   
-//     // SEND RESPONSE
-//     res.status(200).json({
-//       status: 'success',
-//       result: allProducts.length,
-//       data: {
-//         allProducts
-//       }
-//     });
-//   });
+    // SEND RESPONSE
+    res.status(200).json({
+      status: 'success',
+      result: allProducts.length,
+      data: {
+        allProducts
+      }
+    });
+  });
   
 export const getProductDetail = catchAsync(async (req, res, next) => {
     const product = await ProductDetail.findById(req.params.id);
