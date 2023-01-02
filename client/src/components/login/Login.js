@@ -1,5 +1,5 @@
 import "./login.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,25 +19,40 @@ const Login = () => {
     setLoginData((values) => ({ ...loginData, [name]: value }));
   };
 
+  //function to check the validation of the email
+  function isValidEmail(email) {
+    const valChar =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return valChar.test(email);
+  }
+
+ 
+   
+  
+
   //function to send data to backend for login and get userdata after login success using axios
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("i am from frontend:", loginData);
-    try{
-      const res = await axios.post(
-        "/api/v1/user/login",
-        loginData,      
-       
-      )
-        .then((res)=>setUserData(res.data.data));  
+    if (loginData.email.length <= 0 || loginData.password.length <= 0) {
+      setMsg("Password or email fields cannot be empty");
+    } else if (!isValidEmail(loginData.email)) {
+      setMsg("Email is invalid, please enter correct email id");
+    } else if (loginData.password.length < 8) {
+      setMsg("Password must be at least 8 chars long");
+    } else {
+      try {
+        const response = await axios
+          .post("/api/v1/user/login", loginData, {
+            withCredentials: true, // The 'login' API call for user authentication on the success of the login API sends us an HTTPonly cookie.
+            //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
+          })
+          .then((res) =>setUserData(res.data.data))
         navigate("/products");
-      console.log("i am userData", userData.user.name)
-
-    }catch(e){
-      
-      setMsg(e.message);
+      } catch (e) {
+        setMsg("Invalid credentials,try again");
+      }
     }
-  }
+  };
 
   return (
     <>
@@ -66,14 +81,14 @@ const Login = () => {
           </form>
           <br /> <br />
           <div>
-            <h5>{msg ? msg : ""} </h5>
+            <h3 className="errorMsg">{msg ? msg : ""} </h3>
           </div>
+          <p className="signup-text">
+            🎮 Not registered? <Link to="/signup">Sign up</Link> 🎮
+          </p>
         </div>
       </div>
       <div>
-        <p className="signup-text">
-          🎮Not registered? <Link to="/signup">Sign up</Link>🎮
-        </p>
         <button className="social-media-btn facebook-btn">
           Login with Facebook
           <FontAwesomeIcon icon={faFacebook} className="face" />

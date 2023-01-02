@@ -5,14 +5,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import ReactStars from "react-stars";
 import { MyContext } from "../../context/Context";
+import axios from "axios";
 
 function Product() {
   const location = useLocation();
   const [rating, setRating] = useState(4.7);
-  const { product, setCartList, cartList, setWishList, wishList } = useContext(
+  const { product, setCartList, cartList, setWishList, wishList,productDetails,setProductDetails } = useContext(
     MyContext
   );
-  const navigate = useNavigate();
+  const [btnMsg, setBtnMsg] = useState(wishList.map((val)=>val.id).includes(location.state.id)?true:false);
+  
+  
+
+const fetchAllProductDetail = async () => {
+  const getProducts = await axios.get("/api/v1/product/")
+  const value = getProducts.data.data.allProducts.filter((prod)=>prod.product_id === location.state.product_detail_url.slice(-10))
+  productDetails.push(value[0])
+ // setProductDetailsIds(getProducts.data.data.allProducts.map((item)=>({_id:item._id, product_id:item.product_id})))
+  console.log("i am product details",productDetails)
+};
+
+fetchAllProductDetail();
+
 
   //adding items to cart
   const addToCart = (prod_id) => {   
@@ -20,7 +34,7 @@ function Product() {
     const prod_result = product.find(
       ({ id }) => id === prod_id
     );
-    
+ 
     if (!result) {
       let cartNewItem = {
         productName: prod_result.product_title.slice(0,20),
@@ -28,7 +42,7 @@ function Product() {
         productPrice: prod_result.app_sale_price,
         productImage:prod_result.product_main_image_url,
         id: prod_result.id,
-        availableQty:3
+        availableQty: 3/* productDetails.available_quantity */
    /*      product_id:prod_id.result.product_detail_url.slice(-10) */
       /*   availableQty: prod_result.availableQty, */
       };
@@ -46,27 +60,13 @@ function Product() {
     /*    navigate("/products") */
   };
 
-  //adding items to wishlist
-  const addToWishList = (prod_id) => {
-
-    const wished = wishList.includes(prod_id)
-    
-/*     const findWishedItem = wishList.find(
-      (id) => id === prod_id
-    );
-    const prod_result = product.find(
-      ({ product_id }) => product_id === prod_id
-    ); */
-    if (wished) {
-      alert("already was in wishlist and we are going to remove in next line");
-      setWishList(wishList.filter(id=>id !== prod_id))
-      navigate("/products");
-    } else {
-
-      setWishList([...wishList, prod_id]);
-      /*   navigate("/products") */
-    }
-  };
+  //adding items to wishlist in the database
+  const addToWishList = async (prodId) => {  
+    await axios
+     .put("/api/v1/user/wishlist", {productId:prodId}, { withCredentials: true })
+     setBtnMsg(btnMsg?false:true)
+ };
+  
 
   return (
     <div>
@@ -81,10 +81,8 @@ function Product() {
           />
         </div>
         <div className="singleProductDetails">
-          <h3>Product Name: {location.state.product_title.slice(0,20)}</h3>
-          <h4>Product Price: ${location.state.app_sale_price}</h4>
-        
-          
+          <h3>Product Name: {location.state.product_title}</h3>
+          <h4>Product Price: ${location.state.app_sale_price}</h4>            
           {/* <h6>Available Qty :{location.state.availableQty}</h6> */}
        
           <button
@@ -93,17 +91,19 @@ function Product() {
           >
             Add to cart
           </button>
-          {/* can we add a wishlist button here?? do we need another button */}
+
+         
+         
           <button
             className="addToWishlist"
-            onClick={() => addToWishList(location.state_id)}
-          >
-            Add to Wishlist
+            onClick={() => addToWishList(location.state.id)}
+          >{btnMsg?"Remove from Wishlist":"Add to Wishlist"}
+                
           </button>
           <p>Description :{location.state.product_title}</p>
 
           <p>
-            Product Details:{location.state.productDetails}{" "}
+            Product Details:{location.state.productDetails}{location.state.id}
             <FontAwesomeIcon icon={faPlus} />
           </p>
           <p>

@@ -7,11 +7,23 @@ import { NavLink } from "react-router-dom";
 import { MyContext } from "../../context/Context";
 import ProductCard from "../productCard/ProductCard";
 import ProductPagination from "../productCard/ProductPagination";
+import axios from "axios";
 
 const Products = () => {
   // getting product and category data using context
   const { product, setProduct, categoryList, setCategoryList } =
     useContext(MyContext);
+
+  //fetching for all products list from products database
+  useEffect(() => {
+    fetchAllProducts();
+    /* fetchAllProductDetail(); */
+  }, []);
+
+  const fetchAllProducts = async () => {
+    const getProducts = await axios.get("/api/v1/products/");
+    setProduct(getProducts.data.data.allProducts);
+  };
 
   return (
     <div className="productContainer">
@@ -49,7 +61,7 @@ const Products = () => {
         </div>
       </div>
       <div className="productDisplay">
-      <ProductPagination itemsPerPage={9}/>
+        <ProductPagination itemsPerPage={9} />
       </div>
     </div>
   );
@@ -57,16 +69,15 @@ const Products = () => {
 
 export default Products;
 
-
- /*  <div className="productDisplay">
+/*  <div className="productDisplay">
         {/* display list of products */
-        /* button to show previous and next items */
-         /* {product.slice(11, 20).map((prod) => { 
+/* button to show previous and next items */
+/* {product.slice(11, 20).map((prod) => { 
          
             return ( */
-              /* displaying the individual product card */
-          /*    <ProductCard prod={prod}/>  */
-       /*      ); */ 
-          
-        /* })} */
- /*      </div>   */
+/* displaying the individual product card */
+/*    <ProductCard prod={prod}/>  */
+/*      ); */
+
+/* })} */
+/*      </div>   */
