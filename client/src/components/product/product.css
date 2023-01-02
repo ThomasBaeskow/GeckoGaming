@@ -1,12 +1,12 @@
 .productData {
   width: 100%;
   margin: 0 auto;
-  height: 600px;
+  height: 40em;
   border-bottom: 1px solid;
   display: flex;
   justify-content: space-around;
-  padding: 30px;
-  margin-top: 25px;
+  padding: 8em;
+  margin-top: 8em;
   font-family: "JetBrains mono";
 }
 .singleProductImages {
