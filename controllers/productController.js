@@ -2,23 +2,26 @@ import Product from "../models/product.js";
 import { catchAsync } from "../utils/catchAsync.js";
 import User from "../models/user.js";
 import AppError from "../utils/appError.js";
+import { factoryGetAll } from "./handlerFactory.js";
 
 
 
+export const getAllProducts = factoryGetAll(Product)
 
-export const getAllProducts = catchAsync(async (req, res, next) => {
 
-    const allProducts = await Product.find()
+// export const getAllProducts = catchAsync(async (req, res, next) => {
+
+//     const allProducts = await Product.find()
   
-    // SEND RESPONSE
-    res.status(200).json({
-      status: 'success',
-      result: allProducts.length,
-      data: {
-        allProducts
-      }
-    });
-  });
+//     // SEND RESPONSE
+//     res.status(200).json({
+//       status: 'success',
+//       result: allProducts.length,
+//       data: {
+//         allProducts
+//       }
+//     });
+//   });
   
 export const getProduct = catchAsync(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
@@ -112,27 +115,3 @@ export const getProduct = catchAsync(async (req, res, next) => {
     }
 
   })
-
-  // {
-  //   _id: new ObjectId("5c8a1dfa2f8fb814b56fa181"),
-  //   name: 'Lourdes Browning',
-  //   email: 'louloutest@example.com',
-  //   photo: 'user-2.jpg',
-  //   role: 'user',
-  //   __v: 0,
-  //   wishlist: [
-  //     {
-  //       _id: new ObjectId("6387214a7ad5d1c314218155"),
-  //       productType: 'videogames',
-  //       brand: 'ps5',
-  //       isBestSeller: false,
-  //       product_title: 'Gotham Knights (PS5)',
-  //       product_main_image_url: 'https://m.media-amazon.com/images/I/91ClDMOrAwL._AC_UY218_.jpg',
-  //       app_sale_price: '56.80',
-  //       app_sale_price_currency: '$',
-  //       evaluate_rate: '4.0 out of 5 stars',
-  //       id: '6387214a7ad5d1c314218155'
-  //     }
-  //   ],
-  //   id: '5c8a1dfa2f8fb814b56fa181'
-  // }
