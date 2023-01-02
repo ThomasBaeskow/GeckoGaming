@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom";
 import { MyContext } from "../../context/Context";
 
 const Navbar = () => {
-const {cartList} = useContext(MyContext);
+const {cartList,userData} = useContext(MyContext);
 
 // function to calculate the total of the items in cart
   const totalQtyCart = () => {
@@ -33,7 +33,7 @@ const searchProducts = ()=>{
         <input type="search" placeholder="🔍 Search ..." onClick={searchProducts} />
       </div>
       <div className="landingCart">    
-     
+      <h5>{userData?userData.user.name:""}</h5>
      <NavLink to="/myAccount"> <FontAwesomeIcon icon={faUser} className="user" /></NavLink>
         <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
           <span>{totalQtyCart() > 0 && (totalQtyCart()) }</span>  

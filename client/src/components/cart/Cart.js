@@ -6,7 +6,7 @@ import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 import {MyContext} from "../../context/Context"
 
 function Cart() {
-  const{cartList,setCartList} = useContext(MyContext)
+  const{cartList,setCartList,productDetails} = useContext(MyContext)
 
  
 
@@ -78,7 +78,7 @@ function Cart() {
 
                   <div className="">
                     <p>
-                      {item.productName}<h6>Available quantity:{/*  {item.availableQty} */}</h6>
+                      {item.productName}<h6>Available quantity: {/* {productDetails.availableQty} */}</h6>
                     </p>
                     <div className="cartQuantityContainer">
                       <button
