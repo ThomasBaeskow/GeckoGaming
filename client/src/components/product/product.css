@@ -47,14 +47,63 @@
 
 @media screen and (max-width: 768px) {
   .productData {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .img-review{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .singleProductImages {
+    width: 50%;
+  }
+  .singleProductDetails {
+    width: 50%;
+  }
+  .productReviewContainer {
     flex-direction: column;
     height: 100%;
   }
-  .singleProductImages {
+  .reviewLeft {
     width: 100%;
   }
-  .singleProductDetails {
+  .reviewRight {
     width: 100%;
+  }
+}
+
+
+/* media query ipad */
+
+@media screen and (max-width: 1024px) {
+  .productData {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-review{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .singleProductImages {
+    width: 50%;
+  }
+  .singleProductDetails {
+    width: 50%;
   }
   .productReviewContainer {
     flex-direction: column;

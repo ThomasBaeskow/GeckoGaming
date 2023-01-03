@@ -105,7 +105,7 @@ function MyAccount() {
           <div className="myAccountImg">
             <FontAwesomeIcon className="editIcon" icon={faEdit} />
 
-            <img src={image} alt="" />
+            <img src={image} alt="" className="img-profile" />
           </div>
         </div>
         <div className="orderDetail">
