@@ -21,9 +21,9 @@ const Products = () => {
   }, []);
 
   const fetchAllProducts = async () => {
-    const getProducts = await axios.get("/api/v1/products");
+    const getProducts = await axios.get("/api/v1/products/");
     console.log("i am allproducts",getProducts)
-    setProduct(getProducts.data.data.data);
+    setProduct(getProducts.data.data.allProducts);
     console.log("i am product",product)    
   };
 
