@@ -1,12 +1,12 @@
 import React,{useState,useContext} from 'react'
 import ReactPaginate from 'react-paginate';
 import ProductCard from './ProductCard';
-
-
 import { MyContext } from "../../context/Context";
 
 function ProductPagination({ itemsPerPage }) {
+  //product is called in products page by axios
     const { product} = useContext(MyContext);
+    console.log("product",product)
 
     // Here we use item offsets; we could also use page offsets
     // following the API or data you're working with.
