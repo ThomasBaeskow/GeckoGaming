@@ -10,6 +10,7 @@ import userRouter from "./routes/userRoutes.js"
 import cookieParser from "cookie-parser"
 import {globalErrorHandler} from "./controllers/errorControllers.js"
 import AppError from "./utils/appError.js"
+import cartRouter from "./routes/cartRoutes.js"
 
 dotenv.config({path:"./.env"})
 
@@ -58,6 +59,7 @@ app.use((req, res, next) => {
 app.use('/api/v1/product', productDetailRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/cart', cartRouter);
 // app.use("/api/v1/reviews");
 // app.use("/api/v1/orders");
 

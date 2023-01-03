@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 
 const productDetailSchema = mongoose.Schema({
-    // product_id: String,
+    product_id: String,
     variantImages: {
         type: Object
     },

@@ -61,6 +61,14 @@ const userSchema = mongoose.Schema({
 }
 )
 
+// VIRTUAL POPULATE
+// We are implementing a kind of child referencing with creating virtual fields. Thats how we not store the Array of reviews in our DB,but still have the connection to it.
+userSchema.virtual("cart", {
+  ref: "Cart",
+  foreignField: "user", // "user" is the field in Cart model where we implemented the Parent Referencing to the User model
+  localField: "_id" // "_id" is called "user" in the Cart model. Thats how we build the connection between Cart and User
+})
+
 // ENCRYPTION OF THE PASSWORDS: this function applies before the document gets saved to the DB --> we need to install extra package "bcryptjs"
 // thats the way to store users passwords in a secure way to our DB
 userSchema.pre("save", async function(next) {
