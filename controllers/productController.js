@@ -2,7 +2,6 @@ import Product from "../models/product.js";
 import { catchAsync } from "../utils/catchAsync.js";
 import User from "../models/user.js";
 import AppError from "../utils/appError.js";
-import { factoryGetAll } from "./handlerFactory.js";
 import APIFeatures from "../utils/apiFeatures.js";
 
 

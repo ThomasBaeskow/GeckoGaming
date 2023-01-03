@@ -98,29 +98,3 @@ export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
       },
     });
 });
-
-  // const fetchAllProducts = async () => {
-  // const getProducts = await axios.get(
-  //   "/api/v1/products/"
-  // )/* .then(result=>{    
-  //   if(result.cod!==200){
-  //    alert(result.message)
-  //   }else{ */
-            
-
-  // setProduct(getProducts.data.data.allProducts);
-  // }
-
-// export const getAllProducts = catchAsync(async (req, res, next) => {
-
-//   const allProducts = await Product.find()
-
-//   // SEND RESPONSE
-//   res.status(200).json({
-//     status: 'success',
-//     result: allProducts.length,
-//     data: {
-//       allProducts
-//     }
-//   });
-// });

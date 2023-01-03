@@ -77,3 +77,28 @@ import Cart from "../models/cart.js";
         }
     });
   });
+
+  export const deleteFromCard = catchAsync(async(req, res, next) => {
+
+    const userId = req.user.id
+
+    const {product_id} = req.body
+  
+    let cart = await Cart.findOne({ userId });
+
+    cart.products = cart.products.filter(item=> item.product_id != product_id);
+
+    cart.save()
+
+    if (!cart) { // if tour is false. means tour value "null" is not a truthy value. --> false
+        return next(new AppError("No document found with that ID", 404)) // we need return, because we want to end the circle and not res.status(responding) the tour with false ID to the client. (user)
+    }
+
+
+    res.status(201).json({
+        status: "success",
+        data: {
+            cart
+        }
+    });
+  });

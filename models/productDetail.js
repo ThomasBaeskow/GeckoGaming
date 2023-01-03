@@ -38,10 +38,6 @@ const productDetailSchema = mongoose.Schema({
         select: false // we can exclude fields in the model Schema like this
     },
 },
-// {
-//     toJSON: {virtuals: true},
-//     toObject: {virtuals: true}
-// }
 )
 
 // creating a Model out of it: Model variables always wih capital Letter.
