@@ -1,7 +1,6 @@
 import express from "express"
 import {protect} from "../controllers/authController.js"
-import { getMe } from "../controllers/userController.js"
-import { addToCart, getCart } from "../controllers/cartController.js"
+import { addToCart, getCart, deleteFromCard } from "../controllers/cartController.js"
 
 
 
@@ -14,6 +13,7 @@ router
 .route("/")
 .post(addToCart)
 .get(getCart)
+.delete(deleteFromCard)
 
 
 

@@ -1,5 +1,4 @@
 import mongoose from "mongoose"
-// import ProductDetail from "./productDetail.js"
 import validator from "validator"
 import bcrypt from "bcrypt"
 import crypto from "crypto"
