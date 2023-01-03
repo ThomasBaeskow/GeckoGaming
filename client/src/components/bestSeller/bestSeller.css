@@ -85,7 +85,7 @@
   border: 2px solid black;
 }
 
-/* media query */
+/* media query mobile */
 
 @media screen and (max-width: 812px) {
   .bestSellerContainer {
@@ -99,10 +99,86 @@
   }
   .bestsellerh1 {
     font-family: "Londrina Shadow", cursive;
-    font-size: 25px;
+    font-size: 20px;
     color: black;
     writing-mode: vertical-rl;
-text-orientation: mixed;
+
+  }
+  .bestSeller-left {
+    width: 25em;
+    height: 200px;
+    margin: 50px;
+  }
+  .bestSeller-right {
+    width: 40%;
+    height: 200px;
+  }
+
+  .bestSeller-left img {
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+    margin-top: 30px;
+  }
+
+  .img-1 {
+    display: none;
+  }
+  .img-2 {
+   display: none;
+  }
+  .img-3 {
+    background-color: white;
+    width: 200px;
+    height: 250px;
+    border: 3px solid black;
+    padding: 30px 70px 20px 10px;
+    box-shadow: 10px 10px;
+    margin-bottom: 50px;
+  }
+  .img-4 {
+    background-color: white;
+    width: 200px;
+    height: 250px;
+    border: 3px solid black;
+    padding: 30px 30px 20px 10px;
+    box-shadow: 10px 10px;
+  }
+
+  .img-1:hover,
+  .img-2:hover,
+  .img-3:hover,
+  .img-4:hover {
+    animation: pulse;
+    animation-duration: 1s;
+    cursor: pointer;
+  }
+
+  .bestSeller-right img {
+    width: 500px;
+    height: 275px;
+    border: 2px solid black;
+  }
+}
+
+/* media query ipad */
+
+@media screen and (max-width: 1024px) {
+  .bestSellerContainer {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    height: 700px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  .bestsellerh1 {
+    font-family: "Londrina Shadow", cursive;
+    font-size: 15vw;
+    color: black;
+    writing-mode: vertical-rl;
+
   }
   .bestSeller-left {
     width: 25em;
