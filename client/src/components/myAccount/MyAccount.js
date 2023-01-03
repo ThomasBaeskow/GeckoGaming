@@ -96,9 +96,7 @@ function MyAccount() {
 
 
   return (
-    <div>
-      
-
+    <div> 
       <div className="myAccountContainer">
         <h1 className="myaccount-title">My Account</h1>
         <div className="accountDetail">
