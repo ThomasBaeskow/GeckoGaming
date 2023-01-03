@@ -52,7 +52,7 @@ class APIFeatures {
     paginate() {
       // 4) Pagination
       const page = this.queryString.page * 1 || 1; // converts string to number and set default value of page to 1 if theres no value set to the field page in query string
-      const limit = this.queryString.limit * 1 || 20; // converts string to number and set default value of limit to 10. Example: we have more then 1 million documents in our collection. We just wanna show the user 30 
+      const limit = this.queryString.limit * 1 || 9; // converts string to number and set default value of limit to 10. Example: we have more then 1 million documents in our collection. We just wanna show the user 30 
       console.log(this.queryString);
       const skip = (page - 1) * limit; // if the user wants to see page 2 (page=2&limit=10) the calculation would be: skip = (2 - 1) * 10 ==> 10
       console.log(skip);

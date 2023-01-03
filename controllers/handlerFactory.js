@@ -83,7 +83,7 @@ export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
     .filter()
     .sort()
     .limitFields()
-    // .paginate()
+    .paginate()
 
     // const doc = await features.query.explain() // .explain() shows more infos about the query
     const doc = await features.query
