@@ -75,7 +75,7 @@ export const factoryGetOne = (Model, popOptions) => catchAsync(async (req, res, 
 export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
     // we need this here to allow nested GET reviews on tour! (hack)
     let filter = {} // we create a filter object which we pass in our find method, if we have a route with tourI in params. (create Review on tour/get reviews on tour)
-    if (req.params.userId) filter = {user: req.params.userId}
+    // if (req.params.userId) filter = {user: req.params.userId}
 
     // console.log(req.query);
 
@@ -83,7 +83,7 @@ export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
     .filter()
     .sort()
     .limitFields()
-    .paginate()
+    // .paginate()
 
     // const doc = await features.query.explain() // .explain() shows more infos about the query
     const doc = await features.query
@@ -98,3 +98,29 @@ export const factoryGetAll = Model => catchAsync(async (req, res, next) => {
       },
     });
 });
+
+  // const fetchAllProducts = async () => {
+  // const getProducts = await axios.get(
+  //   "/api/v1/products/"
+  // )/* .then(result=>{    
+  //   if(result.cod!==200){
+  //    alert(result.message)
+  //   }else{ */
+            
+
+  // setProduct(getProducts.data.data.allProducts);
+  // }
+
+// export const getAllProducts = catchAsync(async (req, res, next) => {
+
+//   const allProducts = await Product.find()
+
+//   // SEND RESPONSE
+//   res.status(200).json({
+//     status: 'success',
+//     result: allProducts.length,
+//     data: {
+//       allProducts
+//     }
+//   });
+// });

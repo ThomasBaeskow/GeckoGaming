@@ -3,25 +3,35 @@ import { catchAsync } from "../utils/catchAsync.js";
 import User from "../models/user.js";
 import AppError from "../utils/appError.js";
 import { factoryGetAll } from "./handlerFactory.js";
+import APIFeatures from "../utils/apiFeatures.js";
 
 
 
-export const getAllProducts = factoryGetAll(Product)
+export const getAllProducts = catchAsync(async (req, res, next) => {
+  let filter = {} // we create a filter object which we pass in our find method, if we have a route with tourI in params. (create Review on tour/get reviews on tour)
+  // if (req.params.userId) filter = {user: req.params.userId}
 
 
-// export const getAllProducts = catchAsync(async (req, res, next) => {
+  const features = new APIFeatures(Product.find(filter).select("-wishlist"), req.query)
+  .filter()
+  .sort()
+  .limitFields()
+  // .paginate()
 
-//     const allProducts = await Product.find()
+  // const doc = await features.query.explain() // .explain() shows more infos about the query
+  const allProducts = await features.query
+
+    // const allProducts = await Product.find()
   
-//     // SEND RESPONSE
-//     res.status(200).json({
-//       status: 'success',
-//       result: allProducts.length,
-//       data: {
-//         allProducts
-//       }
-//     });
-//   });
+    // SEND RESPONSE
+    res.status(200).json({
+      status: 'success',
+      result: allProducts.length,
+      data: {
+        allProducts
+      }
+    });
+  });
   
 export const getProduct = catchAsync(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
