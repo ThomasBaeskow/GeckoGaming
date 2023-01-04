@@ -1,9 +1,12 @@
 import React from "react";
 import "./banner.css";
+
 import images from "../../images/pic-landing.jpg";
 import {NavLink} from "react-router-dom";
 
+
 const Banner = () => {
+ 
   return (
     <div className="bannerBackground">
       <div className="bannerContainer">

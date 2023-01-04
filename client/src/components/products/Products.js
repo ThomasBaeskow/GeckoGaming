@@ -11,20 +11,22 @@ import axios from "axios";
 
 const Products = () => {
   // getting product and category data using context
-  const { product, setProduct, categoryList, setCategoryList } =
+  const { product, setProduct, categoryList, setCategoryList,pageNum,setPageNum } =
     useContext(MyContext);
 
   //fetching for all products list from products database
   useEffect(() => {
     fetchAllProducts();
     /* fetchAllProductDetail(); */
-  }, []);
+  }, [pageNum,setPageNum]);
 
+
+ 
   const fetchAllProducts = async () => {
-    const getProducts = await axios.get("/api/v1/products/");
-    console.log("i am allproducts",getProducts)
+    const getProducts = await axios.get(`/api/v1/products/?productType=pc&productType=consoles&productType=""&page=${pageNum}`);
+    //console.log("i am allproducts",getProducts)
     setProduct(getProducts.data.data.allProducts);
-    console.log("i am product",product)    
+    //console.log("i am product",product)    
   };
 
 
@@ -65,6 +67,8 @@ const Products = () => {
         </div>
       </div>
       <div className="productDisplay">
+      <button onClick={()=>(pageNum >= 1) && setPageNum(pageNum - 1)}>previous</button>
+        <button onClick={()=>(product.length >= 1) && setPageNum(pageNum + 1)}>Next</button>
         <ProductPagination itemsPerPage={9} />
       </div>
     </div>
@@ -73,15 +77,4 @@ const Products = () => {
 
 export default Products;
 
-/*  <div className="productDisplay">
-        {/* display list of products */
-/* button to show previous and next items */
-/* {product.slice(11, 20).map((prod) => { 
-         
-            return ( */
-/* displaying the individual product card */
-/*    <ProductCard prod={prod}/>  */
-/*      ); */
 
-/* })} */
-/*      </div>   */

@@ -1,16 +1,14 @@
 import "./myAccount.css";
 import React, { useState, useEffect, useContext } from "react";
-import { useLocation,useNavigate,NavLink } from "react-router-dom";
+import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import image from "../../images/profile-pic.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit} from "@fortawesome/free-regular-svg-icons";
+import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { faCartPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
 
-
 function MyAccount() {
- 
   const {
     userData,
     cartList,
@@ -19,10 +17,10 @@ function MyAccount() {
     wishList,
     setWishList,
     product,
-    setChecked
+    setChecked,
   } = useContext(MyContext);
 
-  const navigate = useNavigate();    
+  const navigate = useNavigate();
 
   useEffect(() => {
     navigate("/myAccount");
@@ -32,42 +30,27 @@ function MyAccount() {
     getWishList();
   }, []);
 
+  //adding items to cart
+  //const productID = location.state.product_detail_url.slice(-10)
 
   //adding items to cart
-  const addToCart = (prod_id) => {
-    const result = cartList.find(({ id }) => prod_id === id);
-    const prod_result = product.find(
-      ({ id }) => id === prod_id
-    );
-    
-    if (!result) {
-      let cartNewItem = {
-        productName: prod_result.product_title.slice(0,20),
-        cartQty: 1,
-        productPrice: prod_result.app_sale_price,
-        productImage:prod_result.product_main_image_url,
-        id: prod_result.id,
-        availableQty:3
-   /*      product_id:prod_id.result.product_detail_url.slice(-10) */
-      /*   availableQty: prod_result.availableQty, */
-      };
-      setCartList([...cartList, cartNewItem]);
-    } else {
-      result.cartQty++;
-      /* if (result.cartQty < prod_result.availableQty) {
-        result.cartQty++;
-      } else {
-        alert(
-          `out of stock cannot add more in the list ${result.cartQty} qty available${prod_result.availableQty}`
-        ); 
-      }*/
-    }
-    /*    navigate("/products") */
-  };
-  
+  const addToCart = async (id) => {
+    const prod_result = product.filter((item) => item.id === id);
+    //console.log("prod result", prod_result[0].product_detail_url.slice(-10));
 
-   //remove product from wishlist
-   const removeItem = async (itemId) => {
+    let cartNewItem = {
+      product_id: prod_result[0].product_detail_url.slice(-10),
+      cartQty: 1,
+      product_title: prod_result[0].product_title,
+      app_sale_price: prod_result[0].app_sale_price,
+      product_main_image_url: prod_result[0].product_main_image_url,
+    };
+   // console.log("data for cartfrom wishlist", cartNewItem);
+    await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+  };
+
+  //remove product from wishlist
+  const removeItem = async (itemId) => {
     await axios.put(
       "/api/v1/user/wishlist",
       { productId: itemId },
@@ -76,27 +59,25 @@ function MyAccount() {
     getWishList();
   };
 
-  const logOut = async () => {
-    const res = await axios
-      .get("/api/v1/user/logout", {
-        withCredentials: true,
-      })
-      .then((res) => setUserData("")); 
-    navigate("/");
-  };
-
   const getWishList = async () => {
     const res1 = await axios.get("/api/v1/user/seeWishlist", {
       withCredentials: true,
     });
     setWishList(res1.data.data.data);
-    console.log("i am wish",wishList)
+   //console.log("i am wish", wishList);
   };
 
-
+  const logOut = async () => {
+    const res = await axios
+      .get("/api/v1/user/logout", {
+        withCredentials: true,
+      })
+      .then((res) => setUserData(""));
+    navigate("/");
+  };
 
   return (
-    <div> 
+    <div>
       <div className="myAccountContainer">
         <h1 className="myaccount-title">My Account</h1>
         <div className="accountDetail">
@@ -124,7 +105,7 @@ function MyAccount() {
       <div>
         <h2>My Wish List</h2>
         <div className="wishlistContainer">
-        {wishList.map((item) => {
+          {wishList.map((item) => {
             return (
               <div className="wishlistImg">
                 <FontAwesomeIcon
@@ -135,6 +116,7 @@ function MyAccount() {
                 <FontAwesomeIcon
                   className="addTo-Cart"
                   icon={faCartPlus}
+                  //item.id is a system id
                   onClick={() => addToCart(item.id)}
                 />
 
@@ -143,17 +125,17 @@ function MyAccount() {
                 </NavLink>
 
                 <div className="wishlistItems">
-                  <p>{item.product_title && item.product_title.slice(0,10)}</p>
+                  <p>{item.product_title && item.product_title.slice(0, 10)}</p>
                   <p>{item.app_sale_price}</p>
+                  <p>{item.product_detail_url}</p>
                 </div>
+                <h1>{item.id}</h1>
               </div>
             );
           })}
         </div>
       </div>
-    
     </div>
-
   );
 }
 

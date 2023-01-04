@@ -5,8 +5,8 @@ import { MyContext } from "../../context/Context";
 
 function ProductPagination({ itemsPerPage }) {
   //product is called in products page by axios
-    const { product} = useContext(MyContext);
-    console.log("product",product)
+    const { product,pageNum} = useContext(MyContext);
+    //console.log("product",product)
 
     // Here we use item offsets; we could also use page offsets
     // following the API or data you're working with.
@@ -37,7 +37,7 @@ function ProductPagination({ itemsPerPage }) {
           nextLabel="next >"
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}
-          pageCount={pageCount}
+          pageCount={pageNum}
           previousLabel="< previous"
           renderOnZeroPageCount={null}
         />
