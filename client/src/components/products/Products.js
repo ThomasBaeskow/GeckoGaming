@@ -20,10 +20,11 @@ const Products = () => {
     /* fetchAllProductDetail(); */
   }, [pageNum,setPageNum]);
 
-
- 
+const selCat = ["pc","consoles","VideoGames","accessories"]
+const queryText =(`productType=${selCat.join("&productType=")}`)
+ //productType=pc&productType=consoles&productType=""
   const fetchAllProducts = async () => {
-    const getProducts = await axios.get(`/api/v1/products/?productType=pc&productType=consoles&productType=""&page=${pageNum}`);
+    const getProducts = await axios.get(`/api/v1/products/?${queryText}&page=${pageNum}`);
     //console.log("i am allproducts",getProducts)
     setProduct(getProducts.data.data.allProducts);
     //console.log("i am product",product)    

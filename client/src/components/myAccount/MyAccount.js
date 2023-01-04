@@ -31,22 +31,37 @@ function MyAccount() {
   }, []);
 
   //adding items to cart
-  //const productID = location.state.product_detail_url.slice(-10)
-
-  //adding items to cart
   const addToCart = async (id) => {
-    const prod_result = product.filter((item) => item.id === id);
-    //console.log("prod result", prod_result[0].product_detail_url.slice(-10));
+    //console.log("product front", product);
+    const prodExists = product.filter((item) => item.id === id);
+    //console.log("single product", prodExists.length);
 
-    let cartNewItem = {
-      product_id: prod_result[0].product_detail_url.slice(-10),
-      cartQty: 1,
-      product_title: prod_result[0].product_title,
-      app_sale_price: prod_result[0].app_sale_price,
-      product_main_image_url: prod_result[0].product_main_image_url,
-    };
-   // console.log("data for cartfrom wishlist", cartNewItem);
-    await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+    if (prodExists.length === 0) {
+      const response = await axios.get(`/api/v1/products/${id}`);
+      const prod_result = response.data.data.product;
+
+      let cartNewItem = {
+        product_id: prod_result.product_detail_url.slice(-10),
+        cartQty: 1,
+        product_title: prod_result.product_title,
+        app_sale_price: prod_result.app_sale_price,
+        product_main_image_url: prod_result.product_main_image_url,
+      };
+
+      //console.log("data for cart from wishlist", cartNewItem);
+      await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+    } else {
+      let cartNewItem = {
+        product_id: prodExists[0].product_detail_url.slice(-10),
+        cartQty: 1,
+        product_title: prodExists[0].product_title,
+        app_sale_price: prodExists[0].app_sale_price,
+        product_main_image_url: prodExists[0].product_main_image_url,
+      };
+
+      //console.log("data for cart from wishlist", cartNewItem);
+      await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+    }
   };
 
   //remove product from wishlist
@@ -64,7 +79,7 @@ function MyAccount() {
       withCredentials: true,
     });
     setWishList(res1.data.data.data);
-   //console.log("i am wish", wishList);
+    //console.log("i am wish", wishList);
   };
 
   const logOut = async () => {
@@ -129,7 +144,7 @@ function MyAccount() {
                   <p>{item.app_sale_price}</p>
                   <p>{item.product_detail_url}</p>
                 </div>
-                <h1>{item.id}</h1>
+                {/* <h1>{item.id}</h1> */}
               </div>
             );
           })}
