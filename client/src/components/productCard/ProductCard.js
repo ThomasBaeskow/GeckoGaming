@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 function ProductCard({ currentItems }) {
+  
   return (
     <div className="cardHolder">
       {currentItems &&

@@ -1,9 +1,10 @@
 import "./cart.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import cartImg from "../../images/product-Img/product-img2.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 import {MyContext} from "../../context/Context"
+import axios from "axios";
 
 function Cart() {
   const{cartList,setCartList,productDetails} = useContext(MyContext)
@@ -14,7 +15,7 @@ function Cart() {
   const decrease = (product_id) => {
     setCartList((product) =>
       product.map((item) =>
-        product_id === item.id
+        product_id === item.product_id
           ? { ...item, cartQty: item.cartQty -(item.cartQty > 0 ? 1: 0)  }
           : item
       )
@@ -25,8 +26,8 @@ function Cart() {
   const increase = (product_id) => {
     setCartList((product) =>
       product.map((item) =>
-        product_id === item.id
-          ? { ...item, cartQty: item.cartQty + (item.cartQty < item.availableQty ? 1: 0) }
+        product_id === item.product_id
+          ? { ...item, cartQty: item.cartQty +1}//item.cartQty < item.availableQty ? 1: 0) }
           : item
       )
     );
@@ -48,7 +49,7 @@ function Cart() {
   const totalCostCart = () => {
     const totalCost = cartList.reduce(
       (accumulator, currentValue) =>
-        accumulator + currentValue.cartQty * currentValue.productPrice,
+        accumulator + currentValue.cartQty * currentValue.app_sale_price,
       0
     );
     return totalCost;
@@ -56,13 +57,26 @@ function Cart() {
 
 
 //remove item from the cart  
- const removeItem =(product_id)=>{
-  setCartList(cartList.filter(item=>item.id !== product_id))
-} 
+  const removeItem =async(id)=>{
+   
+  await axios.delete("/api/v1/cart", {product_id:id}, {
+    withCredentials: true,
+  } );
+ 
+ //setCartList(cartList.filter(item=>item.product_id !== remove_id))
+}  
 
+const getCart = async()=>{
+  const res1 = await axios.get("/api/v1/cart", {
+    withCredentials: true,
+  });
+  setCartList(res1.data.data.cart.products)
+  //console.log("cartlist",cartList)
+}
 
-
-
+useEffect(()=>{
+  getCart()
+},[])
 
   return (
     <div className="yourCart">
@@ -74,16 +88,17 @@ function Cart() {
             return (
               <>
                 <div key={index} className="cartLeft-items">
-                  <img src={item.productImage} alt="" className="cart-img" />
+                  <img src={item.product_main_image_url} alt="" className="cart-img" />
 
                   <div className="">
                     <p>
-                      {item.productName}<h6>Available quantity: {/* {productDetails.availableQty} */}</h6>
+                      {item.product_title}<h6>Available quantity: {/* {productDetails.availableQty} */}</h6>
                     </p>
+                    <p>{item.product_id}</p>
                     <div className="cartQuantityContainer">
                       <button
                         className="decrease cartBtn"
-                        onClick={() => decrease(item.id)}
+                        onClick={() => decrease(item.product_id)}
                       >
                         -
                       </button>
@@ -92,15 +107,15 @@ function Cart() {
                       </button>
                       <button
                         className="increase cartBtn"
-                        onClick={() => increase(item.id)}
+                        onClick={() => increase(item.product_id)}
                       >
                         +
                       </button>
                     </div>
-                    <p>{item.productPrice}</p>
+                    <p>{item.app_sale_price}</p>
                     {/*       <p>{item.product.sellingPrice * item.product.cartQty}</p> */}
                   </div>
-                  <FontAwesomeIcon className="deleteBtn" icon={faXmarkCircle} onClick= {()=>removeItem(item.id)} />
+                  <FontAwesomeIcon className="deleteBtn" icon={faXmarkCircle} onClick=  {()=>removeItem(item.product_id)}  />
                 </div>
               </>
             );

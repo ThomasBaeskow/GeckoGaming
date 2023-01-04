@@ -4,6 +4,7 @@ import BestSeller from "../../components/bestSeller/BestSeller"
 import Categories from "../../components/categories/Categories"
 
 const Home = () => {
+  
   return (
     <div>
       <Banner/>
