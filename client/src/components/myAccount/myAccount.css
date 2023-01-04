@@ -42,9 +42,9 @@ h2 {
 .userName {
   padding-top: 100px;
 }
-.editIcon {
+/* .editIcon {
   padding-left: 80px;
-}
+} */
 .btn {
   width: 200px;
   height: 50px;
@@ -82,20 +82,16 @@ h2 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-
-/* .heart-wish {
-  width: 30px;
+.upload{
+  width: 40px;
   height: 30px;
-  cursor: pointer;
-  color: rgba(246, 22, 160, 0.889);
-  position: absolute;
-  margin-left: 200px;
-}
+  margin-bottom: 5px;
+  margin-left: 70px;
 
-.heart-wish:hover {
-  color: palevioletred;
-} */
-.addTo-Cart {
+
+}
+.addTo-Cart{
+
   margin-top: 10px;
   width: 30px;
   height: 30px;
