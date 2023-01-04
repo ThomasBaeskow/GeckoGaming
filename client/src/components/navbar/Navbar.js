@@ -36,8 +36,9 @@ const searchProducts = ()=>{
       <h5>{userData?userData.user.name:""}</h5>
      <NavLink to="/myAccount"> <FontAwesomeIcon icon={faUser} className="user" /></NavLink>
         <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
-          <span>{totalQtyCart() > 0 && (totalQtyCart()) }</span>  
       </div>
+          <span className="qty-num">{totalQtyCart() > 0 && (totalQtyCart()) }</span>  
+      
     </div>
   );
 };
