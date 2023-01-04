@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser"
 import {globalErrorHandler} from "./controllers/errorControllers.js"
 import AppError from "./utils/appError.js"
 import cartRouter from "./routes/cartRoutes.js"
+import orderRouter from "./routes/orderRoutes.js"
 
 dotenv.config({path:"./.env"})
 
@@ -60,6 +61,8 @@ app.use('/api/v1/product', productDetailRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/cart', cartRouter);
+app.use('/api/v1/orders', orderRouter);
+
 // app.use("/api/v1/reviews");
 // app.use("/api/v1/orders");
 

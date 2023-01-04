@@ -8,9 +8,10 @@ import Cart from "../models/cart.js";
 
     const { product_id, product_title, app_sale_price, cartQty, product_main_image_url} = req.body;
 
-    console.log(product_id);
+    // console.log(product_id);
 
     const userId = req.user.id
+    // console.log(userId);
   
     try {
       let cart = await Cart.findOne({ userId });
