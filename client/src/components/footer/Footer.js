@@ -12,19 +12,18 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="logo">
-        <img src="logo" alt="" className="logopicture" />
+        <img src={image} alt="" className="logopicture" />
       </div>
-      <div className="text">
+     
         <p className="footer-text">
           {" "}
           We exist to provide people with access to better products{" "}
         </p>
-      </div>
-      <div className="copy">
-        <span>Copyright</span>
-        <br></br>
-        <span>
-          {new Date().getFullYear()} Gecko Gaming. All right Reserved.
+   
+     
+        <span className="copy">Copyright
+          &copy;
+          {new Date().getFullYear()} Gecko Gaming. All rights Reserved.
         </span>
 
         <div className="vertical-line"></div>
@@ -34,7 +33,6 @@ const Footer = () => {
           <FontAwesomeIcon icon={faInstagram} className="instagram" />
         </div>
       </div>
-    </div>
   );
 };
 
