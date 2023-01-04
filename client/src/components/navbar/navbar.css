@@ -55,12 +55,31 @@ li:hover {
   width: 30%;
 }
 .landingCart {
-  width: 13em;
-  margin: 1em;
+  width: 12em;
+  margin-top: 20px;
   display: flex;
   justify-content: space-around;
   cursor: pointer;
   font-size: 14px;
+}
+
+.cart{
+  position: relative;
+}
+
+.qty-num{
+  position: absolute;
+  top: 10px;
+  right: 70px;
+  background-color: #1fab89;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
 }
 
 .user:hover,
@@ -75,7 +94,7 @@ li:hover {
   display: none;
 }
 
-/* responsiveness navbar for mobile - hamburger menu */
+/* responsiveness navbar for mobile - hamburger menu
 
 @media screen and (max-width: 890px) {
   .hamburger{
@@ -117,7 +136,11 @@ li:hover {
   .landingSearch {
     display: none;
   }
-}
+  .cart{
+    position: relative;
+  }
+
+} */
 
 /* responsiveness navbar for ipad - hamburger menu */
 
@@ -159,5 +182,85 @@ li:hover {
   }
   .landingSearch {
     display: none;
+  }
+
+  .cart{
+    position: relative;
+  }
+  .qty-num{
+    position: absolute;
+    top: 10px;
+    right: 150px;
+    background-color: #1fab89;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+}
+
+
+/* media query for mobile */
+
+@media screen and (max-width: 600px) {
+  .hamburger{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 2vw;
+    margin-top: 15px;
+  }
+  .navigation {
+    display: none;
+  }
+  .mobile-navigation {
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    font-size: 1.8vw;
+  }
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    height: 100vh;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #9df3c4;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    z-index: 420;
+  }
+  li:hover {
+    color: white;
+    background-color: #1fab89;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .landingSearch {
+    display: none;
+  }
+  .cart{
+    position: relative;
+  }
+  .qty-num{
+    position: absolute;
+    top: 10px;
+    right: 60px;
+    background-color: #1fab89;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
   }
 }
