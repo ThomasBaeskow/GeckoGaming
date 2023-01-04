@@ -57,15 +57,13 @@ function Cart() {
 
 
 //remove item from the cart  
-  const removeItem =async(id)=>{
-   
+  const removeItem =async(id)=>{   
   await axios.delete(`/api/v1/cart/${id}`, {
     withCredentials: true,
   });
-  console.log({product_id:id});
-  
- 
- //setCartList(cartList.filter(item=>item.product_id !== remove_id))
+  console.log({product_id:id});  
+  getCart()
+
 }
 
 const getCart = async()=>{
@@ -77,8 +75,9 @@ const getCart = async()=>{
 }
 
 useEffect(()=>{
+
   getCart()
-},[])
+},[cartList,setCartList])
 
   return (
     <div className="yourCart">
