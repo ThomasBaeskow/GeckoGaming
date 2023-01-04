@@ -128,43 +128,7 @@
 }
 
 
-/* media query */
 
-@media screen and (max-width: 768px) {
-  .footer {
-    width: 100%;
-    height: 25%;
-  }
-  .fIcons {
-    margin-left: 10%;
-    /* margin-top: 150px; */
-  }
-  .vertical-line {
-    display: none;
-  }
-  .footer-text {
-    font-size: 0.65rem;
-  }
-}
-
-/* media query ipad */
-
-@media screen and (max-width: 1024px) {
-  .footer {
-    width: 100%;
-    height: 15%;
-  }
-  .fIcons {
-    margin-left: 10%;
-    /* margin-top: 150px; */
-  }
-  .vertical-line {
-    display: none;
-  }
-  .footer-text {
-    font-size: 0.7rem;
-  }
-}
 
 @media (hover: hover) {
   .facebook:hover {
@@ -190,5 +154,66 @@
     color: #1da1f2;
     border-radius: 20%;
     transform: scale(1.5);
+  }
+}
+
+
+/* media query mobile */
+
+@media screen and (max-width: 600px) {
+  .footer {
+    height: 200px;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-text {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .fIcons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .vertical-line {
+    display: none;
+  }
+  .copy {
+    font-size: 0.6rem;
+    margin: 0;
+  }
+  .logo {
+    display: none;
+  }
+} 
+
+/* media query tablet */
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .footer {
+    height: 200px;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-text {
+    font-size: 1rem;
+    text-align: center;
+  }
+  .fIcons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .vertical-line {
+    display: none;
+  }
+  .copy {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+  .logo {
+    display: none;
   }
 }
