@@ -13,6 +13,11 @@ router
 .route("/")
 .post(addToCart)
 .get(getCart)
+// .delete(deleteFromCard)
+
+
+router
+.route("/:product_id")
 .delete(deleteFromCard)
 
 

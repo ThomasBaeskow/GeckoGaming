@@ -59,12 +59,14 @@ function Cart() {
 //remove item from the cart  
   const removeItem =async(id)=>{
    
-  await axios.delete("/api/v1/cart", {product_id:id}, {
+  await axios.delete(`/api/v1/cart/${id}`, {
     withCredentials: true,
-  } );
+  });
+  console.log({product_id:id});
+  
  
  //setCartList(cartList.filter(item=>item.product_id !== remove_id))
-}  
+}
 
 const getCart = async()=>{
   const res1 = await axios.get("/api/v1/cart", {
