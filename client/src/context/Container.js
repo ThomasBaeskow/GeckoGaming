@@ -21,6 +21,7 @@ export default function Container({ children }) {
   const [pageNum,setPageNum] = useState(1)
 
   const [productDetails, setProductDetails] = useState([]);
+  const [open, setOpen] = useState(false);
 
   /*  const fetchAllProductDetail = async () => {
      await axios.get("/api/v1/product/")
@@ -74,7 +75,8 @@ export default function Container({ children }) {
         setCategoryList,
         checked,
         setChecked,
-        pageNum,setPageNum
+        pageNum,setPageNum,
+        open,setOpen
       }}
     >
       {children}

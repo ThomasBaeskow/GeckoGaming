@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function NavLinks() {
   const navigate = useNavigate()
-const{userData,setUserData} = useContext(MyContext);
+const{userData,setUserData,setOpen,open} = useContext(MyContext);
 
 
 
@@ -26,13 +26,13 @@ const logOut = async()=>{
     <div>
       <div className="landingUl">
         <ul>
-         <NavLink to="/"><li>Home</li></NavLink>
-          <NavLink to="/about"><li>About Us</li></NavLink>          
-          <NavLink to="/products"><li>Product</li></NavLink>
+         <NavLink to="/"><li onClick={()=>{setOpen(!open)}}>Home</li></NavLink>
+          <NavLink to="/about"><li onClick={()=>{setOpen(!open)}}>About Us</li></NavLink>          
+          <NavLink to="/products"><li onClick={()=>{setOpen(!open)}}>Product</li></NavLink>
           {
             userData 
             ?  (<><NavLink to="/"><li  onClick={()=>{logOut()}}>Log out </li></NavLink> </> ) 
-             :(<NavLink to="/login"><li>Log In </li></NavLink>)
+             :(<NavLink to="/login"><li onClick={()=>{setOpen(!open)}}>Log In </li></NavLink>)
 
           }   
         

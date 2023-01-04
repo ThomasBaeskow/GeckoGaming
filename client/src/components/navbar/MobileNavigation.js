@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import NavLinks from "./NavLinks";
+import {MyContext} from "../../context/Context"
 import "./navbar.css";
 
 export default function MobileNavigation() {
-  const [open, setOpen] = useState(false);
+  //const[open,setOpen] = useState(false)
+  const {open, setOpen} = useContext(MyContext);
+
   return (
     <nav className="mobile-navigation">
       <svg
@@ -19,7 +22,7 @@ export default function MobileNavigation() {
       >
         <path d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"></path>
       </svg>
-      {open && <NavLinks />}
+      {open && <NavLinks /> }
     </nav>
   );
 }
