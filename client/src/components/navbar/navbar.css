@@ -29,7 +29,7 @@
 a {
   text-decoration: none;
   color: black;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 li:hover {
@@ -55,12 +55,12 @@ li:hover {
   width: 30%;
 }
 .landingCart {
-  width: 150px;
-  margin: 20px;
+  width: 13em;
+  margin: 1em;
   display: flex;
   justify-content: space-around;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 14px;
 }
 
 .user:hover,
