@@ -48,6 +48,8 @@ export const getProduct = catchAsync(async (req, res, next) => {
     const {id} = req.user;
     const {productId} = req.body;
 
+    console.log(productId);
+
     try {
       const user= await User.findById(id);
 
