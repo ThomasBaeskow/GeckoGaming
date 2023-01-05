@@ -1,10 +1,12 @@
 import "./cart.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, navigate } from "react";
 import cartImg from "../../images/product-Img/product-img2.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 function Cart() {
   const {
@@ -14,6 +16,7 @@ function Cart() {
     totalQtyCart,
     setTotalQtyCart,
   } = useContext(MyContext);
+  const navigate = useNavigate();
 
   // function to decrease the quantity of the items in the cart
   const decrease = async (item) => {
@@ -157,7 +160,14 @@ function Cart() {
           <p>Promotion code</p>
           <h4>Total:{totalCostCart()} </h4>
           <button>Checkout</button>
-          <br /> <p> ← Back to home</p>
+          <br /> <button
+            className="back"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            <p> ← Back to home</p>
+          </button>
         </div>
       </div>
     </div>
