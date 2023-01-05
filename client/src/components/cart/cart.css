@@ -1,6 +1,6 @@
 .cartContainer {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   font-family: monospace;
 }
 
@@ -11,10 +11,10 @@
 }
 .cartLeft {
   width: 60%;
-  height: 100%;
+  height: 100vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  margin-top: 3em;
 }
 .cartLeft-items {
   display: flex;
@@ -24,6 +24,7 @@
   padding: 10px;
   border-bottom: 1px solid;
   position: relative;
+  margin-top: 1em;
 }
 .deleteBtn {
   position: absolute;
@@ -71,7 +72,7 @@
     display: flex;
     flex-direction: column;
     font-family: monospace;
-    margin-top: 2em;
+    margin-top: 2.5em;
   }
   .cartLeft {
     width: 100%;
@@ -79,14 +80,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2em;
   }
   .cartLeft-items {
     display: flex;
     flex-direction: column;
-    gap: 30px;
     align-items: center;
-    margin-right: 50px;
     padding: 10px;
     border-bottom: 1px solid;
     width: 100%;

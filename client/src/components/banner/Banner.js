@@ -15,7 +15,7 @@ const Banner = () => {
       <div className="bannerContainer">
         <div className="banner-left">
           <h1 className="bannerText">
-            <span>Lorem ipsum</span> dolor sit amet consectetur...
+            Gaming brings people together
           </h1>
 
           <hr />
