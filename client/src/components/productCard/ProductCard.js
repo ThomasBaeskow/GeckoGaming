@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
-function ProductCard({ currentItems }) {
-  
+function ProductCard({ product }) {
+  /*  function ProductCard({ currentItems }) */
   return (
     <div className="cardHolder">
-      {currentItems &&
-        currentItems.map((items) => (
-          <div className="cardContainer">
+      {product &&
+        product.map((items,index) => (
+          <div key={index} className="cardContainer">
             <NavLink to={`/products/${items.id}`} state={items}>
               <img src={items.product_main_image_url} alt="" />
             </NavLink>

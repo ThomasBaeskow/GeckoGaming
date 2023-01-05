@@ -1,15 +1,17 @@
 import "./signup.css";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { MyContext } from "../../context/Context";
 
 
 
 const Signup = () => {
+  const{msg,setMsg} = useContext(MyContext)
   const [registerUser, setRegisterUser] = useState();
-  const[msg, setMsg] = useState()
+  
   const navigate = useNavigate();
 
   const handleChange = (event) => {

@@ -1,6 +1,6 @@
 import "./product.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import ReactStars from "react-stars";
@@ -23,11 +23,21 @@ function Product() {
     wishList.map((val) => val.id).includes(location.state.id) ? true : false
   );
 
+ /*  const fetchProductDetails = async () => {
+    let queryText=`/api/v1/product/{}`  
+    const getProducts = await axios.get(queryText);
+      //setProductDetails(getProducts.data.data.allProducts);
+      console.log(getProducts)
+     };
+  
+      useEffect(() => {
+    fetchProductDetails(); 
+   }, []); */
+
   //adding items to cart
   const addToCart = async (id) => {
     const prod_result = product.filter((item) => item.id === id);
     //console.log("prod result",prod_result[0].product_detail_url.slice(-10))
-
     let cartNewItem = {
       product_id: prod_result[0].product_detail_url.slice(-10),
       cartQty: 1,

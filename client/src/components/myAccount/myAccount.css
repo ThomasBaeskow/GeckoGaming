@@ -318,9 +318,12 @@ span {
     position: absolute;
     margin-left: 200px;
   }
+
+
   span {
     font-size: 15px;
     font-weight: bolder;
     font-family: "Courier New", Courier, monospace;
   }
+
 }

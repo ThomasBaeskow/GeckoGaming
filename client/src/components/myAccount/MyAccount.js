@@ -7,6 +7,7 @@ import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { faCartPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
+import Dialog from "../dialog/Dialog";
 
 function MyAccount() {
   const {
@@ -18,9 +19,18 @@ function MyAccount() {
     setWishList,
     product,
     setChecked,
+    showDialog,setShowDialog,
+    msg,setMsg
   } = useContext(MyContext);
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    setMsg("")
+    setShowDialog(false)
+  },[])
+
+ 
 
   useEffect(() => {
     navigate("/myAccount");
@@ -50,6 +60,8 @@ function MyAccount() {
 
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+      setShowDialog(true)
+      setMsg("successfully added")
     } else {
       let cartNewItem = {
         product_id: prodExists[0].product_detail_url.slice(-10),
@@ -58,9 +70,11 @@ function MyAccount() {
         app_sale_price: prodExists[0].app_sale_price,
         product_main_image_url: prodExists[0].product_main_image_url,
       };
-
+  
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+      setShowDialog(true)
+       setMsg("successfully added")
     }
   };
 
@@ -71,7 +85,10 @@ function MyAccount() {
       { productId: itemId },
       { withCredentials: true }
     );
+    setShowDialog(true)
+    setMsg("successfully removed")
     getWishList();
+    
   };
 
   const getWishList = async () => {
@@ -88,6 +105,8 @@ function MyAccount() {
         withCredentials: true,
       })
       .then((res) => setUserData(""));
+      //setShowDialog(true)
+      //setMsg("successfully logged out")
     navigate("/");
   };
 
@@ -107,7 +126,7 @@ function MyAccount() {
         </div>
         <div className="orderDetail">
           <p>My orders</p>
-          <p>View all → </p>
+          <p>View all → </p> 
         </div>
         <button
           className="btn"
@@ -117,11 +136,13 @@ function MyAccount() {
         >
           Log out
         </button>
-      </div>
+      </div> 
       <div>
         <h2>My Wish List</h2>
         <div className="wishlistContainer">
+        <Dialog msg={msg} />
           {wishList.map((item) => {
+             
             return (
               <div className="wishlistImg">
                 <FontAwesomeIcon
@@ -135,12 +156,13 @@ function MyAccount() {
                   //item.id is a system id
                   onClick={() => addToCart(item.id)}
                 />
-
+             
                 <NavLink to={`/products/${item}`} state={item}>
                   <img src={item.product_main_image_url} alt="" />
                 </NavLink>
 
                 <div className="wishlistItems">
+                
                   <p>{item.product_title && item.product_title.slice(0, 10)}</p>
                   <p>{item.app_sale_price}</p>
                   <p>{item.product_detail_url}</p>

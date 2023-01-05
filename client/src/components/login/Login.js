@@ -5,13 +5,18 @@ import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { MyContext } from "../../context/Context";
+import Dialog from "../dialog/Dialog";
 
 const Login = () => {
   const [loginData, setLoginData] = useState();
-  const { userData, setUserData } = useContext(MyContext); //using context to store user data
-  const [msg, setMsg] = useState();
+  const { userData, setUserData,msg,setMsg,setShowDialog,showDialog } = useContext(MyContext); //using context to store user data
+  
   const navigate = useNavigate();
-
+  
+useEffect(()=>{
+  setMsg("")
+  setShowDialog(false)
+},[])
   // function to get values from input fields.
   const handleChange = (event) => {
     const name = event.target.name;
@@ -47,7 +52,9 @@ const Login = () => {
             //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
           })
           .then((res) =>setUserData(res.data.data))
-        navigate("/products");
+          setShowDialog(true)
+          setMsg("Successfully logged in");
+        navigate("/");
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }
@@ -81,6 +88,7 @@ const Login = () => {
           </form>
           <br /> <br />
           <div>
+            <Dialog/>
             <h3 className="errorMsg">{msg ? msg : ""} </h3>
           </div>
           <p className="signup-text">

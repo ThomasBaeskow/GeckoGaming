@@ -7,7 +7,7 @@ import {MyContext} from "../../context/Context"
 import axios from "axios";
 
 function Cart() {
-  const{cartList,setCartList,productDetails} = useContext(MyContext)
+  const{cartList,setCartList,productDetails,totalQtyCart,setTotalQtyCart} = useContext(MyContext)
 
  
 
@@ -35,13 +35,11 @@ function Cart() {
 
 // function to total quantity of the items in the cart
 
-  const totalQtyCart = () => {
-    const totalQty = cartList.reduce(
+  setTotalQtyCart (cartList.reduce(
       (accumulator, currentValue) => accumulator + currentValue.cartQty,
       0
-    );
-    return totalQty;
-  };
+    ));
+
 
 
 
@@ -76,7 +74,6 @@ const getCart = async()=>{
 }
 
 useEffect(()=>{
-
   getCart()
 },[cartList,setCartList])
 
@@ -125,7 +122,7 @@ useEffect(()=>{
         </div>
         <div className="cartRight">
           <h3>Order</h3>
-          <h4>Quantity of Goods :  {totalQtyCart()}</h4>
+          <h4>Quantity of Goods :  {totalQtyCart}</h4>
          
           <p>Promotion code</p>
           <h4>Total:{totalCostCart()} </h4>
