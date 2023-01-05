@@ -29,8 +29,14 @@ const searchProducts = ()=>{
       <div className="landingCart">    
       <h5>{userData?userData.user.name:""}</h5>
      <NavLink to="/myAccount"> <FontAwesomeIcon icon={faUser} className="user" /></NavLink>
+
      <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
+
+        <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
+
       </div>
+          <span className="qty-num">{totalQtyCart() > 0 && (totalQtyCart()) }</span>  
+      
     </div>
   );
 };

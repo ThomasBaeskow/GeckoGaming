@@ -1,5 +1,5 @@
 import "./myAccount.css";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, uploadUserPhoto, setFieldValue } from "react";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import image from "../../images/profile-pic.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -118,7 +118,8 @@ function MyAccount() {
           <p className="userName"> Hi,{userData.user.name}</p>
 
           <div className="myAccountImg">
-            <FontAwesomeIcon className="editIcon" icon={faEdit} />
+         <button className="upload"><FontAwesomeIcon className="editIcon" icon={faEdit} /></button>
+              
 
             <img src={image} alt="" className="img-profile" />
           </div>
@@ -177,3 +178,6 @@ function MyAccount() {
 }
 
 export default MyAccount;
+
+
+

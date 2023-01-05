@@ -1,5 +1,3 @@
-
-
 .myAccountImg {
   width: 100px;
   height: 100px;
@@ -44,9 +42,9 @@ h2 {
 .userName {
   padding-top: 100px;
 }
-.editIcon {
+/* .editIcon {
   padding-left: 80px;
-}
+} */
 .btn {
   width: 200px;
   height: 50px;
@@ -84,26 +82,22 @@ h2 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.upload{
+  width: 40px;
+  height: 30px;
+  margin-bottom: 5px;
+  margin-left: 70px;
 
-/* .heart-wish {
+
+}
+.addTo-Cart{
+
+  margin-top: 10px;
   width: 30px;
   height: 30px;
   cursor: pointer;
-  color: rgba(246, 22, 160, 0.889);
   position: absolute;
-  margin-left: 200px;
-}
-
-.heart-wish:hover {
-  color: palevioletred;
-} */
-.addTo-Cart{
-  margin-top: 10px;
-  width: 30px;
-  height: 30px; 
-  cursor: pointer;
-  position: absolute;
- margin-left: 10px;
+  margin-left: 10px;
 }
 
 .delete {
@@ -115,13 +109,19 @@ h2 {
   margin-left: 200px;
 }
 
+span {
+  font-size: 15px;
+  font-weight: bolder;
+  font-family: "Courier New", Courier, monospace;
+}
+
 /* media query mobile */
 
 @media screen and (max-width: 768px) {
   .myAccountContainer {
     width: 100%;
   }
-  .img-profile{
+  .img-profile {
     width: 50px;
     height: 50px;
     margin-bottom: 40px;
@@ -197,13 +197,13 @@ h2 {
   .heart-wish:hover {
     color: palevioletred;
   } */
-  .addTo-Cart{
+  .addTo-Cart {
     margin-top: 10px;
     width: 30px;
-    height: 30px; 
+    height: 30px;
     cursor: pointer;
     position: absolute;
-   margin-left: 10px;
+    margin-left: 10px;
   }
   .delete {
     margin-top: 10px;
@@ -213,6 +213,11 @@ h2 {
     position: absolute;
     margin-left: 200px;
   }
+  span {
+    font-size: 15px;
+    font-weight: bolder;
+    font-family: "Courier New", Courier, monospace;
+  }
 }
 
 /* media query ipad */
@@ -221,7 +226,7 @@ h2 {
   .myAccountContainer {
     width: 100%;
   }
-  .img-profile{
+  .img-profile {
     width: 50px;
     height: 50px;
     margin-bottom: 40px;
@@ -297,13 +302,13 @@ h2 {
   .heart-wish:hover {
     color: palevioletred;
   } */
-  .addTo-Cart{
+  .addTo-Cart {
     margin-top: 10px;
     width: 30px;
-    height: 30px; 
+    height: 30px;
     cursor: pointer;
     position: absolute;
-   margin-left: 10px;
+    margin-left: 10px;
   }
   .delete {
     margin-top: 10px;
@@ -313,4 +318,12 @@ h2 {
     position: absolute;
     margin-left: 200px;
   }
+
+
+  span {
+    font-size: 15px;
+    font-weight: bolder;
+    font-family: "Courier New", Courier, monospace;
+  }
+
 }
