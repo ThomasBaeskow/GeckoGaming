@@ -1,5 +1,5 @@
 import "./product.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import React, { useEffect, useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -11,28 +11,16 @@ function Product() {
   const location = useLocation();
   const [rating, setRating] = useState(4.7);
   const {
-    product,
-    setCartList,
-    cartList,
-    setWishList,
+    product,   
     wishList,
     productDetails,
-    setProductDetails,
+    setProductDetails,    
   } = useContext(MyContext);
   const [btnMsg, setBtnMsg] = useState(
     wishList.map((val) => val.id).includes(location.state.id) ? true : false
   );
 
- /*  const fetchProductDetails = async () => {
-    let queryText=`/api/v1/product/{}`  
-    const getProducts = await axios.get(queryText);
-      //setProductDetails(getProducts.data.data.allProducts);
-      console.log(getProducts)
-     };
-  
-      useEffect(() => {
-    fetchProductDetails(); 
-   }, []); */
+
 
   //adding items to cart
   const addToCart = async (id) => {

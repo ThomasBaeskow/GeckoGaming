@@ -6,10 +6,10 @@ import { faUser, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {NavLink} from "react-router-dom";
 import { MyContext } from "../../context/Context";
-import Dialog from "../dialog/Dialog";
+
 
 const Navbar = () => {
-const {cartList,userData,totalQtyCart} = useContext(MyContext);
+const {userData,totalQtyCart} = useContext(MyContext);
 
 
  
@@ -35,7 +35,7 @@ const searchProducts = ()=>{
         
 
       </div>
-          <span className="qty-num">1</span>  
+          <span className="qty-num">{totalQtyCart}</span>  
       
     </div>
   );

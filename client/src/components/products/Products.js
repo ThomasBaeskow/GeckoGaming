@@ -1,14 +1,10 @@
 import "./products.css";
-import React, { useEffect, useContext, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useContext } from "react";
 import card from "../../images/product-Img/product-img-1.jpg";
-import { NavLink } from "react-router-dom";
 import { MyContext } from "../../context/Context";
 import ProductCard from "../productCard/ProductCard";
-//import ProductPagination from "../productCard/ProductPagination";
 import axios from "axios";
-//import ReactPaginate from 'react-paginate'
+
 
 const Products = () => {
   // getting product and category data using context
@@ -85,8 +81,7 @@ const Products = () => {
         <h1>{searchOption}</h1>
 
       <button onClick={()=>(pageNum > 1) && setPageNum(pageNum - 1)}>previous</button>
-        <button onClick={()=>(product.length <= 9) && setPageNum(pageNum + 1)}>Next</button>
-        {/* <ProductPagination itemsPerPage={9} /> */}
+        <button onClick={()=>(product.length === 0)? setPageNum(pageNum -1) :setPageNum(pageNum + 1) }>Next</button>        
         
         <ProductCard product={product} />
       </div>
@@ -97,25 +92,3 @@ const Products = () => {
 export default Products;
 
 
-/* let queryOptions = []
-let queryText =`productType=${queryOptions.join("&productType=")}`
- const selectProducts =async(e) => {
-  console.log(e.target.name.toLowerCase(),queryOptions)
- if(queryOptions.includes(e.target.name.toLowerCase())){
-  const x=queryOptions.filter((item)=>item!==e.target.name.toLowerCase())
-  queryOptions = x;
-  //alert(" now removed")
-  console.log(queryOptions)
-  queryText =`productType=${queryOptions.join("&productType=")}`
-  const getProd =await axios.get(`/api/v1/products/?${queryText}&page=${pageNum}`);
-      setProduct(getProd.data.data.allProducts)
- }
- else{ 
-
-  queryOptions.push(e.target.name.toLowerCase())
-  //alert(`now added`)
-  console.log(queryOptions)
-  queryText =`productType=${queryOptions.join("&productType=")}`
-  const getProd =await axios.get(`/api/v1/products/?${queryText}&page=${pageNum}`);
-  setProduct(getProd.data.data.allProducts)
-}} */
