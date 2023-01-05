@@ -63,6 +63,10 @@
   margin-bottom: 40px;
 }
 
+.back{
+  height: 45px;
+}
+
 /* media query mobile */
 
 @media screen and (max-width: 768px) {
