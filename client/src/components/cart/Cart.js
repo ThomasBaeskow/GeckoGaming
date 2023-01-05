@@ -6,6 +6,7 @@ import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
 
+
 function Cart() {
   const {
     cartList,
@@ -14,6 +15,8 @@ function Cart() {
     totalQtyCart,
     setTotalQtyCart,
   } = useContext(MyContext);
+
+ 
 
   // function to decrease the quantity of the items in the cart
   const decrease = async (item) => {
@@ -152,12 +155,15 @@ function Cart() {
           })}
         </div>
         <div className="cartRight">
+         
           <h3>Order</h3>
           <h4>Quantity of Goods : {totalQtyCart}</h4>
           <p>Promotion code</p>
           <h4>Total:{totalCostCart()} </h4>
-          <button>Checkout</button>
-          <br /> <p> ← Back to home</p>
+      {/*   <button >Checkout</button>  */}
+           <div id="paypal-button-container">Paypal</div>
+          <br /> <p> ← Back to home</p> 
+          
         </div>
       </div>
     </div>

@@ -24,6 +24,7 @@ function Product() {
 
   //adding items to cart
   const addToCart = async (id) => {
+    
     const prod_result = product.filter((item) => item.id === id);
     //console.log("prod result",prod_result[0].product_detail_url.slice(-10))
     let cartNewItem = {
@@ -81,7 +82,7 @@ function Product() {
 
           <p>
             Product Details:{location.state.productDetails}
-            {location.state.id}
+           {/*  {location.state.id} */}
             <FontAwesomeIcon icon={faPlus} />
           </p>
           <p>
