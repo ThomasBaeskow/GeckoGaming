@@ -15,7 +15,7 @@ router
 
 
 router
-.route("/:orderId/capture")
+.route("/:orderID/capture")
 .post(capturePayment)
 
 

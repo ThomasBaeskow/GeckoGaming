@@ -10,8 +10,8 @@ export const createOrder = async (req, res) => {
 
 // // Capture Order
 export const capturePayment = async (req, res) => {
-    const { orderId } = req.params;
-    const captureData = await paypal.capturePayment(orderId);
+    const { orderID } = req.params;
+    const captureData = await paypal.capturePayment(orderID);
     res.json(captureData);
 }
 
