@@ -31,7 +31,7 @@ function ProductPagination({ itemsPerPage }) {
   
     return (
       <><div >
-      <ReactPaginate
+    {/*   <ReactPaginate
           className='pagination'
           breakLabel="..."
           nextLabel="next >"
@@ -40,8 +40,8 @@ function ProductPagination({ itemsPerPage }) {
           pageCount={pageNum}
           previousLabel="< previous"
           renderOnZeroPageCount={null}
-        />
-        <ProductCard currentItems={currentItems} />
+        /> */}
+        <ProductCard /* currentItems={currentItems} */ />
         </div>
       </>
     );
