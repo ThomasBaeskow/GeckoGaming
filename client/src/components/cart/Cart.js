@@ -50,7 +50,7 @@ function Cart() {
         accumulator + currentValue.cartQty * currentValue.app_sale_price,
       0
     );
-    return totalCost;
+    return totalCost.toFixed(2);
   };
 
 

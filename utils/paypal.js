@@ -11,6 +11,7 @@ const {PAYPAL_CLIENT_ID, PAYPAL_SECRET} = process.env
 
 const base = "https://api-m.sandbox.paypal.com"
 
+
 export const createOrder = async (req, res) => {
 
     const userId = req.user.id
@@ -23,6 +24,10 @@ export const createOrder = async (req, res) => {
     (accumulator, currentValue) => accumulator + currentValue.app_sale_price,
     initialValue
     );
+
+    const convertNumber = sumWithInitial.toFixed(2)
+
+    // console.log(convertNumber);
 
     // console.log(sumWithInitial);
     
@@ -40,7 +45,7 @@ export const createOrder = async (req, res) => {
           {
             amount: {
               currency_code: "USD",
-              value: sumWithInitial,
+              value: convertNumber,
             },
           },
         ],
@@ -50,40 +55,11 @@ export const createOrder = async (req, res) => {
     console.log(data);
     return data;
   }
-  
 
 
-
-
-// export async function createOrder() {
-//   const accessToken = await generateAccessToken();
-//   const url = `${base}/v2/checkout/orders`;
-//   const response = await fetch(url, {
-//     method: "post",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${accessToken}`,
-//     },
-//     body: JSON.stringify({
-//       intent: "CAPTURE",
-//       purchase_units: [
-//         {
-//           amount: {
-//             currency_code: "USD",
-//             value: "100.00",
-//           },
-//         },
-//       ],
-//     }),
-//   });
-//   const data = await response.json();
-//   console.log(data);
-//   return data;
-// }
-
-export async function capturePayment(orderId) {
+export async function capturePayment(orderID) {
   const accessToken = await generateAccessToken();
-  const url = `${base}/v2/checkout/orders/${orderId}/capture`;
+  const url = `${base}/v2/checkout/orders/${orderID}/capture`;
   const response = await fetch(url, {
     method: "post",
     headers: {
