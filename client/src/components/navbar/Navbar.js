@@ -32,10 +32,10 @@ const searchProducts = ()=>{
 
      <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
 
-        <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
+        
 
       </div>
-          <span className="qty-num"></span>  
+          <span className="qty-num">1</span>  
       
     </div>
   );
