@@ -8,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
+
 function Cart() {
   const {
     cartList,
@@ -17,6 +18,8 @@ function Cart() {
     setTotalQtyCart,
   } = useContext(MyContext);
   const navigate = useNavigate();
+
+ 
 
   // function to decrease the quantity of the items in the cart
   const decrease = async (item) => {
@@ -155,10 +158,12 @@ function Cart() {
           })}
         </div>
         <div className="cartRight">
+         
           <h3>Order</h3>
           <h4>Quantity of Goods : {totalQtyCart}</h4>
           <p>Promotion code</p>
           <h4>Total:{totalCostCart()} </h4>
+
           <button>Checkout</button>
           <br /> <button
             className="back"
@@ -168,6 +173,12 @@ function Cart() {
           >
             <p> ← Back to home</p>
           </button>
+
+      {/*   <button >Checkout</button>  */}
+           <div id="paypal-button-container">Paypal</div>
+          <br /> <p> ← Back to home</p> 
+          
+
         </div>
       </div>
     </div>

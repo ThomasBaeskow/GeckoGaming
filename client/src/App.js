@@ -31,7 +31,7 @@ function App() {
           <Route path="/products/:id" element={<Product />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<ProtectedRoute userAccess="authenticated"><Cart/></ProtectedRoute>} />
           <Route path="/myAccount" element={<ProtectedRoute userAccess="authenticated"><MyAccount/></ProtectedRoute>} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/ViewAll" element={<ViewAll/>} />
