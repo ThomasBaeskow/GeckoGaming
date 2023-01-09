@@ -6,17 +6,21 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { MyContext } from "../../context/Context";
 import Dialog from "../dialog/Dialog";
+import ForgotPassword from "../forgotPassword/ForgotPassword";
 
 const Login = () => {
   const [loginData, setLoginData] = useState();
-  const { userData, setUserData,msg,setMsg,setShowDialog,showDialog } = useContext(MyContext); //using context to store user data
+  const {  setUserData,msg,setMsg,setShowDialog,setChangePage } = useContext(MyContext); //using context to store user data
   
   const navigate = useNavigate();
+  
   
 useEffect(()=>{
   setMsg("")
   setShowDialog(false)
 },[])
+
+
   // function to get values from input fields.
   const handleChange = (event) => {
     const name = event.target.name;
@@ -52,14 +56,16 @@ useEffect(()=>{
             //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
           })
           .then((res) =>setUserData(res.data.data))
-          setShowDialog(true)
+          
           setMsg("Successfully logged in");
-        navigate("/");
+          setShowDialog(true)
+       setChangePage("/")
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }
     }
   };
+ 
 
   return (
     <>
@@ -67,7 +73,7 @@ useEffect(()=>{
         <h1>Login</h1>
         <div className="loginForm">
           <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Email/username:</label>
+            <label htmlFor="username">Email:</label>
             <input
               type="text"
               placeholder="email"
@@ -85,8 +91,11 @@ useEffect(()=>{
             <br />
             <br /> <button type="submit">Log in</button>
             <br />
+            <p onClick={()=>navigate("/forgotPassword")} className="forgotP"> Forgot Password? .. Click to reset</p>
+
           </form>
-          <br /> <br />
+         
+          <br />         
           <div>
             <Dialog/>
             <h3 className="errorMsg">{msg ? msg : ""} </h3>

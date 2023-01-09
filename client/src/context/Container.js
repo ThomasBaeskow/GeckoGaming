@@ -19,13 +19,12 @@ export default function Container({ children }) {
   const [searchOption, setSearchOption] = useState("");
   const [checked, setChecked] = useState(false);
   const [pageNum,setPageNum] = useState(1)
-  //const [ queryOptions,setQueryOptions] = useState(["videogames"])
-  //const [productDetails, setProductDetails] = useState([]);
+  const[singleProductDetails,setSingleProductDetails] = useState([]);
   const [open, setOpen] = useState(false);
   const[showDialog,setShowDialog] = useState(false)
   const[msg,setMsg] = useState("")
   const[totalQtyCart,setTotalQtyCart] = useState(0)
-
+const[changePage,setChangePage] = useState("")
 
 
   return (
@@ -50,7 +49,9 @@ export default function Container({ children }) {
         showDialog,setShowDialog,
         msg,setMsg,
         searchOption, setSearchOption,
-        totalQtyCart,setTotalQtyCart
+        totalQtyCart,setTotalQtyCart,
+        singleProductDetails,setSingleProductDetails,
+        changePage,setChangePage
       
       }}
     >
