@@ -5,12 +5,12 @@ import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { MyContext } from "../../context/Context";
-
-
+import FileBase64 from "react-file-base64";
 
 const Signup = () => {
   const{msg,setMsg} = useContext(MyContext)
   const [registerUser, setRegisterUser] = useState();
+  const [image, setImage] = useState("");
   
   const navigate = useNavigate();
 
@@ -20,12 +20,12 @@ const Signup = () => {
     setRegisterUser((values) => ({ ...registerUser, [name]: value }));
   };
 
-  const clear = ()=>{
+/*   const clear = ()=>{
   setRegisterUser({name:"", email:"", password:"", confirmPassword:""});
   //{name:"", email:"", password:"", confirmPassword:""}
   navigate("/signup")
   console.log("i clear", registerUser)
-  }
+  } */
 
    //function to check the validation of the email
    function isValidEmail(email) {
@@ -36,8 +36,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(registerUser);
-
+    //console.log(registerUser);
     if (!registerUser || !registerUser.email || !registerUser.name || !registerUser.password || !registerUser.confirmPassword) {
       setMsg("Password or email fields cannot be empty");
     } else if (registerUser.password.length < 8) {
@@ -50,16 +49,16 @@ const Signup = () => {
     } else {
       setMsg("")
      try{
-    await axios
+         await axios
       .post("/api/v1/user/signup", registerUser)
       .then((res) => 
-             
-      //setMsg("you have successfully registered")        
-     navigate("/login"))
+        
+      setMsg("you have successfully registered"));       
+   navigate("/login")
     
     }catch(e){
       setMsg("registration failed, user exits")
-      clear();
+      //clear();
     }
   }
   };
@@ -67,8 +66,18 @@ const Signup = () => {
   return (
     <div className="registerContainer">
       <h1>User Registration</h1>
+   
       <div className="userForm">
         <form onSubmit={handleSubmit} id="regForm">
+      {/* field to collect profile/user image */}
+      {/*   <FileBase64
+        type="file"
+        multiple={false}
+        onDone={({ base64 }) => {             
+          setRegisterUser({ ...registerUser, photo:base64} );
+        }}
+      /> */}
+      {/* ............. */}
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -100,6 +109,8 @@ const Signup = () => {
             name="confirmPassword"
             onChange={handleChange}
           />
+    
+
           <br /> <button type="submit" className="social-media-btn">Sign up</button>
           <br />
           

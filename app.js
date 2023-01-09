@@ -15,6 +15,7 @@ import orderRouter from "./routes/orderRoutes.js"
 
 dotenv.config({path:"./.env"})
 
+
 const port = process.env.PORT || 3000;
 
 const __dirname = path.resolve();
@@ -22,6 +23,10 @@ const __dirname = path.resolve();
 const app = express();
 
 app.use(cors())
+
+
+// NEW CHANGE
+app.use(express.static("client/public"));
 
 const DB = process.env.DATABASE
 

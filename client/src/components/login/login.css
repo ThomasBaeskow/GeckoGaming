@@ -55,8 +55,9 @@
 .face, .googleicon{
     margin-left: 5px;
 }
-
-
+.forgotP{
+  cursor: pointer;
+}
 @media screen and (max-width: 768px) {
   .loginContainer {
     width: 100%;

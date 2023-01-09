@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 import Cart from "../models/cart.js"
+import User from "../models/user.js"
 
 
 dotenv.config({path:"./.env"})
@@ -16,8 +17,13 @@ export const createOrder = async (req, res) => {
 
     const userId = req.user.id
     const cart = await Cart.findOne({userId})
+    // const user = await User.findByIdAndUpdate(userId, user.orders.push(cart.products.product_id, {
+    //   new: true, // returns the updated object instead of the old one
+    //   runValidators: false
+    // }))
 
-    // console.log(cart);
+
+    // console.log(user.orders);
 
     const initialValue = 0;
     const sumWithInitial = cart.products.reduce(
@@ -53,6 +59,10 @@ export const createOrder = async (req, res) => {
     });
     const data = await response.json();
     console.log(data);
+
+
+    // console.log(user.orders);
+
     return data;
   }
 

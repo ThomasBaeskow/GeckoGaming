@@ -1,25 +1,28 @@
 import "./cart.css";
-import React, { useContext, useEffect, useState, navigate } from "react";
-import cartImg from "../../images/product-Img/product-img2.jpg";
+import React, { useContext, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
+
+import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js"
+
 import { useNavigate } from "react-router-dom";
 
 
 
+
+
+
+
 function Cart() {
-  const {
-    cartList,
-    setCartList,
-    productDetails,
-    totalQtyCart,
-    setTotalQtyCart,
-  } = useContext(MyContext);
+  const { cartList, setCartList, totalQtyCart, setTotalQtyCart } =
+    useContext(MyContext);
   const navigate = useNavigate();
 
- 
+  useEffect(() => {
+    getCart();
+  }, []);
 
   // function to decrease the quantity of the items in the cart
   const decrease = async (item) => {
@@ -96,12 +99,6 @@ function Cart() {
     //console.log("cartlist",cartList)
   };
 
-
-  
-  useEffect(() => {
-    getCart();
-  }, []);
-
   return (
     <div className="yourCart">
       <h1>Your Cart</h1>
@@ -121,12 +118,9 @@ function Cart() {
                   <div className="">
                     <p>
                       {item.product_title}
-                      <h6>
-                        Available quantity:{" "}
-                        {/* {productDetails.availableQty} */}
-                      </h6>
+                      {/* <h6> Available quantity: </h6> */}
                     </p>
-                    <p>{item.product_id}</p>
+                    <h5>Product Id: {item.product_id}</h5>
                     <div className="cartQuantityContainer">
                       <button
                         className="decrease cartBtn"
@@ -145,7 +139,6 @@ function Cart() {
                       </button>
                     </div>
                     <p>{item.app_sale_price}</p>
-                    {/*       <p>{item.product.sellingPrice * item.product.cartQty}</p> */}
                   </div>
                   <FontAwesomeIcon
                     className="deleteBtn"
@@ -158,14 +151,43 @@ function Cart() {
           })}
         </div>
         <div className="cartRight">
-         
           <h3>Order</h3>
           <h4>Quantity of Goods : {totalQtyCart}</h4>
           <p>Promotion code</p>
           <h4>Total:{totalCostCart()} </h4>
 
+
+
+          <PayPalScriptProvider options={{"client-id": "ASjPZXDYHNVn1687YJVcQxvQ1DooM7nEb2VN_37PqBdYcDwq-t0OL-RYHAQG__qogmhC9m8bYLls224W"}}>
+            <PayPalButtons
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                    purchase_units: [
+                        {
+                            amount: {
+                                currency_code: "USD",
+                                value: totalCostCart(),
+                            }
+                        }
+                    ]
+                })
+              }}
+              onApprove={(data, actions) => {
+                  return actions.order.capture().then(function (details) {
+                      alert(
+                          "Transaction completed by " + details.payer.name.given_name
+                      )
+                  })
+              }}
+            />
+          </PayPalScriptProvider>
+          <br /> <p> ← Back to home</p>
+
+
+
           <button>Checkout</button>
-          <br /> <button
+          <br />{" "}
+          <button
             className="back"
             onClick={() => {
               navigate("/");
@@ -174,10 +196,15 @@ function Cart() {
             <p> ← Back to home</p>
           </button>
 
-      {/*   <button >Checkout</button>  */}
-           <div id="paypal-button-container">Paypal</div>
+        
+          
+          <br /> <p> ← Back to home</p>
+
+        
           <br /> <p> ← Back to home</p> 
           
+
+
 
         </div>
       </div>

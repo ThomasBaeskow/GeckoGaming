@@ -7,7 +7,7 @@ export const getAllProductsDetail = factoryGetAll(ProductDetail)
   
 export const getProductDetail = catchAsync(async (req, res, next) => {
 
-    const {product_id} = req.body
+    const {product_id} = req.params
 
     const product = await ProductDetail.find({product_id});
 

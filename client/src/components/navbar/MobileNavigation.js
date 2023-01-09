@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 import NavLinks from "./NavLinks";
 import {MyContext} from "../../context/Context"
 import "./navbar.css";

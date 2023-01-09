@@ -35,7 +35,8 @@ const searchProducts = ()=>{
         
 
       </div>
-          <span className="qty-num">{totalQtyCart}</span>  
+        {/*   <span className="qty-num">{totalQtyCart}</span>  */}
+          <span className="qty-num">{userData? totalQtyCart : ""}</span>  
       
     </div>
   );
