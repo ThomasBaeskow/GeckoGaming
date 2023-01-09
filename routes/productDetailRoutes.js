@@ -12,7 +12,7 @@ router
 // .post(createProduct)
 
 router
-.route("/:id")
+.route("/:product_id")
 .get(getProductDetail)
 // .patch()
 // .delete()
