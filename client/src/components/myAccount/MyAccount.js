@@ -1,6 +1,6 @@
 import "./myAccount.css";
-import React, { useState, useEffect, useContext, uploadUserPhoto, setFieldValue, navigate } from "react";
-import { useLocation, useNavigate, NavLink } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import {  useNavigate, NavLink } from "react-router-dom";
 import image from "../../images/profile-pic.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
@@ -8,6 +8,7 @@ import { faCartPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
 import Dialog from "../dialog/Dialog";
+import FileBase64 from "react-file-base64";
 
 function MyAccount() {
   const {
@@ -19,21 +20,19 @@ function MyAccount() {
     setWishList,
     product,
     setChecked,
-    showDialog,setShowDialog,
-    msg,setMsg
+    showDialog,
+    setShowDialog,
+    msg,
+    setMsg,
+    setChangePage
   } = useContext(MyContext);
 
   const navigate = useNavigate();
-
-  useEffect(()=>{
-    setMsg("")
-    setShowDialog(false)
-  },[])
-
- 
+ // const [image, setImage] = useState("");
 
   useEffect(() => {
-    navigate("/myAccount");
+    setMsg("");
+    setShowDialog(false);
   }, []);
 
   useEffect(() => {
@@ -45,14 +44,20 @@ function MyAccount() {
     //console.log("product front", product);
     const prodExists = product.filter((item) => item.id === id);
     //console.log("single product", prodExists.length);
-
+// check if product is there in front end product array ---if not
     if (prodExists.length === 0) {
       const response = await axios.get(`/api/v1/products/${id}`);
       const prod_result = response.data.data.product;
 
+      let product_id= prod_result.product_detail_url.slice(-10)
+    //  console.log("producy id:", product_id)
+      let itemQty =cartList.filter((val)=>val.product_id===product_id)
+     let cartQty =itemQty.length===0?1:itemQty[0].cartQty+1
+      //console.log("item", itemQty, cartQty)
+
       let cartNewItem = {
-        product_id: prod_result.product_detail_url.slice(-10),
-        cartQty: 1,
+        product_id: product_id,
+        cartQty: cartQty,
         product_title: prod_result.product_title,
         app_sale_price: prod_result.app_sale_price,
         product_main_image_url: prod_result.product_main_image_url,
@@ -60,21 +65,32 @@ function MyAccount() {
 
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
-      setShowDialog(true)
-      setMsg("successfully added")
-    } else {
+      setShowDialog(true);
+      setMsg("successfully added");
+      setChangePage("/myAccount")
+    } 
+    // check if product is there in front end product array -- if there
+    else {
+      const prod_result = product.filter((item) => item.id === id);
+    //console.log("prod result",prod_result[0].product_detail_url.slice(-10))
+    let product_id=prod_result[0].product_detail_url.slice(-10);
+    let itemQty =cartList.filter((val)=>val.product_id===product_id)
+    let cartQty =itemQty.length===0?1:itemQty[0].cartQty+1
+    //console.log("item", itemQty, cartQty)
+
+
       let cartNewItem = {
-        product_id: prodExists[0].product_detail_url.slice(-10),
-        cartQty: 1,
+        product_id: product_id,
+        cartQty: cartQty,
         product_title: prodExists[0].product_title,
         app_sale_price: prodExists[0].app_sale_price,
         product_main_image_url: prodExists[0].product_main_image_url,
       };
-  
+
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
-      setShowDialog(true)
-       setMsg("successfully added")
+      setShowDialog(true);
+      setMsg("successfully added");
     }
   };
 
@@ -85,10 +101,9 @@ function MyAccount() {
       { productId: itemId },
       { withCredentials: true }
     );
-    setShowDialog(true)
-    setMsg("successfully removed")
+    setShowDialog(true);
+    setMsg("successfully removed");
     getWishList();
-    
   };
 
   const getWishList = async () => {
@@ -103,28 +118,50 @@ function MyAccount() {
     const res = await axios
       .get("/api/v1/user/logout", {
         withCredentials: true,
-      })
-      .then((res) => setUserData(""));
-      //setShowDialog(true)
-      //setMsg("successfully logged out")
-    navigate("/");
+      }) 
+
+      setUserData("")
   };
+
+  // .route("/updateMe")
+  //.patch(uploadUserPhoto, resizeUserPhoto, updateCurrentUserData)
+  /* const upLoad = async () => {
+    const getImage = await axios.patch("/api/v1/user/updateMe", {
+      photo: image,
+    });
+    //setImage(getImage.data.data.user.photo)
+    console.log(getImage);
+  }; */
 
   return (
     <div>
       <div className="myAccountContainer">
+      <Dialog />
         <h1 className="myaccount-title">My Account</h1>
         <div className="accountDetail">
+      
           <p className="userName"> Hi,{userData.user.name}</p>
 
           <div className="myAccountImg">
-         <button className="upload"><FontAwesomeIcon className="editIcon" icon={faEdit} /></button>
-              
-
+            <button className="upload">
+              <FontAwesomeIcon className="editIcon" icon={faEdit} /* onClick={upLoad} *//>
+            </button>
+          
+            
+         {/*      <FileBase64
+                multiple={false}
+                onDone={({ base64 }) => {
+                  setImage(base64);
+                }}
+              /> */}
+        
+            
             <img src={image} alt="" className="img-profile" />
           </div>
+      {/*     <p onClick={()=>navigate("/forgotPassword")}> Reset Password? .. Click to reset</p> */}
         </div>
         <div className="orderDetail">
+       
           <p>My orders</p>
           <button
             onClick={() => {
@@ -134,6 +171,7 @@ function MyAccount() {
             <p> View All</p>
           </button>
         </div>
+        
         <button
           className="btn"
           onClick={() => {
@@ -141,37 +179,37 @@ function MyAccount() {
           }}
         >
           Log out
+         
         </button>
-      </div> 
+      </div>
       <div>
         <h2>My Wish List</h2>
         <div className="wishlistContainer">
-        <Dialog msg={msg} />
-          {wishList.map((item) => {
-             
+          <Dialog />
+          {wishList.map((items) => {
+            //changes from item to items to get product_id in single product page from wishlist at it has system product id
             return (
               <div className="wishlistImg">
                 <FontAwesomeIcon
                   className="delete"
                   icon={faTrash}
-                  onClick={() => removeItem(item.id)}
+                  onClick={() => removeItem(items.id)}
                 />
                 <FontAwesomeIcon
                   className="addTo-Cart"
                   icon={faCartPlus}
-                  //item.id is a system id
-                  onClick={() => addToCart(item.id)}
+                  //item.id is a system id from product database
+                  onClick={() => addToCart(items.id)}
                 />
-             
-                <NavLink to={`/products/${item}`} state={item}>
-                  <img src={item.product_main_image_url} alt="" />
+
+                <NavLink to={`/products/${items.id}`} state={items}>
+                  <img src={items.product_main_image_url} alt="" />
                 </NavLink>
 
                 <div className="wishlistItems">
-                
-                  <p>{item.product_title && item.product_title.slice(0, 10)}</p>
-                  <p>{item.app_sale_price}</p>
-                  <p>{item.product_detail_url}</p>
+                  <p>{items.product_title && items.product_title.slice(0, 10)}</p>
+                  <p>{items.app_sale_price}</p>
+                  <p>{items.product_detail_url}</p>
                 </div>
                 {/* <h1>{item.id}</h1> */}
               </div>
@@ -184,6 +222,3 @@ function MyAccount() {
 }
 
 export default MyAccount;
-
-
-

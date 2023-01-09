@@ -8,12 +8,11 @@
     width: 600px;
     height: 200px;
     text-align: center;
-    top: 50%;
-    left: 50%;
+    left:30%;
+    top: 20%;
     border: 1px solid;
     box-shadow: 5px 5px;
-    position: absolute;
-    transform: translate(-50%, -50%);
+    position: fixed;  
     background-color: aquamarine;
     color:black;
 }

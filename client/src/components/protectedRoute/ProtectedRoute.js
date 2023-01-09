@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../context/Context";
-
+import Dialog from "../dialog/Dialog";
 
 function ProtectedRoutes({ children, userAccess }) {
-  const { userData } = useContext(MyContext);
-  const navigate = useNavigate();
+  const { userData, setMsg, setShowDialog, setChangePage } =
+    useContext(MyContext);
 
   if (userAccess === "non-authenticated") {
     if (!userData) {
@@ -15,16 +14,16 @@ function ProtectedRoutes({ children, userAccess }) {
     if (userData) {
       return children;
     } else {
+      setMsg("You have not logged in, Please login");
+      setChangePage("/login");
+      setShowDialog(true);
       return (
-        <div style={{ width: "300px", height: "60vh", margin: "150px auto" }}>
-          <h3>You have not logged in,please login</h3>
-          <button onClick={() => navigate("/login")}>Login please</button>
+        <div>
+          <Dialog />
         </div>
       );
     }
   }
-
-
 }
 
 export default ProtectedRoutes;
