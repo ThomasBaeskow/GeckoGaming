@@ -13,6 +13,7 @@ import Product from "./components/product/Product";
 import Container from "./context/Container";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+import ViewAll from "./components/viewAll/ViewAll";
 
 
 
@@ -30,9 +31,10 @@ function App() {
           <Route path="/products/:id" element={<Product />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<ProtectedRoute userAccess="authenticated"><Cart/></ProtectedRoute>} />
           <Route path="/myAccount" element={<ProtectedRoute userAccess="authenticated"><MyAccount/></ProtectedRoute>} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/ViewAll" element={<ViewAll/>} />
          
         </Routes>
         <Footer />

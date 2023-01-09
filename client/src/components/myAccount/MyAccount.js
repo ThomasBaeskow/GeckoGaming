@@ -1,5 +1,5 @@
 import "./myAccount.css";
-import React, { useState, useEffect, useContext, uploadUserPhoto, setFieldValue } from "react";
+import React, { useState, useEffect, useContext, uploadUserPhoto, setFieldValue, navigate } from "react";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import image from "../../images/profile-pic.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -126,7 +126,13 @@ function MyAccount() {
         </div>
         <div className="orderDetail">
           <p>My orders</p>
-          <p>View all → </p> 
+          <button
+            onClick={() => {
+              navigate("/ViewAll");
+            }}
+          >
+            <p> View All</p>
+          </button>
         </div>
         <button
           className="btn"
