@@ -102,8 +102,8 @@ const Products = () => {
       <div className="productDisplay">
         <h1>{searchOption}</h1>
 
-      <button onClick={()=>(pageNum > 1) && setPageNum(pageNum - 1)}>previous</button>
-        <button onClick={()=>(product.length === 0)? setPageNum(pageNum -1) :setPageNum(pageNum + 1) }>Next</button>        
+      <button onClick={()=>(pageNum > 1) && setPageNum(pageNum - 1)}>⬅️previous</button>
+        <button onClick={()=>(product.length === 0)? setPageNum(pageNum -1) :setPageNum(pageNum + 1) }>Next➡️</button>        
         
         <ProductCard product={product} />
       </div>
