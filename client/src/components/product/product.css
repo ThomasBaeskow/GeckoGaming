@@ -1,10 +1,10 @@
 .productData {
   width: 100%;
-  margin: 0 auto;
+  display: flex;
   height: 40em;
   border-bottom: 1px solid;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 8em;
   margin-top: 8em;
   font-family: "JetBrains mono";
@@ -41,6 +41,10 @@
   margin-bottom: 20px;
   margin-top: 20px;
   margin-right: 10px;
+}
+
+.addToWishList{
+  font-size: 1vw;
 }
 
 /* media query mobile */

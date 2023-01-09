@@ -330,7 +330,7 @@ option {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;  
+    gap: 30px;
     margin-top: 8em;
   }
   .cardContainer {

@@ -27,7 +27,7 @@ h2 {
   width: 100%;
   padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   border-bottom: 1px solid;
 }
 .orderDetail {
@@ -51,6 +51,22 @@ h2 {
   margin-left: 40%;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.viewAll-btn {
+  outline: none;
+  border: none;
+  background: none;
+  box-shadow: none;
+  align-items: flex-end;
+  margin-right: 1%;
+}
+
+.viewAll-btn:hover {
+  color: black;
+  cursor: pointer;
+  background: none;
+  box-shadow: none;
 }
 .wishlistContainer {
   width: 100%;
@@ -82,16 +98,24 @@ h2 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.upload{
-  width: 40px;
+.upload {
+  width: 30px;
   height: 30px;
-  margin-bottom: 5px;
-  margin-left: 70px;
-
-
+  cursor: pointer;
+  position: relative;
+  margin-left: 4em;
 }
-.addTo-Cart{
 
+.editIcon {
+  width: 20px;
+  height: auto;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.addTo-Cart {
   margin-top: 10px;
   width: 30px;
   height: 30px;
@@ -319,11 +343,9 @@ span {
     margin-left: 200px;
   }
 
-
   span {
     font-size: 15px;
     font-weight: bolder;
     font-family: "Courier New", Courier, monospace;
   }
-
 }

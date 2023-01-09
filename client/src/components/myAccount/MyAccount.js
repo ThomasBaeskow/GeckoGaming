@@ -164,11 +164,12 @@ function MyAccount() {
        
           <p>My orders</p>
           <button
+            className="viewAll-btn"
             onClick={() => {
               navigate("/ViewAll");
             }}
           >
-            <p> View All</p>
+            View All ➡️
           </button>
         </div>
         
