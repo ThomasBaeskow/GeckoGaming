@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
+import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js"
 
 function Cart() {
   const {
@@ -156,7 +157,29 @@ function Cart() {
           <h4>Quantity of Goods : {totalQtyCart}</h4>
           <p>Promotion code</p>
           <h4>Total:{totalCostCart()} </h4>
-          <button>Checkout</button>
+          <PayPalScriptProvider options={{"client-id": "ASjPZXDYHNVn1687YJVcQxvQ1DooM7nEb2VN_37PqBdYcDwq-t0OL-RYHAQG__qogmhC9m8bYLls224W"}}>
+            <PayPalButtons
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                    purchase_units: [
+                        {
+                            amount: {
+                                currency_code: "USD",
+                                value: totalCostCart(),
+                            }
+                        }
+                    ]
+                })
+              }}
+              onApprove={(data, actions) => {
+                  return actions.order.capture().then(function (details) {
+                      alert(
+                          "Transaction completed by " + details.payer.name.given_name
+                      )
+                  })
+              }}
+            />
+          </PayPalScriptProvider>
           <br /> <p> ← Back to home</p>
         </div>
       </div>
