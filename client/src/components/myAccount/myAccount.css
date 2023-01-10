@@ -1,6 +1,7 @@
 .myAccountImg {
   width: 100px;
   height: 100px;
+  margin-bottom: 4em;
 }
 .myAccountImg img {
   width: 100px;
@@ -18,7 +19,50 @@
   margin-top: 5em;
 }
 
-.reset{
+.custom-file-upload {
+  position: relative;
+}
+
+.buttons{
+  width: 25em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.fa-cloud-upload-alt {
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.submit-btn{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: none;
+
+}
+
+.submit-btn:hover{
+  color: black;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: none;
+}
+
+.reset {
   font-family: monospace;
 }
 h2 {
@@ -30,16 +74,16 @@ h2 {
 .accountDetail {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 100%;
+  width: 80%;
   padding: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border-bottom: 1px solid;
 }
 .orderDetail {
   margin-top: 40px;
   margin-bottom: 10px;
-  width: 100%;
+  width: 80%;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -48,9 +92,7 @@ h2 {
 .userName {
   padding-top: 100px;
 }
-/* .editIcon {
-  padding-left: 80px;
-} */
+
 .btn {
   width: 200px;
   height: 50px;
@@ -103,22 +145,6 @@ h2 {
   font-size: 40px;
   margin-top: 50px;
   margin-bottom: 50px;
-}
-.upload {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  position: relative;
-  margin-left: 4em;
-}
-
-.editIcon {
-  width: 20px;
-  height: auto;
-  color: black;
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .addTo-Cart {
