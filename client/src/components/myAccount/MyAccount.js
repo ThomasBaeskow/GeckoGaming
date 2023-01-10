@@ -33,10 +33,7 @@ function MyAccount() {
 );
 
 
-  useEffect(() => {
-    setMsg("");
-    setShowDialog(false);
-  }, []);
+ 
 
 
   useEffect(() => {
