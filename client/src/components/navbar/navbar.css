@@ -246,21 +246,26 @@ li:hover {
   .landingSearch {
     display: none;
   }
-  .cart{
+
+  .cart-div{
     position: relative;
   }
+  .fa-cart-shopping, .cart{
+    font-size: 2vw;
+    
+  }
+ 
   .qty-num{
     position: absolute;
-    top: 10px;
-    right: 60px;
-    background-color: #1fab89;
+    top: 0;
+    left: 0;
+    background-color: #59e6c3;
     color: white;
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 5px;
     font-size: 12px;
+    border: 1px solid;
   }
 }

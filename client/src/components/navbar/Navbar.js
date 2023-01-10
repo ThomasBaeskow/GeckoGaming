@@ -44,12 +44,12 @@ setTotalQtyCart(
       <h5>{userData?userData.user.name:""}</h5>
      <NavLink to="/myAccount"> <FontAwesomeIcon icon={faUser} className="user" /></NavLink>
 
+<div className="cart-div">
      <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
-
+     </div>
         
 
       </div>
-        {/*   <span className="qty-num">{totalQtyCart}</span>  */}
           <span className="qty-num">{userData? totalQtyCart : ""}</span>  
       
     </div>
