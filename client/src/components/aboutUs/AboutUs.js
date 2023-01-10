@@ -19,12 +19,12 @@ const AboutUs = () => {
         <span className="title-contact">Get in Touch</span>
         <div className="contactCard">
           <div className="contactForm">
-            <form>
+            <form action="about/contact" method="post">
               <label htmlFor="email">Email/username</label>
               <br />
-              <input type="text" placeholder="email/username" />
+              <input type="email" name="email" placeholder="email/username" />
               <p>Your message</p>
-              <textarea rows="4" cols="50"></textarea>
+              <textarea name="message" placeholder="Message" rows="4" cols="50"></textarea>
               <br />
               <button type="submit">Send</button>
             </form>
