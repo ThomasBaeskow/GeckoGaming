@@ -1,7 +1,6 @@
 .myAccountImg {
   width: 100px;
   height: 100px;
-  margin-bottom: 40px;
 }
 .myAccountImg img {
   width: 100px;
@@ -10,10 +9,17 @@
   border-radius: 50%;
 }
 .myAccountContainer {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   font-family: monospace;
-  margin-top: 15em;
+  margin-top: 5em;
+}
+
+.reset{
+  font-family: monospace;
 }
 h2 {
   font-family: monospace;
@@ -137,6 +143,13 @@ span {
   font-size: 15px;
   font-weight: bolder;
   font-family: "Courier New", Courier, monospace;
+}
+
+.btn-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5em;
 }
 
 /* media query mobile */
