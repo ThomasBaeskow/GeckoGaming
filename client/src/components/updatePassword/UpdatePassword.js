@@ -40,6 +40,7 @@ const UpdatePassword = () => {
   };
 
   return (
+    <div className="reset-pwd-container">
     <div className="resetPwd">
       <h1 className="resetH1">Update password</h1>
 
@@ -54,6 +55,7 @@ const UpdatePassword = () => {
       <br />
       <br />
       <h4>{msg}</h4>
+    </div>
     </div>
   );
 };
