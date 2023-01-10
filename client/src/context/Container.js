@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"
 
 
 import { MyContext } from "./Context";
@@ -27,6 +28,16 @@ export default function Container({ children }) {
 const[changePage,setChangePage] = useState("")
 
 
+
+const getCart = async () => {
+  const res1 = await axios.get("/api/v1/cart", {
+    withCredentials: true,
+  });
+  setCartList(res1.data.data.cart.products);
+  //console.log("cartlist",cartList)
+};
+
+
   return (
     <MyContext.Provider
       value={{
@@ -51,8 +62,8 @@ const[changePage,setChangePage] = useState("")
         searchOption, setSearchOption,
         totalQtyCart,setTotalQtyCart,
         singleProductDetails,setSingleProductDetails,
-        changePage,setChangePage
-      
+        changePage,setChangePage,
+      getCart
       }}
     >
       {children}

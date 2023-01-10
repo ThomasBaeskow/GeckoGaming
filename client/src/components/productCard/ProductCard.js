@@ -8,12 +8,13 @@ function ProductCard({ product }) {
       {product &&
         product.map((items,index) => (
           <div key={index} className="cardContainer">
-           <NavLink to={`/products/${items.id}`} state={items}>
+           <NavLink className="ProductImg" to={`/products/${items.id}`} state={items}>
               <img src={items.product_main_image_url} alt="" />
             </NavLink>        
-
-            <p className="product-title">{items.product_title}</p>
+            <div className="cardDetails">
+            <p className="product-title">{items.product_title.slice(0,10)}</p>
             <p className="product-price">{items.app_sale_price}</p>
+            </div>
           </div>
         ))}
     </div>

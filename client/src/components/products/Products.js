@@ -7,14 +7,16 @@ import axios from "axios";
 
 const Products = () => {
   // getting product and category data using context
-  const { product, setProduct, categoryList, pageNum,setPageNum,searchOption} =
+  const { product, setProduct, categoryList, pageNum,setPageNum,searchOption, setSearchOption} =
     useContext(MyContext);
     let queryText;
     
    //selecting deselecting check boxes 
    
    const [checked, setChecked] = useState([]);
-  const handleOnChange = (event) => {     
+  const handleOnChange = (event) => {    
+    setSearchOption("")
+    setPageNum(1)
     let updatedList = [...checked];
     if (event.target.checked) {
       updatedList = [...checked, event.target.value.toLowerCase()];
@@ -97,14 +99,17 @@ const Products = () => {
             <option>50-100</option>
             <option>Above 100</option>
           </select>
-        </div>
+        </div>        
       </div>
+           
       <div className="productDisplay">
-        <h1>{searchOption}</h1>
-
-      <button onClick={()=>(pageNum > 1) && setPageNum(pageNum - 1)}>previous</button>
-        <button onClick={()=>(product.length === 0)? setPageNum(pageNum -1) :setPageNum(pageNum + 1) }>Next</button>        
-        
+      <div className="productDisplayScroll">  
+      <button className="btn-Product" onClick={()=>(pageNum > 1) && setPageNum(pageNum - 1)}>previous</button>
+      <h4>{searchOption}</h4>
+      <button className="btn-Product" onClick={()=>(product.length === 0)? setPageNum(pageNum -1) :setPageNum(pageNum + 1) }>Next</button>        
+   
+        </div> 
+       
         <ProductCard product={product} />
       </div>
     </div>

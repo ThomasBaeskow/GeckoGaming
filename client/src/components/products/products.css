@@ -9,7 +9,6 @@
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-
   justify-content: space-around;
   gap: 10px;
   font-family: "JetBrains mono";
@@ -17,7 +16,7 @@
 
 .selectionCriteria {
   width: 30%;
-  height: 100vw;
+ /*  height: 100vw; */
   padding: 90px;
   margin-bottom: 20px;
   /*   position: absolute;
@@ -27,6 +26,7 @@
 
 .categories {
   border: 3px solid;
+  margin-top: 90px;
   padding: 20px;
   box-shadow: 5px 5px;
   border-radius: 10px;
@@ -79,54 +79,68 @@ option {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  margin-top: 8em;
-}
-.cardHolder {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   margin-top: 2em;
 }
+.productDisplayScroll{
+  margin-top: 100px;
+  height: 50px;
+  width: 100%;
+   display: flex; 
+  justify-content: space-around; 
+}
+.cardHolder {
+  width: 100%; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; 
+}
+
 .cardContainer {
   width: 30%;
-  height: 35em;
+  height: 25em;
   border: 3px solid;
   padding: 12px;
   background: whitesmoke;
   box-shadow: 5px 5px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
+    
 }
+
 .cardContainer:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 .cardContainer img {
-  width: 60%;
-  height: auto;
+  width: 90%;
+  height: 80%;
+  margin-left: 6%;
+  margin-right: 6%; 
   border: 3px solid;
 }
-
-.heart {
+.cardDetails{
+  display: flex;
+  justify-content: space-between;
+}
+/* .heart {
   width: 30px;
   height: 30px;
   cursor: pointer;
   color: rgba(243, 53, 170, 0.889);
-}
+} */
 
 .heart:hover {
   color: palevioletred;
 }
 
-.cardContainer h4 {
+/* .cardContainer h4 {
   margin-top: 10px;
   margin-bottom: 10px;
-}
+} */
 
 .product-title {
   font-size: 1vw;
   font-weight: bold;
+  
 }
 
 .product-price {
