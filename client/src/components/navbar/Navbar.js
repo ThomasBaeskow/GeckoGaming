@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
 import "./navbar.css";
@@ -9,13 +9,27 @@ import { MyContext } from "../../context/Context";
 
 
 const Navbar = () => {
-const {userData,totalQtyCart} = useContext(MyContext);
+const {userData,totalQtyCart,getCart,setTotalQtyCart,cartList} = useContext(MyContext);
 
 
  
 const searchProducts = ()=>{
   return alert("products search")
 }
+
+
+
+
+useEffect(()=>{
+setTotalQtyCart()
+},[cartList])
+
+setTotalQtyCart(
+  cartList.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.cartQty,
+    0
+  )
+);
 
   return (
     <div className="landingNavbar">
@@ -30,12 +44,12 @@ const searchProducts = ()=>{
       <h5>{userData?userData.user.name:""}</h5>
      <NavLink to="/myAccount"> <FontAwesomeIcon icon={faUser} className="user" /></NavLink>
 
+<div className="cart-div">
      <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
-
+     </div>
         
 
       </div>
-        {/*   <span className="qty-num">{totalQtyCart}</span>  */}
           <span className="qty-num">{userData? totalQtyCart : ""}</span>  
       
     </div>

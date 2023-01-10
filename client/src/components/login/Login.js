@@ -5,20 +5,17 @@ import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { MyContext } from "../../context/Context";
-import Dialog from "../dialog/Dialog";
-import ForgotPassword from "../forgotPassword/ForgotPassword";
+
+
 
 const Login = () => {
   const [loginData, setLoginData] = useState();
-  const {  setUserData,msg,setMsg,setShowDialog,setChangePage } = useContext(MyContext); //using context to store user data
+  const {  setUserData,msg,setMsg } = useContext(MyContext); //using context to store user data
   
   const navigate = useNavigate();
   
   
-useEffect(()=>{
-  setMsg("")
-  setShowDialog(false)
-},[])
+
 
 
   // function to get values from input fields.
@@ -57,9 +54,8 @@ useEffect(()=>{
           })
           .then((res) =>setUserData(res.data.data))
           
-          setMsg("Successfully logged in");
-          setShowDialog(true)
-       setChangePage("/")
+          alert("Successfully logged in");
+       navigate("/")
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }
@@ -97,7 +93,7 @@ useEffect(()=>{
          
           <br />         
           <div>
-            <Dialog/>
+          
             <h3 className="errorMsg">{msg ? msg : ""} </h3>
           </div>
           <p className="signup-text">

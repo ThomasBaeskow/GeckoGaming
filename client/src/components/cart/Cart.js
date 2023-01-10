@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function Cart() {
-  const { cartList, setCartList, totalQtyCart, setTotalQtyCart } =
+  const { cartList, setCartList, totalQtyCart, setTotalQtyCart,getCart } =
     useContext(MyContext);
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ function Cart() {
     //objects to be updated in cart database
     let cartNewItem = {
       product_id: item.product_id,
-      cartQty: item.cartQty >= 1 && item.cartQty - 1,
+      cartQty: item.cartQty >1 ? item.cartQty - 1:item.cartQty,
       product_title: item.product_title,
       app_sale_price: item.app_sale_price,
       product_main_image_url: item.product_main_image_url,
@@ -48,6 +48,7 @@ function Cart() {
     //alert("hello")
     //console.log(item)
     //objects to be updated in cart database
+
     let cartNewItem = {
       product_id: item.product_id,
       cartQty: item.cartQty + 1,
@@ -91,13 +92,13 @@ function Cart() {
     getCart();
   };
 
-  const getCart = async () => {
+  /* const getCart = async () => {
     const res1 = await axios.get("/api/v1/cart", {
       withCredentials: true,
     });
     setCartList(res1.data.data.cart.products);
     //console.log("cartlist",cartList)
-  };
+  }; */
 
   return (
     <div className="yourCart">
@@ -196,12 +197,12 @@ function Cart() {
             <p> ← Back to home</p>
           </button>
 
-        
-          
+      
+      {/*     
           <br /> <p> ← Back to home</p>
 
         
-          <br /> <p> ← Back to home</p> 
+          <br /> <p> ← Back to home</p>  */}
           
 
 
