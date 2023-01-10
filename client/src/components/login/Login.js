@@ -55,7 +55,7 @@ const Login = () => {
           .then((res) =>setUserData(res.data.data))
           
           alert("Successfully logged in");
-   
+       navigate("/")
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }
