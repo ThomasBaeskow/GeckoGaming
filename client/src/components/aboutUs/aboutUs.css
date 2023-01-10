@@ -59,6 +59,9 @@ p {
   padding-right: 30px;
   font-family: "JetBrains Mono";
 }
+p {
+  text-align: center;
+}
 .contactAbout {
   width: 100%;
   height: 500px;

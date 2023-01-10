@@ -91,6 +91,7 @@ h2 {
   height: 250px;
   border: 2px solid;
 }
+
 .wishlistItems {
   display: flex;
   justify-content: space-around;
@@ -111,7 +112,18 @@ h2 {
   position: relative;
   margin-left: 4em;
 }
-
+.addTo-Cart {
+  background-color: rgb(217, 217, 231);
+  color: black;
+  border: 2px solid ;
+  font-size: 5px;
+}
+.delete {
+  background-color: rgb(217, 217, 231);
+  color: black;
+  border: 2px solid;
+  font-size: 5px;
+}
 .editIcon {
   width: 20px;
   height: auto;

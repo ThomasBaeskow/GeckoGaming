@@ -81,6 +81,10 @@ option {
   gap: 30px;
   margin-top: 2em;
 }
+.best {
+  font-family: "Londrina Shadow", cursive;
+  font-size: 2rem;
+}
 .productDisplayScroll{
   margin-top: 100px;
   height: 50px;
@@ -288,6 +292,10 @@ option {
     height: 100%;
     padding: 0;
     margin-bottom: 20px;
+  }
+  .best {
+    font-family: "Londrina Shadow", cursive;
+    font-size: 1.5rem;
   }
   .categories {
     border: 3px solid;

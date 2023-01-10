@@ -106,7 +106,7 @@ const Products = () => {
 
       <div className="productDisplayScroll">  
       <button className="btn-Product" onClick={()=>(pageNum > 1) && setPageNum(pageNum - 1)}>previous</button>
-      <h4>{searchOption}</h4>
+      <h4 className="best">{searchOption}</h4>
       <button className="btn-Product" onClick={()=>(product.length === 0)? setPageNum(pageNum -1) :setPageNum(pageNum + 1) }>Next</button>        
    
         </div> 
