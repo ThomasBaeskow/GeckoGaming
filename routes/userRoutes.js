@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUsers, createUser, deleteUser, updateUser, getUser, getMe, uploadUserPhoto, resizeUserPhoto, updateCurrentUserData, deleteCurrentUser } from "../controllers/userController.js";
+import { getAllUsers, createUser, deleteUser, updateUser, getUser, getMe, uploadUserPhoto, deleteCurrentUser, resizeUserPhoto, updateCurrentUserData } from "../controllers/userController.js";
 import { signup, login, logout, protect, restrictTo, forgotPassword, resetPassword, updatePassword } from "../controllers/authController.js";
 import { addToWishList, getWishList } from "../controllers/productController.js";
 
@@ -46,7 +46,7 @@ router
 router
 .route("/updateMe")
 .patch(uploadUserPhoto, resizeUserPhoto, updateCurrentUserData) 
-// // delete current user (set active to false)
+// // delete current user (set active to false) , resizeUserPhoto, updateCurrentUserData
 router
 .route("/deleteMe")
 .delete(deleteCurrentUser)

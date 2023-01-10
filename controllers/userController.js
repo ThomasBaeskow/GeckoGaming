@@ -5,7 +5,51 @@ import {factoryDeleteOne, factoryGetAll, factoryGetOne, factoryUpdateOne} from "
 import { factoryCreateOne } from "./handlerFactory.js";
 import multer from "multer"
 import sharp from "sharp"
+import { v4 as uuidv4 } from 'uuid';
+import path from "path";
 
+
+
+// const storage = multer.diskStorage({
+//   destination: function(req, file, cb) {
+//       cb(null, './upload');
+//   },
+//   filename: function(req, file, cb) {   
+//       cb(null, file.originalname);
+//   }
+// });
+
+// let upload = multer({ storage: storage });
+
+
+// // ADD IT AS MIDDLEWARE TO STACK AND CONNECT TO INPUT FIELD WITH NAME "photo"
+// export const uploadUserPhoto = async(req, res, next) => {
+//   const photo = req.file
+
+//   const newUserData = {
+//       photo
+//   }
+
+//   upload.single("photo")
+
+//   const updatedUser = await User.findByIdAndUpdate(req.user.id, newUserData, { // we can use findByIdAndUpdate because we are not updating password or Email, where we have and need our validation. 
+//     new: true, // returns the updated object instead of the old one
+//     runValidators: true // we want to still run our validators
+//   })
+
+//   res.status(200).json({
+//     status: "success",
+//     data: {
+//       user: updatedUser // we update the currentUser name, email or photo properties.
+//     }
+//   })
+
+//   console.log("im the photo",photo);
+//   console.log("im the user", req.user);
+//   console.log("im the req.body",req.body);
+//   console.log("im the updated user", updatedUser);
+//   next()
+// }
 
 // We simply store the file in our memory as a buffer. Which is available on req.file.buffer. The filename property wont get set here, thats why we need to set it below in resizeUserPhoto()
 const multerStorage = multer.memoryStorage()
@@ -83,6 +127,11 @@ export const updateCurrentUserData = catchAsync(async (req, res, next) => {
     runValidators: true // we want to still run our validators
   })
 
+  console.log("im the file",req.file);
+  console.log("im the user", req.user);
+  console.log("im the req.body",req.body);
+  console.log("im the updated user", updatedUser);
+
   res.status(200).json({
     status: "success",
     data: {
@@ -90,6 +139,7 @@ export const updateCurrentUserData = catchAsync(async (req, res, next) => {
     }
   })
 })
+
 
 // delete current User (setting field "active" to false)
 export const deleteCurrentUser = catchAsync(async(req, res, next) => {

@@ -135,7 +135,7 @@ export const protect = catchAsync(async(req, res, next) => {
 
     // GRANT ACCESS TO PROTECTED ROUTE - next goes to next handler
     req.user = currentUser
-    console.log(req.user);
+    // console.log(req.user);
     // res.locals.user = currentUser; // We save the current User data inside our local variables in pug as "user"
     next()
 })
