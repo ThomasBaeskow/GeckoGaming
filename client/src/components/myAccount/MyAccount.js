@@ -1,6 +1,8 @@
 import "./myAccount.css";
 import React, { useEffect, useContext, useState } from "react";
+
 import { useNavigate, NavLink } from "react-router-dom";
+
 import image from "../../images/profile-pic.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
@@ -21,7 +23,21 @@ function MyAccount() {
   } = useContext(MyContext);
 
   const navigate = useNavigate();
-  const [image, setImage] = useState("");
+
+
+
+ const [newImage, setNewImage] = useState(
+  {
+      photo: '',
+  }
+);
+
+
+  useEffect(() => {
+    setMsg("");
+    setShowDialog(false);
+  }, []);
+
 
   useEffect(() => {
     getWishList();
@@ -112,15 +128,41 @@ function MyAccount() {
     navigate("/");
   };
 
-  // .route("/updateMe")
-  //.patch(uploadUserPhoto, resizeUserPhoto, updateCurrentUserData)
-  const upLoad = async () => {
-    const getImage = await axios.patch("/api/v1/user/updateMe", {
-      photo: image,
-    });
-    //setImage(getImage.data.data.user.photo)
-    console.log(getImage);
-  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+   
+    const formData = new FormData();
+    formData.append('photo', newImage.photo);
+
+    axios.patch("/api/v1/user/updateMe", formData)
+         .then(res => {
+            console.log("hi im the response",res);
+         })
+         .catch(err => {
+            console.log("im the error",err);
+         });
+
+        //  const updatedUser = axios.get("/api/v1/user/me")
+        //  .then(res => {
+        //     console.log("hi im the response",res);
+        //  })
+        //  .catch(err => {
+        //     console.log("im the error",err);
+        //  });
+
+        //  setUserData(updatedUser)
+         console.log("hi im the userData",userData);
+         console.log("hi im the image file",newImage.photo.name);
+         console.log("hi im the formData", formData.get("photo"));
+         console.log("hi im the image", newImage);
+}
+
+  const handlePhoto = (e) => {
+    setNewImage({...newImage, photo: e.target.files[0]});
+}
+
+
 
   return (
     <div>
@@ -131,31 +173,41 @@ function MyAccount() {
 
           <div className="myAccountImg">
             <button className="upload">
-              <FontAwesomeIcon
-                className="editIcon"
-                icon={faEdit}
-                onClick={upLoad}
-              />
+
+
+           
+
+              {/* <FontAwesomeIcon className="editIcon" icon={faEdit} onClick={upLoad}/> */}
             </button>
 
-            <FileBase64
-              multiple={false}
-              onDone={({ base64 }) => {
-                setImage(base64);
-              }}
-            />
+            <form onSubmit={handleSubmit} encType='multipart/form-data' name="photo">
+              <label>
+                <input 
+                    type="file" 
+                    accept=".png, .jpg, .jpeg"
+                    name="photo"
+                    onChange={handlePhoto}
+                />
+              </label>
+              <input 
+                  type="submit"
+              />
+            </form>
+          
+            
+            <img src={newImage} alt="" className="img-profile" />
 
-            <img src={image} alt="" className="img-profile" />
           </div>
         </div>
         <div className="orderDetail">
           <p>My orders</p>
           <button
+            className="viewAll-btn"
             onClick={() => {
               navigate("/ViewAll");
             }}
           >
-            <p> View All</p>
+            View All ➡️
           </button>
         </div>
 

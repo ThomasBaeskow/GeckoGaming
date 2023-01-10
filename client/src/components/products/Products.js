@@ -103,6 +103,7 @@ const Products = () => {
       </div>
            
       <div className="productDisplay">
+
       <div className="productDisplayScroll">  
       <button className="btn-Product" onClick={()=>(pageNum > 1) && setPageNum(pageNum - 1)}>previous</button>
       <h4>{searchOption}</h4>
@@ -110,6 +111,8 @@ const Products = () => {
    
         </div> 
        
+
+        
         <ProductCard product={product} />
       </div>
     </div>
