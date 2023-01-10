@@ -133,6 +133,7 @@ h2 {
   height: 250px;
   border: 2px solid;
 }
+
 .wishlistItems {
   display: flex;
   justify-content: space-around;
@@ -146,6 +147,35 @@ h2 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
+.upload {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 4em;
+}
+.addTo-Cart {
+  background-color: rgb(217, 217, 231);
+  color: black;
+  border: 2px solid ;
+  font-size: 5px;
+}
+.delete {
+  background-color: rgb(217, 217, 231);
+  color: black;
+  border: 2px solid;
+  font-size: 5px;
+}
+.editIcon {
+  width: 20px;
+  height: auto;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 
 .addTo-Cart {
   margin-top: 10px;

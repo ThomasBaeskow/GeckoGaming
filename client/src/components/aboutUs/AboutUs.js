@@ -44,11 +44,7 @@ const AboutUs = () => {
       <div className="contactAbout">
         <h1>About us</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ullam
-          facilis eum voluptatibus voluptate nihil expedita repellat nobis!
-          Consequuntur enim ab sed non! Nulla in ipsum natus! Ipsam fugit sunt
-          adipisci beatae ullam expedita saepe ipsa architecto minima iusto?
-          Nesciunt ex deleniti magni quos at nostrum aliquid omnis vero ut.
+          We are a team of 5 that tries to supply our fellow gamers with the best technology, accessories and games that are on the market 
         </p>
       </div>
     </div>
