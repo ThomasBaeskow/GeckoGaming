@@ -1,34 +1,31 @@
 import "./myAccount.css";
 import React, { useEffect, useContext, useState } from "react";
-import {  useNavigate, NavLink, redirect } from "react-router-dom";
+
+import { useNavigate, NavLink } from "react-router-dom";
+
 import image from "../../images/profile-pic.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { faCartPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
-import Dialog from "../dialog/Dialog";
 import FileBase64 from "react-file-base64";
 
 function MyAccount() {
   const {
     userData,
     cartList,
-    setCartList,
     setUserData,
     wishList,
     setWishList,
     product,
-    setChecked,
-    showDialog,
-    setShowDialog,
-    msg,
-    setMsg,
-    setChangePage
+    getCart,
   } = useContext(MyContext);
 
   const navigate = useNavigate();
-//  const [image, setImage] = useState("");
+
+
+
  const [newImage, setNewImage] = useState(
   {
       photo: '',
@@ -41,6 +38,7 @@ function MyAccount() {
     setShowDialog(false);
   }, []);
 
+
   useEffect(() => {
     getWishList();
   }, []);
@@ -50,15 +48,15 @@ function MyAccount() {
     //console.log("product front", product);
     const prodExists = product.filter((item) => item.id === id);
     //console.log("single product", prodExists.length);
-// check if product is there in front end product array ---if not
+    // check if product is there in front end product array ---if not
     if (prodExists.length === 0) {
       const response = await axios.get(`/api/v1/products/${id}`);
       const prod_result = response.data.data.product;
 
-      let product_id= prod_result.product_detail_url.slice(-10)
-    //  console.log("producy id:", product_id)
-      let itemQty =cartList.filter((val)=>val.product_id===product_id)
-     let cartQty =itemQty.length===0?1:itemQty[0].cartQty+1
+      let product_id = prod_result.product_detail_url.slice(-10);
+      //  console.log("producy id:", product_id)
+      let itemQty = cartList.filter((val) => val.product_id === product_id);
+      let cartQty = itemQty.length === 0 ? 1 : itemQty[0].cartQty + 1;
       //console.log("item", itemQty, cartQty)
 
       let cartNewItem = {
@@ -71,19 +69,17 @@ function MyAccount() {
 
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
-      setShowDialog(true);
-      setMsg("successfully added");
-      setChangePage("/myAccount")
-    } 
+      alert("successfully added");
+      getCart();
+    }
     // check if product is there in front end product array -- if there
     else {
       const prod_result = product.filter((item) => item.id === id);
-    //console.log("prod result",prod_result[0].product_detail_url.slice(-10))
-    let product_id=prod_result[0].product_detail_url.slice(-10);
-    let itemQty =cartList.filter((val)=>val.product_id===product_id)
-    let cartQty =itemQty.length===0?1:itemQty[0].cartQty+1
-    //console.log("item", itemQty, cartQty)
-
+      //console.log("prod result",prod_result[0].product_detail_url.slice(-10))
+      let product_id = prod_result[0].product_detail_url.slice(-10);
+      let itemQty = cartList.filter((val) => val.product_id === product_id);
+      let cartQty = itemQty.length === 0 ? 1 : itemQty[0].cartQty + 1;
+      //console.log("item", itemQty, cartQty)
 
       let cartNewItem = {
         product_id: product_id,
@@ -95,8 +91,10 @@ function MyAccount() {
 
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
-      setShowDialog(true);
-      setMsg("successfully added");
+
+      alert("successfully added");
+
+      getCart();
     }
   };
 
@@ -107,8 +105,8 @@ function MyAccount() {
       { productId: itemId },
       { withCredentials: true }
     );
-    setShowDialog(true);
-    setMsg("successfully removed");
+
+    alert("successfully removed");
     getWishList();
   };
 
@@ -121,13 +119,15 @@ function MyAccount() {
   };
 
   const logOut = async () => {
-    const res = await axios
-      .get("/api/v1/user/logout", {
-        withCredentials: true,
-      }) 
+    const res = await axios.get("/api/v1/user/logout", {
+      withCredentials: true,
+    });
 
-      setUserData("")
+    setUserData("");
+    alert("successfully logged out");
+    navigate("/");
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -163,17 +163,20 @@ function MyAccount() {
 }
 
 
+
   return (
     <div>
       <div className="myAccountContainer">
-      <Dialog />
         <h1 className="myaccount-title">My Account</h1>
         <div className="accountDetail">
-      
           <p className="userName"> Hi,{userData.user.name}</p>
 
           <div className="myAccountImg">
             <button className="upload">
+
+
+           
+
               {/* <FontAwesomeIcon className="editIcon" icon={faEdit} onClick={upLoad}/> */}
             </button>
 
@@ -193,11 +196,10 @@ function MyAccount() {
           
             
             <img src={newImage} alt="" className="img-profile" />
+
           </div>
-      {/*     <p onClick={()=>navigate("/forgotPassword")}> Reset Password? .. Click to reset</p> */}
         </div>
         <div className="orderDetail">
-       
           <p>My orders</p>
           <button
             className="viewAll-btn"
@@ -208,7 +210,7 @@ function MyAccount() {
             View All ➡️
           </button>
         </div>
-        
+
         <button
           className="btn"
           onClick={() => {
@@ -216,13 +218,18 @@ function MyAccount() {
           }}
         >
           Log out
-         
         </button>
       </div>
+      <p className="reset">
+        Update My Password{" "}
+        <button onClick={() => navigate("/UpdatePassword")}>
+          {" "}
+          Click to update
+        </button>{" "}
+      </p>
       <div>
         <h2>My Wish List</h2>
         <div className="wishlistContainer">
-          <Dialog />
           {wishList.map((items) => {
             //changes from item to items to get product_id in single product page from wishlist at it has system product id
             return (
@@ -244,7 +251,9 @@ function MyAccount() {
                 </NavLink>
 
                 <div className="wishlistItems">
-                  <p>{items.product_title && items.product_title.slice(0, 10)}</p>
+                  <p>
+                    {items.product_title && items.product_title.slice(0, 10)}
+                  </p>
                   <p>{items.app_sale_price}</p>
                   <p>{items.product_detail_url}</p>
                 </div>

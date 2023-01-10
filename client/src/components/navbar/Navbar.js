@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
 import "./navbar.css";
@@ -9,13 +9,27 @@ import { MyContext } from "../../context/Context";
 
 
 const Navbar = () => {
-const {userData,totalQtyCart} = useContext(MyContext);
+const {userData,totalQtyCart,getCart,setTotalQtyCart,cartList} = useContext(MyContext);
 
 
  
 const searchProducts = ()=>{
   return alert("products search")
 }
+
+
+
+
+useEffect(()=>{
+setTotalQtyCart()
+},[cartList])
+
+setTotalQtyCart(
+  cartList.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.cartQty,
+    0
+  )
+);
 
   return (
     <div className="landingNavbar">

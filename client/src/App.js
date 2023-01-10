@@ -15,6 +15,7 @@ import PageNotFound from "./components/pageNotFound/PageNotFound";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import ViewAll from "./components/viewAll/ViewAll";
 import ForgotPassword from "./components/forgotPassword/ForgotPassword";
+import UpdatePassword from "./components/updatePassword/UpdatePassword";
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
+          <Route path="/updatePassword" element={<ProtectedRoute userAccess="authenticated"><UpdatePassword /></ProtectedRoute>} />
            {/* <Route path="/cart" element={<Cart/>  }/> */}
           <Route path="/myAccount" element={<ProtectedRoute userAccess="authenticated"><MyAccount/></ProtectedRoute>} />
           <Route path="*" element={<PageNotFound />} />
