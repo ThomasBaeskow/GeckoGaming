@@ -12,8 +12,12 @@ import {globalErrorHandler} from "./controllers/errorControllers.js"
 import AppError from "./utils/appError.js"
 import cartRouter from "./routes/cartRoutes.js"
 import orderRouter from "./routes/orderRoutes.js"
+import contact from "./routes/contactRoute.js"
+import sgMail from "@sendgrid/mail"
 
 dotenv.config({path:"./.env"})
+
+sgMail.setApiKey(process.env.SENDGRID_API2);
 
 
 const port = process.env.PORT || 3000;
@@ -67,6 +71,7 @@ app.use('/api/v1/products', productRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/cart', cartRouter);
 app.use('/api/v1/orders', orderRouter);
+app.use('/api/v1/about', contact);
 
 // app.use("/api/v1/reviews");
 // app.use("/api/v1/orders");
@@ -81,3 +86,27 @@ app.all("*", (req, res, next) => {
 // Jonas global error handler:
 // by implementing 4 arguments (parameters) express knows, that this is a global error handling middleware
 app.use(globalErrorHandler)
+
+
+//CONTACT FORM
+
+// app.route("/").get(function (req, res) {
+//   res.sendFile(path.join(__dirname, '/form.html'));
+// });
+
+// app.post('/contact', (req, res) => {
+//   console.log(req);
+//   const msg = {
+//       to: `RECIPIENT_EMAIL`, // Change to your recipient
+//       from: 'SENDER_EMAIL', // Change to your verified sender
+//       subject: req.body.subject,
+//       text: `Message from ${req.body.email}:\n${req.body.message}`,
+//   }
+//   try {
+//       sgMail.send(msg);
+//       res.send("Message Successfully Sent!");
+//     } catch (error) {
+//       res.send("Message Could not be Sent");
+//     }
+// });
+
