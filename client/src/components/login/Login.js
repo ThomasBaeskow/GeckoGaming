@@ -87,7 +87,7 @@ const Login = () => {
             <br />
             <br /> <button type="submit">Log in</button>
             <br />
-            <p onClick={()=>navigate("/forgotPassword")} className="forgotP"> Forgot Password? .. Click to reset</p>
+            <p onClick={()=>navigate("/forgotPassword")} className="forgotP"> Forgot Password? .. Click <span className="here">here</span> to reset</p>
 
           </form>
          
@@ -97,7 +97,8 @@ const Login = () => {
             <h3 className="errorMsg">{msg ? msg : ""} </h3>
           </div>
           <p className="signup-text">
-            🎮 Not registered? <Link to="/signup">Sign up</Link> 🎮
+            🎮 Not registered? 🎮 
+            <button className="btn-2"><Link to="/signup">Sign up</Link> </button>
           </p>
         </div>
       </div>
