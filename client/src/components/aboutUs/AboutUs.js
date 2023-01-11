@@ -1,5 +1,6 @@
 import "./aboutUs.css";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
@@ -12,11 +13,15 @@ import axios from "axios";
 
 
 const AboutUs = () => {
+  const navigate = useNavigate();
   const submitHandler=(e)=>{
     e.preventDefault();
    const from= e.target.email.value;
    const text= e.target.message.value;
    axios.post("http://127.0.0.1:5000/api/v1/about/contact",{from, text}).then(res => console.log(res.data)).catch(err => console.log(err));
+   alert("Message has been sent");
+  //  window.location.reload(true)
+   navigate("/")
   }
   return (
     <div>
