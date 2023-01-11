@@ -40,20 +40,23 @@ const ForgotPassword = () => {
   };
 
   return (
+    <div className="pwd-container">
     <div className="forgotPwd">
       <h1 className="forgotH1">Forgot password</h1>
 
       <label htmlFor="email">Email:</label>
       <input
+      className="email-input"
         type="text"
         placeholder="email"
         name="email"
         onChange={handleChange}
       />
-      <button onClick={setForgotPassword}>Send Reset code </button>
+      <button onClick={setForgotPassword} className='forgot-pwd'>Send Reset code </button>
       <br />
       <br />
       <h4>{msg}</h4>
+    </div>
     </div>
   );
 };

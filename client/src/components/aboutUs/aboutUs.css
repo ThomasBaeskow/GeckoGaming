@@ -1,14 +1,15 @@
 .contactContainer {
   width: 50%;
-  height: 75%;
+  height: auto;
   margin: 0 auto;
-  border: 1px solid;
-  padding: 10px;
+  border: 2px solid;
+  padding: 20px;
   font-family: "JetBrains Mono";
-  box-shadow: 10px 10px;
+  box-shadow: 5px 5px;
   margin-bottom: 10%;
-  margin-top: 5%;
   background-color: #ccffcc;
+  margin-top: 90px;
+
 }
 
 .accountDetail {
