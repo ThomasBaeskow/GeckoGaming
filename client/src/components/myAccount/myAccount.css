@@ -1,7 +1,7 @@
 .myAccountImg {
   width: 100px;
   height: 100px;
-  margin-bottom: 4em;
+  margin-bottom: 5em;
 }
 .myAccountImg img {
   width: 100px;
@@ -23,12 +23,11 @@
   position: relative;
 }
 
-.buttons{
+.buttons {
   width: 25em;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-
 }
 
 .fa-cloud-upload-alt {
@@ -40,7 +39,7 @@
   right: 0;
 }
 
-.submit-btn{
+.submit-btn {
   background-color: transparent;
   border: none;
   outline: none;
@@ -48,10 +47,9 @@
   font-size: 15px;
   font-weight: bold;
   box-shadow: none;
-
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
   color: black;
   background-color: transparent;
   border: none;
@@ -61,7 +59,13 @@
   font-weight: bold;
   box-shadow: none;
 }
-
+.button{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+}
 .reset {
   font-family: monospace;
 }
@@ -96,9 +100,7 @@ h2 {
 .btn {
   width: 200px;
   height: 50px;
-  margin-left: 40%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  background-color: aquamarine;
 }
 
 .viewAll-btn {
@@ -158,7 +160,7 @@ h2 {
 .addTo-Cart {
   background-color: rgb(217, 217, 231);
   color: black;
-  border: 2px solid ;
+  border: 2px solid;
   font-size: 5px;
 }
 .delete {
@@ -176,7 +178,6 @@ h2 {
   right: 0;
 }
 
-
 .addTo-Cart {
   margin-top: 10px;
   width: 30px;
@@ -185,9 +186,9 @@ h2 {
   position: absolute;
   margin-left: 10px;
 }
-.wishlistImg{
+.wishlistImg {
   background-color: azure;
-  border:2px solid
+  border: 2px solid;
 }
 
 .wishlistItems {

@@ -12,8 +12,8 @@ function ProductCard({ product }) {
               <img src={items.product_main_image_url} alt="" />
             </NavLink>        
             <div className="cardDetails">
-            <p className="product-title">{items.product_title.slice(0,10)}</p>
-            <p className="product-price">{items.app_sale_price}</p>
+            <p className="product-title">{items.product_title.slice(0,25)}</p>
+            <p className="product-price">${items.app_sale_price}</p>
             </div>
           </div>
         ))}

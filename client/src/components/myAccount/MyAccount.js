@@ -24,17 +24,9 @@ function MyAccount() {
 
   const navigate = useNavigate();
 
-
-
- const [newImage, setNewImage] = useState(
-  {
-      photo: '',
-  }
-);
-
-
- 
-
+  const [newImage, setNewImage] = useState({
+    photo: "",
+  });
 
   useEffect(() => {
     getWishList();
@@ -125,41 +117,39 @@ function MyAccount() {
     navigate("/");
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     const formData = new FormData();
-    formData.append('photo', newImage.photo);
+    formData.append("photo", newImage.photo);
 
-    axios.patch("/api/v1/user/updateMe", formData)
-         .then(res => {
-            console.log("hi im the response",res);
-         })
-         .catch(err => {
-            console.log("im the error",err);
-         });
+    axios
+      .patch("/api/v1/user/updateMe", formData)
+      .then((res) => {
+        console.log("hi im the response", res);
+      })
+      .catch((err) => {
+        console.log("im the error", err);
+      });
 
-        //  const updatedUser = axios.get("/api/v1/user/me")
-        //  .then(res => {
-        //     console.log("hi im the response",res);
-        //  })
-        //  .catch(err => {
-        //     console.log("im the error",err);
-        //  });
+    //  const updatedUser = axios.get("/api/v1/user/me")
+    //  .then(res => {
+    //     console.log("hi im the response",res);
+    //  })
+    //  .catch(err => {
+    //     console.log("im the error",err);
+    //  });
 
-        //  setUserData(updatedUser)
-         console.log("hi im the userData",userData);
-         console.log("hi im the image file",newImage.photo.name);
-         console.log("hi im the formData", formData.get("photo"));
-         console.log("hi im the image", newImage);
-}
+    //  setUserData(updatedUser)
+    console.log("hi im the userData", userData);
+    console.log("hi im the image file", newImage.photo.name);
+    console.log("hi im the formData", formData.get("photo"));
+    console.log("hi im the image", newImage);
+  };
 
   const handlePhoto = (e) => {
-    setNewImage({...newImage, photo: e.target.files[0]});
-}
-
-
+    setNewImage({ ...newImage, photo: e.target.files[0] });
+  };
 
   return (
     <div>
@@ -169,25 +159,23 @@ function MyAccount() {
           <p className="userName"> Hi,{userData.user.name}</p>
 
           <div className="myAccountImg">
-        
-
-            <form onSubmit={handleSubmit} encType='multipart/form-data' name="photo">
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              name="photo"
+            >
               <label>
-                <input 
-                    type="file" 
-                    accept=".png, .jpg, .jpeg"
-                    name="photo"
-                    onChange={handlePhoto}
+                <input
+                  type="file"
+                  accept=".png, .jpg, .jpeg"
+                  name="photo"
+                  onChange={handlePhoto}
                 />
               </label>
-              <input 
-                  type="submit"
-              />
+              <input type="submit" />
             </form>
-          
-            
-            <img src={newImage} alt="" className="img-profile" />
 
+            <img src={newImage} alt="" className="img-profile" />
           </div>
         </div>
         <div className="orderDetail">
@@ -202,6 +190,7 @@ function MyAccount() {
           </button>
         </div>
 
+<div className="button">
         <button
           className="btn"
           onClick={() => {
@@ -210,6 +199,7 @@ function MyAccount() {
         >
           Log out
         </button>
+        </div>
       </div>
       <p className="reset">
         Update My Password{" "}

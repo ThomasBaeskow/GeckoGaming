@@ -57,12 +57,32 @@
 }
 .forgotP{
   cursor: pointer;
-
+  font-family: "JetBrains mono";
+  margin-bottom: 20px;
+  margin-top: 50px;
+  font-size: 16px;
 }
+
+.here{
+  cursor: pointer;
+  color: rgb(255, 0, 212);
+  font-size: 20px;
+  text-decoration: underline;
+}
+
 h3{
   font-family: "JetBrains mono";
   margin-bottom: 20px;
   text-align: center;
+}
+
+.btn-2{
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+  font-family: "JetBrains mono";
+  margin-bottom: 20px;
+  background-color: aquamarine;
 }
 @media screen and (max-width: 768px) {
   .loginContainer {
