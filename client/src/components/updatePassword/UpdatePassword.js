@@ -46,6 +46,7 @@ const UpdatePassword = () => {
 
       <label htmlFor="email">Email:</label>
       <input
+      className="email-input"
         type="text"
         placeholder="email"
         name="email"

@@ -30,7 +30,7 @@ const AboutUs = () => {
               <label htmlFor="email">Email/username</label>
               <br />
               <input type="email" name="email" placeholder="email/username" />
-              <p className="text-1">Your message</p>
+              <p>Your message</p>
               <textarea name="message" placeholder="Message" rows="4" cols="50"></textarea>
               <br />
               <button type="submit">Send</button>
