@@ -144,7 +144,11 @@ function Cart() {
                       </div>
                      
                     </div>
+
+                    <p>{item.app_sale_price.toFixed(2)}</p>
+
                    
+
                   </div>
                   <FontAwesomeIcon
                     className="deleteBtn"

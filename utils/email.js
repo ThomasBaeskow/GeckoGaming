@@ -8,7 +8,7 @@ import sgMail from "@sendgrid/mail"
 
 const __dirname = path.resolve()
 
-dotenv.config({ path: './.env' })
+// dotenv.config({ path: './.env' })
 
 
 // we create an Email class with which we can produce email Objects with belows data (property value pairs).

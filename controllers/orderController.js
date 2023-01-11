@@ -7,7 +7,6 @@ export const createOrder = async (req, res) => {
     res.json(order);
 }
 
-
 // // Capture Order
 export const capturePayment = async (req, res) => {
     const { orderID } = req.params;
