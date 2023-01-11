@@ -202,10 +202,11 @@ function MyAccount() {
         </div>
       </div>
       <p className="reset">
-        Update My Password{" "}
-        <button onClick={() => navigate("/UpdatePassword")}>
+        <button 
+        className="btn"
+        onClick={() => navigate("/UpdatePassword")}>
           {" "}
-          Click to update
+          Change Password
         </button>{" "}
       </p>
       <div>
