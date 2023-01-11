@@ -1,7 +1,7 @@
 .myAccountImg {
   width: 100px;
   height: 100px;
-  margin-bottom: 4em;
+  margin-bottom: 5em;
 }
 .myAccountImg img {
   width: 100px;
@@ -26,7 +26,7 @@
 .buttons {
   width: 25em;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -59,7 +59,13 @@
   font-weight: bold;
   box-shadow: none;
 }
-
+.button{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+}
 .reset {
   font-family: monospace;
 }
@@ -94,9 +100,7 @@ h2 {
 .btn {
   width: 200px;
   height: 50px;
-  margin-left: 40%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  background-color: aquamarine;
 }
 
 .viewAll-btn {

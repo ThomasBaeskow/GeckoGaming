@@ -190,6 +190,7 @@ function MyAccount() {
           </button>
         </div>
 
+<div className="button">
         <button
           className="btn"
           onClick={() => {
@@ -198,6 +199,7 @@ function MyAccount() {
         >
           Log out
         </button>
+        </div>
       </div>
       <p className="reset">
         Update My Password{" "}
