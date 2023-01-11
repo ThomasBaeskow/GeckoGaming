@@ -46,11 +46,12 @@ setTotalQtyCart(
 
 <div className="cart-div">
      <NavLink to="/cart"><FontAwesomeIcon icon={faShoppingCart} className="cart" /></NavLink>
+     <span className="qty-num">{userData? totalQtyCart : ""}</span>
      </div>
         
 
       </div>
-          <span className="qty-num">{userData? totalQtyCart : ""}</span>  
+            
       
     </div>
   );

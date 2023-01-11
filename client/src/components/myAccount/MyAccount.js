@@ -190,21 +190,19 @@ function MyAccount() {
           </button>
         </div>
 
-<div className="button">
-        <button
-          className="btn"
-          onClick={() => {
-            logOut();
-          }}
-        >
-          Log out
-        </button>
+        <div className="button">
+          <button
+            className="btn"
+            onClick={() => {
+              logOut();
+            }}
+          >
+            Log out
+          </button>
         </div>
       </div>
       <p className="reset">
-        <button 
-        className="btn"
-        onClick={() => navigate("/UpdatePassword")}>
+        <button className="btn" onClick={() => navigate("/UpdatePassword")}>
           {" "}
           Change Password
         </button>{" "}
