@@ -103,7 +103,7 @@ function MyAccount() {
       { withCredentials: true }
     );
 
-    alert("successfully removed");
+    // alert("successfully removed");
     getWishList();
   };
 
@@ -245,7 +245,7 @@ function MyAccount() {
                   <p>
                     {items.product_title && items.product_title.slice(0, 10)}
                   </p>
-                  <p>{items.app_sale_price}</p>
+                  <p>${items.app_sale_price}</p>
                   <p>{items.product_detail_url}</p>
                 </div>
                 {/* <h1>{item.id}</h1> */}

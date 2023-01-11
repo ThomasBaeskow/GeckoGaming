@@ -48,12 +48,11 @@ export const factoryUpdateOne = Model => catchAsync(async (req, res, next) => {
     });
 });
 
-// here its different because we got a "populate" inside our getTour middleware in our tourController.js. We solve this by passing as second argument an object with populate options.
 export const factoryGetOne = (Model, popOptions) => catchAsync(async (req, res, next) => {
-    // const id = req.params.id * 1; // this is a trick which converts automatically a string to a number, when it gets multiplied with a number.
+  // const id = req.params.id * 1; // this is a trick which converts automatically a string to a number, when it gets multiplied with a number.
   // const tour = tours.filter((item) => item.id === id); // filters the object with the fitting id property from the array and returns it.
 
-    //   const doc = await Model.findById(req.params.id).populate("reviews")
+  //   const doc = await Model.findById(req.params.id).populate("reviews")
     let query = Model.findById(req.params.id).select("-role")
     // if (popOptions) query = query.populate(popOptions)
     const doc = await query

@@ -139,7 +139,7 @@ function Cart() {
                         +
                       </button>
                     </div>
-                    <p>{item.app_sale_price}</p>
+                    <p>{item.app_sale_price.toFixed(2)}</p>
                   </div>
                   <FontAwesomeIcon
                     className="deleteBtn"
