@@ -30,7 +30,7 @@ const AboutUs = () => {
               <label htmlFor="email">Email/username</label>
               <br />
               <input type="email" name="email" placeholder="email/username" />
-              <p>Your message</p>
+              <p className="text-1">Your message</p>
               <textarea name="message" placeholder="Message" rows="4" cols="50"></textarea>
               <br />
               <button type="submit">Send</button>
@@ -40,7 +40,7 @@ const AboutUs = () => {
             <FontAwesomeIcon icon={faEnvelope} /> info@xxxx.com <br />
             <FontAwesomeIcon icon={faPhone} /> 456-5678-456
             <br />
-            <p>
+            <p className="text-1">
               *available
               <br /> Mo-Fr:- 9:00-18:00 <br /> Sa-Su:- 9:00-17:00
             </p>
@@ -50,7 +50,7 @@ const AboutUs = () => {
       </div>
       <div className="contactAbout">
         <h1>About us</h1>
-        <p>
+        <p className="text-1">
           We are a team of 5 that tries to supply our fellow gamers with the best technology, accessories and games that are on the market 
         </p>
       </div>
