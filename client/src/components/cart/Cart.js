@@ -154,7 +154,7 @@ function Cart() {
         <div className="cartRight">
           <h3>Order</h3>
           <h4>Quantity of Goods : {totalQtyCart}</h4>
-          <p>Promotion code</p>
+          
           <h4>Total:{totalCostCart()} </h4>
 
 
