@@ -30,7 +30,7 @@ app.use(cors())
 
 
 // NEW CHANGE
-app.use(express.static("client/public"));
+app.use(express.static("public"));
 
 const DB = process.env.DATABASE
 

@@ -142,7 +142,7 @@ function MyAccount() {
 
     //  setUserData(updatedUser)
     console.log("hi im the userData", userData);
-    console.log("hi im the image file", newImage.photo.name);
+    console.log("hi im the image file", newImage.photo);
     console.log("hi im the formData", formData.get("photo"));
     console.log("hi im the image", newImage);
   };
@@ -175,7 +175,7 @@ function MyAccount() {
               <input type="submit" />
             </form>
 
-            <img src={newImage} alt="" className="img-profile" />
+            <img src={`../../../../public/img/users/${newImage}`} alt="" className="img-profile" />
           </div>
         </div>
         <div className="orderDetail">
