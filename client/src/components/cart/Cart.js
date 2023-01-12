@@ -146,12 +146,12 @@ function Cart() {
                         +
                       </button>
                       <div className="price-div">
-                     $ {item.app_sale_price}
+                     $ {item.app_sale_price.toFixed(2)}
                       </div>
                      
                     </div>
 
-                    <p>{item.app_sale_price.toFixed(2)}</p>
+                    {/* <p>{item.app_sale_price.toFixed(2)}</p> */}
 
                    
 
