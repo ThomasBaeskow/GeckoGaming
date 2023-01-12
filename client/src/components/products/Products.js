@@ -218,6 +218,7 @@ const Products = () => {
         </div>
       </div>
 
+
       <div className="productDisplay">
         <div className="productDisplayScroll">
           <button
@@ -238,6 +239,10 @@ const Products = () => {
             Next
           </button>
         </div>
+
+      
+       
+
 
         <ProductCard product={product} />
       </div>

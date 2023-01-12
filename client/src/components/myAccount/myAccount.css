@@ -1,7 +1,7 @@
 .myAccountImg {
   width: 100px;
   height: 100px;
-  margin-bottom: 40px;
+  margin-bottom: 5em;
 }
 .myAccountImg img {
   width: 100px;
@@ -10,10 +10,64 @@
   border-radius: 50%;
 }
 .myAccountContainer {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   font-family: monospace;
-  margin-top: 15em;
+  margin-top: 5em;
+}
+
+.custom-file-upload {
+  position: relative;
+}
+
+.buttons {
+  width: 25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-cloud-upload-alt {
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.submit-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: none;
+}
+
+.submit-btn:hover {
+  color: black;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: none;
+}
+.button{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+}
+.reset {
+  font-family: monospace;
 }
 h2 {
   font-family: monospace;
@@ -24,16 +78,16 @@ h2 {
 .accountDetail {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 100%;
+  width: 80%;
   padding: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border-bottom: 1px solid;
 }
 .orderDetail {
   margin-top: 40px;
   margin-bottom: 10px;
-  width: 100%;
+  width: 80%;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -42,15 +96,11 @@ h2 {
 .userName {
   padding-top: 100px;
 }
-/* .editIcon {
-  padding-left: 80px;
-} */
+
 .btn {
   width: 200px;
   height: 50px;
-  margin-left: 40%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  background-color: aquamarine;
 }
 
 .viewAll-btn {
@@ -85,6 +135,7 @@ h2 {
   height: 250px;
   border: 2px solid;
 }
+
 .wishlistItems {
   display: flex;
   justify-content: space-around;
@@ -98,6 +149,7 @@ h2 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
 .upload {
   width: 30px;
   height: 30px;
@@ -105,7 +157,18 @@ h2 {
   position: relative;
   margin-left: 4em;
 }
-
+.addTo-Cart {
+  background-color: rgb(217, 217, 231);
+  color: black;
+  border: 2px solid;
+  font-size: 5px;
+}
+.delete {
+  background-color: rgb(217, 217, 231);
+  color: black;
+  border: 2px solid;
+  font-size: 5px;
+}
 .editIcon {
   width: 20px;
   height: auto;
@@ -123,11 +186,21 @@ h2 {
   position: absolute;
   margin-left: 10px;
 }
+.wishlistImg {
+  background-color: azure;
+  border: 2px solid;
+}
 
+.wishlistItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+}
 .delete {
   margin-top: 10px;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   position: absolute;
   margin-left: 200px;
@@ -137,6 +210,13 @@ span {
   font-size: 15px;
   font-weight: bolder;
   font-family: "Courier New", Courier, monospace;
+}
+
+.btn-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5em;
 }
 
 /* media query mobile */

@@ -8,6 +8,10 @@ function ResetPassword() {
   const { token } = useParams();
   const navigate = useNavigate();
 
+
+
+//   console.log(token);
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -26,6 +30,11 @@ function ResetPassword() {
         { withCredentials: true }
       );
       console.log(response);
+
+
+      alert("Your password has been changed!");
+      navigate("/login")
+
     } catch (e) {
       console.log(e);
     }
@@ -57,4 +66,7 @@ function ResetPassword() {
   );
 }
 
+
 export default ResetPassword;
+
+

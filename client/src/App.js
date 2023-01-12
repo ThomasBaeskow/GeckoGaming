@@ -35,9 +35,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
-{/*           <Route path="/updatePassword" element={<ProtectedRoute userAccess="authenticated"><UpdatePassword /></ProtectedRoute>} />
- */}           {/* <Route path="/cart" element={<Cart/>  }/> */}
-           <Route path="/resetPassword/:token" element={<ResetPassword/>}/>
+
+
+
+          <Route path="/resetPassword/:token" element={<ResetPassword/>}/>
+          <Route path="/updatePassword" element={<ProtectedRoute userAccess="authenticated"><UpdatePassword /></ProtectedRoute>} />
+           {/* <Route path="/cart" element={<Cart/>  }/> */}
+
           <Route path="/myAccount" element={<ProtectedRoute userAccess="authenticated"><MyAccount/></ProtectedRoute>} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/ViewAll" element={<ViewAll/>} />

@@ -95,7 +95,7 @@ function MyAccount() {
       { withCredentials: true }
     );
 
-    //alert("successfully removed");
+
     getWishList();
   };
 
@@ -126,9 +126,10 @@ function MyAccount() {
     axios
       .patch("/api/v1/user/updateMe", formData)
       .then((res) => {
-        console.log("hi im the response", res.data.data.user.photo);
-        setNewImage(res.data.data.user.photo);
-        console.log("newimage",newImage);
+
+    
+        console.log("hi im the response", res);
+
       })
       .catch((err) => {
         console.log("im the error", err);
@@ -161,9 +162,6 @@ function MyAccount() {
           <p className="userName"> Hi,{userData.user.name}</p>
 
           <div className="myAccountImg">
-            <button className="upload">
-              {/* <FontAwesomeIcon className="editIcon" icon={faEdit} onClick={upLoad}/> */}
-            </button>
 
             <form
               onSubmit={handleSubmit}
@@ -196,20 +194,23 @@ function MyAccount() {
           </button>
         </div>
 
-        <button
-          className="btn"
-          onClick={() => {
-            logOut();
-          }}
-        >
-          Log out
-        </button>
+        <div className="button">
+          <button
+            className="btn"
+            onClick={() => {
+              logOut();
+            }}
+          >
+            Log out
+          </button>
+        </div>
       </div>
       <p className="reset">
-        Update My Password{" "}
-        <button onClick={() => navigate("/updatePassword")}>
+
+        <button className="btn" onClick={() => navigate("/UpdatePassword")}>
+
           {" "}
-          Click to update
+          Change Password
         </button>{" "}
         <button onClick={() => navigate("/resetpassword")}>click to Reset</button>
       </p>
@@ -241,7 +242,7 @@ function MyAccount() {
                   <p>
                     {items.product_title && items.product_title.slice(0, 10)}
                   </p>
-                  <p>{items.app_sale_price}</p>
+                  <p>${items.app_sale_price}</p>
                   <p>{items.product_detail_url}</p>
                 </div>
                 {/* <h1>{item.id}</h1> */}
