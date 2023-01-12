@@ -212,7 +212,6 @@ function MyAccount() {
           {" "}
           Change Password
         </button>{" "}
-        <button onClick={() => navigate("/resetpassword")}>click to Reset</button>
       </p>
    
       <div>
