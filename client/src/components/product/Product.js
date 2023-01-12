@@ -1,15 +1,21 @@
 import "./product.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import React, { useEffect, useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import ReactStars from "react-stars";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
-import Dialog from "../dialog/Dialog";
+
 
 function Product() {
   const location = useLocation();
+<<<<<<< HEAD
+  const [rating, setRating] = useState("");
+  const { 
+    product,   
+    wishList,userData, cartList, singleProductDetails,setSingleProductDetails, getCart    
+=======
   const [rating, setRating] = useState(4.7);
   const {
     product,
@@ -19,11 +25,42 @@ function Product() {
     singleProductDetails,
     setSingleProductDetails,
     getCart,
+>>>>>>> 7b8828a0f3acc5bf4a4f648e7ad1da6d43e3373c
   } = useContext(MyContext);
 
   const [btnMsg, setBtnMsg] = useState(
     wishList.map((val) => val.id).includes(location.state.id) ? "Remove" : "Add"
   );
+<<<<<<< HEAD
+  
+  const[feature,setFeature] = useState([])
+  //--- Function to get product details based on product_id
+  const getSingleProductDetail = async () => {
+   // console.log("poduct_id",product,location.state.id)
+
+ // console.log("while entry in product single page",location.state.id,location.state.product_detail_url,location.state,  )
+   //--- Note * --- system id stored in wishlist, is not there in productDetails database. To get productDetail we need  product_id which is in productDetails database. so to get product_id based on system id of product database using axios 
+ const response = await axios.get(`/api/v1/products/${location.state.id}`);
+  const product_id = response.data.data.product.product_detail_url.slice(-10);
+    //console.log(product_id)
+   
+  //now get product details based on product_id to display in single page
+   const getProducts1 = await axios.get(`/api/v1/product/?product_id=${product_id}`); 
+   //const getProducts1 = await axios.get(`/api/v1/product/`,{product_id }); 
+    let res = getProducts1.data.data.data[0]   
+    setSingleProductDetails(res)
+    console.log(product_id,res.product_id,res)
+    setRating(res.product_details.Customer_Reviews)
+    setFeature(res.feature_bullets)
+    
+    
+ // console.log(getProducts1.data.data.data[0]);
+ // console.log(singleProductDetails.available_quantity) 
+
+  }
+//let prod1 =singleProductDetails? singleProductDetails.feature_bullets[0] : ""
+
+=======
 
   //--- Function to get product details based on product_id
   const getSingleProductDetail = async () => {
@@ -46,16 +83,28 @@ function Product() {
   };
 
 
+>>>>>>> 7b8828a0f3acc5bf4a4f648e7ad1da6d43e3373c
   const [isPlusMinus, setIsPlusMinus] = useState(false);
   const ToggleClass = () => {
     setIsPlusMinus(!isPlusMinus);
   }; 
 
+<<<<<<< HEAD
+
+
+  useEffect(()=>{
+    getSingleProductDetail(); 
+  },[]) 
+ 
+
+ 
+=======
   useEffect(() => {
     getSingleProductDetail();
   }, []);
 
 
+>>>>>>> 7b8828a0f3acc5bf4a4f648e7ad1da6d43e3373c
   //adding items to cart
   const addToCart = async (id) => {
     !userData && alert("Please login to add cart"); //Cart is protected route so, need to login to use
@@ -141,14 +190,19 @@ function Product() {
           <p >Product Details: <FontAwesomeIcon icon={faPlus} className={isPlusMinus ? "minus" : "plus"} onClick={ToggleClass}/>  <FontAwesomeIcon icon={faMinus}className={isPlusMinus ? "plus" : "minus"}onClick={ToggleClass} /></p> 
           <div className={isPlusMinus ? "plus" : "minus"}>
             {/* working on functions to close and open */}
-          {
-              singleProductDetails?.feature_bullets?.map((items,index)=>{if(index <=0)
-                 return (<li>{items}</li> )}
-              )
+          {feature.length > 0 ? feature.map((item,key)=>{if(key<=1)
+            return(<li >{item}</li>)
+          }): <li>{location.state.product_title}</li>
+           
+             
+              
             }   
           </div>  
          
            
+<<<<<<< HEAD
+          <p>Rating </p>
+=======
         
 
 
@@ -157,24 +211,31 @@ function Product() {
             Delivery <FontAwesomeIcon icon={faMinus} />
 
           </p>
+>>>>>>> 7b8828a0f3acc5bf4a4f648e7ad1da6d43e3373c
 
-          
+       
+         
+           <p>{rating && parseFloat(rating)}</p> 
           <ReactStars
             count={5}
-            value={rating}
-            activeColor="black"
+            value={rating && parseFloat(rating)}
+            activeColor="yellow"
             isHalf={true}
             size={24}
             edit={false}
           />
-          <p>{rating}</p>
         </div>
       </div>
 
       <div className="productReviewContainer">
         <div className="reviewLeft">
+<<<<<<< HEAD
+          <h3>✨Reviews✨</h3>
+          <p>Ratings ({rating && rating.split(" ").filter((item)=> (item !== " ") && item)[5]} review)</p>
+=======
           <h3 className="review">✨Reviews✨</h3>
           <p>Ratings: </p> (651 reviews)
+>>>>>>> 7b8828a0f3acc5bf4a4f648e7ad1da6d43e3373c
         </div>
         <div className="reviewRight">
           <button className="review-btn">Write a review</button>
