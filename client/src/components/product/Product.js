@@ -46,7 +46,6 @@ function Product() {
   };
 
 
-  
   const [isPlusMinus, setIsPlusMinus] = useState(false);
   const ToggleClass = () => {
     setIsPlusMinus(!isPlusMinus);
