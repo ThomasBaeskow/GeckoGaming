@@ -1,7 +1,11 @@
+
+import "./navbar.css";
 import React, { useContext, useEffect } from "react";
+
+
 import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
-import "./navbar.css";
+
 import { faUser, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {NavLink} from "react-router-dom";
@@ -13,10 +17,10 @@ const {userData,totalQtyCart,getCart,setTotalQtyCart,cartList} = useContext(MyCo
 
 
  
-const searchProducts = ()=>{
+/* const searchProducts = ()=>{
   return alert("products search")
 }
-
+ */
 
 
 
@@ -38,7 +42,7 @@ setTotalQtyCart(
         <MobileNavigation />
       </div>
       <div className="landingSearch">
-        <input type="search" placeholder="🔍 Search ..." onClick={searchProducts} />
+        <input type="search" placeholder="🔍 Search ..." /* onClick={searchProducts} */ />
       </div>
       <div className="landingCart">    
       <h5>{userData?userData.user.name:""}</h5>

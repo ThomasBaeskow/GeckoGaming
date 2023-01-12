@@ -45,9 +45,17 @@ function Product() {
     // console.log(singleProductDetails.available_quantity)
   };
 
+
+  }
+  const [isPlusMinus, setIsPlusMinus] = useState(false);
+  const ToggleClass = () => {
+    setIsPlusMinus(!isPlusMinus);
+  }; 
+
   useEffect(() => {
     getSingleProductDetail();
   }, []);
+
 
   //adding items to cart
   const addToCart = async (id) => {
@@ -104,12 +112,15 @@ function Product() {
         </div>
 
         <div className="singleProductDetails">
-          <Dialog />
-          <h4 className="name-product">
-            Product Name: {location.state.product_title}
-          </h4>
-          <h4>Product Price: ${location.state.app_sale_price}</h4>
-          <h6>Available Qty :{singleProductDetails.available_quantity}</h6>
+
+   
+          <h3>Product Name: {location.state.product_title}</h3>
+          <h4>Product Price: ${location.state.app_sale_price}</h4>          
+           <h6>Available Qty :{singleProductDetails.available_quantity}</h6>    
+
+       
+         
+
 
           <button
             className="review-btn"
@@ -127,16 +138,28 @@ function Product() {
 
           <p>Description :{location.state.product_title}</p>
 
-          <p>
-            Product Details:
-            {/* {singleProductDetails.feature_bullets.map((items) => (
-              <li>{items}</li>
-            ))}    this function works, but the list is too long*/}
-            <FontAwesomeIcon icon={faPlus} />
-          </p>
+           
+          <p >Product Details: <FontAwesomeIcon icon={faPlus} className={isPlusMinus ? "minus" : "plus"} onClick={ToggleClass}/>  <FontAwesomeIcon icon={faMinus}className={isPlusMinus ? "plus" : "minus"}onClick={ToggleClass} /></p> 
+          <div className={isPlusMinus ? "plus" : "minus"}>
+            {/* working on functions to close and open */}
+          {
+              singleProductDetails?.feature_bullets?.map((items,index)=>{if(index <=0)
+                 return (<li>{items}</li> )}
+              )
+            }   
+          </div>  
+         
+           
+        
+
+
+         
           <p>
             Delivery <FontAwesomeIcon icon={faMinus} />
+
           </p>
+
+          
           <ReactStars
             count={5}
             value={rating}

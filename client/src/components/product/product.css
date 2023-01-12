@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   padding: 8em;
-  margin-top: 8em;
+  margin-top: 1em;
   font-family: "JetBrains mono";
 }
 .singleProductImages {
@@ -62,6 +62,14 @@
   font-size: 1vw;
 }
 
+ .plus{
+  display:none;
+}
+.minus{
+  display:block;
+} 
+
+
 .img-review{
   width: 300px;
   height: auto;
@@ -73,6 +81,7 @@
   font-family: monospace;
   font-weight: 600;
 }
+
 
 /* media query mobile */
 

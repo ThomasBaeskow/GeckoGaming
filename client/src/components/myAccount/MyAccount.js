@@ -81,7 +81,7 @@ function MyAccount() {
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
 
-      alert("successfully added");
+      //alert("successfully added");
 
       getCart();
     }
@@ -95,7 +95,7 @@ function MyAccount() {
       { withCredentials: true }
     );
 
-    // alert("successfully removed");
+
     getWishList();
   };
 
@@ -126,7 +126,10 @@ function MyAccount() {
     axios
       .patch("/api/v1/user/updateMe", formData)
       .then((res) => {
+
+    
         console.log("hi im the response", res);
+
       })
       .catch((err) => {
         console.log("im the error", err);
@@ -159,6 +162,7 @@ function MyAccount() {
           <p className="userName"> Hi,{userData.user.name}</p>
 
           <div className="myAccountImg">
+
             <form
               onSubmit={handleSubmit}
               encType="multipart/form-data"
@@ -202,18 +206,22 @@ function MyAccount() {
         </div>
       </div>
       <p className="reset">
+
         <button className="btn" onClick={() => navigate("/UpdatePassword")}>
+
           {" "}
           Change Password
         </button>{" "}
+        <button onClick={() => navigate("/resetpassword")}>click to Reset</button>
       </p>
+   
       <div>
         <h2>My Wish List</h2>
         <div className="wishlistContainer">
-          {wishList.map((items) => {
+          {wishList.map((items,index) => {
             //changes from item to items to get product_id in single product page from wishlist at it has system product id
             return (
-              <div className="wishlistImg">
+              <div key={index}className="wishlistImg">
                 <FontAwesomeIcon
                   className="delete"
                   icon={faTrash}
@@ -230,7 +238,7 @@ function MyAccount() {
                   <img src={items.product_main_image_url} alt="" />
                 </NavLink>
 
-                <div className="wishlistItems">
+                <div   className="wishlistItems">
                   <p>
                     {items.product_title && items.product_title.slice(0, 10)}
                   </p>

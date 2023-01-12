@@ -43,7 +43,6 @@ const ForgotPassword = () => {
     <div className="pwd-container">
     <div className="forgotPwd">
       <h1 className="forgotH1">Forgot password</h1>
-
       <label htmlFor="email">Email:</label>
       <input
       className="email-input"

@@ -10,7 +10,7 @@ import { MyContext } from "../../context/Context";
 
 const Login = () => {
   const [loginData, setLoginData] = useState();
-  const {  setUserData,msg,setMsg } = useContext(MyContext); //using context to store user data
+  const {  setUserData,msg,setMsg,userData } = useContext(MyContext); //using context to store user data
   
   const navigate = useNavigate();
   
@@ -53,8 +53,12 @@ const Login = () => {
             //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
           })
           .then((res) =>setUserData(res.data.data))
+
+          
+
           
           // alert("Successfully logged in");
+
        navigate("/")
       } catch (e) {
         setMsg("Invalid credentials,try again");
