@@ -192,41 +192,40 @@ li:hover {
     display: none;
   }
 
-  
-.cart-div {
-  position: relative;
-  width: 42px;
-  height: 30px;
-  padding: 5px;
-}
+  .cart-div {
+    position: relative;
+    width: 42px;
+    height: 30px;
+    padding: 5px;
+  }
 
-.user {
-  position: relative;
-  width: 40px;
-  padding: 6px;
-}
+  .user {
+    position: relative;
+    width: 40px;
+    padding: 6px;
+  }
 
-.qty-num {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #1fab89;
-  color: white;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  font-size: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .qty-num {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #1fab89;
+    color: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.user:hover,
-.cart:hover {
-  color: white;
-  background-color: #1fab89;
-  border-radius: 5px;
-}
+  .user:hover,
+  .cart:hover {
+    color: white;
+    background-color: #1fab89;
+    border-radius: 5px;
+  }
 }
 
 /* media query for mobile */
@@ -271,39 +270,39 @@ li:hover {
   .landingSearch {
     display: none;
   }
-  
-.cart-div {
-  position: relative;
-  width: 42px;
-  height: 30px;
-  padding: 5px;
-}
 
-.user {
-  position: relative;
-  width: 40px;
-  padding: 6px;
-}
+  .cart-div {
+    position: relative;
+    width: 42px;
+    height: 30px;
+    padding: 5px;
+  }
 
-.qty-num {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #1fab89;
-  color: white;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  font-size: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .user {
+    position: relative;
+    width: 40px;
+    padding: 6px;
+  }
 
-.user:hover,
-.cart:hover {
-  color: white;
-  background-color: #1fab89;
-  border-radius: 5px;
-}
+  .qty-num {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #1fab89;
+    color: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user:hover,
+  .cart:hover {
+    color: white;
+    background-color: #1fab89;
+    border-radius: 5px;
+  }
 }

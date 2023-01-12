@@ -41,6 +41,7 @@ function ResetPassword() {
   };
 
   return (
+    <div className="pwd-container">
     <div className="resetForm">
       <form onSubmit={handleSubmit}>
         <label htmlFor="password">Password:</label>
@@ -62,6 +63,7 @@ function ResetPassword() {
         <br /> <button type="submit">Reset Password</button>
         <br />
       </form>
+    </div>
     </div>
   );
 }
