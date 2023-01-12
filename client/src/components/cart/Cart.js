@@ -29,9 +29,13 @@ function Cart() {
     //alert("hello")
     //console.log(item)
     //objects to be updated in cart database
+   if (item.cartQty <= 1 )
+    
+    removeItem(item.product_id) 
+   else{
     let cartNewItem = {
       product_id: item.product_id,
-      cartQty: item.cartQty >1 ? item.cartQty - 1:item.cartQty,
+      cartQty: item.cartQty - 1,
       product_title: item.product_title,
       app_sale_price: item.app_sale_price,
       product_main_image_url: item.product_main_image_url,
@@ -41,6 +45,7 @@ function Cart() {
     await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
     //console.log("data for update cart")
     getCart();
+  }
   };
 
   // function to increase the quantity of the items in the cart
@@ -84,6 +89,7 @@ function Cart() {
 
   //remove item from the cart
   const removeItem = async (id) => {
+    alert(id)
     await axios.delete(`/api/v1/cart/${id}`, {
       withCredentials: true,
     });
@@ -154,7 +160,7 @@ function Cart() {
         <div className="cartRight">
           <h3>Order</h3>
           <h4>Quantity of Goods : {totalQtyCart}</h4>
-          <p>Promotion code</p>
+         {/*  <p>Promotion code</p> */}
           <h4>Total:{totalCostCart()} </h4>
 
 

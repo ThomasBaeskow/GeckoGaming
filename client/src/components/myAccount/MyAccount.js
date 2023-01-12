@@ -24,17 +24,9 @@ function MyAccount() {
 
   const navigate = useNavigate();
 
-
-
- const [newImage, setNewImage] = useState(
-  {
-      photo: '',
-  }
-);
-
-
- 
-
+  const [newImage, setNewImage] = useState({
+    photo: "",
+  });
 
   useEffect(() => {
     getWishList();
@@ -89,7 +81,7 @@ function MyAccount() {
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
 
-      alert("successfully added");
+      //alert("successfully added");
 
       getCart();
     }
@@ -103,7 +95,7 @@ function MyAccount() {
       { withCredentials: true }
     );
 
-    alert("successfully removed");
+    //alert("successfully removed");
     getWishList();
   };
 
@@ -125,41 +117,41 @@ function MyAccount() {
     navigate("/");
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     const formData = new FormData();
-    formData.append('photo', newImage.photo);
+    formData.append("photo", newImage.photo);
 
-    axios.patch("/api/v1/user/updateMe", formData)
-         .then(res => {
-            console.log("hi im the response",res);
-         })
-         .catch(err => {
-            console.log("im the error",err);
-         });
+    axios
+      .patch("/api/v1/user/updateMe", formData)
+      .then((res) => {
+        console.log("hi im the response", res.data.data.user.photo);
+        setNewImage(res.data.data.user.photo);
+        console.log("newimage",newImage);
+      })
+      .catch((err) => {
+        console.log("im the error", err);
+      });
 
-        //  const updatedUser = axios.get("/api/v1/user/me")
-        //  .then(res => {
-        //     console.log("hi im the response",res);
-        //  })
-        //  .catch(err => {
-        //     console.log("im the error",err);
-        //  });
+    //  const updatedUser = axios.get("/api/v1/user/me")
+    //  .then(res => {
+    //     console.log("hi im the response",res);
+    //  })
+    //  .catch(err => {
+    //     console.log("im the error",err);
+    //  });
 
-        //  setUserData(updatedUser)
-         console.log("hi im the userData",userData);
-         console.log("hi im the image file",newImage.photo.name);
-         console.log("hi im the formData", formData.get("photo"));
-         console.log("hi im the image", newImage);
-}
+    //  setUserData(updatedUser)
+    console.log("hi im the userData", userData);
+    console.log("hi im the image file", newImage.photo.name);
+    console.log("hi im the formData", formData.get("photo"));
+    console.log("hi im the image", newImage);
+  };
 
   const handlePhoto = (e) => {
-    setNewImage({...newImage, photo: e.target.files[0]});
-}
-
-
+    setNewImage({ ...newImage, photo: e.target.files[0] });
+  };
 
   return (
     <div>
@@ -170,30 +162,26 @@ function MyAccount() {
 
           <div className="myAccountImg">
             <button className="upload">
-
-
-           
-
               {/* <FontAwesomeIcon className="editIcon" icon={faEdit} onClick={upLoad}/> */}
             </button>
 
-            <form onSubmit={handleSubmit} encType='multipart/form-data' name="photo">
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              name="photo"
+            >
               <label>
-                <input 
-                    type="file" 
-                    accept=".png, .jpg, .jpeg"
-                    name="photo"
-                    onChange={handlePhoto}
+                <input
+                  type="file"
+                  accept=".png, .jpg, .jpeg"
+                  name="photo"
+                  onChange={handlePhoto}
                 />
               </label>
-              <input 
-                  type="submit"
-              />
+              <input type="submit" />
             </form>
-          
-            
-            <img src={newImage} alt="" className="img-profile" />
 
+            <img src={newImage} alt="" className="img-profile" />
           </div>
         </div>
         <div className="orderDetail">
@@ -219,18 +207,20 @@ function MyAccount() {
       </div>
       <p className="reset">
         Update My Password{" "}
-        <button onClick={() => navigate("/UpdatePassword")}>
+        <button onClick={() => navigate("/updatePassword")}>
           {" "}
           Click to update
         </button>{" "}
+        <button onClick={() => navigate("/resetpassword")}>click to Reset</button>
       </p>
+   
       <div>
         <h2>My Wish List</h2>
         <div className="wishlistContainer">
-          {wishList.map((items) => {
+          {wishList.map((items,index) => {
             //changes from item to items to get product_id in single product page from wishlist at it has system product id
             return (
-              <div className="wishlistImg">
+              <div key={index}className="wishlistImg">
                 <FontAwesomeIcon
                   className="delete"
                   icon={faTrash}
@@ -247,7 +237,7 @@ function MyAccount() {
                   <img src={items.product_main_image_url} alt="" />
                 </NavLink>
 
-                <div className="wishlistItems">
+                <div   className="wishlistItems">
                   <p>
                     {items.product_title && items.product_title.slice(0, 10)}
                   </p>

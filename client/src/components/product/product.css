@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   padding: 8em;
-  margin-top: 8em;
+  margin-top: 1em;
   font-family: "JetBrains mono";
 }
 .singleProductImages {
@@ -46,7 +46,12 @@
 .addToWishList{
   font-size: 1vw;
 }
-
+ .plus{
+  display:none;
+}
+.minus{
+  display:block;
+} 
 /* media query mobile */
 
 @media screen and (max-width: 768px) {

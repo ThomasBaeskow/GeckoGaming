@@ -42,6 +42,10 @@ function Product() {
  // console.log(singleProductDetails.available_quantity) 
 
   }
+  const [isPlusMinus, setIsPlusMinus] = useState(false);
+  const ToggleClass = () => {
+    setIsPlusMinus(!isPlusMinus);
+  }; 
 
   useEffect(()=>{
     getSingleProductDetail(); 
@@ -104,7 +108,7 @@ function Product() {
         </div>
     
         <div className="singleProductDetails">
-        <Dialog />
+   
           <h3>Product Name: {location.state.product_title}</h3>
           <h4>Product Price: ${location.state.app_sale_price}</h4>          
            <h6>Available Qty :{singleProductDetails.available_quantity}</h6>    
@@ -124,22 +128,22 @@ function Product() {
           </button>
 
           <p>Description :{location.state.product_title}</p>
-          
-          <p >Product Details:
-            {/* not able to map, even individual index works sometime, sometime not */}
-          {/*   {
-              singleProductDetails.feature_bullets.map((items)=>{
-                return (<li>{items}</li>)
-              })
-            }  */} 
-        {/*     <li>{singleProductDetails.feature_bullets[0]}</li>
-            <li>{singleProductDetails.feature_bullets[1]}</li> */}    
            
-           {/*  {location.state.id} */}
-            <FontAwesomeIcon icon={faPlus}  />
+          <p >Product Details: <FontAwesomeIcon icon={faPlus} className={isPlusMinus ? "minus" : "plus"} onClick={ToggleClass}/>  <FontAwesomeIcon icon={faMinus}className={isPlusMinus ? "plus" : "minus"}onClick={ToggleClass} /></p> 
+          <div className={isPlusMinus ? "plus" : "minus"}>
+            {/* working on functions to close and open */}
+          {
+              singleProductDetails?.feature_bullets?.map((items,index)=>{if(index <=0)
+                 return (<li>{items}</li> )}
+              )
+            }   
+          </div>  
+         
+           
+          <p>Delivery  
           </p>
-          <p>Delivery <FontAwesomeIcon icon={faMinus} />
-          </p>
+
+          
           <ReactStars
             count={5}
             value={rating}
