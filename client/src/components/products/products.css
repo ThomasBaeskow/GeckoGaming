@@ -82,8 +82,8 @@ option {
   margin-top: 2em;
 }
 .best {
-  font-family: "Londrina Shadow", cursive;
-  font-size: 2rem;
+  font-family:'JetBrains mono';
+  font-size: 1.5rem;
 }
 .productDisplayScroll{
   margin-top: 100px;
@@ -122,10 +122,6 @@ option {
   border: 3px solid;
 }
 
-.heart:hover {
-  color: palevioletred;
-}
-
 .product-title {
   font-size: 1vw;
   font-weight: bold;
@@ -146,6 +142,10 @@ option {
 }
 .pagination li {
   list-style: none;
+}
+
+.brands{
+  margin-left: 20px;
 }
 
 /* media query mobile */

@@ -4,7 +4,6 @@ import { MyContext } from "../../context/Context";
 import ProductCard from "../productCard/ProductCard";
 import axios from "axios";
 
-
 const Products = () => {
   // getting product and category data using context
   const {
@@ -19,10 +18,8 @@ const Products = () => {
   const [titleText, setTitleText] = useState("All Products");
   let queryText;
 
-  
-
   const [checked, setChecked] = useState([]);
-  const [brandSelect, setBrandSelect] = useState([]); 
+  const [brandSelect, setBrandSelect] = useState([]);
   const [bs, setBs] = useState({
     videogames: false,
     pc: false,
@@ -32,7 +29,6 @@ const Products = () => {
 
   const customizedProducts = [];
   const [filteredProducts, setFilteredProducts] = useState([]);
-
 
   let brandList = {
     videogames: ["ps5", "pc", "ps4", "switch", "xbox-one", "xbox-x-s"],
@@ -50,9 +46,10 @@ const Products = () => {
   };
 
   /*  We should do it inside use effect  */
- useEffect(() => {
+  useEffect(() => {
     for (let key in brandList) {
-      customizedProducts.push(...brandList[key]); }
+      customizedProducts.push(...brandList[key]);
+    }
     setFilteredProducts(customizedProducts);
   }, []);
 
@@ -75,7 +72,7 @@ const Products = () => {
 
     console.log("brand selected", updatedList);
   }; //-------brand selected function end------
-//-------category selected function start------
+  //-------category selected function start------
   const categorySelector = (event) => {
     if (brandSelect.length === 0) {
       let updatedList = [...checked];
@@ -100,16 +97,17 @@ const Products = () => {
           accessories: false,
         });
       }
-    } 
+    }
   };
- //-------category selected function start------
+  //-------category selected function start------
 
- 
-//intiating pagenumber to paginate from backend
-  if (pageNum === 0) {setPageNum(1); }
+  //intiating pagenumber to paginate from backend
+  if (pageNum === 0) {
+    setPageNum(1);
+  }
 
-// function to fetch data from database based on search criteria  
-  const fetchAllProducts = async () => {   
+  // function to fetch data from database based on search criteria
+  const fetchAllProducts = async () => {
     //searchOption is coming from home page selections and checked is coming from products page
     if (!searchOption) {
       if (checked.length === 0) {
@@ -120,10 +118,9 @@ const Products = () => {
           queryText = `/api/v1/products/?productType=${checked.join(
             "&productType="
           )}&page=${pageNum}`;
-        }/*  else if((checked.length === 0) && (brandSelect.length > 0)){
+        } /*  else if((checked.length === 0) && (brandSelect.length > 0)){
           queryText = `/api/v1/products/?brand=${brandSelect.join("&brand=")}&page=${pageNum}`
-        } */
-        else {
+        } */ else {
           queryText = `/api/v1/products/?productType=${
             checked[0]
           }&brand=${brandSelect.join("&brand=")}&page=${pageNum}`;
@@ -156,35 +153,31 @@ const Products = () => {
           <div className="categories">
             <h4>Category → </h4>
 
-            {categoryList.map(
-              (
-                item,
-                index 
-              ) => {
-                return (
-                  <>
-                  
-                    <label key={index}>
-                      <input
-                        name={item}
-                        type="checkbox"
-                        className="checkbox"
-                        value={item}
-                        onChange={categorySelector}
-                        disabled={bs[item.toLowerCase()]}
-                      />
-                      {item}
-                    </label>
-                    <br />
-                  </>
-                );
-              }
-            )}
+            {categoryList.map((item, index) => {
+              return (
+                <>
+                  <label key={index}>
+                    <input
+                      name={item}
+                      type="checkbox"
+                      className="checkbox"
+                      value={item}
+                      onChange={categorySelector}
+                      disabled={bs[item.toLowerCase()]}
+                    />
+                    {item}
+                  </label>
+                  <br />
+                </>
+              );
+            })}
           </div>
         </div>
         <div className="selectionCategory">
-          <label htmlFor="brands">Brands:</label>
-          <select name="brands" id="brands" multiple>          
+          <label htmlFor="brands" className="brands">
+            Brands:
+          </label>
+          <select name="brands" id="brands" multiple>
             {!checked[0]
               ? filteredProducts.map((item, index) => {
                   return (
@@ -218,16 +211,15 @@ const Products = () => {
         </div>
       </div>
 
-
       <div className="productDisplay">
         <div className="productDisplayScroll">
           <button
             className="btn-Product"
             onClick={() => pageNum > 1 && setPageNum(pageNum - 1)}
           >
-            previous
+            ⬅️ Previous
           </button>
-          <h4 className="best">{titleText.toUpperCase()}</h4>
+          <h4 className="best">{titleText}</h4>
           <button
             className="btn-Product"
             onClick={() =>
@@ -236,13 +228,9 @@ const Products = () => {
                 : setPageNum(pageNum + 1)
             }
           >
-            Next
+            Next ➡️
           </button>
         </div>
-
-      
-       
-
 
         <ProductCard product={product} />
       </div>
