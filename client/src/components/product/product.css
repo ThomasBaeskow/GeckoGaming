@@ -18,8 +18,10 @@
 }
 
 .name-product {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: "JetBrains mono";
+  margin-top: 2em;
+  text-align: left;
 }
 .productReviewContainer {
   width: 90%;
@@ -39,6 +41,7 @@
 .review{
   font-size: 15px;
   font-family: "JetBrains mono";
+  text-align: left;
 }
 .reviewRight {
   width: 50%;
@@ -126,30 +129,35 @@
 /* media query ipad */
 
 @media screen and (max-width: 1024px) {
+  .container-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+  }
   .productData {
     width: 100%;
     height: 100%;
-    flex-direction: column;
-    padding: 0;
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 1rem;
+    margin-top: 1em;
+    font-family: "JetBrains mono";
   }
   .img-review{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 70%;
+    height: auto;
+
   }
   .singleProductImages {
     width: 50%;
   }
   .singleProductDetails {
-    width: 50%;
-  }
-  .productReviewContainer {
-    flex-direction: column;
-    height: 100%;
+    width: 100%;
   }
   .reviewLeft {
     width: 100%;

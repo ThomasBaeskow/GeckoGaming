@@ -113,7 +113,7 @@ function Product() {
         <div className="singleProductDetails">
 
    
-          <h3>Product Name: {location.state.product_title}</h3>
+          <h3 className="name-product">Product Name: {location.state.product_title}</h3>
           <h4>Product Price: ${location.state.app_sale_price}</h4>          
            <h6>Available Qty :{singleProductDetails.available_quantity}</h6>    
 
