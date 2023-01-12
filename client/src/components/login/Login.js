@@ -1,22 +1,16 @@
 import "./login.css";
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { MyContext } from "../../context/Context";
 
-
-
 const Login = () => {
   const [loginData, setLoginData] = useState();
-  const {  setUserData,msg,setMsg,userData } = useContext(MyContext); //using context to store user data
-  
+  const { setUserData, msg, setMsg, userData } = useContext(MyContext); //using context to store user data
+
   const navigate = useNavigate();
-  
-  
-
-
 
   // function to get values from input fields.
   const handleChange = (event) => {
@@ -31,10 +25,6 @@ const Login = () => {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return valChar.test(email);
   }
-
- 
-   
-  
 
   //function to send data to backend for login and get userdata after login success using axios
   const handleSubmit = async (e) => {
@@ -52,22 +42,10 @@ const Login = () => {
             withCredentials: true, // The 'login' API call for user authentication on the success of the login API sends us an HTTPonly cookie.
             //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
           })
-<<<<<<< HEAD
-          .then((res) =>  setUserData(res.data.data) )
-         
-          console.log(userData.user.name)
-          alert("Successfully logged in");
-       //navigate("/")
-=======
           .then((res) =>setUserData(res.data.data))
-
           
-
-          
-          // alert("Successfully logged in");
-
-       navigate("/")
->>>>>>> 7b8828a0f3acc5bf4a4f648e7ad1da6d43e3373c
+          alert("Successfully logged in");
+   
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }
@@ -76,8 +54,7 @@ const Login = () => {
  
 
   return (
-    
-      <div className="login-Container">
+    <div className="login-Container">
       <div className="loginContainer contactContainer">
         <h1>Login</h1>
         <div className="loginForm">
@@ -100,18 +77,22 @@ const Login = () => {
             <br />
             <br /> <button type="submit">Log in</button>
             <br />
-            <p onClick={()=>navigate("/forgotPassword")} className="forgotP"> Forgot Password? .. Click <span className="here">here</span> to reset</p>
-
+            <p onClick={() => navigate("/forgotPassword")} className="forgotP">
+              {" "}
+              Forgot Password? .. Click <span className="here">here</span> to
+              reset
+            </p>
           </form>
-         
-          <br />         
+
+          <br />
           <div>
-          
             <h3 className="errorMsg">{msg ? msg : ""} </h3>
           </div>
           <p className="signup-text">
-            🎮 Not registered? 🎮 
-            <button className="btn-2"><Link to="/signup">Sign up</Link> </button>
+            🎮 Not registered? 🎮
+            <button className="btn-2">
+              <Link to="/signup">Sign up</Link>{" "}
+            </button>
           </p>
         </div>
       </div>
