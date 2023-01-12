@@ -8,49 +8,6 @@ import sharp from "sharp"
 import { v4 as uuidv4 } from 'uuid';
 import path from "path";
 
-
-
-// const storage = multer.diskStorage({
-//   destination: function(req, file, cb) {
-//       cb(null, './upload');
-//   },
-//   filename: function(req, file, cb) {   
-//       cb(null, file.originalname);
-//   }
-// });
-
-// let upload = multer({ storage: storage });
-
-
-// // ADD IT AS MIDDLEWARE TO STACK AND CONNECT TO INPUT FIELD WITH NAME "photo"
-// export const uploadUserPhoto = async(req, res, next) => {
-//   const photo = req.file
-
-//   const newUserData = {
-//       photo
-//   }
-
-//   upload.single("photo")
-
-//   const updatedUser = await User.findByIdAndUpdate(req.user.id, newUserData, { // we can use findByIdAndUpdate because we are not updating password or Email, where we have and need our validation. 
-//     new: true, // returns the updated object instead of the old one
-//     runValidators: true // we want to still run our validators
-//   })
-
-//   res.status(200).json({
-//     status: "success",
-//     data: {
-//       user: updatedUser // we update the currentUser name, email or photo properties.
-//     }
-//   })
-
-//   console.log("im the photo",photo);
-//   console.log("im the user", req.user);
-//   console.log("im the req.body",req.body);
-//   console.log("im the updated user", updatedUser);
-//   next()
-// }
-
 // We simply store the file in our memory as a buffer. Which is available on req.file.buffer. The filename property wont get set here, thats why we need to set it below in resizeUserPhoto()
 const multerStorage = multer.memoryStorage()
 
@@ -151,65 +108,18 @@ export const deleteCurrentUser = catchAsync(async(req, res, next) => {
   })
 })
 
-// export const createUser = (req, res) => {
-//   res.status(500).json({
-//           status: 'error',
-//           message: "this route is not defined! Please use /signup instead"
-//         })
-// }
-
 export const createUser = factoryCreateOne(User)
 
 
 // Controllers with factory functions:
 export const getAllUsers = factoryGetAll(User)
-// catchAsync(async (req, res, next) => {
-//     const users = await User.find()
-//     res.status(200).json({
-//       status: 'success',
-//       results: users.length,
-//       data: {
-//         users
-//       },
-//     });
-// });
+
 
 export const getUser = factoryGetOne(User)
-// catchAsync(async (req, res, next) => {
-//     const user = await User.findById(req.params.id) // shorthand for belows code
-//     // User.findOne({ _id: req.params.id}) ---> this works the same like above
-
-//   // we read this object with the fitting id to the client.
-//     res.status(200).json({
-//     status: 'success',
-//     data: {
-//       user
-//     },
-//   });
-// });
 
 
 // Do NOT update passwords with this!
 export const updateUser = factoryUpdateOne(User)
-// catchAsync(async (req, res, next) => {
-//     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-//       new: true,
-//       runValidators: true
-//     })
-//     res.status(200).json({
-//       status: 'success',
-//       data: {
-//         user: user
-//       },
-//     });
-// });
+
 
 export const deleteUser = factoryDeleteOne(User)
-// catchAsync(async (req, res, next) => {
-//     await User.findByIdAndDelete(req.params.id)
-//     res.status(204).json({
-//       // statuscode 204 = no content
-//       status: 'success',
-//       data: null,
-//     });
-// });

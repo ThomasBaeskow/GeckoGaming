@@ -63,30 +63,38 @@ li:hover {
   font-size: 14px;
 }
 
-.cart{
+.cart-div {
   position: relative;
+  width: 42px;
+  height: 30px;
+  padding: 5px;
 }
 
-.qty-num{
+.user {
+  position: relative;
+  width: 40px;
+  padding: 6px;
+}
+
+.qty-num {
   position: absolute;
-  top: 10px;
-  right: 120px;
+  top: 0;
+  right: 0;
   background-color: #1fab89;
   color: white;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
 }
 
 .user:hover,
 .cart:hover {
   color: white;
   background-color: #1fab89;
-  padding: 5px;
   border-radius: 5px;
 }
 
@@ -145,7 +153,7 @@ li:hover {
 /* responsiveness navbar for ipad - hamburger menu */
 
 @media screen and (max-width: 1024px) {
-  .hamburger{
+  .hamburger {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
@@ -184,30 +192,46 @@ li:hover {
     display: none;
   }
 
-  .cart{
+  .cart-div {
     position: relative;
+    width: 42px;
+    height: 30px;
+    padding: 5px;
   }
-  .qty-num{
+
+  .user {
+    position: relative;
+    width: 40px;
+    padding: 6px;
+  }
+
+  .qty-num {
     position: absolute;
-    top: 10px;
-    right: 150px;
+    top: 0;
+    right: 0;
     background-color: #1fab89;
     color: white;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+  }
+
+  .user:hover,
+  .cart:hover {
+    color: white;
+    background-color: #1fab89;
+    border-radius: 5px;
   }
 }
-
 
 /* media query for mobile */
 
 @media screen and (max-width: 600px) {
-  .hamburger{
+  .hamburger {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
@@ -246,21 +270,39 @@ li:hover {
   .landingSearch {
     display: none;
   }
-  .cart{
+
+  .cart-div {
     position: relative;
+    width: 42px;
+    height: 30px;
+    padding: 5px;
   }
-  .qty-num{
+
+  .user {
+    position: relative;
+    width: 40px;
+    padding: 6px;
+  }
+
+  .qty-num {
     position: absolute;
-    top: 10px;
-    right: 60px;
+    top: 0;
+    right: 0;
     background-color: #1fab89;
     color: white;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+  }
+
+  .user:hover,
+  .cart:hover {
+    color: white;
+    background-color: #1fab89;
+    border-radius: 5px;
   }
 }

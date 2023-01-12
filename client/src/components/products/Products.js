@@ -220,6 +220,7 @@ const Products = () => {
         </div>
       </div>
 
+
       <div className="productDisplay">
         <div className="productDisplayScroll">
           <button
@@ -228,7 +229,7 @@ const Products = () => {
           >
             previous
           </button>
-          <h4>{titleText.toUpperCase()}</h4>
+          <h4 className="best">{titleText.toUpperCase()}</h4>
           <button
             className="btn-Product"
             onClick={() =>
@@ -240,6 +241,10 @@ const Products = () => {
             Next
           </button>
         </div>
+
+      
+       
+
 
         <ProductCard product={product} />
       </div>

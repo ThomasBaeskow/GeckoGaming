@@ -81,6 +81,10 @@ option {
   gap: 30px;
   margin-top: 2em;
 }
+.best {
+  font-family: "Londrina Shadow", cursive;
+  font-size: 2rem;
+}
 .productDisplayScroll{
   margin-top: 100px;
   height: 50px;
@@ -117,25 +121,10 @@ option {
   margin-right: 6%; 
   border: 3px solid;
 }
-.cardDetails{
-  display: flex;
-  justify-content: space-between;
-}
-/* .heart {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  color: rgba(243, 53, 170, 0.889);
-} */
 
 .heart:hover {
   color: palevioletred;
 }
-
-/* .cardContainer h4 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-} */
 
 .product-title {
   font-size: 1vw;
@@ -288,6 +277,10 @@ option {
     height: 100%;
     padding: 0;
     margin-bottom: 20px;
+  }
+  .best {
+    font-family: "Londrina Shadow", cursive;
+    font-size: 1.5rem;
   }
   .categories {
     border: 3px solid;

@@ -5,7 +5,6 @@ import AppError from "../utils/appError.js";
 import APIFeatures from "../utils/apiFeatures.js";
 
 
-
 export const getAllProducts = catchAsync(async (req, res, next) => {
   let filter = {} // we create a filter object which we pass in our find method, if we have a route with tourI in params. (create Review on tour/get reviews on tour)
   // if (req.params.userId) filter = {user: req.params.userId}
@@ -44,7 +43,7 @@ export const getProduct = catchAsync(async (req, res, next) => {
   });
 
 
-  export const addToWishList = catchAsync(async (req, res, next) => {
+export const addToWishList = catchAsync(async (req, res, next) => {
     const {id} = req.user;
     const {productId} = req.body;
 
@@ -93,7 +92,7 @@ export const getProduct = catchAsync(async (req, res, next) => {
   });
 
 
-  export const getWishList = catchAsync(async(req, res, next) => {
+export const getWishList = catchAsync(async(req, res, next) => {
 
     try {
       let query = User.findById(req.params.id)

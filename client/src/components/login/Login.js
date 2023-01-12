@@ -52,11 +52,22 @@ const Login = () => {
             withCredentials: true, // The 'login' API call for user authentication on the success of the login API sends us an HTTPonly cookie.
             //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
           })
+<<<<<<< HEAD
           .then((res) =>  setUserData(res.data.data) )
          
           console.log(userData.user.name)
           alert("Successfully logged in");
        //navigate("/")
+=======
+          .then((res) =>setUserData(res.data.data))
+
+          
+
+          
+          // alert("Successfully logged in");
+
+       navigate("/")
+>>>>>>> 7b8828a0f3acc5bf4a4f648e7ad1da6d43e3373c
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }
@@ -65,7 +76,8 @@ const Login = () => {
  
 
   return (
-    <>
+    
+      <div className="login-Container">
       <div className="loginContainer contactContainer">
         <h1>Login</h1>
         <div className="loginForm">
@@ -88,7 +100,7 @@ const Login = () => {
             <br />
             <br /> <button type="submit">Log in</button>
             <br />
-            <p onClick={()=>navigate("/forgotPassword")} className="forgotP"> Forgot Password? .. Click to reset</p>
+            <p onClick={()=>navigate("/forgotPassword")} className="forgotP"> Forgot Password? .. Click <span className="here">here</span> to reset</p>
 
           </form>
          
@@ -98,7 +110,8 @@ const Login = () => {
             <h3 className="errorMsg">{msg ? msg : ""} </h3>
           </div>
           <p className="signup-text">
-            🎮 Not registered? <Link to="/signup">Sign up</Link> 🎮
+            🎮 Not registered? 🎮 
+            <button className="btn-2"><Link to="/signup">Sign up</Link> </button>
           </p>
         </div>
       </div>
@@ -113,7 +126,7 @@ const Login = () => {
         </button>
         <br />
       </div>
-    </>
+    </div>
   );
 };
 

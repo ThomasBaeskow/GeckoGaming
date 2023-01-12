@@ -122,12 +122,12 @@ function Cart() {
                     className="cart-img"
                   />
 
-                  <div className="">
+                  <div>
                     <p>
                       {item.product_title}
                       {/* <h6> Available quantity: </h6> */}
                     </p>
-                    <h5>Product Id: {item.product_id}</h5>
+                    <h5 className="product-id">Product Id: {item.product_id}</h5>
                     <div className="cartQuantityContainer">
                       <button
                         className="decrease cartBtn"
@@ -138,14 +138,23 @@ function Cart() {
                       <button className="itemQuantity cartBtn">
                         {item.cartQty}
                       </button>
+                    
                       <button
                         className="increase cartBtn"
                         onClick={() => increase(item)}
                       >
                         +
                       </button>
+                      <div className="price-div">
+                     $ {item.app_sale_price.toFixed(2)}
+                      </div>
+                     
                     </div>
-                    <p>{item.app_sale_price}</p>
+
+                    {/* <p>{item.app_sale_price.toFixed(2)}</p> */}
+
+                   
+
                   </div>
                   <FontAwesomeIcon
                     className="deleteBtn"
@@ -159,9 +168,13 @@ function Cart() {
         </div>
         <div className="cartRight">
           <h3>Order</h3>
-          <h4>Quantity of Goods : {totalQtyCart}</h4>
-         {/*  <p>Promotion code</p> */}
-          <h4>Total:{totalCostCart()} </h4>
+
+         
+
+          <h4 className="total">Quantity of Goods: {totalQtyCart}</h4>
+          
+          <h4 className="total">Total: ${totalCostCart()} </h4>
+
 
 
 
@@ -188,21 +201,7 @@ function Cart() {
               }}
             />
           </PayPalScriptProvider>
-          <br /> <p> ← Back to home</p>
-
-
-
-          <button>Checkout</button>
-          <br />{" "}
-          <button
-            className="back"
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            <p> ← Back to home</p>
-          </button>
-
+       
       
       {/*     
           <br /> <p> ← Back to home</p>

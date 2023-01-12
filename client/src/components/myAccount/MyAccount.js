@@ -12,6 +12,9 @@ import axios from "axios";
 import FileBase64 from "react-file-base64";
 
 function MyAccount() {
+
+  const navigate = useNavigate();
+
   const {
     userData,
     cartList,
@@ -22,15 +25,28 @@ function MyAccount() {
     getCart,
   } = useContext(MyContext);
 
-  const navigate = useNavigate();
-
+  const [profile, setProfile] = useState(" ")
   const [newImage, setNewImage] = useState({
     photo: "",
   });
 
   useEffect(() => {
+    uploadProfile()
+  },[])
+
+  useEffect(() => {
     getWishList();
   }, []);
+
+  async function uploadProfile () {
+    try{
+      const response = await axios.get("/api/v1/user/me")
+      setProfile(response.data.data.data.photo)
+      // console.log(response.data.data.data);
+    }catch(err) {
+      console.log(err);
+    }
+  }
 
   //adding items to cart
   const addToCart = async (id) => {
@@ -94,8 +110,6 @@ function MyAccount() {
       { productId: itemId },
       { withCredentials: true }
     );
-
-    //alert("successfully removed");
     getWishList();
   };
 
@@ -104,7 +118,6 @@ function MyAccount() {
       withCredentials: true,
     });
     setWishList(res1.data.data.data);
-    //console.log("i am wish", wishList);
   };
 
   const logOut = async () => {
@@ -117,34 +130,27 @@ function MyAccount() {
     navigate("/");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("photo", newImage.photo);
 
-    axios
+    const response = await axios
       .patch("/api/v1/user/updateMe", formData)
       .then((res) => {
+
+    
         console.log("hi im the response", res.data.data.user.photo);
-        setNewImage(res.data.data.user.photo);
-        console.log("newimage",newImage);
+        setProfile(res.data.data.user.photo)
+
       })
       .catch((err) => {
         console.log("im the error", err);
       });
 
-    //  const updatedUser = axios.get("/api/v1/user/me")
-    //  .then(res => {
-    //     console.log("hi im the response",res);
-    //  })
-    //  .catch(err => {
-    //     console.log("im the error",err);
-    //  });
-
-    //  setUserData(updatedUser)
     console.log("hi im the userData", userData);
-    console.log("hi im the image file", newImage.photo.name);
+    console.log("hi im the image file", newImage.photo);
     console.log("hi im the formData", formData.get("photo"));
     console.log("hi im the image", newImage);
   };
@@ -161,9 +167,6 @@ function MyAccount() {
           <p className="userName"> Hi,{userData.user.name}</p>
 
           <div className="myAccountImg">
-            <button className="upload">
-              {/* <FontAwesomeIcon className="editIcon" icon={faEdit} onClick={upLoad}/> */}
-            </button>
 
             <form
               onSubmit={handleSubmit}
@@ -180,8 +183,8 @@ function MyAccount() {
               </label>
               <input type="submit" />
             </form>
-
-            <img src={newImage} alt="" className="img-profile" />
+            {/* {console.log(profile)} */}
+            <img src={`http://localhost:5000/images/${profile}`} alt="" className="img-profile" />
           </div>
         </div>
         <div className="orderDetail">
@@ -196,22 +199,24 @@ function MyAccount() {
           </button>
         </div>
 
-        <button
-          className="btn"
-          onClick={() => {
-            logOut();
-          }}
-        >
-          Log out
-        </button>
+        <div className="button">
+          <button
+            className="btn"
+            onClick={() => {
+              logOut();
+            }}
+          >
+            Log out
+          </button>
+        </div>
       </div>
       <p className="reset">
-        Update My Password{" "}
-        <button onClick={() => navigate("/updatePassword")}>
+
+        <button className="btn" onClick={() => navigate("/UpdatePassword")}>
+
           {" "}
-          Click to update
+          Change Password
         </button>{" "}
-        <button onClick={() => navigate("/resetpassword")}>click to Reset</button>
       </p>
    
       <div>
@@ -241,7 +246,7 @@ function MyAccount() {
                   <p>
                     {items.product_title && items.product_title.slice(0, 10)}
                   </p>
-                  <p>{items.app_sale_price}</p>
+                  <p>${items.app_sale_price}</p>
                   <p>{items.product_detail_url}</p>
                 </div>
                 {/* <h1>{item.id}</h1> */}
