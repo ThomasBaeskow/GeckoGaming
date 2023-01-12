@@ -68,6 +68,7 @@ const Products = () => {
     let updatedList = [...brandSelect];
     if (!brandSelect.includes(event.target.value)) {
       updatedList = [...brandSelect, event.target.value];
+     
     } else {
       updatedList.splice(brandSelect.indexOf(event.target.value), 1);
     }
@@ -188,7 +189,7 @@ const Products = () => {
             {!checked[0]
               ? filteredProducts.map((item, index) => {
                   return (
-                    <option
+                    <option                                     
                       key={index}
                       value={item}
                       onClick={handleBrandSelect}
@@ -203,6 +204,7 @@ const Products = () => {
                       key={index}
                       value={item}
                       onClick={handleBrandSelect}
+                      style={{backgroundColor:brandSelect.includes(item)&&`blue`}}
                     >
                       {item}
                     </option>

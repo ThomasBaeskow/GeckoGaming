@@ -52,10 +52,11 @@ const Login = () => {
             withCredentials: true, // The 'login' API call for user authentication on the success of the login API sends us an HTTPonly cookie.
             //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
           })
-          .then((res) =>setUserData(res.data.data))
-          console.log(userData)
+          .then((res) =>  setUserData(res.data.data) )
+         
+          console.log(userData.user.name)
           alert("Successfully logged in");
-       navigate("/")
+       //navigate("/")
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }
