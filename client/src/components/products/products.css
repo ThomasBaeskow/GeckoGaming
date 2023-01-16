@@ -1,6 +1,5 @@
 * {
-  padding: 0;
-  margin: 0;
+
   box-sizing: border-box;
 }
 
@@ -16,12 +15,21 @@
 
 .selectionCriteria {
   width: 30%;
- /*  height: 100vw; */
   padding: 90px;
   margin-bottom: 20px;
-  /*   position: absolute;
-  top: 0;
-  left: 0; */
+}
+
+.brands{
+  font-weight: bold;
+}
+
+#brands{
+  margin-bottom: 20px;
+}
+
+.sortByPrice{
+  font-weight: bold;
+  margin-left: 20px;
 }
 
 .categories {
@@ -146,6 +154,10 @@ option {
 
 .brands{
   margin-left: 20px;
+}
+
+.sortByPrice{
+  margin-top: 2em;
 }
 
 /* media query mobile */

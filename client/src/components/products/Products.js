@@ -137,8 +137,7 @@ const Products = () => {
 
 
 
-    }
-  };
+    
   //-------category selected function start------
 
 
@@ -232,7 +231,7 @@ const Products = () => {
 
 
           <label htmlFor="brands" className="brands">
-            Brands:
+         Brands:
           </label>
           <select name="brands" id="brands" multiple>
             {!checked[0]
@@ -268,7 +267,7 @@ const Products = () => {
           </select>
           <br />
 
-          <label htmlFor="SortByPrice">Sort By Price:</label>
+          <label htmlFor="SortByPrice" className="sortByPrice">Sort By Price:</label>
           <select name="SortByPrice" id="price" multiple>
             <option className="Ascend" onClick={() => setSort("")}>
               Lowest to Highest
