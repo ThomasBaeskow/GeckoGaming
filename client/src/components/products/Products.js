@@ -98,9 +98,6 @@ const Products = () => {
     }
   }; //-------brand selected function end------
 
-
-
-
   //-------category selected function start------
   const categorySelector = (event) => {
     if (brandSelect.length === 0) {
@@ -121,6 +118,7 @@ const Products = () => {
           accessories: false,
         });
       }
+
       setChecked(updatedList);
 
       console.log("checked brandSelect", checked);
@@ -139,12 +137,15 @@ const Products = () => {
 
 
 
+    }
+  };
+  //-------category selected function start------
+
+
   //intiating pagenumber to paginate from backend
   if (pageNum === 0) {
     setPageNum(1);
   }
-
-
 
   // function to fetch data from database based on search criteria
   const fetchAllProducts = async () => {
@@ -160,14 +161,15 @@ const Products = () => {
           queryText = `/api/v1/products/?sort=${sort}app_sale_price&productType=${checked.join(
             "&productType="
           )}&page=${pageNum}`;
+
         } else if (checked.length === 0 && brandSelect.length > 0) {
           // if only brans are selected
           queryText = `/api/v1/products/?sort=${sort}app_sale_price&brand=${brandSelect.join(
             "&brand="
           )}&page=${pageNum}`;
         } else {
-          // for a catagory with its brands selected
-          queryText = `/api/v1/products/?sort=${sort}app_sale_price&productType=${
+          // for a catagory with its brands selected    
+          queryText = `/api/v1/products/?productType=${
             checked[0]
           }&brand=${brandSelect.join("&brand=")}&page=${pageNum}`;
         }
@@ -227,7 +229,11 @@ const Products = () => {
 
         
         <div className="selectionCategory">
-          <label htmlFor="brands">Brands:</label>
+
+
+          <label htmlFor="brands" className="brands">
+            Brands:
+          </label>
           <select name="brands" id="brands" multiple>
             {!checked[0]
               ? filteredProducts.map((item, index) => {
@@ -280,9 +286,9 @@ const Products = () => {
             className="btn-Product"
             onClick={() => pageNum > 1 && setPageNum(pageNum - 1)}
           >
-            previous
+            ⬅️ Previous
           </button>
-          <h4 className="best">{titleText.toUpperCase()}</h4>
+          <h4 className="best">{titleText}</h4>
           <button
             className="btn-Product"
             onClick={() =>
@@ -291,7 +297,7 @@ const Products = () => {
                 : setPageNum(pageNum + 1)
             }
           >
-            Next
+            Next ➡️
           </button>
         </div>
 

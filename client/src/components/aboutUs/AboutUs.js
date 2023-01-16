@@ -10,24 +10,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-
-
 const AboutUs = () => {
   const navigate = useNavigate();
-  const submitHandler=(e)=>{
+  const submitHandler = (e) => {
     e.preventDefault();
-   const from= e.target.email.value;
-   const text= e.target.message.value;
-   axios.post("http://127.0.0.1:5000/api/v1/about/contact",{from, text}).then(res => console.log(res.data)).catch(err => console.log(err));
-   alert("Message has been sent");
-  //  window.location.reload(true)
-   navigate("/")
-  }
+    const from = e.target.email.value;
+    const text = e.target.message.value;
+    axios
+      .post("http://127.0.0.1:5000/api/v1/about/contact", { from, text })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+    alert("Message has been sent");
+    //  window.location.reload(true)
+    navigate("/");
+  };
   return (
     <div>
       <br />
       <div className="contactContainer">
-        <FontAwesomeIcon icon={faAddressCard} className='icon-contact' /> 
+        <FontAwesomeIcon icon={faAddressCard} className="icon-contact" />
         <span className="title-contact">Get in Touch</span>
         <div className="contactCard">
           <div className="contactForm">
@@ -36,7 +37,12 @@ const AboutUs = () => {
               <br />
               <input type="email" name="email" placeholder="email/username" />
               <p>Your message</p>
-              <textarea name="message" placeholder="Message" rows="4" cols="50"></textarea>
+              <textarea
+                name="message"
+                placeholder="Message"
+                rows="4"
+                cols="50"
+              ></textarea>
               <br />
               <button type="submit">Send</button>
             </form>
@@ -56,8 +62,16 @@ const AboutUs = () => {
       <div className="contactAbout">
         <h1>About us</h1>
         <p className="text-1">
-          We are a team of 5 that tries to supply our fellow gamers with the best technology, accessories and games that are on the market 
+          We are a team of 5 that tries to supply our fellow gamers with the
+          best technology, accessories and games that are on the market
         </p>
+        <div className="pic-container">
+          <img src="" alt="thomas" />
+          <img src="" alt="dani" />
+          <img src="" alt="sofia" />
+          <img src="" alt="anu" />
+          <img src="" alt="orazio" />
+        </div>
       </div>
     </div>
   );
