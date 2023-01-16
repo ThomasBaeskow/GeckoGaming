@@ -94,7 +94,7 @@ function Cart() {
     await axios.delete(`/api/v1/cart/${id}`, {
       withCredentials: true,
     });
-    alert("successfully removed");
+    //alert("successfully removed");
     //console.log({product_id:id});
     //getCart will update the cart after deleting
     getCart();

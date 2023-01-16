@@ -32,8 +32,10 @@ const UpdatePassword = () => {
           password,
           confirmPassword}
         );
-
+            
         setMsg("Password changed");
+        alert("hi")
+        console.log("i am called")
         navigate("/myAccount");
       };
 
