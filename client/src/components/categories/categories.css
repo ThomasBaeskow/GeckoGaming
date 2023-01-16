@@ -144,6 +144,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     font-family: "Marck Script", cursive;
+    margin-left: 45px;
   }
   .orange {
     background-color: rgb(251, 212, 173);
@@ -153,6 +154,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 45px;
   }
   .green {
     background-color: rgb(204, 255, 204);

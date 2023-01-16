@@ -21,28 +21,29 @@ function MyAccount() {
     setWishList,
     product,
     getCart,
-    setLogged,logged
+    setLogged,
+    logged,
   } = useContext(MyContext);
 
-  const [profile, setProfile] = useState(" ")
+  const [profile, setProfile] = useState(" ");
   const [newImage, setNewImage] = useState({
     photo: "",
   });
 
   useEffect(() => {
-    uploadProfile()
-  },[])
+    uploadProfile();
+  }, []);
 
   useEffect(() => {
     getWishList();
   }, []);
 
-  async function uploadProfile () {
-    try{
-      const response = await axios.get("/api/v1/user/me")
-      setProfile(response.data.data.data.photo)
+  async function uploadProfile() {
+    try {
+      const response = await axios.get("/api/v1/user/me");
+      setProfile(response.data.data.data.photo);
       // console.log(response.data.data.data);
-    }catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
@@ -98,8 +99,7 @@ function MyAccount() {
 
       alert("successfully added");
 
-     getCart();
-     
+      getCart();
     }
   };
 
@@ -126,15 +126,13 @@ function MyAccount() {
     });
 
     setUserData("");
-    localStorage.removeItem("logged")
-   setCartList([])
+    localStorage.removeItem("logged");
+    setCartList([]);
     alert("successfully logged out");
     navigate("/");
   };
 
- 
-
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -143,11 +141,8 @@ function MyAccount() {
     const response = await axios
       .patch("/api/v1/user/updateMe", formData)
       .then((res) => {
-
-    
         console.log("hi im the response", res.data.data.user.photo);
-        setProfile(res.data.data.user.photo)
-
+        setProfile(res.data.data.user.photo);
       })
       .catch((err) => {
         console.log("im the error", err);
@@ -168,10 +163,12 @@ function MyAccount() {
       <div className="myAccountContainer">
         <h1 className="myaccount-title">My Account</h1>
         <div className="accountDetail">
-          <p className="userName"> Hi,{JSON.parse(localStorage.getItem("logged"))}</p>
+          <p className="userName">
+            {" "}
+            Hi,{JSON.parse(localStorage.getItem("logged"))}
+          </p>
 
           <div className="myAccountImg">
-
             <form
               onSubmit={handleSubmit}
               encType="multipart/form-data"
@@ -188,7 +185,11 @@ function MyAccount() {
               <input type="submit" />
             </form>
             {/* {console.log(profile)} */}
-            <img src={`http://localhost:5000/images/${profile}`} alt="" className="img-profile" />
+            <img
+              src={`http://localhost:5000/images/${profile}`}
+              alt=""
+              className="img-profile"
+            />
           </div>
         </div>
         <div className="orderDetail">
@@ -202,8 +203,7 @@ function MyAccount() {
             View All ➡️
           </button>
         </div>
-
-        <div className="button">
+        <div className="btn-container">
           <button
             className="btn"
             onClick={() => {
@@ -212,24 +212,19 @@ function MyAccount() {
           >
             Log out
           </button>
+          <button className="btn" onClick={() => navigate("/UpdatePassword")}>
+            {" "}
+            Change Password
+          </button>{" "}
         </div>
       </div>
-      <p className="reset">
-
-        <button className="btn" onClick={() => navigate("/UpdatePassword")}>
-
-          {" "}
-          Change Password
-        </button>{" "}
-      </p>
-   
       <div>
         <h2>My Wish List</h2>
         <div className="wishlistContainer">
-          {wishList.map((items,index) => {
+          {wishList.map((items, index) => {
             //changes from item to items to get product_id in single product page from wishlist at it has system product id
             return (
-              <div key={index}className="wishlistImg">
+              <div key={index} className="wishlistImg">
                 <FontAwesomeIcon
                   className="delete"
                   icon={faTrash}
@@ -246,13 +241,13 @@ function MyAccount() {
                   <img src={items.product_main_image_url} alt="" />
                 </NavLink>
 
-                <div   className="wishlistItems">
+                <div className="wishlistItems">
                   <p>
                     {items.product_title && items.product_title.slice(0, 10)}
                   </p>
                   <p>${items.app_sale_price}</p>
                   <p>{items.product_detail_url}</p>
-                </div>               
+                </div>
               </div>
             );
           })}
