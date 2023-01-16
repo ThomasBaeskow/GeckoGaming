@@ -147,9 +147,7 @@ h2 {
   display: flex;
   justify-content: space-around;
 }
-/* .wishListIcon {
-  margin-left: 230px;
-} */
+
 h2 {
   text-align: center;
   font-size: 40px;
@@ -289,26 +287,13 @@ span {
     display: flex;
     justify-content: space-around;
   }
-  /* .wishListIcon {
-    margin-left: 230px;
-  } */
   h2 {
     text-align: center;
     font-size: 40px;
     margin-top: 50px;
     margin-bottom: 50px;
   }
-  /* .heart-wish {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    color: rgba(246, 22, 160, 0.889);
-    position: absolute;
-    margin-left:
-  }
-  .heart-wish:hover {
-    color: palevioletred;
-  } */
+
   .addTo-Cart {
     margin-top: 10px;
     width: 30px;
@@ -366,6 +351,10 @@ span {
   }
   .editIcon {
     padding-left: 80px;
+  }
+  .btn-container {
+    display: block;
+    margin-right: 20%;
   }
   .btn {
     width: 200px;
