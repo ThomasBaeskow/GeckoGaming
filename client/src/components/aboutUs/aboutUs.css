@@ -88,12 +88,13 @@ p {
 }
 
 .img-div {
-  height: 260px;
+  height: 250px;
   width: 200px;
   padding: 30px 50px 50px 10px;
   background-color: #f1f1f1;
   border: 2px solid;
   box-shadow: 5px 5px;
+  font-size: 0.8rem;
 }
 
 .img-div:hover {
@@ -110,6 +111,14 @@ p {
 }
 
 .sofia {
+  width: 150px;
+  height: 180px;
+}
+.thomas {
+  width: 150px;
+  height: 180px;
+}
+.dani {
   width: 150px;
   height: 180px;
 }

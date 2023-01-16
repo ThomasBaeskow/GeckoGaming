@@ -74,11 +74,11 @@ const AboutUs = () => {
         </p>
         <div className="pic-container">
           <div className="img-div">
-            <img src={Thomas} alt="thomas" className="img-team" />
+            <img src={Thomas} alt="thomas" className="img-team thomas" />
             Thomas Baeskow
           </div>
           <div className="img-div">
-            <img src={Dani} alt="dani" className="img-team" />
+            <img src={Dani} alt="dani" className="img-team dani" />
             Dani Hristonova
           </div>
           <div className="img-div">
