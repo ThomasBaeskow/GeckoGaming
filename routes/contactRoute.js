@@ -11,7 +11,7 @@ const app = express();
 app.post('/contact', (req, res) => {
      console.log(req.body);
     const msg = {
-        to: `thomasbaeskow@web.de`, // Change to your recipient
+        to: `geckogamingstore@gmail.com`, // Change to your recipient
         from: `${req.body.from}`, // Change to your verified sender
          subject: "inquire",
         text: `Message from ${req.body.from}:\n${req.body.text}`,
