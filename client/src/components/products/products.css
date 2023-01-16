@@ -264,6 +264,11 @@ option {
     justify-content: space-between;
     cursor: pointer;
   }
+  .btn-Product{
+    width: 100px;
+    height: 50px;
+    font-size: 1rem;
+  }
 }
 
 /* media query ipad */
@@ -291,9 +296,9 @@ option {
     margin-bottom: 20px;
   }
   .best {
-    font-family: "Londrina Shadow", cursive;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
+
   .categories {
     border: 3px solid;
     padding: 25px;
@@ -341,7 +346,7 @@ option {
   }
   option {
     font-family: "JetBrains mono";
-    font-size: 20px;
+    font-size: 18px;
   }
   .productDisplay {
     width: 100%;
