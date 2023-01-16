@@ -137,8 +137,7 @@ const Products = () => {
 
 
 
-    }
-  };
+    
   //-------category selected function start------
 
 

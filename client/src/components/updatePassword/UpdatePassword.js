@@ -33,6 +33,7 @@ const UpdatePassword = () => {
           confirmPassword}
         );
 
+        alert("password changed")
         setMsg("Password changed");
         navigate("/myAccount");
       };
