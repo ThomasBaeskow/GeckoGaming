@@ -50,7 +50,7 @@ const Login = () => {
         //alert("Successfully logged in");
         setMsg("");       
       //console.log(JSON.parse(localStorage.getItem("logged")))
-        navigate("/");
+      //navigate("/")
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }

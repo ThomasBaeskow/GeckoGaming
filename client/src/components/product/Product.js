@@ -164,7 +164,7 @@ const navigate = useNavigate()
           <div className={isPlusMinus ? "plus" : "minus"}>           
             {feature.length > 0 ? (
               feature.map((item, key) => {
-                if (key <= 1) return <li>{item}</li>;
+                if (key <= 0) return <li>{item}</li>;
               })
             ) : (
               <li>{location.state.product_title}</li>
@@ -173,9 +173,7 @@ const navigate = useNavigate()
 
           <p>Rating </p>
 
-          <p>
-            Delivery <FontAwesomeIcon icon={faMinus} />
-          </p>
+          
 
           <p>{rating && parseFloat(rating)}</p>
           <ReactStars

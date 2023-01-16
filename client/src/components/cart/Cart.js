@@ -8,16 +8,13 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  const { cartList, setCartList, totalQtyCart, setTotalQtyCart, /* getCart */ } =
+  const { cartList, setCartList, totalQtyCart, setTotalQtyCart /* getCart */ } =
     useContext(MyContext);
   const navigate = useNavigate();
- 
 
   useEffect(() => {
     getCart();
   }, []);
-  
-  
 
   // function to decrease the quantity of the items in the cart
   const decrease = async (item) => {
@@ -38,7 +35,6 @@ function Cart() {
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
       //console.log("data for update cart")
       getCart();
-    
     }
   };
 
@@ -64,14 +60,13 @@ function Cart() {
   };
 
   // function to total quantity of the items in the cart
-   setTotalQtyCart(
+  setTotalQtyCart(
     cartList.reduce(
       (accumulator, currentValue) => accumulator + currentValue.cartQty,
       0
     )
-   
-  ); 
- 
+  );
+
   // function to calculate total cost of items in the cart
   const getCart = async () => {
     const res1 = await axios.get("/api/v1/cart", {
@@ -90,17 +85,14 @@ function Cart() {
 
   //remove item from the cart
   const removeItem = async (id) => {
-    
     await axios.delete(`/api/v1/cart/${id}`, {
       withCredentials: true,
     });
-    // alert("successfully removed");
+
     //console.log({product_id:id});
     //getCart will update the cart after deleting
     getCart();
   };
-
-
 
   return (
     <div className="yourCart">
@@ -119,10 +111,7 @@ function Cart() {
                   />
 
                   <div>
-                    <p>
-                      {item.product_title}
-                      
-                    </p>
+                    <p>{item.product_title}</p>
                     <h5 className="product-id">
                       Product Id: {item.product_id}
                     </h5>
@@ -147,8 +136,6 @@ function Cart() {
                         $ {item.app_sale_price.toFixed(2)}
                       </div>
                     </div>
-
-                  
                   </div>
                   <FontAwesomeIcon
                     className="deleteBtn"
@@ -195,8 +182,6 @@ function Cart() {
               }}
             />
           </PayPalScriptProvider>
-
-         
         </div>
       </div>
     </div>
