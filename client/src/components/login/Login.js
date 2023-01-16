@@ -7,10 +7,13 @@ import axios from "axios";
 import { MyContext } from "../../context/Context";
 
 const Login = () => {
-  const [loginData, setLoginData] = useState();
-  const { setUserData, msg, setMsg, userData } = useContext(MyContext); //using context to store user data
+  const [loginData, setLoginData] = useState({email:"", password:""});
+  const { setUserData, setLogged, logged, msg, setMsg, userData } =
+    useContext(MyContext); //using context to store user data
 
   const navigate = useNavigate();
+
+
 
   // function to get values from input fields.
   const handleChange = (event) => {
@@ -42,16 +45,19 @@ const Login = () => {
             withCredentials: true, // The 'login' API call for user authentication on the success of the login API sends us an HTTPonly cookie.
             //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
           })
-          .then((res) =>setUserData(res.data.data))
-          
-          alert("Successfully logged in");
-   
+          .then((res) => setUserData(res.data.data)   
+      );           
+        //alert("Successfully logged in");
+        setMsg("");       
+      //console.log(JSON.parse(localStorage.getItem("logged")))
+        navigate("/");
       } catch (e) {
         setMsg("Invalid credentials,try again");
       }
     }
   };
  
+if(userData){localStorage.setItem("logged",JSON.stringify(userData.user.name));navigate("/");}
 
   return (
     <div className="login-Container">
@@ -78,7 +84,7 @@ const Login = () => {
             <br /> <button type="submit">Log in</button>
             <br />
             <p onClick={() => navigate("/forgotPassword")} className="forgotP">
-              {" "}
+             
               Forgot Password? .. Click <span className="here">here</span> to
               reset
             </p>
@@ -91,7 +97,7 @@ const Login = () => {
           <p className="signup-text">
             🎮 Not registered? 🎮
             <button className="btn-2">
-              <Link to="/signup">Sign up</Link>{" "}
+              <Link to="/signup">Sign up</Link>
             </button>
           </p>
         </div>

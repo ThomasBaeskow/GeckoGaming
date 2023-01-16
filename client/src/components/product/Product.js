@@ -1,5 +1,5 @@
 import "./product.css";
-import { useLocation, useParams } from "react-router-dom";
+import {  useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +8,7 @@ import { MyContext } from "../../context/Context";
 import axios from "axios";
 
 function Product() {
+
   const location = useLocation();
   const [rating, setRating] = useState("");
   const {
@@ -18,11 +19,18 @@ function Product() {
     singleProductDetails,
     setSingleProductDetails,
     getCart,
+    logged
   } = useContext(MyContext);
-
+const navigate = useNavigate()
   const [btnMsg, setBtnMsg] = useState(
     wishList.map((val) => val.id).includes(location.state.id) ? "Remove" : "Add"
   );
+
+  useEffect(()=>{
+    product.length === 0 && navigate('/products')
+  },[])
+  
+ 
 
   const [feature, setFeature] = useState([]);
   //--- Function to get product details based on product_id
@@ -42,14 +50,14 @@ function Product() {
     //const getProducts1 = await axios.get(`/api/v1/product/`,{product_id });
     let res = getProducts1.data.data.data[0];
     setSingleProductDetails(res);
-    console.log(product_id, res.product_id, res);
+   // console.log(product_id, res.product_id, res);
     setRating(res.product_details.Customer_Reviews);
     setFeature(res.feature_bullets);
 
     // console.log(getProducts1.data.data.data[0]);
     // console.log(singleProductDetails.available_quantity)
   };
-  //let prod1 =singleProductDetails? singleProductDetails.feature_bullets[0] : ""
+ 
 
   const [isPlusMinus, setIsPlusMinus] = useState(false);
   const ToggleClass = () => {
@@ -60,15 +68,18 @@ function Product() {
     getSingleProductDetail();
   }, []);
 
+
   //adding items to cart
   const addToCart = async (id) => {
-    !userData && alert("Please login to add cart"); //Cart is protected route so, need to login to use
+
+    !JSON.parse(localStorage.getItem("logged")) && alert("Please login to add cart"); //Cart is protected route so, need to login to use
+    console.log(product)
     const prod_result = product.filter((item) => item.id === id);
-    //console.log("prod result",prod_result[0].product_detail_url.slice(-10))
+   console.log("prod result",prod_result[0].product_detail_url.slice(-10))
     let product_id = prod_result[0].product_detail_url.slice(-10);
     let itemQty = cartList.filter((val) => val.product_id === product_id);
     let cartQty = itemQty.length === 0 ? 1 : itemQty[0].cartQty + 1;
-    //console.log("item", itemQty, cartQty)
+    console.log("item", itemQty, cartQty)
 
     let cartNewItem = {
       product_id: product_id,
@@ -85,7 +96,7 @@ function Product() {
 
   //adding items to wishlist in the database
   const addToWishList = async (prodId) => {
-    !userData && alert("Please login to add/remove from wishlist");
+    !JSON.parse(localStorage.getItem("logged"))  && alert("Please login to add/remove from wishlist");
     try {
       await axios.put(
         "/api/v1/user/wishlist",
@@ -150,8 +161,7 @@ function Product() {
               onClick={ToggleClass}
             />
           </p>
-          <div className={isPlusMinus ? "plus" : "minus"}>
-            {/* working on functions to close and open */}
+          <div className={isPlusMinus ? "plus" : "minus"}>           
             {feature.length > 0 ? (
               feature.map((item, key) => {
                 if (key <= 1) return <li>{item}</li>;
@@ -189,7 +199,7 @@ function Product() {
             review)
           </p>
       
-       {/*    <p>Ratings: </p> (651 reviews) */}
+      
         </div>
         <div className="reviewRight">
           <button className="review-btn">Write a review</button>

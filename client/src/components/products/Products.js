@@ -38,10 +38,10 @@ const Products = () => {
       "headset",
       "keyboard",
       "mouse",
-      "ps4-controller",
-      "ps5-controller",
-      "switch-controller",
-      "xbox-x/s-controller",
+      "ps4",
+      "ps5",
+      "switch",
+      "xbox-x-s",
     ],
   };
 
@@ -53,26 +53,51 @@ const Products = () => {
     setFilteredProducts(customizedProducts);
   }, []);
 
+  const [sort, setSort] = useState("");
+  console.log(sort);
+
+
+
   //-------brand selected function ------//
   const handleBrandSelect = (event) => {
-    for (let key in bs) {
-      if (key === checked[0]) {
-        bs[key] = false;
+    if (checked.length !== 0) {
+      for (let key in bs) {
+        if (key === checked[0]) {
+          bs[key] = false;
+        } else {
+          bs[key] = true;
+        }
+      }
+      let updatedList = [...brandSelect];
+      if (!brandSelect.includes(event.target.value)) {
+        updatedList = [...brandSelect, event.target.value];
       } else {
-        bs[key] = true;
+        updatedList.splice(brandSelect.indexOf(event.target.value), 1);
+      }
+      setBrandSelect(updatedList);
+
+      console.log("brand selected", updatedList);
+    } else {
+      let updatedList = [...brandSelect];
+      if (!brandSelect.includes(event.target.value)) {
+        updatedList = [...brandSelect, event.target.value];
+      } else {
+        updatedList.splice(brandSelect.indexOf(event.target.value), 1);
+      }
+      setBrandSelect(updatedList);
+
+      console.log("brand selected", updatedList);
+      if (brandSelect.length === 0) {
+        setBs({
+          videogames: false,
+          pc: false,
+          consoles: false,
+          accessories: false,
+        });
       }
     }
-    let updatedList = [...brandSelect];
-    if (!brandSelect.includes(event.target.value)) {
-      updatedList = [...brandSelect, event.target.value];
-     
-    } else {
-      updatedList.splice(brandSelect.indexOf(event.target.value), 1);
-    }
-    setBrandSelect(updatedList);
-
-    console.log("brand selected", updatedList);
   }; //-------brand selected function end------
+
   //-------category selected function start------
   const categorySelector = (event) => {
     if (brandSelect.length === 0) {
@@ -85,12 +110,7 @@ const Products = () => {
           1
         );
       }
-      setChecked(updatedList);
-      console.log("checked brandSelect", checked);
-    } else {
-      if (checked.includes(event.target.name.toLowerCase())) {
-        setChecked([]);
-        setBrandSelect([]);
+      if (updatedList) {
         setBs({
           videogames: false,
           pc: false,
@@ -98,9 +118,29 @@ const Products = () => {
           accessories: false,
         });
       }
+
+      setChecked(updatedList);
+
+      console.log("checked brandSelect", checked);
+    } else {
+      setChecked([]);
+      setBrandSelect([]);
+      setBs({
+        videogames: false,
+        pc: false,
+        consoles: false,
+        accessories: false,
+      });
+    }
+  };
+  //-------category selected function end------
+
+
+
     }
   };
   //-------category selected function start------
+
 
   //intiating pagenumber to paginate from backend
   if (pageNum === 0) {
@@ -111,17 +151,24 @@ const Products = () => {
   const fetchAllProducts = async () => {
     //searchOption is coming from home page selections and checked is coming from products page
     if (!searchOption) {
-      if (checked.length === 0) {
+      if (checked.length === 0 && brandSelect.length === 0) {
+        //if nothing is selected
         queryText = `/api/v1/products/?page=${pageNum}`;
         setTitleText("All-Products");
       } else {
+        //only catagories are selected and no brand
         if (brandSelect.length === 0) {
-          queryText = `/api/v1/products/?productType=${checked.join(
+          queryText = `/api/v1/products/?sort=${sort}app_sale_price&productType=${checked.join(
             "&productType="
           )}&page=${pageNum}`;
-        } /*  else if((checked.length === 0) && (brandSelect.length > 0)){
-          queryText = `/api/v1/products/?brand=${brandSelect.join("&brand=")}&page=${pageNum}`
-        } */ else {
+
+        } else if (checked.length === 0 && brandSelect.length > 0) {
+          // if only brans are selected
+          queryText = `/api/v1/products/?sort=${sort}app_sale_price&brand=${brandSelect.join(
+            "&brand="
+          )}&page=${pageNum}`;
+        } else {
+          // for a catagory with its brands selected    
           queryText = `/api/v1/products/?productType=${
             checked[0]
           }&brand=${brandSelect.join("&brand=")}&page=${pageNum}`;
@@ -129,10 +176,10 @@ const Products = () => {
       }
     } else if (searchOption === "isBestSeller") {
       setTitleText("Best Sellers");
-      queryText = `/api/v1/products/?isBestSeller=true&page=${pageNum}`;
+      queryText = `/api/v1/products/?sort=${sort}app_sale_price&isBestSeller=true&page=${pageNum}`;
     } else {
       setTitleText(searchOption);
-      queryText = `/api/v1/products/?productType=${searchOption}&page=${pageNum}`;
+      queryText = `/api/v1/products/?sort=${sort}app_sale_price&productType=${searchOption}&page=${pageNum}`;
     }
 
     const getProducts = await axios.get(queryText);
@@ -140,12 +187,17 @@ const Products = () => {
     //console.log(getProducts)
   }; //end of fetch function
 
+
+
   //fetching for all products list from brandList[checked[0]]products database
   //pageNum is put in dependencies to see changes in click
   // checked is put in dependencies to see changes checked
   useEffect(() => {
     fetchAllProducts();
-  }, [pageNum, checked, brandSelect]);
+  }, [pageNum, checked, brandSelect, sort]);
+
+
+
 
   return (
     <div className="productContainer">
@@ -174,7 +226,11 @@ const Products = () => {
             })}
           </div>
         </div>
+
+        
         <div className="selectionCategory">
+
+
           <label htmlFor="brands" className="brands">
             Brands:
           </label>
@@ -182,10 +238,13 @@ const Products = () => {
             {!checked[0]
               ? filteredProducts.map((item, index) => {
                   return (
-                    <option                                     
+                    <option
                       key={index}
                       value={item}
                       onClick={handleBrandSelect}
+                      style={{
+                        backgroundColor: brandSelect.includes(item) && `blue`,
+                      }}
                     >
                       {item}
                     </option>
@@ -197,7 +256,10 @@ const Products = () => {
                       key={index}
                       value={item}
                       onClick={handleBrandSelect}
-                      style={{backgroundColor:brandSelect.includes(item)&&`blue`}}
+                      disabled={checked.length >= 2 ? true : false}
+                      style={{
+                        backgroundColor: brandSelect.includes(item) && `blue`,
+                      }} //changes to the color can be done here
                     >
                       {item}
                     </option>
@@ -205,10 +267,15 @@ const Products = () => {
                 })}
           </select>
           <br />
-          <select>
-            <option>Price</option>
-            <option>50-100</option>
-            <option>Above 100</option>
+
+          <label htmlFor="SortByPrice">Sort By Price:</label>
+          <select name="SortByPrice" id="price" multiple>
+            <option className="Ascend" onClick={() => setSort("")}>
+              Lowest to Highest
+            </option>
+            <option className="Descend" onClick={() => setSort("-")}>
+              Highest to Lowest
+            </option>
           </select>
         </div>
       </div>
