@@ -33,7 +33,7 @@ const AboutUs = () => {
         <div className="contactCard">
           <div className="contactForm">
             <form onSubmit={submitHandler}>
-              <label htmlFor="email">Email/username</label>
+              <label htmlFor="email" className="email-label">Email/username</label>
               <br />
               <input type="email" name="email" placeholder="email/username" />
               <p>Your message</p>

@@ -38,7 +38,7 @@ input {
   height: 25px;
 }
 
-label,
+.email-label,
 p {
   font-size: 20px;
   margin-top: 15px;
