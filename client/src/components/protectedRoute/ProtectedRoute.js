@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function ProtectedRoutes({ children, userAccess }) {
-  const { userData } =useContext(MyContext);
+  const { userData,setLogged,logged } =useContext(MyContext);
 const navigate = useNavigate()
 
 
@@ -14,7 +14,7 @@ const navigate = useNavigate()
       return children;
     }
   } else if (userAccess === "authenticated") {
-    if (userData) {
+    if (JSON.parse(localStorage.getItem("logged"))) {
       return children;
     } else {    
       

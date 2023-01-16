@@ -1,51 +1,45 @@
 import "./cart.css";
-import React, { useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 import { MyContext } from "../../context/Context";
 import axios from "axios";
-
-import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js"
-
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useNavigate } from "react-router-dom";
 
-
-
-
-
-
-
 function Cart() {
-  const { cartList, setCartList, totalQtyCart, setTotalQtyCart,getCart } =
+  const { cartList, setCartList, totalQtyCart, setTotalQtyCart, /* getCart */ } =
     useContext(MyContext);
   const navigate = useNavigate();
+ 
 
   useEffect(() => {
     getCart();
   }, []);
+  
+  
 
   // function to decrease the quantity of the items in the cart
   const decrease = async (item) => {
     //alert("hello")
     //console.log(item)
     //objects to be updated in cart database
-   if (item.cartQty <= 1 )
+    if (item.cartQty <= 1) removeItem(item.product_id);
+    else {
+      let cartNewItem = {
+        product_id: item.product_id,
+        cartQty: item.cartQty - 1,
+        product_title: item.product_title,
+        app_sale_price: item.app_sale_price,
+        product_main_image_url: item.product_main_image_url,
+      };
+      // console.log("data for cart",cartNewItem)
+      //objects  updated  in cart database, through  axios
+      await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+      //console.log("data for update cart")
+      getCart();
     
-    removeItem(item.product_id) 
-   else{
-    let cartNewItem = {
-      product_id: item.product_id,
-      cartQty: item.cartQty - 1,
-      product_title: item.product_title,
-      app_sale_price: item.app_sale_price,
-      product_main_image_url: item.product_main_image_url,
-    };
-    // console.log("data for cart",cartNewItem)
-    //objects  updated  in cart database, through  axios
-    await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
-    //console.log("data for update cart")
-    getCart();
-  }
+    }
   };
 
   // function to increase the quantity of the items in the cart
@@ -70,14 +64,21 @@ function Cart() {
   };
 
   // function to total quantity of the items in the cart
-  setTotalQtyCart(
+   setTotalQtyCart(
     cartList.reduce(
       (accumulator, currentValue) => accumulator + currentValue.cartQty,
       0
     )
-  );
-
+   
+  ); 
+ 
   // function to calculate total cost of items in the cart
+  const getCart = async () => {
+    const res1 = await axios.get("/api/v1/cart", {
+      withCredentials: true,
+    });
+    setCartList(res1.data.data.cart.products);
+  };
   const totalCostCart = () => {
     const totalCost = cartList.reduce(
       (accumulator, currentValue) =>
@@ -89,22 +90,17 @@ function Cart() {
 
   //remove item from the cart
   const removeItem = async (id) => {
-    alert(id)
+    
     await axios.delete(`/api/v1/cart/${id}`, {
       withCredentials: true,
     });
+    alert("successfully removed");
     //console.log({product_id:id});
     //getCart will update the cart after deleting
     getCart();
   };
 
-  /* const getCart = async () => {
-    const res1 = await axios.get("/api/v1/cart", {
-      withCredentials: true,
-    });
-    setCartList(res1.data.data.cart.products);
-    //console.log("cartlist",cartList)
-  }; */
+
 
   return (
     <div className="yourCart">
@@ -125,9 +121,11 @@ function Cart() {
                   <div>
                     <p>
                       {item.product_title}
-                      {/* <h6> Available quantity: </h6> */}
+                      
                     </p>
-                    <h5 className="product-id">Product Id: {item.product_id}</h5>
+                    <h5 className="product-id">
+                      Product Id: {item.product_id}
+                    </h5>
                     <div className="cartQuantityContainer">
                       <button
                         className="decrease cartBtn"
@@ -138,7 +136,7 @@ function Cart() {
                       <button className="itemQuantity cartBtn">
                         {item.cartQty}
                       </button>
-                    
+
                       <button
                         className="increase cartBtn"
                         onClick={() => increase(item)}
@@ -146,15 +144,11 @@ function Cart() {
                         +
                       </button>
                       <div className="price-div">
-                     $ {item.app_sale_price.toFixed(2)}
+                        $ {item.app_sale_price.toFixed(2)}
                       </div>
-                     
                     </div>
 
-                    {/* <p>{item.app_sale_price.toFixed(2)}</p> */}
-
-                   
-
+                  
                   </div>
                   <FontAwesomeIcon
                     className="deleteBtn"
@@ -169,49 +163,40 @@ function Cart() {
         <div className="cartRight">
           <h3>Order</h3>
 
-         
-
           <h4 className="total">Quantity of Goods: {totalQtyCart}</h4>
-          
+
           <h4 className="total">Total: ${totalCostCart()} </h4>
 
-
-
-
-          <PayPalScriptProvider options={{"client-id": "ASjPZXDYHNVn1687YJVcQxvQ1DooM7nEb2VN_37PqBdYcDwq-t0OL-RYHAQG__qogmhC9m8bYLls224W"}}>
+          <PayPalScriptProvider
+            options={{
+              "client-id":
+                "ASjPZXDYHNVn1687YJVcQxvQ1DooM7nEb2VN_37PqBdYcDwq-t0OL-RYHAQG__qogmhC9m8bYLls224W",
+            }}
+          >
             <PayPalButtons
               createOrder={(data, actions) => {
                 return actions.order.create({
-                    purchase_units: [
-                        {
-                            amount: {
-                                currency_code: "USD",
-                                value: totalCostCart(),
-                            }
-                        }
-                    ]
-                })
+                  purchase_units: [
+                    {
+                      amount: {
+                        currency_code: "USD",
+                        value: totalCostCart(),
+                      },
+                    },
+                  ],
+                });
               }}
               onApprove={(data, actions) => {
-                  return actions.order.capture().then(function (details) {
-                      alert(
-                          "Transaction completed by " + details.payer.name.given_name
-                      )
-                  })
+                return actions.order.capture().then(function (details) {
+                  alert(
+                    "Transaction completed by " + details.payer.name.given_name
+                  );
+                });
               }}
             />
           </PayPalScriptProvider>
-       
-      
-      {/*     
-          <br /> <p> ← Back to home</p>
 
-        
-          <br /> <p> ← Back to home</p>  */}
-          
-
-
-
+         
         </div>
       </div>
     </div>

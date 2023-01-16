@@ -1,8 +1,6 @@
 import "./myAccount.css";
 import React, { useEffect, useContext, useState } from "react";
-
 import { useNavigate, NavLink } from "react-router-dom";
-
 import image from "../../images/profile-pic.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
@@ -12,17 +10,18 @@ import axios from "axios";
 import FileBase64 from "react-file-base64";
 
 function MyAccount() {
-
   const navigate = useNavigate();
 
   const {
     userData,
     cartList,
+    setCartList,
     setUserData,
     wishList,
     setWishList,
     product,
     getCart,
+    setLogged,logged
   } = useContext(MyContext);
 
   const [profile, setProfile] = useState(" ")
@@ -97,9 +96,10 @@ function MyAccount() {
       //console.log("data for cart from wishlist", cartNewItem);
       await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
 
-      //alert("successfully added");
+      alert("successfully added");
 
-      getCart();
+     getCart();
+     
     }
   };
 
@@ -126,9 +126,13 @@ function MyAccount() {
     });
 
     setUserData("");
+    localStorage.removeItem("logged")
+   setCartList([])
     alert("successfully logged out");
     navigate("/");
   };
+
+ 
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -164,7 +168,7 @@ function MyAccount() {
       <div className="myAccountContainer">
         <h1 className="myaccount-title">My Account</h1>
         <div className="accountDetail">
-          <p className="userName"> Hi,{userData.user.name}</p>
+          <p className="userName"> Hi,{JSON.parse(localStorage.getItem("logged"))}</p>
 
           <div className="myAccountImg">
 
@@ -248,8 +252,7 @@ function MyAccount() {
                   </p>
                   <p>${items.app_sale_price}</p>
                   <p>{items.product_detail_url}</p>
-                </div>
-                {/* <h1>{item.id}</h1> */}
+                </div>               
               </div>
             );
           })}
