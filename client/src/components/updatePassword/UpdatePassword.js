@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const UpdatePassword = () => {
-  const { msg, setMsg } = useContext(MyContext); //using context to store user data
+  const { msg, setMsg, setCartList, setUserData } = useContext(MyContext); //using context to store user data
   const [loginData, setLoginData] = useState();
   const navigate = useNavigate();
 
@@ -17,26 +17,41 @@ const UpdatePassword = () => {
   }
 
   // function to get values from input fields.
-  const handleChange = (event) => {
+  /*  const handleChange = (event) => {
     setLoginData({ email: event.target.value });
-  };
+  }; */
 
   const setUpdatePassword = async (e) => {
+    e.preventDefault();
     const passwordCurrent = e.target.passwordCurrent.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
+    try {
+      const response = await axios
+        .patch("/api/v1/user/updateMyPassword", {
+          passwordCurrent,
+          password,
+          confirmPassword,
+        })
+        .then((res) => {
+          alert("password changed,please re-login");
+        });
+      setMsg("password changed,please re-login");
+      logOut();
+    } catch (e) {
+      console.log(e);
+    }
+   
+  };
 
-    const response = await axios.patch("/api/v1/user/updateMyPassword", {
-      passwordCurrent,
-      password,
-      confirmPassword,
+  const logOut = async () => {
+    const res = await axios.get("/api/v1/user/logout", {
+      withCredentials: true,
     });
-
-    alert("password changed");
-
-    setMsg("Password changed");
-
-    navigate("/myAccount");
+    setUserData("");
+    localStorage.removeItem("logged");
+    setCartList([]);
+    navigate("/login");
   };
 
   return (
@@ -51,7 +66,7 @@ const UpdatePassword = () => {
             type="password"
             placeholder="current password"
             name="passwordCurrent"
-            onChange={handleChange}
+            // onChange={handleChange}
           />
           <label htmlFor="email">New Password:</label>
           <input
@@ -59,7 +74,7 @@ const UpdatePassword = () => {
             type="password"
             placeholder="new password"
             name="password"
-            onChange={handleChange}
+            // onChange={handleChange}
           />
           <label htmlFor="email">Confirm Password:</label>
           <input
@@ -67,7 +82,7 @@ const UpdatePassword = () => {
             type="password"
             placeholder="confirm new password"
             name="confirmPassword"
-            onChange={handleChange}
+            //onChange={handleChange}
           />
           <button type="submit">Update password</button>
         </form>
