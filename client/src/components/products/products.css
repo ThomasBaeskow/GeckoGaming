@@ -1,6 +1,5 @@
 * {
-  padding: 0;
-  margin: 0;
+
   box-sizing: border-box;
 }
 
@@ -16,12 +15,21 @@
 
 .selectionCriteria {
   width: 30%;
- /*  height: 100vw; */
   padding: 90px;
   margin-bottom: 20px;
-  /*   position: absolute;
-  top: 0;
-  left: 0; */
+}
+
+.brands{
+  font-weight: bold;
+}
+
+#brands{
+  margin-bottom: 20px;
+}
+
+.sortByPrice{
+  font-weight: bold;
+  margin-left: 20px;
 }
 
 .categories {
@@ -82,8 +90,8 @@ option {
   margin-top: 2em;
 }
 .best {
-  font-family: "Londrina Shadow", cursive;
-  font-size: 2rem;
+  font-family:'JetBrains mono';
+  font-size: 1.5rem;
 }
 .productDisplayScroll{
   margin-top: 100px;
@@ -122,10 +130,6 @@ option {
   border: 3px solid;
 }
 
-.heart:hover {
-  color: palevioletred;
-}
-
 .product-title {
   font-size: 1vw;
   font-weight: bold;
@@ -146,6 +150,14 @@ option {
 }
 .pagination li {
   list-style: none;
+}
+
+.brands{
+  margin-left: 20px;
+}
+
+.sortByPrice{
+  margin-top: 2em;
 }
 
 /* media query mobile */
