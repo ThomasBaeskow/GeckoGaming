@@ -9,6 +9,11 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Sofia from "../../../src/img-team/sofia.jpeg";
+import Thomas from "../../../src/img-team/thomas.jpg";
+import Dani from "../../../src/img-team/dani.jpg";
+import Anu from "../../img-team/Anu-profile-photo.jpeg";
+import Orazio from "../../img-team/orazio.jpg";
 
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -33,7 +38,9 @@ const AboutUs = () => {
         <div className="contactCard">
           <div className="contactForm">
             <form onSubmit={submitHandler}>
-              <label htmlFor="email" className="email-label">Email/username</label>
+              <label htmlFor="email" className="email-label">
+                Email/username
+              </label>
               <br />
               <input type="email" name="email" placeholder="email/username" />
               <p>Your message</p>
@@ -66,11 +73,29 @@ const AboutUs = () => {
           best technology, accessories and games that are on the market
         </p>
         <div className="pic-container">
-          <img src="" alt="thomas" />
-          <img src="" alt="dani" />
-          <img src="" alt="sofia" />
-          <img src="" alt="anu" />
-          <img src="" alt="orazio" />
+          <div className="img-div">
+            <img src={Thomas} alt="thomas" className="img-team" />
+            Thomas Baeskow
+          </div>
+          <div className="img-div">
+            <img src={Dani} alt="dani" className="img-team" />
+            Dani Hristonova
+          </div>
+          <div className="img-div">
+            {" "}
+            <img src={Sofia} alt="sofia" className="img-team sofia" />
+            Sofia Dinatolo
+          </div>
+          <div className="img-div">
+            {" "}
+            <img src={Anu} alt="anu" className="img-team anu" />
+            Anu Desikan
+          </div>
+          <div className="img-div">
+            {" "}
+            <img src={Orazio} alt="orazio" className="img-team orazio" />
+            Orazio Ventura
+          </div>
         </div>
       </div>
     </div>
