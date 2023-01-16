@@ -9,7 +9,6 @@
   margin-bottom: 10%;
   background-color: #ccffcc;
   margin-top: 90px;
-
 }
 
 .accountDetail {
@@ -79,7 +78,7 @@ p {
   font-size: 55px;
 }
 
-.pic-container{
+.pic-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -88,7 +87,7 @@ p {
   margin-top: 10px;
 }
 
-.img-div{
+.img-div {
   height: 260px;
   width: 200px;
   padding: 30px 50px 50px 10px;
@@ -97,45 +96,45 @@ p {
   box-shadow: 5px 5px;
 }
 
-.img-div:hover{
+.img-div:hover {
   transition: all 0.5s ease-in-out;
   transform: scale(1.1);
   box-shadow: 10px 10px;
-cursor: pointer;
+  cursor: pointer;
 }
 
-.img-team{
+.img-team {
   width: 150px;
   height: auto;
   border: 2px solid;
 }
 
-.sofia{
+.sofia {
   width: 150px;
   height: 180px;
 }
 
-.anu{
+.anu {
   width: 150px;
   height: 180px;
 }
 
-.orazio{
+.orazio {
   width: 150px;
   height: 180px;
 }
 /* Scroolbar */
- ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 10px;
-} 
+}
 /* Track */
- ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #f1f1f1;
-} 
+}
 /* Handle */
- ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #1fab89;
-} 
+}
 
 /* media query */
 
@@ -187,6 +186,29 @@ cursor: pointer;
   .contactAbout p {
     text-align: center;
     font-size: 0.8rem;
+
+  }
+  .pic-container {
+   display: none;
+  }
+  .img-div {
+    height: 130px;
+    width: 100px;
+    padding: 30px 50px 50px 10px;
+    background-color: #f1f1f1;
+    border: 2px solid;
+    box-shadow: 5px 5px;
+  }
+  .img-div:hover {
+    transition: all 0.5s ease-in-out;
+    transform: scale(1.1);
+    box-shadow: 10px 10px;
+    cursor: pointer;
+  }
+  .img-team {
+    width: 100px;
+    height: auto;
+    border: 2px solid;
   }
 }
 
@@ -238,5 +260,8 @@ cursor: pointer;
   .contactAbout p {
     text-align: center;
     font-size: 0.8rem;
+  }
+  .pic-container {
+    display: none;
   }
 }
