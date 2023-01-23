@@ -15,6 +15,7 @@ import orderRouter from "./routes/orderRoutes.js"
 import contact from "./routes/contactRoute.js"
 import sgMail from "@sendgrid/mail"
 import {corsOptions} from "./config/corsOptions.js"
+import {fileURLToPath} from "url"
 
 dotenv.config({path:"./.env"})
 
@@ -27,8 +28,12 @@ const __dirname = path.resolve();
 
 const app = express();
 
-app.use(cors(corsOptions))
+app.use(cors())
 
+// THIS IS FOR DEPLOYMENT AS ONE APP TO RENDER.COM
+const __fileName = fileURLToPath(import.meta.url)
+const __dirName = path.dirname(__fileName)
+app.use(express.static(path.join(__dirName, "./client/build")))
 
 // NEW CHANGE
 app.use(express.static("public"));
@@ -75,10 +80,11 @@ app.use('/api/v1/cart', cartRouter);
 app.use('/api/v1/orders', orderRouter);
 app.use('/api/v1/about', contact);
 
-// app.use('/', );
+// THIS IS FOR DEPLOYMENT AS ONE APP TO RENDER.COM
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirName, "./client/build", index.html))
+})
 
-// app.use("/api/v1/reviews");
-// app.use("/api/v1/orders");
 
 // ERROR HANDLING:
 // "all" means all http methods (get,post,delete, etc). "*" means all routes.

@@ -56,28 +56,28 @@ const sendErrorDev = (err, req, res) => {
 // PROD
 const sendErrorProd = (err, req, res) => {
     // A) API
-    if (req.originalUrl.startsWith("/api")) {
-        // A) Operational, trusted error: send message to client (if the user input invalid data, wants to visit a route which does not exist, etc.)
-        if (err.isOperational) { // if its operational error, we return just a message with the status and errormessage
-            return res.status(err.statusCode).json({
-                status: err.status,
-                message: err.message
-              })
-        }
-        // B) Programming or other unknown error: dont leak error details to the client (user)
-        // 2) Send generic message
-        return res.status(500).json({ // if its not operational error we send again generic error message to the client. (we dont let the user see the original error message)
-            status: "error",
-            message: "Something went very wrong!"
-        })
-    }
-    // RENDERED WEBSITE
-    if (err.isOperational) { // if route starts with "/api" and its operational error, we render a new pug template "error.pug" where we save in local variables the title and msg (err.message)
-        return res.status(err.statusCode).render("error", {
-            title: "Something went wrong!",
-            msg: err.message
-        })
-    }
+    // if (req.originalUrl.startsWith("/api")) {
+    //     // A) Operational, trusted error: send message to client (if the user input invalid data, wants to visit a route which does not exist, etc.)
+    //     if (err.isOperational) { // if its operational error, we return just a message with the status and errormessage
+    //         return res.status(err.statusCode).json({
+    //             status: err.status,
+    //             message: err.message
+    //           })
+    //     }
+    //     // B) Programming or other unknown error: dont leak error details to the client (user)
+    //     // 2) Send generic message
+    //     return res.status(500).json({ // if its not operational error we send again generic error message to the client. (we dont let the user see the original error message)
+    //         status: "error",
+    //         message: "Something went very wrong!"
+    //     })
+    // }
+    // // RENDERED WEBSITE
+    // if (err.isOperational) { // if route starts with "/api" and its operational error, we render a new pug template "error.pug" where we save in local variables the title and msg (err.message)
+    //     return res.status(err.statusCode).render("error", {
+    //         title: "Something went wrong!",
+    //         msg: err.message
+    //     })
+    // }
     // 1) Log error
     console.error("ERROR", err);
 
