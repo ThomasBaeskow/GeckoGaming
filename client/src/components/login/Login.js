@@ -41,7 +41,7 @@ const Login = () => {
     } else {
       try {
         const response = await axios
-          .post("/api/v1/user/login", loginData, {
+          .post(`${process.env.REACT_APP_BE_URL}/api/v1/user/login`, loginData, {
             withCredentials: true, // The 'login' API call for user authentication on the success of the login API sends us an HTTPonly cookie.
             //Here for every API call, we have to pass configuration to API call like 'withCredentials' with 'true' because our client application and API application runs under different ports or domains so to store the login cookie into the browser or attach the cookie for every secured API endpoint request we need those configurations.
           })

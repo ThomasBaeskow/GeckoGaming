@@ -10,7 +10,7 @@ const{userData,setLogged,logged,setCartList,setUserData,setOpen,open,setSearchOp
 const navigate = useNavigate()
 // cookie is cleared once logged out
 const logOut = async()=>{
-  const res = await axios.get("/api/v1/user/logout",{
+  const res = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/user/logout`,{
     withCredentials:true,
   }); setUserData("") 
 setCartList([])

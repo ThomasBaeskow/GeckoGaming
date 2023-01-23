@@ -14,6 +14,7 @@ import cartRouter from "./routes/cartRoutes.js"
 import orderRouter from "./routes/orderRoutes.js"
 import contact from "./routes/contactRoute.js"
 import sgMail from "@sendgrid/mail"
+import {corsOptions} from "./config/corsOptions.js"
 
 dotenv.config({path:"./.env"})
 
@@ -26,7 +27,7 @@ const __dirname = path.resolve();
 
 const app = express();
 
-app.use(cors())
+app.use(cors(corsOptions))
 
 
 // NEW CHANGE

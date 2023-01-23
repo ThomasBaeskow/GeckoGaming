@@ -28,7 +28,7 @@ const UpdatePassword = () => {
     const confirmPassword = e.target.confirmPassword.value;
     try {
       const response = await axios
-        .patch("/api/v1/user/updateMyPassword", {
+        .patch(`${process.env.REACT_APP_BE_URL}/api/v1/user/updateMyPassword`, {
           passwordCurrent,
           password,
           confirmPassword,
@@ -46,7 +46,7 @@ const UpdatePassword = () => {
   };
 
   const logOut = async () => {
-    const res = await axios.get("/api/v1/user/logout", {
+    const res = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/user/logout`, {
       withCredentials: true,
     });
     setUserData("");
