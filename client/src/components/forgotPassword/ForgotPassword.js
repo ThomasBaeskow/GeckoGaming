@@ -27,7 +27,7 @@ const ForgotPassword = () => {
         setMsg("Email is invalid, please enter correct email id");
       } else {
         const response = await axios.post(
-          `${process.env.REACT_APP_BE_URL}/api/v1/user/forgotPassword`,
+          `${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/forgotPassword`,
           loginData
         );
 

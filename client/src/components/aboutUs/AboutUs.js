@@ -22,7 +22,7 @@ const AboutUs = () => {
     const from = e.target.email.value;
     const text = e.target.message.value;
     axios
-      .post("http://127.0.0.1:5000/api/v1/about/contact", { from, text })
+      .post(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/about/contact`, { from, text })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     alert("Message has been sent");
