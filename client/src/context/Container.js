@@ -30,7 +30,7 @@ export default function Container({ children }) {
 
 
  const getCart = async () => {
-    const res1 = await axios.get("/api/v1/cart", {
+    const res1 = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, {
       withCredentials: true,
     });
     setCartList(res1.data.data.cart.products);

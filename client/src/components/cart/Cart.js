@@ -32,7 +32,7 @@ function Cart() {
       };
       // console.log("data for cart",cartNewItem)
       //objects  updated  in cart database, through  axios
-      await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+      await axios.post(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, cartNewItem, { withCredentials: true });
       //console.log("data for update cart")
       getCart();
     }
@@ -53,7 +53,7 @@ function Cart() {
     };
     // console.log("data for cart",cartNewItem)
     //objects  updated  in cart database, through  axios
-    await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+    await axios.post(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, cartNewItem, { withCredentials: true });
     //console.log("data for update cart")
     //getCart is called here to get updated cart list
     getCart();
@@ -69,7 +69,7 @@ function Cart() {
 
   // function to calculate total cost of items in the cart
   const getCart = async () => {
-    const res1 = await axios.get("/api/v1/cart", {
+    const res1 = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, {
       withCredentials: true,
     });
     setCartList(res1.data.data.cart.products);
@@ -85,7 +85,7 @@ function Cart() {
 
   //remove item from the cart
   const removeItem = async (id) => {
-    await axios.delete(`/api/v1/cart/${id}`, {
+    await axios.delete(`${process.env.REACT_APP_BE_URL}/api/v1/cart/${id}`, {
       withCredentials: true,
     });
 

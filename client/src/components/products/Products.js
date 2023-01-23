@@ -152,33 +152,33 @@ const Products = () => {
     if (!searchOption) {
       if (checked.length === 0 && brandSelect.length === 0) {
         //if nothing is selected
-        queryText = `/api/v1/products/?page=${pageNum}`;
+        queryText = `${process.env.REACT_APP_BE_URL}/api/v1/products/?page=${pageNum}`;
         setTitleText("All-Products");
       } else {
         //only catagories are selected and no brand
         if (brandSelect.length === 0) {
-          queryText = `/api/v1/products/?sort=${sort}app_sale_price&productType=${checked.join(
+          queryText = `${process.env.REACT_APP_BE_URL}/api/v1/products/?sort=${sort}app_sale_price&productType=${checked.join(
             "&productType="
           )}&page=${pageNum}`;
 
         } else if (checked.length === 0 && brandSelect.length > 0) {
           // if only brans are selected
-          queryText = `/api/v1/products/?sort=${sort}app_sale_price&brand=${brandSelect.join(
+          queryText = `${process.env.REACT_APP_BE_URL}/api/v1/products/?sort=${sort}app_sale_price&brand=${brandSelect.join(
             "&brand="
           )}&page=${pageNum}`;
         } else {
           // for a catagory with its brands selected    
-          queryText = `/api/v1/products/?productType=${
+          queryText = `${process.env.REACT_APP_BE_URL}/api/v1/products/?productType=${
             checked[0]
           }&brand=${brandSelect.join("&brand=")}&page=${pageNum}`;
         }
       }
     } else if (searchOption === "isBestSeller") {
       setTitleText("Best Sellers");
-      queryText = `/api/v1/products/?sort=${sort}app_sale_price&isBestSeller=true&page=${pageNum}`;
+      queryText = `${process.env.REACT_APP_BE_URL}/api/v1/products/?sort=${sort}app_sale_price&isBestSeller=true&page=${pageNum}`;
     } else {
       setTitleText(searchOption);
-      queryText = `/api/v1/products/?sort=${sort}app_sale_price&productType=${searchOption}&page=${pageNum}`;
+      queryText = `${process.env.REACT_APP_BE_URL}/api/v1/products/?sort=${sort}app_sale_price&productType=${searchOption}&page=${pageNum}`;
     }
 
     const getProducts = await axios.get(queryText);

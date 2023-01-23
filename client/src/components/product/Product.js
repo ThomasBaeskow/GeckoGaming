@@ -39,13 +39,13 @@ const navigate = useNavigate()
 
     // console.log("while entry in product single page",location.state.id,location.state.product_detail_url,location.state,  )
     //--- Note * --- system id stored in wishlist, is not there in productDetails database. To get productDetail we need  product_id which is in productDetails database. so to get product_id based on system id of product database using axios
-    const response = await axios.get(`/api/v1/products/${location.state.id}`);
+    const response = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/products/${location.state.id}`);
     const product_id = response.data.data.product.product_detail_url.slice(-10);
     //console.log(product_id)
 
     //now get product details based on product_id to display in single page
     const getProducts1 = await axios.get(
-      `/api/v1/product/?product_id=${product_id}`
+      `${process.env.REACT_APP_BE_URL}/api/v1/product/?product_id=${product_id}`
     );
     //const getProducts1 = await axios.get(`/api/v1/product/`,{product_id });
     let res = getProducts1.data.data.data[0];
@@ -89,7 +89,7 @@ const navigate = useNavigate()
       product_main_image_url: prod_result[0].product_main_image_url,
     };
     //console.log("data for cart",cartNewItem)
-    await axios.post("/api/v1/cart", cartNewItem, { withCredentials: true });
+    await axios.post(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, cartNewItem, { withCredentials: true });
     alert("Successfully added in cart");
     getCart();
   };
@@ -99,7 +99,7 @@ const navigate = useNavigate()
     !JSON.parse(localStorage.getItem("logged"))  && alert("Please login to add/remove from wishlist");
     try {
       await axios.put(
-        "/api/v1/user/wishlist",
+        `${process.env.REACT_APP_BE_URL}/api/v1/user/wishlist`,
         { productId: prodId },
         { withCredentials: true }
       );
