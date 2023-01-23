@@ -24,6 +24,10 @@ const createSendToken = (user, statusCode, req, res) => {
         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000), // converting to milliseconds
         httpOnly: true, // cookie can not be accessed or modified in any way by the browser (Cross-Site scripting attacks)
         // secure: req.secure || req.headers("x-forwarded-proto") === "https" // cookie will only send on encrypted connection (https). That line is necessary for heroku.
+
+        // WHEN DEPLOYING PROJECT AS 2 APPLICATIONS (Frontend/Backend) we need to add these
+        // sameSite: "none",
+        // secure: true
     })
     // console.log(cookieOptions);
 
