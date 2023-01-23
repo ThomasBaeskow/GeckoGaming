@@ -69,7 +69,7 @@ function Cart() {
 
   // function to calculate total cost of items in the cart
   const getCart = async () => {
-    const res1 = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, {
+    const res1 = await axios.get(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/cart`, {
       withCredentials: true,
     });
     setCartList(res1.data.data.cart.products);
@@ -85,7 +85,7 @@ function Cart() {
 
   //remove item from the cart
   const removeItem = async (id) => {
-    await axios.delete(`${process.env.REACT_APP_BE_URL}/api/v1/cart/${id}`, {
+    await axios.delete(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/cart/${id}`, {
       withCredentials: true,
     });
 
