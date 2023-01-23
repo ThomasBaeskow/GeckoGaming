@@ -40,7 +40,7 @@ function MyAccount() {
 
   async function uploadProfile() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/user/me`);
+      const response = await axios.get(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/me`);
       setProfile(response.data.data.data.photo);
       // console.log(response.data.data.data);
     } catch (err) {
@@ -55,7 +55,7 @@ function MyAccount() {
     //console.log("single product", prodExists.length);
     // check if product is there in front end product array ---if not
     if (prodExists.length === 0) {
-      const response = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/products/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/products/${id}`);
       const prod_result = response.data.data.product;
 
       let product_id = prod_result.product_detail_url.slice(-10);
@@ -73,7 +73,7 @@ function MyAccount() {
       };
 
       //console.log("data for cart from wishlist", cartNewItem);
-      await axios.post(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, cartNewItem, { withCredentials: true });
+      await axios.post(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/cart`, cartNewItem, { withCredentials: true });
       alert("successfully added");
       getCart();
     }
@@ -95,7 +95,7 @@ function MyAccount() {
       };
 
       //console.log("data for cart from wishlist", cartNewItem);
-      await axios.post(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, cartNewItem, { withCredentials: true });
+      await axios.post(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/cart`, cartNewItem, { withCredentials: true });
 
       alert("successfully added");
 
@@ -106,7 +106,7 @@ function MyAccount() {
   //remove product from wishlist
   const removeItem = async (itemId) => {
     await axios.put(
-      `${process.env.REACT_APP_BE_URL}/api/v1/user/wishlist`,
+      `${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/wishlist`,
       { productId: itemId },
       { withCredentials: true }
     );
@@ -114,14 +114,14 @@ function MyAccount() {
   };
 
   const getWishList = async () => {
-    const res1 = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/user/seeWishlist`, {
+    const res1 = await axios.get(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/seeWishlist`, {
       withCredentials: true,
     });
     setWishList(res1.data.data.data);
   };
 
   const logOut = async () => {
-    const res = await axios.get(`${process.env.REACT_APP_BE_URL}/api/v1/user/logout`, {
+    const res = await axios.get(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/logout`, {
       withCredentials: true,
     });
 
@@ -139,7 +139,7 @@ function MyAccount() {
     formData.append("photo", newImage.photo);
 
     const response = await axios
-      .patch(`${process.env.REACT_APP_BE_URL}/api/v1/user/updateMe`, formData)
+      .patch(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/updateMe`, formData)
       .then((res) => {
         console.log("hi im the response", res.data.data.user.photo);
         setProfile(res.data.data.user.photo);

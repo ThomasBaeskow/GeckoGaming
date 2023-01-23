@@ -32,7 +32,7 @@ function Cart() {
       };
       // console.log("data for cart",cartNewItem)
       //objects  updated  in cart database, through  axios
-      await axios.post(`${process.env.REACT_APP_BE_URL}/api/v1/cart`, cartNewItem, { withCredentials: true });
+      await axios.post(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/cart`, cartNewItem, { withCredentials: true });
       //console.log("data for update cart")
       getCart();
     }

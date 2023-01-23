@@ -25,7 +25,7 @@ function ResetPassword() {
 
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_BE_URL}/api/v1/user/resetPassword/${token}`,
+        `${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/resetPassword/${token}`,
         resetPwd,
         { withCredentials: true }
       );

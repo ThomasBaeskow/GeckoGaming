@@ -50,7 +50,7 @@ const Signup = () => {
       setMsg("")
      try{
          await axios
-      .post(`${process.env.REACT_APP_BE_URL}/api/v1/user/signup`, registerUser)
+      .post(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/signup`, registerUser)
       .then((res) => 
         
       setMsg("you have successfully registered"));       
