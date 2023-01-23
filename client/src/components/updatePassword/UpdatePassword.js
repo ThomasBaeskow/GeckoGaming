@@ -40,6 +40,7 @@ const UpdatePassword = () => {
       logOut();
     } catch (e) {
       console.log(e);
+      alert("your password is wrong! Please try again.")
     }
    
   };
