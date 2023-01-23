@@ -169,7 +169,7 @@ export const forgotPassword = catchAsync(async(req, res, next) => {
 
     // 3) Send it to users email
     try {
-        const resetURL = `${req.protocol}://127.0.0.1:3000/resetPassword/${resetToken}` // we are sending the plain resetToken and not the encrypted one!
+        const resetURL = `https://geckogaming-mern.onrender.com/api/v1/user/resetPassword/${resetToken}` // we are sending the plain resetToken and not the encrypted one!
         await new Email(user, resetURL).sendPasswordReset() // this is creating the email and sending it to the user.
     
         // const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didnt forget your password, please ignore this email!`
