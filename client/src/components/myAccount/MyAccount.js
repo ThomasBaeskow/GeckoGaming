@@ -186,7 +186,7 @@ function MyAccount() {
             </form>
             {/* {console.log(profile)} */}
             <img
-              src={`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/images/${profile}`}
+              src={`http://localhost:5000/images/${profile}`}
               alt=""
               className="img-profile"
             />
