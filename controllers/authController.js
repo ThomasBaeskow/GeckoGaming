@@ -110,10 +110,8 @@ export const protect = catchAsync(async(req, res, next) => {
     } else if (req.cookies.jwt) {
         token = req.cookies.jwt
 
-        // console.log(req.cookies, "second");
     }
 
-    // console.log(token, "third");
 
     if (!token) {
         return next(new AppError("You are not logged in! Please login to get access.", 401))
@@ -169,7 +167,7 @@ export const forgotPassword = catchAsync(async(req, res, next) => {
 
     // 3) Send it to users email
     try {
-        const resetURL = `${req.protocol}://127.0.0.1:3000/resetPassword/${resetToken}` // we are sending the plain resetToken and not the encrypted one!
+        const resetURL = `${process.env.REACT_APP_IMG_URL?process.env.REACT_APP_IMG_URL:"http://127.0.0.1:3000"}/resetPassword/${resetToken}` // we are sending the plain resetToken and not the encrypted one!
         // `https://geckogaming-mern.onrender.com/api/v1/user/resetPassword/${resetToken}`
         await new Email(user, resetURL).sendPasswordReset() // this is creating the email and sending it to the user.
     

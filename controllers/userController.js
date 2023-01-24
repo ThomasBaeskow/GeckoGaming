@@ -7,9 +7,18 @@ import multer from "multer"
 import sharp from "sharp"
 import { v4 as uuidv4 } from 'uuid';
 import path from "path";
+import fs from "fs"
 
 // We simply store the file in our memory as a buffer. Which is available on req.file.buffer. The filename property wont get set here, thats why we need to set it below in resizeUserPhoto()
 const multerStorage = multer.memoryStorage()
+
+
+let dir = './public';
+
+if (!fs.existsSync(dir)){
+  console.log(dir);
+    fs.mkdirSync(dir);
+}
 
 // BUILT OPTION FOR FILTER
 // MULTER FILTER
@@ -37,7 +46,7 @@ export const resizeUserPhoto = catchAsync(async(req, res, next) => {
 
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`
 
-  await sharp(req.file.buffer).resize(500, 500).toFormat("jpeg").jpeg({quality: 90}).toFile(`public/img/users/${req.file.filename}`) // sharp is a image processing library (package) for resizing images in a simple way. We pass into sharp() the name of the file we want to resize. It gives back an object, where we can use JS methods on for resizing. "resize(500, 500)" is resizing the image to a square, all the image files will have the format "jpeg". jpeg method compresses the image quality to 90% that it wont take too much space. toFile() needs the path to the file and want to save this to the file in our fileSystem.
+  await sharp(req.file.buffer).resize(500, 500).toFormat("jpeg").jpeg({quality: 90}).toFile(`public/${req.file.filename}`) // sharp is a image processing library (package) for resizing images in a simple way. We pass into sharp() the name of the file we want to resize. It gives back an object, where we can use JS methods on for resizing. "resize(500, 500)" is resizing the image to a square, all the image files will have the format "jpeg". jpeg method compresses the image quality to 90% that it wont take too much space. toFile() needs the path to the file and want to save this to the file in our fileSystem.
   next()
 })
 
