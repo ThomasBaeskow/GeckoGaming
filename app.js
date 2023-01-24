@@ -28,7 +28,7 @@ const __dirname = path.resolve();
 
 const app = express();
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 // THIS IS FOR DEPLOYMENT AS ONE APP TO RENDER.COM
 const __fileName = fileURLToPath(import.meta.url)
