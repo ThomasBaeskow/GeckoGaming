@@ -82,7 +82,7 @@ app.use('/api/v1/about', contact);
 
 // THIS IS FOR DEPLOYMENT AS ONE APP TO RENDER.COM
 app.all("*", (req, res) => {
-  res.sendFile(path.join(__dirName, "./client/build", index.html))
+  res.sendFile(path.join(__dirName, "./client","build", index.html))
 })
 
 
