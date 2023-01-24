@@ -81,7 +81,7 @@ app.use('/api/v1/orders', orderRouter);
 app.use('/api/v1/about', contact);
 
 // THIS IS FOR DEPLOYMENT AS ONE APP TO RENDER.COM
-app.get("/*", (req, res) => {
+app.all("*", (req, res) => {
   res.sendFile(path.join(__dirName, "./client/build", index.html))
 })
 
@@ -89,9 +89,9 @@ app.get("/*", (req, res) => {
 // ERROR HANDLING:
 // "all" means all http methods (get,post,delete, etc). "*" means all routes.
 // this middleware should be always at the end of the call-stack. This middleware will never be reached, if the route is defined.
-app.all("*", (req, res, next) => {
-  next(new AppError(`Cant find ${req.originalUrl} on this server`, 404)) // when we pass in the error, the next will skip all the other middleware in the stack and goes to the next error middleware
-})
+// app.all("*", (req, res, next) => {
+//   next(new AppError(`Cant find ${req.originalUrl} on this server`, 404)) // when we pass in the error, the next will skip all the other middleware in the stack and goes to the next error middleware
+// })
 
 // Jonas global error handler:
 // by implementing 4 arguments (parameters) express knows, that this is a global error handling middleware
