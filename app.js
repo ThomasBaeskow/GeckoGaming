@@ -28,7 +28,7 @@ const __dirname = path.resolve();
 
 const app = express();
 
-app.use(cors())
+app.use(cors(corsOptions))
 
 // THIS IS FOR DEPLOYMENT AS ONE APP TO RENDER.COM
 const __fileName = fileURLToPath(import.meta.url)
@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'development') { // - We just want to use morgan mi
     app.use(morgan('dev'));
 }
 
-app.use("/images",express.static("public/img/users"))
+// app.use("/images",express.static("public/img/users"))
 app.use(express.json({limit: "10Mb"})); // we can add options to our .json middleware to limit the data which the client can send to our application. We limit to10 kilobyte
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser())

@@ -40,7 +40,10 @@ function MyAccount() {
 
   async function uploadProfile() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/me`);
+      const response = await axios.get(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/me`, {
+        withCredentials: true,
+        credentials: "include"
+      });
       setProfile(response.data.data.data.photo);
       // console.log(response.data.data.data);
     } catch (err) {
@@ -138,8 +141,15 @@ function MyAccount() {
     const formData = new FormData();
     formData.append("photo", newImage.photo);
 
+
     const response = await axios
-      .patch(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/updateMe`, formData)
+      .patch(`${process.env.REACT_APP_BE_URL?process.env.REACT_APP_BE_URL: ""}/api/v1/user/updateMe`, formData, {
+        withCredentials: true,
+        credentials: "include"
+        // headers: {
+        //   "authorization": `Bearer ${localStorage.getItem("jwt")}`
+        // }
+      })
       .then((res) => {
         console.log("hi im the response", res.data.data.user.photo);
         setProfile(res.data.data.user.photo);
@@ -186,7 +196,7 @@ function MyAccount() {
             </form>
             {/* {console.log(profile)} */}
             <img
-              src={`http://localhost:5000/images/${profile}`}
+              src={`${process.env.REACT_APP_IMG_URL?process.env.REACT_APP_IMG_URL:"http://localhost:5000"}/${profile}`}
               alt=""
               className="img-profile"
             />
