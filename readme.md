@@ -52,7 +52,7 @@ Gecko Gaming is an e-commerce website that sells video games and gaming accessor
 
 ### Deployment
 
-Coming soon!
+The app is deployed on Render and can be found [here](https://geckogaming-mern.onrender.com/)
 
 ---
 
